@@ -4,34 +4,116 @@ title: Accountrise - Remote Bookkeeping & Tax Services
 description: Outsource your accounting to Accountrise — U.S.-focused, tech-enabled, and highly reliable bookkeeping and tax support for modern businesses and CPA firms.
 ---
 
+<!-- ================= HERO SECTION ================= -->
 <section class="py-20 bg-blue-50 px-4">
-  <!-- Hero Section (unchanged) -->
   <div class="text-center max-w-4xl mx-auto">
-    <h1 class="text-5xl font-extrabold text-indigo-700 mb-6">Simplifying Your Books, Maximizing Your Growth</h1>
-    <p class="text-lg text-gray-700 mb-6">Outsource your bookkeeping, payroll, and tax tasks to experts you can trust — tailored for U.S. businesses, CPA firms, and startups.</p>
-    <a href="#contact" class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-indigo-700">Get Started</a>
+    <h1 class="text-5xl font-extrabold text-indigo-700 mb-6">
+      Simplifying Your Books, Maximizing Your Growth
+    </h1>
+    <p class="text-lg text-gray-700 mb-6">
+      Outsource your bookkeeping, payroll, and tax tasks to experts you can trust — tailored for U.S. businesses, CPA firms, and startups.
+    </p>
+    <a
+      href="#contact"
+      class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-indigo-700"
+    >
+      Get Started
+    </a>
   </div>
 </section>
 
+<!-- ================= ABOUT SECTION ================= -->
 <section class="py-16 px-4 max-w-6xl mx-auto bg-white rounded shadow">
-  <h3 class="text-3xl font-extrabold text-indigo-600 mb-6 text-center">Who We Are</h3>
+  <h3 class="text-3xl font-extrabold text-indigo-600 mb-6 text-center">
+    Who We Are
+  </h3>
   <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto">
     Accountrise is an India-based accounting firm with a global footprint, providing trusted and customized financial solutions for accounting firms, small & medium businesses, Startups and entrepreneurs worldwide—at affordable rates. We blend professional expertise with a personalized approach—offering flexible, reliable, and efficient outsourcing solutions tailored to your business goals.
   </p>
 </section>
 
+<!-- ================= BLOG SECTION ================= -->
 <section id="blog" class="py-16 px-4 bg-gray-100">
   <div class="max-w-6xl mx-auto text-center">
-    <p class="text-sm text-indigo-400 uppercase tracking-widest mb-2">Insights & Case Studies</p>
-    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10">From Our Blog</h3>
+    <p class="text-sm text-indigo-400 uppercase tracking-widest mb-2">
+      Insights & Case Studies
+    </p>
+    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10">
+      From Our Blog
+    </h3>
+
+    <!-- Blog Posts Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-      {% for post in collections.posts | reverse %}
-      <article class="bg-white rounded-lg shadow p-6 hover:border-indigo-500 border border-transparent transition">
+      {% for post in collections.posts | reverse | slice(0,3) %}
+      <article
+        class="bg-white rounded-lg shadow p-6 hover:border-indigo-500 border border-transparent transition"
+      >
         <h4 class="text-xl font-bold mb-2">{{ post.data.title }}</h4>
         <p class="text-gray-600 mb-3 text-sm">{{ post.data.description }}</p>
-        <a href="{{ post.url }}" class="text-indigo-600 font-semibold hover:underline">Read More →</a>
+        <a
+          href="{{ post.url }}"
+          class="text-indigo-600 font-semibold hover:underline"
+        >
+          Read More →
+        </a>
       </article>
       {% endfor %}
     </div>
+
+    <!-- See All Posts -->
+    <div class="mt-10">
+      <a
+        href="/blog/"
+        class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-indigo-700"
+      >
+        See All Posts
+      </a>
+    </div>
   </div>
+</section>
+
+<!-- ================= CONTACT SECTION ================= -->
+<section id="contact" class="py-16 px-4 max-w-6xl mx-auto">
+  <h3 class="text-3xl font-extrabold text-indigo-600 mb-6 text-center">
+    Contact Us
+  </h3>
+  <form
+    action="https://formspree.io/f/your-form-id"
+    method="POST"
+    class="max-w-2xl mx-auto bg-white shadow rounded-lg p-8"
+  >
+    <label class="block mb-4">
+      <span class="text-gray-700">Name</span>
+      <input
+        type="text"
+        name="name"
+        class="mt-1 block w-full border rounded-lg p-2"
+        required
+      />
+    </label>
+    <label class="block mb-4">
+      <span class="text-gray-700">Email</span>
+      <input
+        type="email"
+        name="email"
+        class="mt-1 block w-full border rounded-lg p-2"
+        required
+      />
+    </label>
+    <label class="block mb-4">
+      <span class="text-gray-700">Message</span>
+      <textarea
+        name="message"
+        rows="4"
+        class="mt-1 block w-full border rounded-lg p-2"
+        required
+      ></textarea>
+    </label>
+    <button
+      type="submit"
+      class="bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold shadow hover:bg-indigo-700"
+    >
+      Send Message
+    </button>
+  </form>
 </section>
