@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "_site"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
