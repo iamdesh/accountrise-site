@@ -1,0 +1,14 @@
+{
+  "name": "accountrise-site",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "dev": "eleventy --serve"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.0"
+  },
+  "engines": {
+    "node": "18.x"
+  }
+}
