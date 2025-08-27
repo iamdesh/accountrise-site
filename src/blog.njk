@@ -1,45 +1,13 @@
 ---
-permalink: "/blog/index.html"
 layout: layouts/base.njk
+title: Blog
 ---
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Blog & Case Studies | Accountrise</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 text-gray-900 font-sans">
-  <nav class="w-full bg-gradient-to-r from-indigo-500 to-indigo-300 text-white shadow-md py-6">
-    <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
-      <h1 class="text-3xl font-extrabold">Accountrise</h1>
-      <a href="/" class="hover:underline">← Home</a>
-    </div>
-  </nav>
 
-  <main class="max-w-6xl mx-auto py-12 px-4">
-    <h2 class="text-3xl font-extrabold text-indigo-600 mb-8 text-center">Blog & Case Studies</h2>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% for post in collections.posts %}
-        <article class="bg-white rounded-lg shadow p-6 hover:border-indigo-500 border border-transparent transition">
-          {% if post.data.thumbnail %}
-            <img src="{{ post.data.thumbnail }}" alt="{{ post.data.title }}" class="rounded mb-4">
-          {% endif %}
-          <h3 class="text-xl font-bold mb-1">
-            <a href="{{ post.url | url }}">{{ post.data.title }}</a>
-          </h3>
-          <p class="text-gray-500 text-sm mb-2">{{ post.date | readableDate }} • {{ post.data.category }}</p>
-          <p class="text-gray-600 text-sm">{{ post.data.excerpt }}</p>
-          <a href="{{ post.url | url }}" class="text-indigo-600 font-semibold hover:underline mt-3 inline-block">Read More →</a>
-        </article>
-      {% endfor %}
-    </div>
-  </main>
-
-  <footer class="bg-indigo-700 text-white text-center py-6 mt-8">
-    <p>&copy; 2025 Accountrise. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+<h1>Blog</h1>
+<ul>
+  {% for post in collections.post %}
+    <li>
+      <a href="{{ post.url }}">{{ post.data.title }}</a>
+    </li>
+  {% endfor %}
+</ul>
