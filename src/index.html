@@ -207,7 +207,6 @@ title: Home
   </div>
 </section>
 
-
 <!-- AI-Powered Automation -->
 <section class="py-16 px-4 bg-blue-50">
   <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
@@ -223,16 +222,34 @@ title: Home
   <div class="max-w-6xl mx-auto">
     <h3 class="text-3xl font-extrabold text-indigo-600 mb-10 text-center">Insights & Case Studies</h3>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% for post in collections.posts %}
+
       <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
         <h4 class="text-xl font-bold mb-2">
-          <a href="{{ post.url }}" class="text-indigo-600 hover:underline">{{ post.data.title }}</a>
+          <a href="#" class="text-indigo-600 hover:underline">How Cloud Accounting Helps SMBs Grow</a>
         </h4>
-        <p class="text-sm text-gray-600 mb-3">{{ post.date | date: "%B %d, %Y" }}</p>
-        <p class="text-gray-700">{{ post.data.description }}</p>
-        <a href="{{ post.url }}" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
+        <p class="text-sm text-gray-600 mb-3">August 20, 2025</p>
+        <p class="text-gray-700">Discover how cloud-based bookkeeping streamlines workflows and reduces compliance risks.</p>
+        <a href="#" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
       </article>
-      {% endfor %}
+
+      <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+        <h4 class="text-xl font-bold mb-2">
+          <a href="#" class="text-indigo-600 hover:underline">Case Study: Scaling with Odoo ERP</a>
+        </h4>
+        <p class="text-sm text-gray-600 mb-3">August 15, 2025</p>
+        <p class="text-gray-700">How we helped a furniture manufacturer streamline accounting, sales, and inventory.</p>
+        <a href="#" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
+      </article>
+
+      <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+        <h4 class="text-xl font-bold mb-2">
+          <a href="#" class="text-indigo-600 hover:underline">The Future of Bookkeeping Automation</a>
+        </h4>
+        <p class="text-sm text-gray-600 mb-3">August 10, 2025</p>
+        <p class="text-gray-700">Exploring AI-powered tools and why accountants should embrace automation now.</p>
+        <a href="#" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
+      </article>
+
     </div>
   </div>
 </section>
