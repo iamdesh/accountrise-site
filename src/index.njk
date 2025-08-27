@@ -3,40 +3,323 @@ layout: layouts/base.njk
 title: Home
 ---
 
-<section class="hero">
-  <h1>Simplifying Your Books, Maximizing Your Growth</h1>
-  <p>Outsource your bookkeeping, payroll, and tax tasks to experts you can trust — tailored for U.S. businesses, CPA firms, and startups.</p>
-  <a href="/contact/" class="btn">Get Started</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Outsource your accounting to Accountrise — U.S.-focused, tech-enabled, and highly reliable bookkeeping and tax support for modern businesses and CPA firms." />
+  <meta name="keywords" content="USA accounting services, US bookkeeping, QuickBooks expert, remote CPA support, tax filing US, American small business accounting, US outsourced bookkeeping, US tax preparer, payroll USA, 1099, IRS support" />
+  <meta name="author" content="Accountrise" />
+  <title>Remote Bookkeeping & Tax Services – Accountrise</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans scroll-smooth">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ once: true, duration: 800 });</script>
+
+<!-- ================= NAVIGATION ================= -->
+<nav class="w-full bg-gradient-to-r from-indigo-500 to-indigo-300 text-white shadow-md py-6">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-4 space-y-2 md:space-y-0">
+    <h1 class="text-3xl font-extrabold tracking-tight">Accountrise</h1>
+    <ul class="hidden md:flex space-x-6 text-sm font-medium">
+      <li><a href="#" class="hover:text-orange-300">Home</a></li>
+      <li><a href="#core-services" class="hover:text-orange-300">Services</a></li>
+      <li><a href="#blog" class="hover:text-orange-300">Blog</a></li>
+      <li><a href="#contact" class="hover:text-orange-300">Contact</a></li>
+      <li><a href="#testimonials" class="hover:text-orange-300">Testimonials</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="py-20 bg-blue-50 px-4">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+    <div>
+      <h2 class="text-3xl font-extrabold mb-4 text-indigo-600">Hire Remote Bookkeeper, Accountant, Tax Return Preparer Or Admin Person</h2>
+      <p class="mb-6 font-medium text-lg text-gray-700">Choose the right plan and request a free quote below.</p>
+      <div class="space-y-4">
+        <details class="bg-white rounded shadow p-4 transition-all duration-300">
+          <summary class="font-semibold cursor-pointer">🔹 Plan 1: Starter – $99/month</summary>
+          <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
+            <li>Up to 50 transactions</li>
+            <li>Monthly P&L & Balance Sheet</li>
+            <li>Expense Categorization</li>
+            <li>Bank Reconciliation (1 account)</li>
+          </ul>
+        </details>
+        <details class="bg-white rounded shadow p-4">
+          <summary class="font-semibold cursor-pointer">🔹 Plan 2: Growth – $249/month</summary>
+          <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
+            <li>Up to 200 transactions</li>
+            <li>Bank & Credit Reconciliation (2 accounts)</li>
+            <li>Financial Reports</li>
+            <li>Basic Payroll Support</li>
+          </ul>
+        </details>
+        <details class="bg-white rounded shadow p-4">
+          <summary class="font-semibold cursor-pointer">🔹 Plan 3: Pro – $499/month</summary>
+          <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
+            <li>Unlimited Transactions</li>
+            <li>Full-service Bookkeeping</li>
+            <li>Payroll Processing (up to 10 employees)</li>
+            <li>Sales Tax Filing (State-specific)</li>
+            <li>AR/AP Management</li>
+            <li>Dedicated Account Manager</li>
+            <li>Monthly Consult Call</li>
+          </ul>
+        </details>
+        <details class="bg-white rounded shadow p-4">
+          <summary class="font-semibold cursor-pointer">🔹 Plan 4: CPA Partner – $8/hr or $999/month</summary>
+          <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
+            <li>White-labeled Accounting Services</li>
+            <li>Staff Leasing (Dedicated Bookkeeper/Accountant)</li>
+            <li>Customized Reporting</li>
+            <li>Year-End Closing Assistance</li>
+            <li>Priority Turnaround</li>
+            <li>Daily or Weekly Sync (as needed)</li>
+          </ul>
+        </details>
+        <details class="bg-white rounded shadow p-4">
+          <summary class="font-semibold cursor-pointer">✅ Add-ons (Optional)</summary>
+          <ul class="list-disc list-inside mt-2 text-sm text-gray-700">
+            <li>QuickBooks/Xero Setup – $75 one-time</li>
+            <li>Tax Filing (Federal + State) – $149+</li>
+            <li>Catch-up Bookkeeping – Custom Quote</li>
+            <li>Inventory Accounting – Custom Quote</li>
+          </ul>
+        </details></div>
+    </div>
+    <div class="bg-white p-6 rounded shadow-md">
+      <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">Get A Free Quote!</h3>
+      <form action="https://formspree.io/f/xzzapbnz" method="POST" class="space-y-4">
+       <select name="plan" class="w-full border px-4 py-2 rounded">
+          <option value="">Choose Plan</option>
+          <option value="Starter">Plan 1: Starter</option>
+          <option value="Growth">Plan 2: Growth</option>
+          <option value="Pro">Plan 3: Pro</option>
+          <option value="CPA Partner">Plan 4: CPA Partner</option>
+        </select> <input type="text" name="name" placeholder="Your Name" class="w-full border px-4 py-2 rounded" required />
+        <input type="email" name="email" placeholder="Your Email" class="w-full border px-4 py-2 rounded" required />
+        <div class="flex space-x-2">
+          <select name="country_code" class="border px-3 py-2 rounded w-1/3">
+            <option value="+1">🇺🇸 +1</option>
+            <option value="+44">🇬🇧 +44</option>
+            <option value="+61">🇦🇺 +61</option>
+            <option value="+91">🇮🇳 +91</option>
+          </select>
+          <input type="tel" name="phone" placeholder="Phone Number" class="w-2/3 border px-4 py-2 rounded" required />
+        </div>
+        <select name="country" class="w-full border px-4 py-2 rounded">
+          <option value="">Select Your Country</option>
+          <option value="USA">USA</option>
+          <option value="UK">UK</option>
+          <option value="Canada">Canada</option>
+          <option value="Australia">Australia</option>
+          <option value="UAE">UAE</option>
+          <option value="India">India</option>
+        </select>
+        <textarea name="message" rows="4" placeholder="Your Message" class="w-full border px-4 py-2 rounded"></textarea>
+        <button type="submit" class="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-500">Submit</button>
+      </form>
+    </div>
+  </div>
 </section>
 
-<section class="about">
-  <h2>Who We Are</h2>
-  <p>Accountrise is an India based accounting firm with a global footprint, providing trusted and customized financial solutions for accounting firms, small & medium businesses, Startups and entrepreneurs worldwide—at affordable rates. We blend professional expertise with a personalized approach—offering flexible, reliable, and efficient outsourcing solutions tailored to your business goals.</p>
+<!-- About Us -->
+<section class="py-16 px-4 max-w-6xl mx-auto bg-white rounded shadow">
+  <h3 class="text-3xl font-extrabold text-indigo-600 mb-6 text-center">Who We Are</h3>
+  <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto">
+    Accountrise is an India based accounting firm with a global footprint, providing trusted and customized financial solutions for accounting firms, small & medium businesses, Startups and entrepreneurs worldwide at affordable rates. We blend professional expertise with a personalized approach—offering flexible, reliable, and efficient outsourcing solutions tailored to your business goals.
+  </p>
 </section>
 
-<section class="insights">
-  <h2>Insights & Case Studies</h2>
-  <!-- Add your case studies here -->
+<!-- Core Services -->
+<section id="core-services" class="scroll-mt-20 py-16 px-4 bg-gray-100" data-aos="fade-up">
+  <div data-aos="fade-up">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10 text-center">Our Core Services</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-lg shadow border hover:border-indigo-500 transition" data-aos="fade-up">
+        <i class="fas fa-book-open text-indigo-600 text-4xl mb-3"></i>
+        <h4 class="text-xl font-bold mb-2">Bookkeeping</h4>
+        <p>Track, reconcile & organize your books monthly using QBO, Odoo, Zoho or Xero.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border hover:border-indigo-500 transition" data-aos="fade-up">
+        <i class="fas fa-chart-line text-indigo-600 text-4xl mb-3"></i>
+        <h4 class="text-xl font-bold mb-2">Financial Reports</h4>
+        <p>Custom monthly reporting – P&L, Balance Sheet, Cash Flows & KPIs.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border hover:border-indigo-500 transition" data-aos="fade-up">
+        <i class="fas fa-file-invoice-dollar text-indigo-600 text-4xl mb-3"></i>
+        <h4 class="text-xl font-bold mb-2">Tax Support</h4>
+        <p>Help with Income tax returns, Sales/Vat/GST Tax filing, 1099s, quarterly tax estimates, and CPA coordination.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border hover:border-indigo-500 transition" data-aos="fade-up">
+        <i class="fas fa-university text-indigo-600 text-4xl mb-3"></i>
+        <h4 class="text-xl font-bold mb-2">Bank Reconciliation</h4>
+        <p> Accurate and reliable bank reconciliation services for small businesses, startups, and CPA firms to keep your books in sync with your bank accounts."
+.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border hover:border-indigo-500 transition" data-aos="fade-up">
+        <i class="fas fa-people-arrows text-indigo-600 text-4xl mb-3"></i>
+        <h4 class="text-xl font-bold mb-2">CPA Partnerships</h4>
+        <p>Staff leasing or white-label support for U.S. accounting firms.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border hover:border-indigo-500 transition" data-aos="fade-up">
+        <i class="fas fa-cloud text-indigo-600 text-4xl mb-3"></i>
+        <h4 class="text-xl font-bold mb-2">Cloud Setup</h4>
+        <p>QuickBooks, Odoo, Zoho & Xero setup + migration support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Why Choose Us -->
+<section class="py-16 px-4 bg-gradient-to-br from-gray-50 to-white">
+  <div data-aos="fade-up">
+  <div class="max-w-6xl mx-auto">
+    <p class="text-sm text-center text-indigo-400 uppercase tracking-widest mb-2">Our Promise</p>
+    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10 text-center">Why Choose Us</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8" data-aos="fade-up">
+      <div class="bg-white p-6 rounded-lg shadow border border-transparent hover:border-indigo-500 transition-all text-center">
+        <i class="fas fa-user-tie text-indigo-600 text-4xl mb-4"></i>
+        <h4 class="text-xl font-bold mb-2">Expertise You Can Trust</h4>
+        <p>Experienced professionals delivering reliable and compliant financial services.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border border-transparent hover:border-indigo-500 transition-all text-center">
+        <i class="fas fa-globe text-indigo-600 text-4xl mb-4"></i>
+        <h4 class="text-xl font-bold mb-2">Global Outlook</h4>
+        <p>Serving clients across the U.S., UK, Canada, Australia, and beyond.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border border-transparent hover:border-indigo-500 transition-all text-center">
+        <i class="fas fa-heart text-indigo-600 text-4xl mb-4"></i>
+        <h4 class="text-xl font-bold mb-2">Client-Centered Approach</h4>
+        <p>Transparent communication and custom-fit solutions for every client.</p>
+      </div>
+      <div class="bg-white p-6 rounded-lg shadow border border-transparent hover:border-indigo-500 transition-all text-center">
+        <i class="fas fa-tags text-indigo-600 text-4xl mb-4"></i>
+        <h4 class="text-xl font-bold mb-2">Affordable Pricing</h4>
+        <p>No hidden fees just honest pricing tailored to your business size.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section class="blog-preview">
-  <h2>From Our Blog</h2>
-  <ul>
-    {% for post in collections.post | slice(0,3) %}
-      <li>
-        <a href="{{ post.url }}">{{ post.data.title }}</a>
-      </li>
-    {% endfor %}
-  </ul>
-  <a href="/blog/">See All Posts</a>
+
+<!-- AI-Powered Automation -->
+<section class="py-16 px-4 bg-blue-50">
+  <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
+    <p class="text-sm text-indigo-400 uppercase tracking-widest mb-2">Future-Ready Accounting</p>
+    <h3 class="text-3xl font-extrabold text-indigo-600 mb-6">AI-Powered Automation</h3>
+    <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-4">We leverage smart tools and AI to streamline your accounting operations, minimize errors, and save you hours every month. Modern tech. Human touch.</p>
+    <p class="text-base text-gray-500">Let AI handle the repetitive tasks while you focus on strategy and growth.</p>
+  </div>
 </section>
 
-<section class="contact">
-  <h2>Contact Us</h2>
-  <form action="https://formspree.io/f/xzzapbnz" method="POST">
-    <input type="text" name="name" placeholder="Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <textarea name="message" placeholder="Message"></textarea>
-    <button type="submit">Send Message</button>
-  </form>
+<!-- ================= BLOG / CASE STUDY SECTION ================= -->
+<section id="blog" class="py-16 px-4 bg-gray-100" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10 text-center">Insights & Case Studies</h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% for post in collections.posts %}
+      <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+        <h4 class="text-xl font-bold mb-2">
+          <a href="{{ post.url }}" class="text-indigo-600 hover:underline">{{ post.data.title }}</a>
+        </h4>
+        <p class="text-sm text-gray-600 mb-3">{{ post.date | date: "%B %d, %Y" }}</p>
+        <p class="text-gray-700">{{ post.data.description }}</p>
+        <a href="{{ post.url }}" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
 </section>
+
+<!-- Testimonials -->
+<section id="testimonials" class="py-16 px-4 bg-white">
+  <div class="max-w-5xl mx-auto text-center">
+    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10">What Our Clients Say</h3>
+    <div class="relative overflow-hidden">
+  <div id="testimonial-carousel" class="flex transition-transform duration-700 ease-in-out w-full">
+    <!-- Each testimonial card -->
+    <div class="w-full flex-shrink-0 bg-gray-100 p-6 rounded-lg shadow text-left">
+      <div class="flex items-center mb-4">
+        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-3">
+        <div class="text-left">
+          <footer class="font-semibold text-indigo-700">Lisa M., SaaS Founder, USA</footer>
+        </div>
+      </div>
+      <p class="italic mb-2">“Accountrise helped clean up 2 years of backlogs that had been delaying our financial analysis. They were not only reliable and proactive, but also took the time to explain each step of the process, giving us complete clarity and confidence.”</p>
+    </div>
+    <div class="w-full flex-shrink-0 bg-gray-100 p-6 rounded-lg shadow text-left">
+      <div class="flex items-center mb-4">
+        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-3">
+        <div class="text-left">
+          <footer class="font-semibold text-indigo-700">Brad T., CPA Firm, TX</footer>
+        </div>
+      </div>
+      <p class="italic mb-2">“As a CPA, I love their responsiveness and structured communication process. Having Accountrise as a white-label partner has freed up my internal staff and allowed me to scale faster without compromising quality.”</p>
+    </div>
+    <div class="w-full flex-shrink-0 bg-gray-100 p-6 rounded-lg shadow text-left">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-3">
+            <div class="text-left">
+              <footer class="font-semibold text-indigo-700">Amelia R., Startup Owner, UK</footer>
+            </div>
+          </div>
+          <p class="italic mb-2">“Working with Accountrise has been a game changer. Their timely reporting and advice have helped us make smarter business decisions and attract investors with confidence.”</p>
+        </div>
+        <div class="w-full flex-shrink-0 bg-gray-100 p-6 rounded-lg shadow text-left">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/men/77.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-3">
+            <div class="text-left">
+              <footer class="font-semibold text-indigo-700">David K., E-commerce Owner, Canada</footer>
+            </div>
+          </div>
+          <p class="italic mb-2">“They manage our payroll and taxes seamlessly. I no longer worry about compliance or deadlines. Highly recommended for any business wanting peace of mind.”</p>
+        </div>
+        <div class="w-full flex-shrink-0 bg-gray-100 p-6 rounded-lg shadow text-left">
+          <div class="flex items-center mb-4">
+            <img src="https://randomuser.me/api/portraits/women/28.jpg" alt="Client Photo" class="w-12 h-12 rounded-full mr-3">
+            <div class="text-left">
+              <footer class="font-semibold text-indigo-700">Sophia L., Consultant, Australia</footer>
+            </div>
+          </div>
+          <p class="italic mb-2">“Professional, efficient, and very approachable. Accountrise feels like an extension of my own team.”</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      let index = 0;
+      const carousel = document.getElementById('testimonial-carousel');
+      setInterval(() => {
+        index = (index + 1) % carousel.children.length;
+        carousel.style.transform = `translateX(-${index * 100}%)`;
+      }, 7000);
+    </script>
+  </div>
+</section>
+  
+<!-- Call to Action -->
+<section id="contact" class="bg-gradient-to-r from-indigo-600 to-indigo-400 text-white py-20">
+  <div class="max-w-3xl mx-auto text-center px-4" data-aos="fade-up">
+    <h3 class="text-4xl font-extrabold mb-4">Let’s Elevate Your Finances</h3>
+    <p class="mb-6 text-lg font-medium">Tell us what you need — we’ll get you a quote within 24 hours.</p>
+    <a href="mailto:info@accountrise.com" class="bg-white text-indigo-600 px-8 py-3 text-lg font-semibold rounded hover:bg-indigo-100 transition">📨 Get In Touch</a>
+  </div>
+</section>
+  
+<!-- Footer -->
+<footer class="bg-indigo-700 text-white text-center py-6 mt-8" data-aos="fade-up">
+  <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6">
+    <p>&copy; 2025 Accountrise. All rights reserved.</p>
+    <a href="https://www.linkedin.com/company/accountrise" target="_blank" class="bg-white text-indigo-600 px-4 py-2 rounded shadow hover:bg-indigo-100 transition">Connect on LinkedIn</a>
+    <a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf" target="_blank" class="bg-white text-indigo-600 px-4 py-2 rounded shadow hover:bg-indigo-100 transition flex items-center"><i class="fab fa-upwork mr-2"></i><span>Explore more on Upwork</span>
+    </a>
+  </div>
+</footer>
+
+</body>
+</html>
