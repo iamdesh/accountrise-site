@@ -1,22 +1,9 @@
-{% extends "layouts/layouts/post.njk" %}
+{% extends "layouts/base.njk" %}
 
 {% block content %}
-<main class="container" style="max-width:800px; margin:2rem auto; padding:1rem;">
-  <article>
-    <h1>{{ title }}</h1>
-    <p><small>📅 {{ date | date("MMMM d, yyyy") }}</small></p>
-
-    {% if thumbnail %}
-      <img src="{{ thumbnail | url }}" alt="{{ title }}" style="max-width:100%; margin:1rem 0;" />
-    {% endif %}
-
-    <div class="post-body">
-      {{ content | safe }}
-    </div>
-  </article>
-
-  <p style="margin-top:2rem;">
-    <a href="/blog/">← Back to Blog</a>
-  </p>
-</main>
+<article>
+  <h1>{{ title }}</h1>
+  <p><small>{{ date | date("MMMM D, YYYY") }}</small></p>
+  <div>{{ content | safe }}</div>
+</article>
 {% endblock %}
