@@ -1,24 +1,25 @@
-{% extends "layouts/blog.njk" %}
+---
+layout: layouts/base.njk
+title: Blog & Case Studies – Accountrise
+permalink: "blog/index.html"
+---
+<section class="py-16 px-4 bg-gray-100">
+  <div class="max-w-6xl mx-auto text-center">
+    <p class="text-sm text-indigo-400 uppercase tracking-widest mb-2">Insights & Case Studies</p>
+    <h1 class="text-3xl font-extrabold text-indigo-600 mb-10">From Our Blog</h1>
 
-{% block content %}
-<main class="container" style="max-width:900px; margin:2rem auto; padding:1rem;">
-  <h1>Blog & Case Studies</h1>
-  <p>Insights, updates, and case studies from our work.</p>
-
-  <div class="blog-list">
-    {% for post in collections.blog | reverse %}
-      <article style="margin-bottom:2rem; border-bottom:1px solid #ddd; padding-bottom:1rem;">
-        <h2><a href="{{ post.url }}">{{ post.data.title }}</a></h2>
-        <p><small>📅 {{ post.date | date("MMMM d, yyyy") }}</small></p>
-        
-        {% if post.data.thumbnail %}
-          <img src="{{ post.data.thumbnail | url }}" alt="{{ post.data.title }}" style="max-width:250px; margin:0.5rem 0;" />
-        {% endif %}
-
-        <p>{{ post.data.excerpt }}</p>
-        <p><a href="{{ post.url }}">Read More →</a></p>
-      </article>
-    {% endfor %}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+      {% for post in collections.posts | reverse %}
+        <article class="bg-white rounded-lg shadow p-6 hover:border-indigo-500 border border-transparent transition">
+          {% if post.data.thumbnail %}<img src="{{ post.data.thumbnail }}" class="rounded mb-4" alt="">{% endif %}
+          <h2 class="text-xl font-bold mb-2">
+            <a href="{{ post.url }}" class="hover:underline">{{ post.data.title }}</a>
+          </h2>
+          <p class="text-gray-600 text-sm mb-2">{{ post.date | date("MMMM d, yyyy") }}</p>
+          <p class="text-gray-600 mb-3 text-sm">{{ post.data.description }}</p>
+          <a href="{{ post.url }}" class="text-indigo-600 font-semibold hover:underline">Read More →</a>
+        </article>
+      {% endfor %}
+    </div>
   </div>
-</main>
-{% endblock %}
+</section>
