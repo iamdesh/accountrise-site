@@ -6,3 +6,7 @@
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+    
+[[plugins]]
+package = "netlify-plugin-inline-functions-env"
+
