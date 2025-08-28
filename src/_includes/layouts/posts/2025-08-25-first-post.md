@@ -1,11 +1,9 @@
 ---
-title: "Welcome — First Post"
-date: 2025-08-25
-category: "Blog"
-thumbnail: "/src/images/uploads/sample.jpg"
-excerpt: "This is a sample post to verify your Eleventy + Netlify CMS setup."
+title: Welcome to the Accountrise Blog
+date: 2025-08-27
+description: What you can expect from our insights and case studies.
+thumbnail: /uploads/sample-thumb.jpg
 layout: layouts/post.njk
-tags: ["sample"]
 ---
 
-Hello — this is a test post. Once you log into `/admin`, you will create posts like this automatically.
+We’ll share practical bookkeeping tips, tax insights, and real case studies showing how we help businesses grow. Stay tuned!
