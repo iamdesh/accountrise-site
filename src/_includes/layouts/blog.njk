@@ -13,7 +13,9 @@ permalink: "blog/index.html"
         <article class="bg-white rounded-lg shadow p-6 hover:border-indigo-500 border border-transparent transition">
           {% if post.data.thumbnail %}<img src="{{ post.data.thumbnail }}" class="rounded mb-4" alt="">{% endif %}
           <h2 class="text-xl font-bold mb-2">
-            <a href="{{ post.url }}" class="hover:underline">{{ post.data.title }}</a>
+            <a href="{{ post.url }}" target="_blank" rel="noopener noreferrer">
+  {{ post.data.title }}
+</a>
           </h2>
           <p class="text-gray-600 text-sm mb-2">{{ post.date | date("MMMM d, yyyy") }}</p>
           <p class="text-gray-600 mb-3 text-sm">{{ post.data.description }}</p>
