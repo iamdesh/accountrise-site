@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Outsource your accounting to Accountrise — U.S.-focused, tech-enabled, and highly reliable bookkeeping and tax support for modern businesses and CPA firms." />
+  <meta name="author" content="Accountrise" />
   <title>{{ title or "Accountrise" }}</title>
-  <meta name="description" content="{{ description or 'Accountrise blog and case studies' }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -13,24 +14,22 @@
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>AOS.init({ once: true, duration: 800 });</script>
 
-<nav class="w-full bg-gradient-to-r from-indigo-500 to-indigo-300 text-white shadow-md py-6">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-4 space-y-2 md:space-y-0">
-    <a href="/" class="text-3xl font-extrabold tracking-tight">Accountrise</a>
-    <ul class="hidden md:flex space-x-6 text-sm font-medium">
-      <li><a href="/" class="hover:text-orange-300">Home</a></li>
-      <li><a href="/#core-services" class="hover:text-orange-300">Services</a></li>
-      <li><a href="/blog/" class="hover:text-orange-300">Blog</a></li>
-      <li><a href="/#contact" class="hover:text-orange-300">Contact</a></li>
-      <li><a href="/#testimonials" class="hover:text-orange-300">Testimonials</a></li>
-    </ul>
+<!-- Simple top bar back to home -->
+<nav class="w-full bg-gradient-to-r from-indigo-500 to-indigo-300 text-white shadow-md py-4">
+  <div class="max-w-7xl mx-auto px-4 flex justify-between">
+    <a href="/" class="font-extrabold text-xl">Accountrise</a>
+    <div class="space-x-4 text-sm hidden md:block">
+      <a href="/" class="hover:text-orange-300">Home</a>
+      <a href="/#core-services" class="hover:text-orange-300">Services</a>
+      <a href="/#blog" class="hover:text-orange-300">Blog</a>
+      <a href="/#contact" class="hover:text-orange-300">Contact</a>
+    </div>
   </div>
 </nav>
 
-<main class="min-h-[60vh]">
-  {% block content %}{% endblock %}
-</main>
+{{ content | safe }}
 
-<footer class="bg-indigo-700 text-white text-center py-6 mt-8">
+<footer class="bg-indigo-700 text-white text-center py-6 mt-8" data-aos="fade-up">
   <div class="flex flex-col md:flex-row justify-center items-center space-y-2 md:space-y-0 md:space-x-6">
     <p>&copy; 2025 Accountrise. All rights reserved.</p>
     <a href="https://www.linkedin.com/company/accountrise" target="_blank" class="bg-white text-indigo-600 px-4 py-2 rounded shadow hover:bg-indigo-100 transition">Connect on LinkedIn</a>
