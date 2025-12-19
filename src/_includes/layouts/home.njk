@@ -7,7 +7,7 @@
   <meta name="description" content="Outsource your accounting to Accountrise — U.S.-focused, tech-enabled, and highly reliable bookkeeping and tax support for modern businesses and CPA firms." />
   <meta name="keywords" content="USA accounting services, US bookkeeping, QuickBooks expert, remote CPA support, tax filing US, American small business accounting, US outsourced bookkeeping, US tax preparer, payroll USA, 1099, IRS support" />
   <meta name="author" content="Accountrise" />
-  <title>Remote Bookkeeping & Tax Services – Accountrise</title>
+  <title>Remote Accounting, Bookkeeping & Tax Services | Accountrise</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
@@ -128,7 +128,7 @@
 <section class="py-16 px-4 max-w-6xl mx-auto bg-white rounded shadow">
   <h3 class="text-3xl font-extrabold text-indigo-600 mb-6 text-center">Who We Are</h3>
   <p class="text-lg leading-relaxed text-center max-w-3xl mx-auto">
-    Accountrise is an India based accounting firm with a global footprint, providing trusted and customized financial solutions for accounting firms, small & medium businesses, Startups and entrepreneurs worldwide at affordable rates. We blend professional expertise with a personalized approach—offering flexible, reliable, and efficient outsourcing solutions tailored to your business goals.
+    Accountrise is an India based accounting firm with a global presence, helping CPA firms, startups, and growing businesses manage their finances with confidence. We deliver accurate, scalable, and technology driven accounting solutions, blending CA-led expertise with a personalized, reliable, and flexible approach tailored to your business goals.
   </p>
 </section>
 
@@ -213,43 +213,6 @@
   </div>
 </section>
 
-<!-- ================= BLOG / CASE STUDY SECTION ================= -->
-<section id="blog" class="py-16 px-4 bg-gray-100" data-aos="fade-up">
-  <div class="max-w-6xl mx-auto">
-    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10 text-center">Insights & Case Studies</h3>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-        <h4 class="text-xl font-bold mb-2">
-          <a href="#" class="text-indigo-600 hover:underline">How Cloud Accounting Helps SMBs Grow</a>
-        </h4>
-        <p class="text-sm text-gray-600 mb-3">August 20, 2025</p>
-        <p class="text-gray-700">Discover how cloud-based bookkeeping streamlines workflows and reduces compliance risks.</p>
-        <a href="#" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
-      </article>
-
-      <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-        <h4 class="text-xl font-bold mb-2">
-          <a href="#" class="text-indigo-600 hover:underline">Case Study: Scaling with Odoo ERP</a>
-        </h4>
-        <p class="text-sm text-gray-600 mb-3">August 15, 2025</p>
-        <p class="text-gray-700">How we helped a furniture manufacturer streamline accounting, sales, and inventory.</p>
-        <a href="#" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
-      </article>
-
-      <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-        <h4 class="text-xl font-bold mb-2">
-          <a href="#" class="text-indigo-600 hover:underline">The Future of Bookkeeping Automation</a>
-        </h4>
-        <p class="text-sm text-gray-600 mb-3">August 10, 2025</p>
-        <p class="text-gray-700">Exploring AI-powered tools and why accountants should embrace automation now.</p>
-        <a href="#" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
-      </article>
-
-    </div>
-  </div>
-</section>
-
 <!-- Testimonials -->
 <section id="testimonials" class="py-16 px-4 bg-white">
   <div class="max-w-5xl mx-auto text-center">
@@ -314,7 +277,32 @@
     </script>
   </div>
 </section>
-  
+
+<!-- ================= BLOG / CASE STUDY SECTION ================= -->
+<section id="blog" class="py-16 px-4 bg-gray-100" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10 text-center">Insights & Case Studies</h3>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {% if collections.posts %}
+        {% for post in collections.posts | reverse %}
+          <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+            <h4 class="text-xl font-bold mb-2">
+              <a href="{{ post.url }}" class="text-indigo-600 hover:underline">{{ post.data.title }}</a>
+            </h4>
+            {% if post.data.description %}
+              <p class="text-gray-700">{{ post.data.description }}</p>
+            {% endif %}
+            <a href="{{ post.url }}" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
+          </article>
+        {% endfor %}
+      {% else %}
+        <p class="text-center text-gray-600">No posts yet — check back soon.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
 <!-- Call to Action -->
 <section id="contact" class="bg-gradient-to-r from-indigo-600 to-indigo-400 text-white py-20">
   <div class="max-w-3xl mx-auto text-center px-4" data-aos="fade-up">
