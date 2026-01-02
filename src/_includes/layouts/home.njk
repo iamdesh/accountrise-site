@@ -208,12 +208,53 @@
 </section>
 
 <!-- AI-Powered Automation -->
-<section class="py-16 px-4 bg-blue-50">
-  <div class="max-w-6xl mx-auto text-center" data-aos="fade-up">
-    <p class="text-sm text-indigo-400 uppercase tracking-widest mb-2">Future-Ready Accounting</p>
-    <h3 class="text-3xl font-extrabold text-indigo-600 mb-6">AI-Powered Automation</h3>
-    <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-4">We leverage smart tools and AI to streamline your accounting operations, minimize errors, and save you hours every month. Modern tech. Human touch.</p>
-    <p class="text-base text-gray-500">Let AI handle the repetitive tasks while you focus on strategy and growth.</p>
+<section class="py-24 px-4 sm:px-6 bg-gradient-to-br from-blue-50 via-white to-blue-100" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto text-center">
+    <p class="text-sm text-indigo-500 uppercase tracking-widest mb-3">Smarter Accounting</p>
+    <h3 class="text-4xl font-extrabold text-indigo-700 mb-6">AI‑Powered Automation + Human Expertise</h3>
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-10">We blend automation tools with expert accounting processes to reduce manual work, increase accuracy, and eliminate repetitive errors — giving you faster results and deeper clarity.</p>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+      <div class="bg-white p-8 rounded-3xl shadow-md hover:shadow-xl border border-gray-200 transition-all">
+        <i class="fas fa-robot text-indigo-600 text-5xl mb-4"></i>
+        <h4 class="text-2xl font-bold mb-3">Automated Workflows</h4>
+        <p class="text-gray-600 leading-relaxed text-base">Bank feeds, reconciliation checks, and categorization rules that save hours every month.</p>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl shadow-md hover:shadow-xl border border-gray-200 transition-all">
+        <i class="fas fa-file-shield text-indigo-600 text-5xl mb-4"></i>
+        <h4 class="text-2xl font-bold mb-3">Secure Data Controls</h4>
+        <p class="text-gray-600 leading-relaxed text-base">Encrypted data sharing + audit trails protecting sensitive business information.</p>
+      </div>
+
+      <div class="bg-white p-8 rounded-3xl shadow-md hover:shadow-xl border border-gray-200 transition-all">
+        <i class="fas fa-gauge-high text-indigo-600 text-5xl mb-4"></i>
+        <h4 class="text-2xl font-bold mb-3">Speed & Accuracy</h4>
+        <p class="text-gray-600 leading-relaxed text-base">Automation removes manual errors while our experts review every number for precision.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Stats Section -->
+<section class="py-24 px-6 bg-gradient-to-r from-indigo-800 to-red-700 text-white" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+    <div>
+      <h3 class="text-4xl font-extrabold mb-2">98%</h3>
+      <p class="text-sm tracking-wide">Client Retention</p>
+    </div>
+    <div>
+      <h3 class="text-4xl font-extrabold mb-2">100K+</h3>
+      <p class="text-sm tracking-wide">Transactions Processed</p>
+    </div>
+    <div>
+      <h3 class="text-4xl font-extrabold mb-2">10+</h3>
+      <p class="text-sm tracking-wide">Countries Served</p>
+    </div>
+    <div>
+      <h3 class="text-4xl font-extrabold mb-2">24/7</h3>
+      <p class="text-sm tracking-wide">Support Available</p>
+    </div>
   </div>
 </section>
 
@@ -282,28 +323,33 @@
   </div>
 </section>
 
-<!-- ================= BLOG / CASE STUDY SECTION ================= -->
-<section id="blog" class="py-16 px-4 bg-gray-100" data-aos="fade-up">
-  <div class="max-w-6xl mx-auto">
-    <h3 class="text-3xl font-extrabold text-indigo-600 mb-10 text-center">Insights & Case Studies</h3>
+<!-- FAQ SECTION -->
+<section class="py-24 px-6 bg-gradient-to-br from-indigo-50 to-white border-b border-gray-300" data-aos="fade-up">
+  <div class="max-w-6xl mx-auto text-center mb-14">
+    <p class="text-sm text-red-500 uppercase tracking-widest mb-3">Questions Answered</p>
+    <h3 class="text-4xl font-extrabold text-indigo-700">Frequently Asked Questions</h3>
+  </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {% if collections.posts %}
-        {% for post in collections.posts | reverse %}
-          <article class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-            <h4 class="text-xl font-bold mb-2">
-              <a href="{{ post.url }}" class="text-indigo-600 hover:underline">{{ post.data.title }}</a>
-            </h4>
-            {% if post.data.description %}
-              <p class="text-gray-700">{{ post.data.description }}</p>
-            {% endif %}
-            <a href="{{ post.url }}" class="inline-block mt-4 text-indigo-500 font-semibold">Read More →</a>
-          </article>
-        {% endfor %}
-      {% else %}
-        <p class="text-center text-gray-600">No posts yet — check back soon.</p>
-      {% endif %}
-    </div>
+  <div class="max-w-4xl mx-auto space-y-6">
+    <details class="bg-white rounded-3xl shadow p-6 border border-gray-200 hover:border-red-400 transition">
+      <summary class="font-semibold text-lg cursor-pointer">How quickly can you start working with us?</summary>
+      <p class="mt-3 text-gray-600 leading-relaxed">Most onboarding begins within 48–72 hours depending on access availability and business complexity.</p>
+    </details>
+
+    <details class="bg-white rounded-3xl shadow p-6 border border-gray-200 hover:border-red-400 transition">
+      <summary class="font-semibold text-lg cursor-pointer">Do you work with CPA firms?</summary>
+      <p class="mt-3 text-gray-600 leading-relaxed">Yes — we specialize in white-label accounting & staff augmentation for CPA firms across the Global (U.S. Focused)</p>
+    </details>
+
+    <details class="bg-white rounded-3xl shadow p-6 border border-gray-200 hover:border-red-400 transition">
+      <summary class="font-semibold text-lg cursor-pointer">How secure is my financial data?</summary>
+      <p class="mt-3 text-gray-600 leading-relaxed">We use encrypted storage, secure sharing, audit trails, and limited-access systems to protect every detail.</p>
+    </details>
+
+    <details class="bg-white rounded-3xl shadow p-6 border border-gray-200 hover:border-red-400 transition">
+      <summary class="font-semibold text-lg cursor-pointer">Do you offer catch-up or cleanup accounting?</summary>
+      <p class="mt-3 text-gray-600 leading-relaxed">Absolutely — whether 3 months or 3 years, we help clean, reorganize, reconcile, and rebuild accurate books.</p>
+    </details>
   </div>
 </section>
 
