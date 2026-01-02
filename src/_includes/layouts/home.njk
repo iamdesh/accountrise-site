@@ -309,15 +309,15 @@
 <section class="py-24 px-6 bg-gradient-to-r from-indigo-700 to-indigo-900 text-white" data-aos="fade-up">
   <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
     <div>
-      <h3 class="text-4xl font-extrabold mb-2">98%</h3>
+      <h3 class="text-4xl font-extrabold mb-2 counter" data-target="98" data-suffix="%">0%</h3>
       <p class="text-sm tracking-wide">Client Retention</p>
     </div>
     <div>
-      <h3 class="text-4xl font-extrabold mb-2">100K+</h3>
+      <h3 class="text-4xl font-extrabold mb-2 counter" data-target="100" data-suffix="K+">0K+</h3>
       <p class="text-sm tracking-wide">Transactions Processed</p>
     </div>
     <div>
-      <h3 class="text-4xl font-extrabold mb-2">10+</h3>
+      <h3 class="text-4xl font-extrabold mb-2 counter" data-target="10" data-suffix="+">0+</h3>
       <p class="text-sm tracking-wide">Countries Served</p>
     </div>
     <div>
@@ -496,6 +496,43 @@
     <span class="hidden md:inline-block text-base font-semibold whitespace-nowrap">Talk to an Accountant</span>
   </a>
 </div>
+
+<!-- Stats Counter Animation -->
+<script>
+  const counters = document.querySelectorAll('.counter');
+
+  const animateCounters = () => {
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      const suffix = counter.getAttribute('data-suffix') || '';
+      let current = 0;
+      const increment = target / 80;
+
+      const update = () => {
+        if (current < target) {
+          current += increment;
+          counter.innerText = Math.floor(current) + suffix;
+          requestAnimationFrame(update);
+        } else {
+          counter.innerText = target + suffix;
+        }
+      };
+      update();
+    });
+  };
+
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        statsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  const firstCounter = document.querySelector('.counter');
+  if (firstCounter) statsObserver.observe(firstCounter);
+</script>
 
 </body>
 </html>
