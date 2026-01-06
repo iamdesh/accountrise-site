@@ -138,13 +138,13 @@
     </ul>
 
     <!-- Mobile Menu Button -->
-    <button class="md:hidden text-2xl" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+    <button type="button" class="md:hidden text-2xl" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
       <i class="fas fa-bars"></i>
     </button>
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobileMenu" class="hidden md:hidden bg-[#002349] border-t border-[#957C3D]/40">
+  <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#002349] border-t border-[#957C3D]/40">
     <ul class="flex flex-col px-6 py-6 space-y-4 text-sm font-medium">
       <li><a href="#" class="block">Home</a></li>
       <li><a href="#core-services" class="block">Services</a></li>
