@@ -122,12 +122,10 @@
 <script>AOS.init({ once: true, duration: 800 });</script>
 
 <!-- ================= NAVIGATION ================= -->
-<nav class="w-full bg-[#002349]/95 backdrop-blur-md text-white shadow-sm py-4 fixed top-0 left-0 z-50">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-4">
+<nav class="w-full bg-[#002349]/95 backdrop-blur-md text-white shadow-sm fixed top-0 left-0 z-50">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4 relative">
     <!-- Brand -->
-    <div class="flex items-center space-x-2">
-      <h1 class="text-2xl font-extrabold tracking-tight">Accountrise</h1>
-    </div>
+    <h1 class="text-2xl font-extrabold tracking-tight">Accountrise</h1>
 
     <!-- Desktop Navigation -->
     <ul class="hidden md:flex items-center space-x-8 text-sm font-medium">
@@ -138,21 +136,34 @@
     </ul>
 
     <!-- Mobile Menu Button -->
-    <button type="button" class="md:hidden text-2xl" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+    <button id="menuBtn" type="button" aria-label="Open Menu" class="md:hidden text-2xl cursor-pointer">
       <i class="fas fa-bars"></i>
     </button>
-  </div>
 
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="hidden md:hidden absolute top-full left-0 w-full bg-[#002349] border-t border-[#957C3D]/40">
-    <ul class="flex flex-col px-6 py-6 space-y-4 text-sm font-medium">
-      <li><a href="#" class="block">Home</a></li>
-      <li><a href="#core-services" class="block">Services</a></li>
-      <li><a href="#testimonials" class="block">Clients</a></li>
-      <li><a href="#contact" class="block font-semibold text-[#957C3D]">Contact</a></li>
-    </ul>
+    <!-- Mobile Menu -->
+    <div id="mobileMenu" class="hidden absolute top-full left-0 w-full bg-[#002349] border-t border-[#957C3D]/40 md:hidden">
+      <ul class="flex flex-col px-6 py-6 space-y-4 text-sm font-medium">
+        <li><a href="#" class="block" onclick="closeMenu()">Home</a></li>
+        <li><a href="#core-services" class="block" onclick="closeMenu()">Services</a></li>
+        <li><a href="#testimonials" class="block" onclick="closeMenu()">Clients</a></li>
+        <li><a href="#contact" class="block font-semibold text-[#957C3D]" onclick="closeMenu()">Contact</a></li>
+      </ul>
+    </div>
   </div>
 </nav>
+
+<script>
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  menuBtn.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
+  });
+
+  function closeMenu() {
+    mobileMenu.classList.add('hidden');
+  }
+</script>
 
   
 <!-- Spacer for fixed navbar -->
