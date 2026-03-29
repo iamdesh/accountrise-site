@@ -48,11 +48,11 @@
 <script>AOS.init({ once: true, duration: 800 });</script>
 
 <!-- ================= NAVIGATION ================= -->
-<nav class="w-full bg-[#002349]/95 backdrop-blur-md text-white shadow-sm fixed top-0 left-0 z-50">
-  <div class="max-w-7xl mx-auto flex justify-between items-center px-4 py-4 relative">
-    <h1 class="text-2xl font-extrabold tracking-tight">Accountrise</h1>
+<nav class="w-full bg-[#002349]/95 backdrop-blur-md text-white shadow-sm fixed top-0 left-0 z-50 border-b border-white/5">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-5 lg:px-6 py-4 relative">
+    <h1 class="text-[1.9rem] font-extrabold tracking-tight leading-none">Accountrise</h1>
 
-    <ul class="hidden md:flex items-center space-x-8 text-sm font-medium">
+    <ul class="hidden md:flex items-center space-x-9 text-[15px] font-medium">
       <li><a href="#" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Home</a></li>
       <li><a href="#about" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Who We Are</a></li>
       <li><a href="#founder" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Founder</a></li>
@@ -96,8 +96,8 @@
 <div class="h-16"></div>
 
 <!-- Hero Section -->
-<section class="py-20 px-4 bg-[#F5F7FA]">
-  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
+<section class="py-24 px-4 bg-[#F5F7FA]">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 items-start">
     <div data-aos="fade-up" class="pt-4">
       <p class="text-sm uppercase tracking-widest text-gray-500 mb-4">Remote Accounting & Advisory Partner</p>
       <h2 class="text-4xl lg:text-5xl font-extrabold leading-tight mb-6 text-[#002349]">
@@ -124,14 +124,14 @@
       </div>
     </div>
 
-    <div class="bg-white p-8 rounded-3xl shadow-lg border border-gray-200" data-aos="fade-left">
+    <div class="bg-white p-8 lg:p-9 rounded-[2rem] shadow-[0_20px_60px_rgba(0,35,73,0.08)] border border-gray-200/90" data-aos="fade-left">
       <h3 class="text-2xl font-bold mb-6 text-center text-[#002349]">Explore Plans or Request a Quote</h3>
 
       <div class="space-y-3 mb-6">
-        <details class="bg-[#F5F7FA] rounded-xl p-4"><summary class="font-semibold cursor-pointer">Starter - From $99/month</summary><p class="mt-2 text-sm text-gray-600">Essential bookkeeping and monthly reporting for early-stage businesses.</p></details>
-        <details class="bg-[#F5F7FA] rounded-xl p-4"><summary class="font-semibold cursor-pointer">Growth - From $249/month</summary><p class="mt-2 text-sm text-gray-600">Expanded support including reconciliations, payroll assistance, and reporting.</p></details>
-        <details class="bg-[#F5F7FA] rounded-xl p-4"><summary class="font-semibold cursor-pointer">Pro - From $499/month</summary><p class="mt-2 text-sm text-gray-600">Full-service accounting with a dedicated manager and advisory support.</p></details>
-        <details class="bg-[#F5F7FA] rounded-xl p-4"><summary class="font-semibold cursor-pointer">CPA Partner - Custom</summary><p class="mt-2 text-sm text-gray-600">White-label and staff augmentation solutions for accounting firms.</p></details>
+        <details class="bg-[#F5F7FA] rounded-2xl p-4 border border-gray-100"><summary class="font-semibold cursor-pointer">Starter - From $99/month</summary><p class="mt-2 text-sm text-gray-600">Essential bookkeeping and monthly reporting for early-stage businesses.</p></details>
+        <details class="bg-[#F5F7FA] rounded-2xl p-4 border border-gray-100"><summary class="font-semibold cursor-pointer">Growth - From $249/month</summary><p class="mt-2 text-sm text-gray-600">Expanded support including reconciliations, payroll assistance, and reporting.</p></details>
+        <details class="bg-[#F5F7FA] rounded-2xl p-4 border border-gray-100"><summary class="font-semibold cursor-pointer">Pro - From $499/month</summary><p class="mt-2 text-sm text-gray-600">Full-service accounting with a dedicated manager and advisory support.</p></details>
+        <details class="bg-[#F5F7FA] rounded-2xl p-4 border border-gray-100"><summary class="font-semibold cursor-pointer">CPA Partner - Custom</summary><p class="mt-2 text-sm text-gray-600">White-label and staff augmentation solutions for accounting firms.</p></details>
       </div>
 
       <form action="https://formspree.io/f/xzzapbnz" method="POST" class="space-y-4">
@@ -240,13 +240,13 @@
     <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">Each service is delivered with defined ownership, standardized processes, and quality controls — ensuring consistency, accuracy, and scalability for businesses and accounting firms.</p>
   </div>
 
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-book-open text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Bookkeeping & Monthly Close</h4><p class="text-gray-600">Day-to-day bookkeeping, reconciliations, and structured monthly closes to keep your financials accurate and decision-ready.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-chart-line text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Financial Reporting</h4><p class="text-gray-600">Clear, reliable P&L, balance sheet, and cash flow reporting to support smarter decisions.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-file-invoice-dollar text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Tax Support & Readiness</h4><p class="text-gray-600">Tax-ready books, filing support, and coordination to help you stay prepared and compliant.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-users-cog text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">CPA & Firm Outsourcing</h4><p class="text-gray-600">White-label accounting and staff augmentation support designed for accounting firms.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-money-check-alt text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Payroll & Compliance</h4><p class="text-gray-600">Accurate payroll processing and recurring compliance support to reduce operational stress.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-cloud text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Cloud Accounting Systems</h4><p class="text-gray-600">Setup, migration, and optimization of cloud accounting systems for better visibility and control.</p></div>
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-book-open text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Bookkeeping & Monthly Close</h4><p class="text-gray-600">Day-to-day bookkeeping, reconciliations, and structured monthly closes to keep your financials accurate and decision-ready.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-chart-line text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Financial Reporting</h4><p class="text-gray-600">Clear, reliable P&L, balance sheet, and cash flow reporting to support smarter decisions.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-file-invoice-dollar text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Tax Support & Readiness</h4><p class="text-gray-600">Tax-ready books, filing support, and coordination to help you stay prepared and compliant.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-users-cog text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">CPA & Firm Outsourcing</h4><p class="text-gray-600">White-label accounting and staff augmentation support designed for accounting firms.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-money-check-alt text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Payroll & Compliance</h4><p class="text-gray-600">Accurate payroll processing and recurring compliance support to reduce operational stress.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-cloud text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Cloud Accounting Systems</h4><p class="text-gray-600">Setup, migration, and optimization of cloud accounting systems for better visibility and control.</p></div>
   </div>
 </section>
 
@@ -257,17 +257,17 @@
     <h3 class="text-4xl font-extrabold text-[#002349] mb-6">A Better Way to Manage Your Accounting</h3>
     <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">Clients choose Accountrise for reliability, transparency, and long-term partnership — not just task completion.</p>
   </div>
-  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-globe text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Global Delivery</h4><p class="text-gray-600">We work across time zones with clear communication and dependable turnaround times.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-user-shield text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Accountability & Quality</h4><p class="text-gray-600">Every account is handled with ownership, review controls, and quality standards.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-cogs text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Process-Driven Execution</h4><p class="text-gray-600">Standardized workflows and automation support accuracy, efficiency, and scalability.</p></div>
-    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-lg border border-gray-200 transition-all text-center"><i class="fas fa-handshake text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Partnership Mindset</h4><p class="text-gray-600">We work as an extension of your team — responsive, practical, and long-term focused.</p></div>
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-globe text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Global Delivery</h4><p class="text-gray-600">We work across time zones with clear communication and dependable turnaround times.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-user-shield text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Accountability & Quality</h4><p class="text-gray-600">Every account is handled with ownership, review controls, and quality standards.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-cogs text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Process-Driven Execution</h4><p class="text-gray-600">Standardized workflows and automation support accuracy, efficiency, and scalability.</p></div>
+    <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-handshake text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Partnership Mindset</h4><p class="text-gray-600">We work as an extension of your team — responsive, practical, and long-term focused.</p></div>
   </div>
 </section>
 
 <!-- Impact Stats -->
-<section class="py-20 px-4 bg-[#002349] text-white" data-aos="fade-up">
-  <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
+<section class="py-20 px-4 bg-[#002349] text-white border-y border-white/5" data-aos="fade-up">
+  <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 text-center">
     <div>
       <h3 class="text-5xl md:text-6xl font-extrabold mb-3 stat-number" data-target="98" data-suffix="%">0%</h3>
       <p class="text-lg md:text-xl">Client Retention</p>
@@ -388,30 +388,30 @@
 <!-- Footer -->
 <footer class="relative overflow-hidden bg-[#002349] text-white mt-8 border-t border-[#957C3D]/20" data-aos="fade-up">
   <div class="absolute inset-0 opacity-[0.05] bg-[radial-gradient(circle_at_top_left,_#ffffff_0,_transparent_35%),radial-gradient(circle_at_bottom_right,_#957C3D_0,_transparent_25%)]"></div>
-  <div class="relative max-w-7xl mx-auto px-6 pt-16 pb-8">
-    <div class="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr_1fr] gap-14 lg:gap-16 items-start">
+  <div class="relative max-w-7xl mx-auto px-6 pt-14 pb-8">
+    <div class="grid grid-cols-1 lg:grid-cols-[1.15fr_0.75fr_0.95fr] gap-10 lg:gap-12 items-start">
       <div class="max-w-xl">
-        <div class="flex items-center gap-4 mb-6">
-          <img src="./accountrise.png" alt="Accountrise Logo" width="1024" height="1024" loading="eager" decoding="async" class="h-9 w-auto object-contain rounded-lg" onerror="this.onerror=null; this.style.display='none'; document.getElementById('footer-logo-fallback').style.display='block';" />
-          <span id="footer-logo-fallback" class="hidden text-xl font-bold tracking-tight">Accountrise</span>
-          <div>
-            <h4 class="text-3xl font-extrabold tracking-tight leading-none">Accountrise</h4>
-            <p class="text-sm text-white/55 mt-2 tracking-[0.18em] uppercase">Remote Accounting Partner</p>
+        <div class="flex items-center gap-4 mb-5">
+          <img src="./accountrise.png" alt="Accountrise Logo" width="1024" height="1024" loading="eager" decoding="async" class="h-20 sm:h-24 w-auto object-contain rounded-2xl drop-shadow-sm shrink-0" onerror="this.onerror=null; this.style.display='none'; document.getElementById('footer-logo-fallback').style.display='block';" />
+          <span id="footer-logo-fallback" class="hidden text-2xl font-bold tracking-tight">Accountrise</span>
+          <div class="min-w-0">
+            <h4 class="text-3xl sm:text-[2rem] font-extrabold tracking-tight leading-none">Accountrise</h4>
+            <p class="text-sm text-white/55 mt-2 tracking-[0.22em] uppercase">Remote Accounting Partner</p>
           </div>
         </div>
-        <p class="text-[17px] text-white/72 leading-relaxed mb-7 max-w-lg">
+        <p class="text-[16px] sm:text-[17px] text-white/72 leading-relaxed mb-6 max-w-[34rem]">
           Remote accounting and bookkeeping support for growth-focused businesses and CPA firms.
         </p>
-        <div class="flex flex-wrap gap-3">
-          <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-sm text-white/80">CA-Led</span>
-          
-          <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-sm text-white/80">Secure Systems</span>
+        <div class="flex flex-wrap gap-2.5">
+          <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[13px] font-medium text-white/80">CA-Led</span>
+          <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[13px] font-medium text-white/80">Secure Systems</span>
+          <span class="px-4 py-2 rounded-full border border-white/10 bg-white/5 text-[13px] font-medium text-white/80">Global Support</span>
         </div>
       </div>
 
-      <div>
+      <div class="lg:pl-4">
         <h4 class="text-lg font-semibold mb-5 text-white">Quick Links</h4>
-        <ul class="space-y-4 text-[15px] text-white/72">
+        <ul class="space-y-3 text-[15px] text-white/72">
           <li><a href="#about" class="hover:text-white transition">Who We Are</a></li>
           <li><a href="#founder" class="hover:text-white transition">Founder</a></li>
           <li><a href="#core-services" class="hover:text-white transition">Services</a></li>
@@ -420,53 +420,53 @@
         </ul>
       </div>
 
-      <div>
+      <div class="lg:pl-2">
         <h4 class="text-lg font-semibold mb-5 text-white">Connect</h4>
-        <div class="grid grid-cols-1 gap-2">
-          <a href="mailto:info@accountrise.com" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300">
-            <div class="w-8 h-8 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
+        <div class="grid grid-cols-1 gap-2.5 max-w-sm">
+          <a href="mailto:info@accountrise.com" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300 min-h-[64px]">
+            <div class="w-9 h-9 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
               <i class="fas fa-envelope text-[#957C3D]"></i>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-0.5">Email</p>
-              <p class="text-white/85 group-hover:text-white transition text-sm">info@accountrise.com</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white/38 mb-0.5">Email</p>
+              <p class="text-white/88 group-hover:text-white transition text-[14px] font-medium leading-tight">info@accountrise.com</p>
             </div>
           </a>
 
-          <a href="https://www.linkedin.com/company/accountrise" target="_blank" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300">
-            <div class="w-8 h-8 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
+          <a href="https://www.linkedin.com/company/accountrise" target="_blank" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300 min-h-[64px]">
+            <div class="w-9 h-9 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
               <i class="fab fa-linkedin text-[#957C3D]"></i>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-0.5">LinkedIn</p>
-              <p class="text-white/85 group-hover:text-white transition text-sm">Company Profile</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white/38 mb-0.5">LinkedIn</p>
+              <p class="text-white/88 group-hover:text-white transition text-[14px] font-medium leading-tight">Company Profile</p>
             </div>
           </a>
 
-          <a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf" target="_blank" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300">
-            <div class="w-8 h-8 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
+          <a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf" target="_blank" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300 min-h-[64px]">
+            <div class="w-9 h-9 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
               <i class="fas fa-briefcase text-[#957C3D]"></i>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-0.5">Upwork</p>
-              <p class="text-white/85 group-hover:text-white transition text-sm">Freelancer Profile</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white/38 mb-0.5">Upwork</p>
+              <p class="text-white/88 group-hover:text-white transition text-[14px] font-medium leading-tight">Freelancer Profile</p>
             </div>
           </a>
 
-          <a href="https://wa.me/918104839386" target="_blank" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300">
-            <div class="w-8 h-8 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
+          <a href="https://wa.me/918104839386" target="_blank" class="group flex items-center gap-3 rounded-2xl px-3 py-2.5 bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/15 transition-all duration-300 min-h-[64px]">
+            <div class="w-9 h-9 rounded-xl bg-white/8 border border-white/10 flex items-center justify-center shrink-0">
               <i class="fab fa-whatsapp text-[#957C3D]"></i>
             </div>
             <div>
-              <p class="text-[10px] uppercase tracking-[0.18em] text-white/40 mb-0.5">WhatsApp</p>
-              <p class="text-white/85 group-hover:text-white transition text-sm">Quick Chat</p>
+              <p class="text-[10px] uppercase tracking-[0.2em] text-white/38 mb-0.5">WhatsApp</p>
+              <p class="text-white/88 group-hover:text-white transition text-[14px] font-medium leading-tight">Quick Chat</p>
             </div>
           </a>
         </div>
       </div>
     </div>
 
-    <div class="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="mt-12 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
       <p class="text-sm text-white/45">© 2026 Accountrise. All rights reserved.</p>
       <p class="text-xs uppercase tracking-[0.18em] text-white/30">Structured Accounting • Secure Delivery</p>
     </div>
