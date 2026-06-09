@@ -55,8 +55,8 @@
     <ul class="hidden md:flex items-center space-x-9 text-[15px] font-medium">
       <li><a href="#" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Home</a></li>
       <li><a href="#about" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Who We Are</a></li>
-      <li><a href="#founder" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Founder</a></li>
-      <li><a href="#core-services" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Services</a></li>
+      <li><a href="/founder/" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Founder</a></li>
+      <li><a href="/services/" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Services</a></li>
       <li><a href="#testimonials" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Clients</a></li>
       <li><a href="/blog/" class="relative after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-0 after:bg-[#957C3D] hover:after:w-full after:transition-all">Blog</a></li>
       <li><a href="#contact" class="px-5 py-2 rounded-full bg-[#957C3D] text-[#002349] font-semibold hover:bg-[#bda25a] transition">Contact</a></li>
@@ -72,8 +72,8 @@
       <ul class="flex flex-col px-6 py-6 space-y-4 text-sm font-medium">
         <li><a href="#" class="block" onclick="closeMenu()">Home</a></li>
         <li><a href="#about" class="block" onclick="closeMenu()">Who We Are</a></li>
-        <li><a href="#founder" class="block" onclick="closeMenu()">Founder</a></li>
-        <li><a href="#core-services" class="block" onclick="closeMenu()">Services</a></li>
+        <li><a href="/founder/" class="block" onclick="closeMenu()">Founder</a></li>
+        <li><a href="/services/" class="block" onclick="closeMenu()">Services</a></li>
         <li><a href="#testimonials" class="block" onclick="closeMenu()">Clients</a></li>
         <li><a href="/blog/" class="block" onclick="closeMenu()">Blog</a></li>
         <li><a href="#contact" class="block font-semibold text-[#957C3D]" onclick="closeMenu()">Contact</a></li>
@@ -98,12 +98,13 @@
 <div class="h-16"></div>
 
 <!-- Hero Section -->
-<section class="py-24 px-4 bg-[#F5F7FA]">
+<section class="py-32 px-4 bg-gradient-to-br from-[#F5F7FA] via-white to-slate-50">
   <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-16 items-start">
     <div data-aos="fade-up" class="pt-4">
       <p class="text-sm uppercase tracking-widest text-gray-500 mb-4">Remote Accounting & Advisory Partner</p>
-      <h2 class="text-4xl lg:text-5xl font-extrabold leading-tight mb-6 text-[#002349]">
-        Reliable Accounting Support<br class="hidden sm:block" />
+      <h2 class="text-5xl lg:text-6xl font-extrabold leading-tight mb-6 text-[#002349]">
+        Remote Accounting & Bookkeeping Support
+        <br class="hidden sm:block" />
         for Businesses & CPA Firms
       </h2>
       <p class="text-lg text-gray-600 mb-8 max-w-xl">
@@ -118,11 +119,40 @@
       </div>
 
       <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-6">
-        <a href="#contact" class="inline-flex items-center justify-center gap-3 bg-[#002349] text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-[#00172f] transition">
-          Get a Free Consultation
-          <i class="fas fa-arrow-right"></i>
+
+        <a href="https://calendly.com/deshrajgocher2012/30min"
+           target="_blank"
+           class="inline-flex items-center justify-center gap-3 bg-[#002349] text-white px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-[#00172f] transition shadow-[0_10px_40px_rgba(0,35,73,0.18)]">
+
+          Book Free Consultation
+          <i class="fas fa-calendar-alt"></i>
         </a>
-        <span class="text-sm text-gray-500">No obligation • Response within 24 hours</span>
+
+        <a href="#contact"
+           class="inline-flex items-center justify-center gap-3 border border-[#002349] text-[#002349] px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-[#002349] hover:text-white transition">
+
+          Request Pricing
+        </a>
+
+      </div>
+
+      <div class="flex flex-wrap items-center gap-4 text-sm text-gray-500">
+
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-[#957C3D]"></i>
+          <span>Free 30-Minute Consultation</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-[#957C3D]"></i>
+          <span>CPA & Business Support</span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <i class="fas fa-check-circle text-[#957C3D]"></i>
+          <span>Response within 24 hours</span>
+        </div>
+
       </div>
     </div>
 
@@ -145,6 +175,7 @@
       </form>
     </div>
   </div>
+
 </section>
 
 <!-- About -->
@@ -250,6 +281,7 @@
     <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-money-check-alt text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Payroll & Compliance</h4><p class="text-gray-600">Accurate payroll processing and recurring compliance support to reduce operational stress.</p></div>
     <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-cloud text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Cloud Accounting Systems</h4><p class="text-gray-600">Setup, migration, and optimization of cloud accounting systems for better visibility and control.</p></div>
   </div>
+
 </section>
 
 <!-- Why Choose -->
@@ -257,7 +289,7 @@
   <div class="max-w-7xl mx-auto text-center mb-16">
     <p class="text-sm text-gray-500 uppercase tracking-widest mb-3">Why Accountrise</p>
     <h3 class="text-4xl font-extrabold text-[#002349] mb-6">A Better Way to Manage Your Accounting</h3>
-    <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">Clients choose Accountrise for reliability, transparency, and long-term partnershi not just task completion.</p>
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">Clients choose Accountrise for reliability, structured workflows, modern cloud systems, and long-term financial partnership.</p>
   </div>
   <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
     <div class="bg-white p-8 rounded-3xl shadow-sm hover:shadow-[0_18px_40px_rgba(0,35,73,0.08)] hover:-translate-y-1 border border-gray-200 transition-all text-center"><i class="fas fa-globe text-[#957C3D] text-4xl mb-4"></i><h4 class="text-xl font-bold mb-3">Global Delivery</h4><p class="text-gray-600">We work across time zones with clear communication and dependable turnaround times.</p></div>
@@ -334,6 +366,52 @@
   </p>
 </div>
 
+
+<!-- How We Work -->
+<section class="py-24 px-4 sm:px-6 bg-white border-y border-gray-200">
+
+  <div class="max-w-7xl mx-auto text-center mb-16">
+
+    <p class="text-sm uppercase tracking-widest text-gray-500 mb-3">
+      Our Process
+    </p>
+
+    <h3 class="text-4xl font-extrabold text-[#002349] mb-6">
+      Simple & Structured Workflow
+    </h3>
+
+  </div>
+
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+
+    <div class="text-center">
+      <div class="w-20 h-20 rounded-full bg-[#002349] text-white flex items-center justify-center text-3xl font-bold mx-auto mb-6">1</div>
+      <h4 class="text-xl font-bold mb-3 text-[#002349]">Discovery Call</h4>
+      <p class="text-gray-600">Understand your business and accounting requirements.</p>
+    </div>
+
+    <div class="text-center">
+      <div class="w-20 h-20 rounded-full bg-[#002349] text-white flex items-center justify-center text-3xl font-bold mx-auto mb-6">2</div>
+      <h4 class="text-xl font-bold mb-3 text-[#002349]">Setup & Access</h4>
+      <p class="text-gray-600">Secure onboarding and workflow setup.</p>
+    </div>
+
+    <div class="text-center">
+      <div class="w-20 h-20 rounded-full bg-[#002349] text-white flex items-center justify-center text-3xl font-bold mx-auto mb-6">3</div>
+      <h4 class="text-xl font-bold mb-3 text-[#002349]">Monthly Execution</h4>
+      <p class="text-gray-600">Bookkeeping, reporting, payroll, and reconciliations.</p>
+    </div>
+
+    <div class="text-center">
+      <div class="w-20 h-20 rounded-full bg-[#002349] text-white flex items-center justify-center text-3xl font-bold mx-auto mb-6">4</div>
+      <h4 class="text-xl font-bold mb-3 text-[#002349]">Ongoing Support</h4>
+      <p class="text-gray-600">Continuous communication and financial visibility.</p>
+    </div>
+
+  </div>
+
+</section>
+
 <!-- Testimonials -->
 <section id="testimonials" class="py-24 px-4 sm:px-6 bg-white border-y border-gray-200" data-aos="fade-up">
   <div class="max-w-7xl mx-auto text-center">
@@ -362,6 +440,45 @@
   </div>
 </section>
 
+
+<!-- Featured Blogs -->
+<section class="py-24 px-4 sm:px-6 bg-[#F5F7FA]">
+
+  <div class="max-w-7xl mx-auto text-center mb-16">
+
+    <p class="text-sm uppercase tracking-widest text-gray-500 mb-3">
+      Latest Insights
+    </p>
+
+    <h3 class="text-4xl font-extrabold text-[#002349] mb-6">
+      Accounting & Business Resources
+    </h3>
+
+  </div>
+
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+
+    <a href="/blog/remote-accounting-guide.html"
+       class="bg-white p-8 rounded-3xl border border-gray-200 hover:shadow-xl transition">
+
+      <p class="text-sm text-[#957C3D] font-semibold mb-3">
+        Remote Accounting
+      </p>
+
+      <h4 class="text-2xl font-bold text-[#002349] mb-4">
+        Why Businesses Are Moving to Remote Accounting Teams
+      </h4>
+
+      <p class="text-gray-600">
+        Learn how remote accounting improves efficiency and scalability.
+      </p>
+
+    </a>
+
+  </div>
+
+</section>
+
 <!-- FAQ -->
 <section class="py-24 px-6 bg-gradient-to-br from-slate-50 to-white border-b border-gray-300" data-aos="fade-up">
   <div class="max-w-6xl mx-auto text-center mb-14">
@@ -377,6 +494,7 @@
     <details class="bg-white rounded-3xl shadow-sm p-6 border border-gray-200 hover:border-[#002349] transition"><summary class="font-semibold text-lg cursor-pointer">Do you offer catch-up or cleanup accounting?</summary><p class="mt-3 text-gray-600 leading-relaxed">Yes. We handle catch-up and cleanup accounting projects ranging from a few months to multiple years.</p></details>
   </div>
 </section>
+
 
 <!-- Contact -->
 <section id="contact" class="bg-gradient-to-r from-blue-50 to-slate-100 text-gray-900 py-20">
@@ -417,9 +535,10 @@
         <h4 class="text-lg font-semibold mb-5 text-white">Quick Links</h4>
         <ul class="space-y-3 text-[15px] text-white/72">
           <li><a href="#about" class="hover:text-white transition">Who We Are</a></li>
-          <li><a href="#founder" class="hover:text-white transition">Founder</a></li>
-          <li><a href="#core-services" class="hover:text-white transition">Services</a></li>
+          <li><a href="/founder/" class="hover:text-white transition">Founder</a></li>
+          <li><a href="/services/" class="hover:text-white transition">Services</a></li>
           <li><a href="#testimonials" class="hover:text-white transition">Clients</a></li>
+          <li><a href="/blog/" class="hover:text-white transition">Blog</a></li>
           <li><a href="#contact" class="hover:text-white transition">Contact</a></li>
         </ul>
       </div>
@@ -453,7 +572,7 @@
             </div>
             <div>
               <p class="text-[10px] uppercase tracking-[0.2em] text-white/38 mb-0.5">Upwork</p>
-              <p class="text-white/88 group-hover:text-white transition text-[14px] font-medium leading-tight">Profile</p>
+              <p class="text-white/88 group-hover:text-white transition text-[14px] font-medium leading-tight">Clients Reviews</p>
             </div>
           </a>
 
