@@ -719,74 +719,63 @@
 
   </div>
 
-</section>
-<!-- Impact Stats -->
-<section class="py-20 px-4 bg-[#002349] text-white border-y border-white/5" data-aos="fade-up">
-  <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8 text-center">
-    <div>
-      <h3 class="text-5xl md:text-6xl font-extrabold mb-3 stat-number" data-target="98" data-suffix="%">0%</h3>
-      <p class="text-lg md:text-xl">Client Retention</p>
-    </div>
-    <div>
-      <h3 class="text-5xl md:text-6xl font-extrabold mb-3 stat-number" data-target="100" data-suffix="K+">0K+</h3>
-      <p class="text-lg md:text-xl">Transactions Processed</p>
-    </div>
-    <div>
-      <h3 class="text-5xl md:text-6xl font-extrabold mb-3 stat-number" data-target="10" data-suffix="+">0+</h3>
-      <p class="text-lg md:text-xl">Countries Served</p>
-    </div>
-    <div>
-      <h3 class="text-5xl md:text-6xl font-extrabold mb-3 stat-number" data-target="24" data-suffix="/7">0/7</h3>
-      <p class="text-lg md:text-xl">Support Available</p>
-    </div>
+<!-- GRID -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+  <!-- CARD -->
+  <div class="bg-white/5 border border-white/10 rounded-3xl p-8 text-center backdrop-blur-sm">
+
+    <h4 class="text-5xl font-extrabold mb-4 text-white">
+      From
+      <span class="text-[#957C3D]">$10/hr</span>
+    </h4>
+
+    <p class="text-white/75 leading-relaxed">
+      Affordable outsourced bookkeeping and remote accounting support for businesses and CPA firms.
+    </p>
+
   </div>
-</section>
 
-<script>
-  const counters = document.querySelectorAll('.stat-number');
-  const animateCounters = () => {
-    counters.forEach(counter => {
-      const target = +counter.getAttribute('data-target');
-      const suffix = counter.getAttribute('data-suffix') || '';
-      let count = 0;
-      const increment = Math.max(1, Math.ceil(target / 80));
+  <!-- CARD -->
+  <div class="bg-white/5 border border-white/10 rounded-3xl p-8 text-center backdrop-blur-sm">
 
-      const updateCount = () => {
-        count += increment;
-        if (count >= target) {
-          counter.innerText = target + suffix;
-        } else {
-          counter.innerText = count + suffix;
-          requestAnimationFrame(updateCount);
-        }
-      };
+    <h4 class="text-5xl font-extrabold mb-4 text-white">
+      Quick
+    </h4>
 
-      updateCount();
-    });
-  };
+    <p class="text-white/75 leading-relaxed">
+      Fast onboarding and structured accounting workflows designed for scalable remote collaboration.
+    </p>
 
-  const statElements = document.querySelectorAll('.stat-number');
-  const statsSection = statElements.length ? statElements[0].closest('section') : null;
-  if (statsSection) {
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          animateCounters();
-          observer.disconnect();
-        }
-      });
-    }, { threshold: 0.35 });
+  </div>
 
-    observer.observe(statsSection);
-  }
-</script>
+  <!-- CARD -->
+  <div class="bg-white/5 border border-white/10 rounded-3xl p-8 text-center backdrop-blur-sm">
 
-<div class="bg-white py-6 border-b border-gray-200">
-  <p class="text-center text-sm text-gray-500 px-4">
-    Trusted by businesses, founders, and accounting teams across multiple industries.
-  </p>
+    <h4 class="text-5xl font-extrabold mb-4 text-white">
+      Cloud
+    </h4>
+
+    <p class="text-white/75 leading-relaxed">
+      QuickBooks, Odoo, payroll systems, cloud bookkeeping, and modern accounting workflow support.
+    </p>
+
+  </div>
+
+  <!-- CARD -->
+  <div class="bg-white/5 border border-white/10 rounded-3xl p-8 text-center backdrop-blur-sm">
+
+    <h4 class="text-5xl font-extrabold mb-4 text-white">
+      CPA
+    </h4>
+
+    <p class="text-white/75 leading-relaxed">
+      White-label bookkeeping and remote accounting support built for accounting firms and CPA practices.
+    </p>
+
+  </div>
+
 </div>
-
 
 <!-- How We Work -->
 <section class="py-24 px-4 sm:px-6 bg-white border-y border-gray-200">
