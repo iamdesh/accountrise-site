@@ -188,24 +188,58 @@ $10<span class="text-lg text-gray-500">/hr</span>
 
 </div>
 
-<form class="space-y-4">
+<form
+  action="https://formspree.io/f/xeajjydz"
+  method="POST"
+  class="space-y-4"
+>
 
-<input type="text" placeholder="Your Name"
-class="w-full border border-gray-200 px-4 py-3 rounded-xl">
+  <input
+    type="text"
+    name="name"
+    placeholder="Your Name"
+    required
+    class="w-full border border-gray-200 px-4 py-3 rounded-xl"
+  >
 
-<input type="email" placeholder="Your Email"
-class="w-full border border-gray-200 px-4 py-3 rounded-xl">
+  <input
+    type="email"
+    name="email"
+    placeholder="Your Email"
+    required
+    class="w-full border border-gray-200 px-4 py-3 rounded-xl"
+  >
 
-<textarea rows="3"
-placeholder="Tell us about your bookkeeping needs"
-class="w-full border border-gray-200 px-4 py-3 rounded-xl"></textarea>
+  <textarea
+    name="message"
+    rows="3"
+    placeholder="Tell us about your bookkeeping needs"
+    required
+    class="w-full border border-gray-200 px-4 py-3 rounded-xl"
+  ></textarea>
 
-<button class="w-full bg-[#002349] text-white py-4 rounded-2xl font-semibold hover:bg-[#00172f] transition">
-Request Custom Quote
-</button>
+  <!-- Optional: Email subject -->
+  <input
+    type="hidden"
+    name="_subject"
+    value="New Contact Form Submission - Accountrise"
+  >
+
+  <!-- Optional: Disable CAPTCHA -->
+  <input
+    type="hidden"
+    name="_captcha"
+    value="false"
+  >
+
+  <button
+    type="submit"
+    class="w-full bg-[#002349] text-white py-4 rounded-2xl font-semibold hover:bg-[#00172f] transition"
+  >
+Get Your Free Quote
+  </button>
 
 </form>
-
 </div>
 
 </div>
