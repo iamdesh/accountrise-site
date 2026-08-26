@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odoo Accounting Setup Guide for US Businesses | Accountrise</title>
+<meta name="description" content="A practical Odoo Accounting guide for US businesses covering chart of accounts, journals, taxes, invoices, vendor bills, bank reconciliation, inventory accounting, cleanup and month-end close.">
+<meta name="keywords" content="Odoo accounting, Odoo accounting USA, Odoo bookkeeping, Odoo accountant, Odoo accounting setup, Odoo chart of accounts, Odoo bank reconciliation, Odoo month end close, Odoo inventory accounting, Odoo bookkeeping services">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.accountrise.com/blog/odoo-accounting-setup-guide-us-businesses.html">
+<meta property="og:title" content="Odoo Accounting Setup Guide for US Businesses">
+<meta property="og:description" content="Solve common Odoo accounting problems with a practical guide to setup, reconciliation, inventory accounting and month-end close.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.accountrise.com/blog/odoo-accounting-setup-guide-us-businesses.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Odoo Accounting Setup Guide for US Businesses","description":"A practical guide to setting up and maintaining Odoo Accounting for US businesses.","author":{"@type":"Organization","name":"Accountrise"},"publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-accounting-setup-guide-us-businesses.html"},"datePublished":"2026-08-27","dateModified":"2026-08-27"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How should a US business set up Odoo Accounting?","acceptedAnswer":{"@type":"Answer","text":"Start with accounting requirements, fiscal configuration, chart of accounts, journals, taxes, bank accounts, customer and vendor workflows, and opening balances. Test representative transactions before going live."}},
+{"@type":"Question","name":"How do I reconcile a bank account in Odoo?","acceptedAnswer":{"@type":"Answer","text":"Import or connect bank transactions, match them to accounting entries or create the required entries, review exceptions, and reconcile the account according to the company's accounting procedures."}},
+{"@type":"Question","name":"Why does Odoo Accounting have unreconciled balances?","acceptedAnswer":{"@type":"Answer","text":"Common causes include missing transactions, duplicates, incorrect journal entries, outstanding payments or receipts, incorrect opening balances, or incomplete reconciliation."}},
+{"@type":"Question","name":"Can Odoo handle accounting and inventory together?","acceptedAnswer":{"@type":"Answer","text":"Yes. Odoo can connect accounting workflows with inventory, sales and purchasing. The accounting result depends on configuration, products, valuation methods and transaction flows."}}
+]}
+</script>
+</head>
+<body class="bg-[#F5F7FA] text-gray-900 font-sans">
+
+<nav class="bg-[#002349] text-white py-5 px-6">
+<div class="max-w-7xl mx-auto flex justify-between items-center">
+<a href="/" class="text-3xl font-extrabold">Accountrise</a>
+<div class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a href="/" class="hover:text-[#957C3D] transition">Home</a>
+<a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+<a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+<a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+<a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+</div>
+</div>
+</nav>
+
+<div class="bg-white border-b border-gray-200">
+<div class="max-w-7xl mx-auto px-6 py-4 text-sm text-gray-500">
+<a href="/" class="hover:text-[#002349]">Home</a><span class="mx-2">/</span>
+<a href="/blog/" class="hover:text-[#002349]">Blog</a><span class="mx-2">/</span>
+<span>Odoo Accounting Setup Guide</span>
+</div></div>
+
+<section class="py-24 px-6 bg-white">
+<div class="max-w-5xl mx-auto">
+<p class="uppercase tracking-[0.25em] text-sm text-[#957C3D] font-semibold mb-5">Odoo Accounting</p>
+<h1 class="text-5xl md:text-6xl font-extrabold leading-tight text-[#002349] mb-8">Odoo Accounting Setup Guide for US Businesses</h1>
+<p class="text-xl text-gray-600 leading-relaxed mb-8">Odoo can connect accounting with sales, purchasing, inventory, invoices and payments. But poor accounting configuration can create reconciliation problems and unreliable reports. This practical guide shows US businesses how to build a cleaner Odoo Accounting workflow.</p>
+<div class="flex flex-wrap gap-4 text-sm text-gray-500"><span>Updated August 27, 2026</span><span>•</span><span>12-minute read</span><span>•</span><span>Odoo Accounting</span></div>
+</div></section>
+
+<section class="py-20 px-6"><div class="max-w-7xl mx-auto grid lg:grid-cols-[260px_1fr] gap-12">
+<aside class="hidden lg:block"><div class="sticky top-8 bg-white rounded-3xl border border-gray-200 p-6">
+<p class="font-bold text-[#002349] mb-4">Odoo Accounting Guide</p>
+<ul class="space-y-3 text-sm text-gray-600">
+<li><a href="#problem">Common Odoo Problems</a></li><li><a href="#setup">Accounting Setup</a></li><li><a href="#coa">Chart of Accounts</a></li><li><a href="#journals">Journals</a></li><li><a href="#taxes">Taxes</a></li><li><a href="#ar-ap">Invoices & Bills</a></li><li><a href="#bank">Bank Reconciliation</a></li><li><a href="#inventory">Inventory Accounting</a></li><li><a href="#cleanup">Cleanup</a></li><li><a href="#close">Month-End Close</a></li><li><a href="#reports">Financial Reports</a></li><li><a href="#checklist">Health Checklist</a></li><li><a href="#pricing">Odoo Support & Pricing</a></li><li><a href="#faq">FAQs</a></li>
+</ul></div></aside>
+
+<article class="bg-white rounded-[2rem] border border-gray-200 p-8 md:p-14">
+
+<div id="problem" class="bg-[#F5F7FA] border border-gray-200 rounded-3xl p-8 mb-14">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-semibold mb-3">The Real Problem</p>
+<h2 class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Is Powerful—But Accounting Configuration Matters</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-5">Many businesses adopt Odoo because they want one system connecting sales, purchasing, inventory, invoicing, payments and accounting. Problems often appear when accounting settings are copied from another system, configured without a clear accounting design, or changed without understanding how transactions flow through Odoo.</p>
+<p class="text-lg text-gray-700 leading-relaxed">The symptoms can include bank accounts that do not reconcile, outstanding payment balances that never clear, incorrect receivable or payable balances, inventory accounting issues, and financial reports that require manual investigation.</p>
+</div>
+
+<h2 id="setup" class="text-3xl font-extrabold text-[#002349] mb-5">How to Set Up Odoo Accounting Correctly</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-8">A successful Odoo Accounting implementation should start with the accounting workflow—not just the software screens. Define how money moves through the business and then configure Odoo around those workflows.</p>
+<div class="grid md:grid-cols-2 gap-6 mb-14">
+<div class="border rounded-3xl p-7"><p class="text-sm text-[#957C3D] font-semibold mb-2">01</p><h3 class="text-2xl font-bold text-[#002349] mb-3">Understand the Business</h3><p class="text-gray-600">Identify revenue streams, expenses, bank accounts, payment methods, inventory flows, vendors, customers and reporting needs.</p></div>
+<div class="border rounded-3xl p-7"><p class="text-sm text-[#957C3D] font-semibold mb-2">02</p><h3 class="text-2xl font-bold text-[#002349] mb-3">Design the Accounting Structure</h3><p class="text-gray-600">Build the chart of accounts, journals, taxes and receivable/payable workflows before large-scale processing.</p></div>
+<div class="border rounded-3xl p-7"><p class="text-sm text-[#957C3D] font-semibold mb-2">03</p><h3 class="text-2xl font-bold text-[#002349] mb-3">Connect Operational Flows</h3><p class="text-gray-600">Test how sales, purchases, inventory, invoices, payments and accounting entries interact.</p></div>
+<div class="border rounded-3xl p-7"><p class="text-sm text-[#957C3D] font-semibold mb-2">04</p><h3 class="text-2xl font-bold text-[#002349] mb-3">Test Before Going Live</h3><p class="text-gray-600">Process representative transactions and verify journal entries, balances and reports before relying on the system.</p></div>
+</div>
+
+<h2 id="coa" class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Chart of Accounts: The Foundation of Your Financial Reports</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">Your chart of accounts determines how transactions are classified and how financial statements are presented. If the structure is confusing or unnecessarily complicated, monthly reporting becomes harder.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-8">For a US business, design the chart around actual operations and reporting needs. Avoid creating dozens of accounts simply because they are available, but do not combine accounts that management or tax professionals need to distinguish.</p>
+<div class="overflow-x-auto mb-14"><table class="w-full border border-gray-200 rounded-2xl overflow-hidden">
+<thead class="bg-[#002349] text-white"><tr><th class="p-5 text-left">Area</th><th class="p-5 text-left">What to Review</th></tr></thead>
+<tbody>
+<tr class="border-b"><td class="p-5 font-semibold">Assets</td><td class="p-5">Cash, receivables, inventory, fixed assets and other business assets.</td></tr>
+<tr class="border-b"><td class="p-5 font-semibold">Liabilities</td><td class="p-5">Payables, credit cards, loans, taxes and other obligations.</td></tr>
+<tr class="border-b"><td class="p-5 font-semibold">Equity</td><td class="p-5">Owner/shareholder equity and retained earnings structure.</td></tr>
+<tr class="border-b"><td class="p-5 font-semibold">Revenue</td><td class="p-5">Sales and other operating revenue streams.</td></tr>
+<tr><td class="p-5 font-semibold">Expenses</td><td class="p-5">Operating expenses, COGS, payroll-related expenses and other costs.</td></tr>
+</tbody></table></div>
+
+<h2 id="journals" class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Journals: Avoiding Confusing Transaction Flows</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">Journals organize accounting transactions by type and workflow. Bank, cash, sales, purchase and other journals should be configured consistently with the company's processes.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-10">One common mistake is treating every unusual balance as an error without understanding the transaction flow. Payment or receipt transactions can involve intermediary accounts depending on configuration and reconciliation status. Understand the workflow before forcing a balance to zero.</p>
+<div class="border-l-4 border-[#957C3D] bg-[#F5F7FA] p-7 rounded-r-2xl mb-14"><h3 class="text-xl font-bold text-[#002349] mb-2">Accounting rule of thumb</h3><p class="text-lg text-gray-700">Before adjusting an Odoo balance, ask: <strong>What transaction created it, what account should ultimately offset it, and why has the workflow not cleared it?</strong></p></div>
+
+<h2 id="taxes" class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Taxes and US Accounting Workflows</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">Tax configuration should be reviewed before processing large volumes of invoices and purchases. The correct setup depends on the company's circumstances, locations, products or services and tax requirements.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-10">Do not assume a default configuration automatically creates the correct tax treatment for every transaction. Establish tax requirements with your qualified tax professional and configure Odoo accordingly.</p>
+<div class="bg-[#FFFDF7] border border-[#957C3D]/30 rounded-3xl p-8 mb-14"><h3 class="text-2xl font-bold text-[#002349] mb-3">Important for US businesses</h3><p class="text-gray-700 text-lg">Sales tax rules can vary by state and locality. Odoo configuration should support the company's tax process, but software configuration is not a substitute for professional tax advice.</p></div>
+
+<h2 id="ar-ap" class="text-3xl font-extrabold text-[#002349] mb-5">Customer Invoices, Vendor Bills, Payments and Reconciliation</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-8">A clean Odoo Accounting system should let you follow a transaction from the original document through payment and reconciliation. This audit trail is important when investigating accounts receivable, accounts payable or payment balances that remain outstanding.</p>
+<div class="grid md:grid-cols-2 gap-6 mb-14">
+<div class="border rounded-3xl p-8"><h3 class="text-2xl font-bold text-[#002349] mb-4">Accounts Receivable</h3><ul class="space-y-3 text-gray-600 list-disc pl-5"><li>Customer invoices</li><li>Payment recording</li><li>Outstanding invoice review</li><li>Payment reconciliation</li><li>Receivable aging</li></ul></div>
+<div class="border rounded-3xl p-8"><h3 class="text-2xl font-bold text-[#002349] mb-4">Accounts Payable</h3><ul class="space-y-3 text-gray-600 list-disc pl-5"><li>Vendor bills</li><li>Payment processing</li><li>Outstanding bill review</li><li>Vendor reconciliation</li><li>Payable aging</li></ul></div>
+</div>
+
+<h2 id="bank" class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Bank Reconciliation: A Practical Troubleshooting Guide</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">Bank reconciliation is one of the most important recurring accounting tasks in Odoo. If reconciliation is not completed consistently, financial reports may contain balances that do not represent the actual bank position.</p>
+<h3 class="text-2xl font-bold text-[#002349] mb-5">If your Odoo bank account does not reconcile, check these first:</h3>
+<div class="grid md:grid-cols-2 gap-5 mb-14">
+<div class="bg-[#F5F7FA] border rounded-2xl p-6"><h3 class="font-bold text-[#002349] mb-2">1. Missing Transactions</h3><p class="text-gray-600">Check whether all relevant bank activity has been imported or entered.</p></div>
+<div class="bg-[#F5F7FA] border rounded-2xl p-6"><h3 class="font-bold text-[#002349] mb-2">2. Duplicate Transactions</h3><p class="text-gray-600">Look for duplicated imports, manual entries or payment records.</p></div>
+<div class="bg-[#F5F7FA] border rounded-2xl p-6"><h3 class="font-bold text-[#002349] mb-2">3. Unmatched Payments</h3><p class="text-gray-600">Review outstanding payment and receipt items not matched to the correct transaction.</p></div>
+<div class="bg-[#F5F7FA] border rounded-2xl p-6"><h3 class="font-bold text-[#002349] mb-2">4. Opening Balance</h3><p class="text-gray-600">Verify the starting balance used for the reconciliation period.</p></div>
+<div class="bg-[#F5F7FA] border rounded-2xl p-6"><h3 class="font-bold text-[#002349] mb-2">5. Wrong Account Mapping</h3><p class="text-gray-600">Review whether transactions post to the intended bank, receivable, payable, clearing or expense accounts.</p></div>
+<div class="bg-[#F5F7FA] border rounded-2xl p-6"><h3 class="font-bold text-[#002349] mb-2">6. Historical Items</h3><p class="text-gray-600">Older outstanding items may need investigation before the current month is clean.</p></div>
+</div>
+<div class="bg-[#002349] text-white rounded-3xl p-8 mb-14"><h3 class="text-2xl font-bold mb-3">Don't force reconciliation just to make the balance disappear.</h3><p class="text-lg text-white/80">A reconciliation adjustment should have an accounting reason. If the underlying transaction is wrong or missing, correcting the source transaction is usually better than creating an unexplained adjustment.</p></div>
+
+<h2 id="inventory" class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Inventory Accounting: Why Product Configuration Matters</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">For businesses that sell products, Odoo can connect inventory and accounting. But product and inventory configuration can affect accounting results.</p>
+<p class="text-lg text-gray-700 leading-relaxed mb-8">When inventory accounting is not configured consistently, businesses may see unexpected inventory values, COGS balances, stock valuation differences or accounting entries that require investigation.</p>
+<div class="grid md:grid-cols-3 gap-5 mb-14">
+<div class="border rounded-3xl p-7"><h3 class="text-xl font-bold text-[#002349] mb-3">Products</h3><p class="text-gray-600">Review product type, category, costing configuration and accounting properties.</p></div>
+<div class="border rounded-3xl p-7"><h3 class="text-xl font-bold text-[#002349] mb-3">Inventory</h3><p class="text-gray-600">Understand how receipts, deliveries, adjustments and stock movements affect accounting.</p></div>
+<div class="border rounded-3xl p-7"><h3 class="text-xl font-bold text-[#002349] mb-3">COGS</h3><p class="text-gray-600">Verify cost-related entries align with inventory and reporting requirements.</p></div>
+</div>
+
+<h2 id="cleanup" class="text-3xl font-extrabold text-[#002349] mb-5">How to Fix a Messy Odoo Accounting Database</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">If an Odoo database has been operating for months or years without consistent reconciliation, do not start by changing random balances. First determine how the problem developed.</p>
+<div class="overflow-x-auto mb-14"><table class="w-full border border-gray-200 rounded-2xl overflow-hidden">
+<thead class="bg-[#002349] text-white"><tr><th class="p-5 text-left">Step</th><th class="p-5 text-left">Action</th></tr></thead>
+<tbody>
+<tr class="border-b"><td class="p-5 font-semibold">1</td><td class="p-5">Identify when the books stopped being reliable.</td></tr>
+<tr class="border-b"><td class="p-5 font-semibold">2</td><td class="p-5">Review bank and credit-card accounts for missing or duplicated transactions.</td></tr>
+<tr class="border-b"><td class="p-5 font-semibold">3</td><td class="p-5">Analyze outstanding receivable, payable, payment and receipt balances.</td></tr>
+<tr class="border-b"><td class="p-5 font-semibold">4</td><td class="p-5">Review opening balances and major journal entries.</td></tr>
+<tr class="border-b"><td class="p-5 font-semibold">5</td><td class="p-5">Investigate inventory and COGS if applicable.</td></tr>
+<tr><td class="p-5 font-semibold">6</td><td class="p-5">Document corrections and establish a recurring monthly close.</td></tr>
+</tbody></table></div>
+
+<h2 id="close" class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Month-End Close Checklist</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-8">A monthly close turns Odoo from a transaction-entry system into a reliable management reporting system. Tailor the checklist to the business, but start with:</p>
+<div class="grid md:grid-cols-2 gap-4 mb-14">
+<div class="border rounded-2xl p-6"><h3 class="font-bold text-[#002349]">✓ Reconcile Bank Accounts</h3><p class="text-gray-600 mt-2">Confirm balances and investigate unresolved items.</p></div>
+<div class="border rounded-2xl p-6"><h3 class="font-bold text-[#002349]">✓ Reconcile Credit Cards</h3><p class="text-gray-600 mt-2">Review balances and outstanding transactions.</p></div>
+<div class="border rounded-2xl p-6"><h3 class="font-bold text-[#002349]">✓ Review A/R</h3><p class="text-gray-600 mt-2">Investigate overdue and unusual customer balances.</p></div>
+<div class="border rounded-2xl p-6"><h3 class="font-bold text-[#002349]">✓ Review A/P</h3><p class="text-gray-600 mt-2">Check outstanding vendor bills and unusual balances.</p></div>
+<div class="border rounded-2xl p-6"><h3 class="font-bold text-[#002349]">✓ Review Inventory</h3><p class="text-gray-600 mt-2">For inventory businesses, review valuation and cost-related balances.</p></div>
+<div class="border rounded-2xl p-6"><h3 class="font-bold text-[#002349]">✓ Review Financial Statements</h3><p class="text-gray-600 mt-2">Compare P&L and balance sheet for unusual movements.</p></div>
+</div>
+
+<h2 id="reports" class="text-3xl font-extrabold text-[#002349] mb-5">Using Odoo Reports to Find Accounting Problems</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">Do not wait until year-end to discover unresolved balances. Monthly financial reports can help identify unusual changes early.</p>
+<div class="grid md:grid-cols-3 gap-5 mb-14">
+<div class="bg-[#F5F7FA] border rounded-3xl p-7"><h3 class="text-xl font-bold text-[#002349] mb-3">Profit & Loss</h3><p class="text-gray-600">Look for unexpected revenue, expense, gross margin or COGS movements.</p></div>
+<div class="bg-[#F5F7FA] border rounded-3xl p-7"><h3 class="text-xl font-bold text-[#002349] mb-3">Balance Sheet</h3><p class="text-gray-600">Review cash, receivables, payables, inventory, debt and equity balances.</p></div>
+<div class="bg-[#F5F7FA] border rounded-3xl p-7"><h3 class="text-xl font-bold text-[#002349] mb-3">Aging Reports</h3><p class="text-gray-600">Use customer and vendor aging to identify old outstanding balances.</p></div>
+</div>
+
+<h2 id="checklist" class="text-3xl font-extrabold text-[#002349] mb-5">Odoo Accounting Health Checklist</h2>
+<div class="bg-[#F5F7FA] rounded-3xl border p-8 mb-14">
+<ul class="space-y-4 text-lg text-gray-700">
+<li>☐ Chart of accounts matches reporting needs</li><li>☐ Bank accounts are reconciled regularly</li><li>☐ Credit-card accounts are reconciled</li><li>☐ Customer receivables are reviewed</li><li>☐ Vendor payables are reviewed</li><li>☐ Outstanding payment and receipt balances are investigated</li><li>☐ Inventory accounting is reviewed when applicable</li><li>☐ Month-end financial statements are reviewed</li><li>☐ Historical corrections are documented</li><li>☐ A repeatable month-end close checklist is followed</li>
+</ul></div>
+
+<div class="bg-[#F5F7FA] border border-gray-200 rounded-[2rem] p-10 mb-14">
+<p class="uppercase tracking-widest text-sm text-[#957C3D] font-semibold mb-3">Odoo Accounting Support</p>
+<h2 class="text-3xl font-extrabold text-[#002349] mb-5">Need Help Cleaning Up or Managing Odoo Accounting?</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-6">Accountrise provides remote Odoo accounting and bookkeeping support for businesses that need help with reconciliations, month-end close, financial reporting, cleanup, inventory-related accounting workflows and ongoing accounting operations.</p>
+<p class="text-lg text-gray-700 leading-relaxed">Whether your Odoo books are already in use or you are preparing for a new accounting workflow, the goal is to create a system that produces clean, understandable and useful financial information.</p>
+</div>
+
+<div id="pricing" class="bg-[#002349] text-white rounded-[2rem] p-10 mb-14">
+<p class="uppercase tracking-widest text-sm text-white/60 font-semibold mb-3">Flexible Odoo Accounting Support</p>
+<h2 class="text-3xl font-extrabold mb-5">Odoo Accounting Support Starting at $10/hour</h2>
+<p class="text-lg text-white/80 leading-relaxed mb-8">Accountrise offers remote Odoo accounting support starting at <strong>$10/hour</strong>. Final pricing depends on database condition, transaction volume, complexity, required services and engagement scope.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+<div class="bg-white/10 rounded-2xl p-5">Odoo Bookkeeping</div><div class="bg-white/10 rounded-2xl p-5">Bank Reconciliation</div><div class="bg-white/10 rounded-2xl p-5">Odoo Cleanup</div><div class="bg-white/10 rounded-2xl p-5">Month-End Close</div><div class="bg-white/10 rounded-2xl p-5">Inventory Accounting</div><div class="bg-white/10 rounded-2xl p-5">Financial Reporting</div>
+</div>
+<a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" class="inline-block bg-white text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-gray-100 transition">Book Free Consultation</a>
+</div>
+
+<div id="faq" class="mb-14">
+<h2 class="text-3xl font-extrabold text-[#002349] mb-8">Frequently Asked Questions About Odoo Accounting</h2>
+<div class="space-y-8">
+<div><h3 class="text-xl font-bold text-[#002349] mb-2">How should a US business set up Odoo Accounting?</h3><p class="text-lg text-gray-700">Start with accounting requirements, fiscal configuration, chart of accounts, journals, taxes, bank accounts, customer and vendor workflows, and opening balances. Test representative transactions before relying on the system.</p></div>
+<div><h3 class="text-xl font-bold text-[#002349] mb-2">How do I reconcile a bank account in Odoo?</h3><p class="text-lg text-gray-700">Import or connect bank transactions, match them to accounting entries or create the appropriate entries, review exceptions, and reconcile according to the company's procedures.</p></div>
+<div><h3 class="text-xl font-bold text-[#002349] mb-2">Why does Odoo Accounting have unreconciled balances?</h3><p class="text-lg text-gray-700">Possible causes include missing transactions, duplicates, incorrect journal entries, outstanding payments or receipts, incorrect opening balances, or incomplete bank reconciliation.</p></div>
+<div><h3 class="text-xl font-bold text-[#002349] mb-2">Can Odoo handle accounting and inventory together?</h3><p class="text-lg text-gray-700">Yes. Odoo can connect accounting workflows with inventory, sales and purchasing. The accounting result depends on the company's configuration and transaction flows.</p></div>
+</div></div>
+
+<div id="contact" class="border-t border-gray-200 pt-12 text-center">
+<h2 class="text-4xl font-extrabold text-[#002349] mb-5">Is Your Odoo Accounting Clean and Under Control?</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto mb-5">If you are dealing with unreconciled accounts, confusing balances, outdated books, inventory accounting issues or a difficult month-end close, let's review your Odoo workflow.</p>
+<p class="text-2xl font-bold text-[#002349] mb-8">Odoo Accounting Support Starting at $10/hour</p>
+<a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" class="inline-block bg-[#002349] text-white px-8 py-4 rounded-2xl font-semibold hover:bg-[#00172f] transition">Book Free Consultation</a>
+</div>
+
+</article></div></section>
+
+<section class="py-20 px-6 bg-white border-t border-gray-200"><div class="max-w-7xl mx-auto">
+<h2 class="text-4xl font-extrabold text-[#002349] text-center mb-12">More Odoo & Accounting Resources</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<a href="/blog/odoo-vs-quickbooks.html" class="bg-[#F5F7FA] p-8 rounded-3xl border hover:shadow-lg transition"><p class="text-sm text-[#957C3D] font-semibold mb-3">Odoo vs QuickBooks</p><h3 class="text-2xl font-bold text-[#002349] mb-4">Odoo vs QuickBooks: Which Is Better?</h3><p class="text-gray-600">Compare Odoo and QuickBooks for growing businesses and accounting workflows.</p></a>
+<a href="/blog/cpa-firms-outsourcing-bookkeeping-2026.html" class="bg-[#F5F7FA] p-8 rounded-3xl border hover:shadow-lg transition"><p class="text-sm text-[#957C3D] font-semibold mb-3">CPA Outsourcing</p><h3 class="text-2xl font-bold text-[#002349] mb-4">Why US CPA Firms Are Outsourcing Bookkeeping</h3><p class="text-gray-600">How remote accounting support can increase CPA firm capacity.</p></a>
+<a href="/blog/affordable-bookkeeping-services-small-business.html" class="bg-[#F5F7FA] p-8 rounded-3xl border hover:shadow-lg transition"><p class="text-sm text-[#957C3D] font-semibold mb-3">Affordable Accounting</p><h3 class="text-2xl font-bold text-[#002349] mb-4">Affordable Bookkeeping for Small Businesses</h3><p class="text-gray-600">How businesses can reduce accounting costs without sacrificing accuracy.</p></a>
+</div></div></section>
+
+<footer class="bg-[#00172f] text-white py-10 text-center"><p>© 2026 Accountrise. All rights reserved.</p></footer>
+</body>
+</html>
