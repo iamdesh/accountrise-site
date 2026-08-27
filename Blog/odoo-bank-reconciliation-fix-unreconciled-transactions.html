@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odoo Bank Reconciliation: How to Fix Unreconciled Transactions | Accountrise</title>
+<meta name="description" content="Odoo bank reconciliation not balancing? Learn how to diagnose unreconciled transactions, outstanding payments, duplicates, missing entries and opening balance issues in Odoo Accounting.">
+<meta name="keywords" content="Odoo bank reconciliation, Odoo bank reconciliation not working, Odoo unreconciled transactions, Odoo accounting reconciliation, Odoo bank reconciliation USA, Odoo bookkeeping, Odoo payment reconciliation, Odoo accounting cleanup">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.accountrise.com/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html">
+<meta property="og:title" content="Odoo Bank Reconciliation: How to Fix Unreconciled Transactions">
+<meta property="og:description" content="A practical troubleshooting guide for Odoo bank reconciliation, unreconciled payments, duplicates, missing transactions and accounting cleanup.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.accountrise.com/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html">
+<script src="https://cdn.tailwindcss.com"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Odoo Bank Reconciliation: How to Fix Unreconciled Transactions","description":"A practical troubleshooting guide for Odoo bank reconciliation and unreconciled accounting transactions.","author":{"@type":"Organization","name":"Accountrise"},"publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html"},"datePublished":"2026-08-28","dateModified":"2026-08-28"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Why are transactions not reconciling in Odoo?","acceptedAnswer":{"@type":"Answer","text":"Common causes include missing transactions, duplicate imports, incorrect amounts or dates, payments recorded separately from invoices or bills, incorrect journal configuration, outstanding intermediary balances, and incorrect opening balances."}},
+{"@type":"Question","name":"How do I fix an unreconciled bank transaction in Odoo?","acceptedAnswer":{"@type":"Answer","text":"First identify the transaction and its accounting source, then determine whether it should be matched to an existing entry, corrected, or recorded as a new transaction. Review the resulting journal entry before completing reconciliation."}},
+{"@type":"Question","name":"Should I create an adjustment just to make Odoo reconcile?","acceptedAnswer":{"@type":"Answer","text":"Not automatically. An adjustment should have a valid accounting purpose. If the difference comes from a missing, duplicate, or incorrectly recorded transaction, correcting the underlying transaction is generally preferable."}},
+{"@type":"Question","name":"Can Accountrise help with Odoo bank reconciliation?","acceptedAnswer":{"@type":"Answer","text":"Accountrise provides remote Odoo accounting and bookkeeping support, including bank reconciliation, accounting cleanup, month-end close, reporting and ongoing bookkeeping support."}}
+]}
+</script>
+<style>html{scroll-behavior:smooth}</style>
+</head>
+<body class="bg-[#F7F8FA] text-gray-900 font-sans">
+
+<nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
+<div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+<a href="/" class="text-2xl font-extrabold tracking-tight text-[#002349]">Accountrise</a>
+<div class="hidden md:flex items-center gap-7 text-sm font-semibold text-gray-600">
+<a href="/" class="hover:text-[#957C3D] transition">Home</a>
+<a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+<a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+<a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+<a href="#contact" class="bg-[#002349] text-white px-5 py-2.5 rounded-full hover:bg-[#00172f] transition">Contact</a>
+</div></div></nav>
+
+<header class="bg-[#002349] text-white">
+<div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+<div class="max-w-4xl">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-sm font-semibold mb-7"><span class="w-2 h-2 rounded-full bg-[#957C3D]"></span>Odoo Accounting Troubleshooting</div>
+<h1 class="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] mb-8">Odoo Bank Reconciliation:<br><span class="text-[#D8C18A]">How to Fix Unreconciled Transactions</span></h1>
+<p class="text-xl md:text-2xl text-white/75 leading-relaxed max-w-3xl">If your Odoo bank account does not reconcile, do not simply post an adjustment and move on. Find the reason behind the difference first. This guide walks through common Odoo reconciliation problems and how to investigate them.</p>
+<div class="mt-10 flex flex-wrap gap-4 text-sm text-white/60"><span>Updated August 28, 2026</span><span>•</span><span>10-minute read</span><span>•</span><span>Odoo Accounting</span></div>
+</div></div></header>
+
+<section class="max-w-7xl mx-auto px-6 -mt-10 relative z-10">
+<div class="bg-white rounded-[2rem] shadow-xl border border-gray-200 p-8 md:p-10">
+<div class="grid md:grid-cols-3 gap-8">
+<div><p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-2">Problem</p><h2 class="text-xl font-bold text-[#002349]">Bank balance does not match</h2><p class="text-gray-600 mt-2">The Odoo balance differs from the bank statement or reconciliation remains incomplete.</p></div>
+<div><p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-2">Cause</p><h2 class="text-xl font-bold text-[#002349]">Something in the transaction flow is wrong</h2><p class="text-gray-600 mt-2">Missing entries, duplicates, unmatched payments, incorrect mappings or opening balances are common areas to investigate.</p></div>
+<div><p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-2">Solution</p><h2 class="text-xl font-bold text-[#002349]">Trace the difference before adjusting</h2><p class="text-gray-600 mt-2">Identify the source transaction, correct it where appropriate, and then complete reconciliation.</p></div>
+</div></div></section>
+
+<section class="py-20 px-6"><div class="max-w-7xl mx-auto grid lg:grid-cols-[220px_1fr] gap-12">
+<aside class="hidden lg:block"><div class="sticky top-24"><p class="text-xs uppercase tracking-widest text-[#957C3D] font-bold mb-4">Jump To</p>
+<ul class="space-y-3 text-sm text-gray-600">
+<li><a href="#why">Why Reconciliation Matters</a></li><li><a href="#workflow">How Odoo Reconciliation Works</a></li><li><a href="#diagnose">7-Step Diagnosis</a></li><li><a href="#problems">Common Problems</a></li><li><a href="#payments">Payment & Receipt Balances</a></li><li><a href="#opening">Opening Balances</a></li><li><a href="#adjustments">When to Adjust</a></li><li><a href="#monthend">Month-End Checklist</a></li><li><a href="#pricing">Odoo Support</a></li><li><a href="#faq">FAQs</a></li>
+</ul></div></aside>
+
+<article class="max-w-4xl">
+
+<section id="why" class="mb-16">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">01 — Why It Matters</p>
+<h2 class="text-4xl md:text-5xl font-extrabold text-[#002349] tracking-tight mb-6">Bank Reconciliation Is More Than Matching Numbers</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-6">Bank reconciliation is one of the simplest ways to test whether your accounting records agree with actual bank activity. For an Odoo user, it is also a useful control for identifying missing transactions, duplicates, incorrect entries and unresolved payment workflows.</p>
+<p class="text-lg text-gray-700 leading-relaxed">A bank account can appear close to the expected balance while other accounts remain wrong. That is why reconciliation should be treated as an accounting control—not just a screen where you make the difference disappear.</p>
+</section>
+
+<section id="workflow" class="mb-16">
+<div class="bg-white rounded-[2rem] border border-gray-200 p-8 md:p-10">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">02 — Understand the Flow</p>
+<h2 class="text-3xl md:text-4xl font-extrabold text-[#002349] mb-6">How Odoo Bank Reconciliation Should Work</h2>
+<div class="flex flex-col md:flex-row items-stretch gap-3">
+<div class="flex-1 bg-[#F7F8FA] rounded-2xl p-5"><p class="text-xs font-bold text-[#957C3D]">STEP 1</p><h3 class="font-bold text-[#002349] mt-2">Bank Activity</h3><p class="text-gray-600 text-sm mt-2">Transactions are imported or entered into the accounting workflow.</p></div>
+<div class="hidden md:flex items-center text-2xl text-gray-300">→</div>
+<div class="flex-1 bg-[#F7F8FA] rounded-2xl p-5"><p class="text-xs font-bold text-[#957C3D]">STEP 2</p><h3 class="font-bold text-[#002349] mt-2">Match</h3><p class="text-gray-600 text-sm mt-2">Transactions are matched with invoices, bills, payments or appropriate accounting entries.</p></div>
+<div class="hidden md:flex items-center text-2xl text-gray-300">→</div>
+<div class="flex-1 bg-[#F7F8FA] rounded-2xl p-5"><p class="text-xs font-bold text-[#957C3D]">STEP 3</p><h3 class="font-bold text-[#002349] mt-2">Reconcile</h3><p class="text-gray-600 text-sm mt-2">The accounting record is reviewed and reconciliation is completed when properly supported.</p></div>
+</div></div></section>
+
+<section id="diagnose" class="mb-16">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">03 — Troubleshooting</p>
+<h2 class="text-4xl font-extrabold text-[#002349] mb-5">The 7-Step Odoo Reconciliation Diagnosis</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-8">If an Odoo bank account is not reconciling, work through these steps in order. Starting with the source of the difference is usually more reliable than making random journal entries.</p>
+<div class="space-y-4">
+<div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5"><div class="text-2xl font-black text-[#957C3D]">01</div><div><h3 class="text-xl font-bold text-[#002349]">Confirm the Bank Statement Period</h3><p class="text-gray-600 mt-2">Make sure you are comparing the same statement date or period and the correct bank account.</p></div></div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5"><div class="text-2xl font-black text-[#957C3D]">02</div><div><h3 class="text-xl font-bold text-[#002349]">Check the Opening Balance</h3><p class="text-gray-600 mt-2">An incorrect opening balance can make later reconciliation appear off even when individual transactions are correct.</p></div></div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5"><div class="text-2xl font-black text-[#957C3D]">03</div><div><h3 class="text-xl font-bold text-[#002349]">Look for Missing Transactions</h3><p class="text-gray-600 mt-2">Compare the bank statement with Odoo and identify deposits, withdrawals, fees, transfers or other activity that was never recorded.</p></div></div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5"><div class="text-2xl font-black text-[#957C3D]">04</div><div><h3 class="text-xl font-bold text-[#002349]">Look for Duplicates</h3><p class="text-gray-600 mt-2">A transaction may have been imported and manually entered, or imported more than once.</p></div></div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5"><div class="text-2xl font-black text-[#957C3D]">05</div><div><h3 class="text-xl font-bold text-[#002349]">Review Unmatched Payments</h3><p class="text-gray-600 mt-2">Check whether customer receipts or vendor payments were recorded but not matched to the intended invoice or bill.</p></div></div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5"><div class="text-2xl font-black text-[#957C3D]">06</div><div><h3 class="text-xl font-bold text-[#002349]">Review Account Mapping</h3><p class="text-gray-600 mt-2">Investigate whether transactions are posting to the intended bank, receivable, payable, clearing or expense accounts.</p></div></div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6 flex gap-5"><div class="text-2xl font-black text-[#957C3D]">07</div><div><h3 class="text-xl font-bold text-[#002349]">Review the Resulting Journal Entry</h3><p class="text-gray-600 mt-2">Before completing reconciliation, understand what accounting entry the match or adjustment will create.</p></div></div>
+</div></section>
+
+<section id="problems" class="mb-16">
+<div class="bg-[#002349] text-white rounded-[2rem] p-8 md:p-10">
+<p class="text-sm uppercase tracking-widest text-[#D8C18A] font-bold mb-3">04 — Common Problems</p>
+<h2 class="text-3xl md:text-4xl font-extrabold mb-8">What Usually Causes Odoo Reconciliation Differences?</h2>
+<div class="grid md:grid-cols-2 gap-4">
+<div class="bg-white/10 rounded-2xl p-6"><h3 class="font-bold text-lg">Missing Bank Fees</h3><p class="text-white/70 text-sm mt-2">A bank charge may exist on the statement but not yet be recorded in Odoo.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><h3 class="font-bold text-lg">Duplicate Imports</h3><p class="text-white/70 text-sm mt-2">The same transaction can appear more than once if imports and manual entries overlap.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><h3 class="font-bold text-lg">Wrong Transaction Date</h3><p class="text-white/70 text-sm mt-2">Timing differences can affect which reconciliation period a transaction belongs to.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><h3 class="font-bold text-lg">Outstanding Payments</h3><p class="text-white/70 text-sm mt-2">Payments may remain in an intermediary workflow instead of clearing against the intended account.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><h3 class="font-bold text-lg">Incorrect Opening Balance</h3><p class="text-white/70 text-sm mt-2">A historical opening difference can carry forward into every later reconciliation.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><h3 class="font-bold text-lg">Incorrect Account Mapping</h3><p class="text-white/70 text-sm mt-2">Entries can post to the wrong account when journal or accounting configuration is not aligned with the workflow.</p></div>
+</div></div></section>
+
+<section id="payments" class="mb-16">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">05 — Payments & Receipts</p>
+<h2 class="text-4xl font-extrabold text-[#002349] mb-5">Why Payment and Receipt Balances Can Stay Outstanding</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">One of the most confusing Odoo accounting situations is seeing balances associated with outstanding payments or receipts that do not seem to clear. The correct response is to trace the transaction rather than simply post a zeroing entry.</p>
+<div class="grid md:grid-cols-2 gap-6 mb-8">
+<div class="border border-gray-200 bg-white rounded-3xl p-7"><h3 class="text-2xl font-bold text-[#002349] mb-4">Customer Payment</h3><ol class="list-decimal pl-5 space-y-2 text-gray-600"><li>Identify the customer payment.</li><li>Check which invoice or receivable balance it relates to.</li><li>Review the payment account and reconciliation status.</li><li>Confirm the resulting receivable balance.</li></ol></div>
+<div class="border border-gray-200 bg-white rounded-3xl p-7"><h3 class="text-2xl font-bold text-[#002349] mb-4">Vendor Payment</h3><ol class="list-decimal pl-5 space-y-2 text-gray-600"><li>Identify the vendor payment.</li><li>Check the related bill or payable balance.</li><li>Review the payment account and reconciliation status.</li><li>Confirm the resulting payable balance.</li></ol></div>
+</div>
+<div class="border-l-4 border-[#957C3D] bg-white rounded-r-2xl p-7"><p class="font-bold text-[#002349] mb-2">Important</p><p class="text-gray-700">The exact accounting flow depends on your Odoo configuration and business process. Do not assume every outstanding payment balance should be moved directly to a bank account without first understanding why it exists.</p></div>
+</section>
+
+<section id="opening" class="mb-16">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">06 — Historical Balances</p>
+<h2 class="text-4xl font-extrabold text-[#002349] mb-5">Opening Balance Problems: The Difference That Keeps Following You</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-7">If the current month appears wrong by a consistent amount, investigate the opening balance before changing dozens of current-period transactions.</p>
+<div class="bg-white rounded-3xl border border-gray-200 overflow-hidden">
+<div class="p-7 border-b border-gray-200"><h3 class="font-bold text-[#002349]">A useful diagnostic question</h3><p class="text-lg text-gray-700 mt-2"><strong>Was the bank account correct at the beginning of the period you are trying to reconcile?</strong></p></div>
+<div class="grid md:grid-cols-3"><div class="p-7 border-b md:border-b-0 md:border-r border-gray-200"><p class="text-[#957C3D] font-bold text-sm">IF YES</p><p class="text-gray-600 mt-2">Focus on transactions during the reconciliation period.</p></div><div class="p-7 border-b md:border-b-0 md:border-r border-gray-200"><p class="text-[#957C3D] font-bold text-sm">IF NO</p><p class="text-gray-600 mt-2">Investigate historical transactions and opening entries first.</p></div><div class="p-7"><p class="text-[#957C3D] font-bold text-sm">IF UNKNOWN</p><p class="text-gray-600 mt-2">Reconstruct the historical position before making broad adjustments.</p></div></div>
+</div></section>
+
+<section id="adjustments" class="mb-16">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">07 — Adjustments</p>
+<h2 class="text-4xl font-extrabold text-[#002349] mb-5">When Should You Use an Accounting Adjustment?</h2>
+<p class="text-lg text-gray-700 leading-relaxed mb-8">An adjustment can be appropriate when there is a genuine accounting difference that has been identified and documented. It should not be the default answer to every reconciliation problem.</p>
+<div class="grid md:grid-cols-2 gap-6">
+<div class="border border-red-100 bg-red-50 rounded-3xl p-7"><p class="text-sm font-bold text-red-700 mb-3">AVOID</p><ul class="space-y-3 text-gray-700"><li>✕ Posting an unexplained plug</li><li>✕ Zeroing an account without tracing the cause</li><li>✕ Deleting historical transactions without documentation</li><li>✕ Reclassifying balances just to make a report look clean</li></ul></div>
+<div class="border border-gray-200 bg-[#F7F8FA] rounded-3xl p-7"><p class="text-sm font-bold text-[#957C3D] mb-3">BETTER APPROACH</p><ul class="space-y-3 text-gray-700"><li>✓ Identify the source of the difference</li><li>✓ Correct the original transaction when possible</li><li>✓ Document material adjustments</li><li>✓ Reconcile again after the correction</li></ul></div>
+</div></section>
+
+<section id="monthend" class="mb-16">
+<div class="bg-white border border-gray-200 rounded-[2rem] p-8 md:p-10">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">08 — Monthly Control</p>
+<h2 class="text-4xl font-extrabold text-[#002349] mb-5">Odoo Bank Reconciliation Month-End Checklist</h2>
+<div class="grid md:grid-cols-2 gap-x-10 gap-y-5 mt-8">
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">All relevant bank transactions imported or recorded</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Bank statement balance reviewed</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Missing and duplicate transactions investigated</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Customer payments reviewed</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Vendor payments reviewed</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Outstanding intermediary balances investigated</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Opening balance differences reviewed</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Bank account agrees to the reconciliation process</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Unusual balances documented</span></div>
+<div class="flex gap-3"><span class="text-[#957C3D] font-bold">✓</span><span class="text-gray-700">Financial statements reviewed after close</span></div>
+</div></div></section>
+
+<section id="pricing" class="mb-16">
+<div class="bg-[#002349] rounded-[2rem] p-9 md:p-12 text-white">
+<p class="text-sm uppercase tracking-widest text-[#D8C18A] font-bold mb-3">Odoo Accounting Support</p>
+<h2 class="text-4xl md:text-5xl font-extrabold mb-5">Odoo Bank Reconciliation Support Starting at $10/hour</h2>
+<p class="text-lg text-white/75 leading-relaxed max-w-3xl mb-8">Accountrise provides remote Odoo accounting support for businesses dealing with unreconciled bank accounts, outstanding payments, historical cleanup, month-end close, financial reporting and ongoing bookkeeping.</p>
+<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-9">
+<div class="bg-white/10 rounded-xl px-5 py-4">Bank Reconciliation</div><div class="bg-white/10 rounded-xl px-5 py-4">Odoo Cleanup</div><div class="bg-white/10 rounded-xl px-5 py-4">Month-End Close</div><div class="bg-white/10 rounded-xl px-5 py-4">Odoo Bookkeeping</div><div class="bg-white/10 rounded-xl px-5 py-4">Inventory Accounting</div><div class="bg-white/10 rounded-xl px-5 py-4">Financial Reporting</div>
+</div>
+<p class="text-2xl font-bold mb-8">Starting at $10/hour</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" class="bg-white text-[#002349] px-8 py-4 rounded-2xl font-bold text-center hover:bg-gray-100 transition">Book Free Consultation</a>
+<a href="mailto:info@accountrise.com" class="border-2 border-white text-white px-8 py-4 rounded-2xl font-bold text-center hover:bg-white hover:text-[#002349] transition">Email Us</a>
+</div></div></section>
+
+<section id="faq" class="mb-16">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">09 — FAQs</p>
+<h2 class="text-4xl font-extrabold text-[#002349] mb-8">Frequently Asked Questions</h2>
+<div class="space-y-4">
+<details class="bg-white border border-gray-200 rounded-2xl p-6"><summary class="font-bold text-[#002349] cursor-pointer text-lg">Why are transactions not reconciling in Odoo?</summary><p class="text-gray-600 mt-4 leading-relaxed">Common causes include missing transactions, duplicate imports, incorrect amounts or dates, payments recorded separately from invoices or bills, incorrect journal configuration, outstanding intermediary balances, and incorrect opening balances.</p></details>
+<details class="bg-white border border-gray-200 rounded-2xl p-6"><summary class="font-bold text-[#002349] cursor-pointer text-lg">How do I fix an unreconciled bank transaction in Odoo?</summary><p class="text-gray-600 mt-4 leading-relaxed">First identify the transaction and its accounting source. Then determine whether it should be matched to an existing entry, corrected, or recorded as a new transaction. Review the resulting journal entry before completing reconciliation.</p></details>
+<details class="bg-white border border-gray-200 rounded-2xl p-6"><summary class="font-bold text-[#002349] cursor-pointer text-lg">Should I create an adjustment just to make Odoo reconcile?</summary><p class="text-gray-600 mt-4 leading-relaxed">Not automatically. An adjustment should have a valid accounting purpose. If the difference comes from a missing, duplicate, or incorrectly recorded transaction, correcting the underlying transaction is generally preferable.</p></details>
+<details class="bg-white border border-gray-200 rounded-2xl p-6"><summary class="font-bold text-[#002349] cursor-pointer text-lg">Can Accountrise help with Odoo bank reconciliation?</summary><p class="text-gray-600 mt-4 leading-relaxed">Yes. Accountrise provides remote Odoo accounting and bookkeeping support, including bank reconciliation, accounting cleanup, month-end close, reporting and ongoing bookkeeping support.</p></details>
+</div></section>
+
+<section id="contact" class="border-t border-gray-200 pt-14 text-center">
+<p class="text-sm uppercase tracking-widest text-[#957C3D] font-bold mb-3">Let's Fix the Books</p>
+<h2 class="text-4xl md:text-5xl font-extrabold text-[#002349] mb-5">Your Odoo Bank Reconciliation Shouldn't Be a Mystery</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">If your Odoo bank accounts, payment balances or historical transactions are difficult to reconcile, get experienced remote accounting support without the cost of building a full-time accounting team.</p>
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+<a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" class="bg-[#002349] text-white px-8 py-4 rounded-2xl font-semibold hover:bg-[#00172f] transition">Book Free Consultation</a>
+<a href="mailto:info@accountrise.com" class="border-2 border-[#002349] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#002349] hover:text-white transition">Email Us</a>
+</div>
+<p class="mt-6 text-sm text-gray-500">Odoo accounting support starting at $10/hour • Scope and final pricing depend on the engagement.</p>
+</section>
+
+</article></div></section>
+
+<section class="py-20 px-6 bg-white border-t border-gray-200">
+<div class="max-w-7xl mx-auto">
+<h2 class="text-3xl md:text-4xl font-extrabold text-[#002349] text-center mb-12">Continue Learning About Odoo Accounting</h2>
+<div class="grid md:grid-cols-3 gap-7">
+<a href="/blog/odoo-accounting-setup-guide-us-businesses.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition"><p class="text-sm font-bold text-[#957C3D] mb-3">Odoo Setup</p><h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">Odoo Accounting Setup Guide for US Businesses</h3><p class="text-gray-600">Build a cleaner Odoo accounting workflow from chart of accounts to month-end close.</p></a>
+<a href="/blog/odoo-vs-quickbooks.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition"><p class="text-sm font-bold text-[#957C3D] mb-3">Odoo vs QuickBooks</p><h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">Odoo vs QuickBooks: Which Is Better?</h3><p class="text-gray-600">Compare two popular accounting approaches for growing businesses.</p></a>
+<a href="/blog/affordable-bookkeeping-services-small-business.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition"><p class="text-sm font-bold text-[#957C3D] mb-3">Affordable Accounting</p><h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">Affordable Bookkeeping Services for Small Businesses</h3><p class="text-gray-600">Reduce accounting costs while keeping your financial records accurate.</p></a>
+</div></div></section>
+
+<footer class="bg-[#00172f] text-white py-10 text-center"><p>© 2026 Accountrise. All rights reserved.</p></footer>
+</body>
+</html>
