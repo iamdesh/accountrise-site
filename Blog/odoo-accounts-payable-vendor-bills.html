@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Odoo Accounts Payable: Fix Vendor Bills, Payments & A/P Balances | Accountrise</title>
+<meta name="description" content="Learn how to clean up Odoo Accounts Payable, fix old vendor bills, reconcile vendor payments, investigate credit balances and build a reliable A/P process for your US business.">
+<meta name="keywords" content="Odoo accounts payable, Odoo A/P, Odoo vendor bills, Odoo vendor payments, Odoo accounts payable cleanup, Odoo A/P aging, Odoo accounting USA, Odoo bookkeeping USA, Odoo accountant USA, Odoo accounting support">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.accountrise.com/blog/odoo-accounts-payable-vendor-bills.html">
+
+<meta property="og:title" content="Odoo Accounts Payable: Fix Vendor Bills, Payments & A/P Balances">
+<meta property="og:description" content="A practical guide to cleaning up Odoo A/P, reconciling vendor payments, investigating old bills and improving accounts payable visibility.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.accountrise.com/blog/odoo-accounts-payable-vendor-bills.html">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"BlogPosting",
+ "headline":"Odoo Accounts Payable: Fix Vendor Bills, Payments & A/P Balances",
+ "description":"A practical guide to Odoo accounts payable, vendor bills, vendor payments, A/P aging and accounting cleanup.",
+ "author":{"@type":"Organization","name":"Accountrise"},
+ "publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},
+ "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-accounts-payable-vendor-bills.html"},
+ "datePublished":"2026-09-01",
+ "dateModified":"2026-09-01"
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {
+   "@type":"Question",
+   "name":"How do I manage accounts payable in Odoo?",
+   "acceptedAnswer":{"@type":"Answer","text":"Use vendor bills, vendor payments, reconciliation and A/P aging together. Review overdue bills, unapplied payments, vendor credits, duplicate bills and unusual balances regularly."}
+  },
+  {
+   "@type":"Question",
+   "name":"Why is an Odoo vendor bill still showing as unpaid after payment?",
+   "acceptedAnswer":{"@type":"Answer","text":"The payment may not have been matched correctly, may have been recorded against the wrong vendor or account, or the bill may have another accounting issue. Trace the payment and bill before making an adjustment."}
+  },
+  {
+   "@type":"Question",
+   "name":"How can I clean old accounts payable balances in Odoo?",
+   "acceptedAnswer":{"@type":"Answer","text":"Start with the A/P aging, identify the oldest and largest balances, investigate the related vendor bills, payments and credits, correct source transactions where possible, and document legitimate accounting adjustments."}
+  },
+  {
+   "@type":"Question",
+   "name":"Can Accountrise help with Odoo accounts payable?",
+   "acceptedAnswer":{"@type":"Answer","text":"Accountrise provides remote Odoo accounting support including A/P cleanup, vendor bill and payment reconciliation, aging review, bookkeeping, month-end close and financial reporting."}
+  }
+ ]
+}
+</script>
+
+<style>
+html{scroll-behavior:smooth}
+</style>
+</head>
+
+<body class="bg-[#F7F8FA] text-gray-900 font-sans">
+
+<!-- NAVIGATION -->
+<nav class="bg-white border-b border-gray-200">
+<div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+<a href="/" class="text-2xl font-black text-[#002349] tracking-tight">
+Accountrise<span class="text-[#957C3D]">.</span>
+</a>
+
+<div class="hidden md:flex items-center gap-7 text-sm font-semibold text-gray-600">
+<a href="/" class="hover:text-[#957C3D] transition">Home</a>
+<a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+<a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+<li class="list-none"><a href="/about/" class="hover:text-[#957C3D] transition">About Us</a></li>
+<a href="#contact" class="bg-[#002349] text-white px-5 py-2.5 rounded-full hover:bg-[#00172f] transition">Contact</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO — NEW SPLIT STYLE -->
+<header class="bg-[#F7F8FA]">
+<div class="max-w-7xl mx-auto px-6 py-16 md:py-24">
+
+<div class="grid lg:grid-cols-[.9fr_1.1fr] gap-14 items-center">
+
+<div class="order-2 lg:order-1">
+<div class="bg-white rounded-[2.5rem] border border-gray-200 shadow-xl p-7">
+
+<div class="flex justify-between items-center mb-7">
+<div>
+<p class="text-xs uppercase tracking-widest text-gray-400 font-bold">Accounts Payable</p>
+<p class="text-3xl font-black text-[#002349] mt-1">$84,720</p>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">A/P</div>
+</div>
+
+<div class="space-y-4">
+<div class="flex justify-between items-center p-4 rounded-2xl bg-[#F7F8FA]">
+<div><p class="font-bold text-[#002349]">Current</p><p class="text-xs text-gray-400">Not yet due</p></div>
+<strong>$46,300</strong>
+</div>
+<div class="flex justify-between items-center p-4 rounded-2xl bg-[#F7F8FA]">
+<div><p class="font-bold text-[#002349]">1–30 days</p><p class="text-xs text-gray-400">Recently overdue</p></div>
+<strong>$18,420</strong>
+</div>
+<div class="flex justify-between items-center p-4 rounded-2xl bg-[#F7F8FA]">
+<div><p class="font-bold text-[#002349]">31–90 days</p><p class="text-xs text-gray-400">Needs review</p></div>
+<strong>$11,700</strong>
+</div>
+<div class="flex justify-between items-center p-4 rounded-2xl bg-[#957C3D] text-[#002349]">
+<div><p class="font-bold">90+ days</p><p class="text-xs text-[#002349]/60">Investigate</p></div>
+<strong>$8,300</strong>
+</div>
+</div>
+
+<p class="text-xs text-gray-400 mt-6">Illustrative example — not client data</p>
+</div>
+</div>
+
+<div class="order-1 lg:order-2">
+<p class="text-xs uppercase tracking-[0.3em] text-[#957C3D] font-black mb-6">
+Odoo Accounting • Accounts Payable
+</p>
+
+<h1 class="text-5xl md:text-7xl font-black text-[#002349] leading-[.98] tracking-tight mb-7">
+Stop Guessing
+<br>
+<span class="text-[#957C3D]">What You Owe.</span>
+</h1>
+
+<p class="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl">
+A practical guide to cleaning Odoo Accounts Payable, fixing old vendor bills, reconciling payments and turning your A/P aging into information your business can use.
+</p>
+
+<div class="mt-8 flex flex-wrap gap-4 text-sm text-gray-500">
+<span>September 1, 2026</span>
+<span>•</span>
+<span>12 min read</span>
+<span>•</span>
+<span>US Businesses</span>
+</div>
+</div>
+
+</div>
+</div>
+</header>
+
+<!-- QUICK MESSAGE -->
+<section class="bg-[#002349] text-white">
+<div class="max-w-7xl mx-auto px-6 py-8">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-5">
+<div>
+<p class="text-[#D8C18A] text-xs uppercase tracking-widest font-bold">The A/P Rule</p>
+<p class="text-xl md:text-2xl font-black mt-2">Every outstanding vendor balance should have a reason.</p>
+</div>
+<a href="#checklist" class="border border-white/30 px-6 py-3 rounded-xl text-sm font-bold hover:bg-white hover:text-[#002349] transition">View Checklist →</a>
+</div>
+</div>
+</section>
+
+<main class="max-w-7xl mx-auto px-6 py-16">
+
+<div class="grid lg:grid-cols-[230px_1fr] gap-12">
+
+<!-- SIDEBAR -->
+<aside class="hidden lg:block">
+<div class="sticky top-24">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-5">On This Page</p>
+<ul class="space-y-3 text-sm text-gray-500">
+<li><a href="#problem" class="hover:text-[#002349]">The A/P Problem</a></li>
+<li><a href="#aging" class="hover:text-[#002349]">Read A/P Aging</a></li>
+<li><a href="#bills" class="hover:text-[#002349]">Vendor Bills</a></li>
+<li><a href="#payments" class="hover:text-[#002349]">Vendor Payments</a></li>
+<li><a href="#credits" class="hover:text-[#002349]">Vendor Credits</a></li>
+<li><a href="#duplicates" class="hover:text-[#002349]">Duplicate Bills</a></li>
+<li><a href="#cleanup" class="hover:text-[#002349]">A/P Cleanup</a></li>
+<li><a href="#process" class="hover:text-[#002349]">Monthly Process</a></li>
+<li><a href="#checklist" class="hover:text-[#002349]">Checklist</a></li>
+<li><a href="#support" class="hover:text-[#002349]">Support</a></li>
+<li><a href="#faq" class="hover:text-[#002349]">FAQs</a></li>
+</ul>
+</div>
+</aside>
+
+<article class="max-w-4xl">
+
+<!-- INTRO -->
+<section class="mb-16">
+<p class="text-xl md:text-2xl text-gray-700 leading-relaxed">
+Accounts Payable should answer a straightforward question:
+<strong class="text-[#002349]">“What does the business actually owe, to whom, and when?”</strong>
+</p>
+
+<p class="text-lg text-gray-600 leading-relaxed mt-6">
+When an Odoo A/P report contains years-old vendor bills, payments that do not appear to clear bills, unexplained vendor credits or duplicate transactions, the problem is bigger than an aging report. Your accounting workflow needs to be investigated.
+</p>
+
+<p class="text-lg text-gray-600 leading-relaxed mt-6">
+This guide provides a practical framework for US businesses using Odoo Accounting to review, clean up and maintain Accounts Payable.
+</p>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="mb-20">
+<div class="grid md:grid-cols-2 gap-5">
+
+<div class="bg-[#002349] text-white rounded-[2.5rem] p-8 md:p-10">
+<p class="text-xs uppercase tracking-[0.25em] text-[#D8C18A] font-black mb-3">01 — Diagnose</p>
+<h2 class="text-4xl font-black mb-6">A/P Problems Usually Hide in the Details</h2>
+<p class="text-white/70 leading-relaxed">
+A total payable balance does not tell you whether every dollar is legitimate. You need to connect the balance to vendor bills, payments, credits and actual business obligations.
+</p>
+</div>
+
+<div class="grid gap-4">
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Real vendor liability</h3>
+<p class="text-gray-600 text-sm mt-2">The business received goods or services and still owes the vendor.</p>
+</div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Payment mismatch</h3>
+<p class="text-gray-600 text-sm mt-2">The vendor was paid, but the payment did not clear the intended bill correctly.</p>
+</div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Historical accounting issue</h3>
+<p class="text-gray-600 text-sm mt-2">Old entries, migration problems or incorrect postings created a balance that needs investigation.</p>
+</div>
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Business decision</h3>
+<p class="text-gray-600 text-sm mt-2">A disputed, invalid or otherwise unpayable balance may require a documented accounting decision.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- AGING -->
+<section id="aging" class="mb-20">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">02 — A/P Aging</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+How to Read an Odoo A/P Aging Report
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed max-w-4xl mb-9">
+The total A/P balance is only the beginning. Age the balance and focus attention where the risk, cash requirement or accounting uncertainty is highest.
+</p>
+
+<div class="overflow-x-auto bg-white border border-gray-200 rounded-[2rem]">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-gray-200">
+<th class="p-6 text-[#002349]">Age</th>
+<th class="p-6 text-[#002349]">What It Can Mean</th>
+<th class="p-6 text-[#002349]">Action</th>
+</tr>
+</thead>
+<tbody class="text-gray-600">
+<tr class="border-b border-gray-100">
+<td class="p-6 font-bold text-[#002349]">Current</td>
+<td class="p-6">Valid bills within agreed payment terms</td>
+<td class="p-6">Plan cash requirements</td>
+</tr>
+<tr class="border-b border-gray-100">
+<td class="p-6 font-bold text-[#002349]">1–30 days</td>
+<td class="p-6">Recently overdue bills</td>
+<td class="p-6">Check payment status and vendor terms</td>
+</tr>
+<tr class="border-b border-gray-100">
+<td class="p-6 font-bold text-[#002349]">31–90 days</td>
+<td class="p-6">Possible disputes, missed payments or data issues</td>
+<td class="p-6">Investigate exceptions</td>
+</tr>
+<tr>
+<td class="p-6 font-bold text-[#002349]">90+ days</td>
+<td class="p-6">Old liability or accounting exception</td>
+<td class="p-6">Trace the source and document the resolution</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- BILLS -->
+<section id="bills" class="mb-20">
+<div class="bg-white rounded-[2.5rem] border border-gray-200 p-8 md:p-10">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">03 — Vendor Bills</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+Fix the Vendor Bill Before You Fix the Balance
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed mb-8">
+When an old A/P balance looks wrong, go back to the vendor bill. The bill is the source transaction that explains why the payable exists.
+</p>
+
+<div class="grid md:grid-cols-2 gap-5">
+<div class="p-6 rounded-2xl bg-[#F7F8FA]">
+<h3 class="font-bold text-[#002349]">Verify the vendor</h3>
+<p class="text-gray-600 text-sm mt-2">Make sure the bill belongs to the correct vendor and is not duplicated under another vendor record.</p>
+</div>
+<div class="p-6 rounded-2xl bg-[#F7F8FA]">
+<h3 class="font-bold text-[#002349]">Verify the date</h3>
+<p class="text-gray-600 text-sm mt-2">Check the accounting date and transaction timing against supporting records.</p>
+</div>
+<div class="p-6 rounded-2xl bg-[#F7F8FA]">
+<h3 class="font-bold text-[#002349]">Verify the amount</h3>
+<p class="text-gray-600 text-sm mt-2">Compare the Odoo bill with the vendor invoice or other available support.</p>
+</div>
+<div class="p-6 rounded-2xl bg-[#F7F8FA]">
+<h3 class="font-bold text-[#002349]">Verify the accounting</h3>
+<p class="text-gray-600 text-sm mt-2">Review the accounts affected by the bill and investigate unexpected classifications.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PAYMENTS -->
+<section id="payments" class="mb-20">
+<div class="grid lg:grid-cols-[1fr_.8fr] gap-8 items-stretch">
+
+<div class="bg-[#957C3D] text-[#002349] rounded-[2.5rem] p-8 md:p-10">
+<p class="text-xs uppercase tracking-[0.25em] font-black mb-3">04 — Vendor Payments</p>
+<h2 class="text-4xl font-black mb-6">
+Paid the Vendor—but the Bill Is Still Open?
+</h2>
+<p class="text-lg leading-relaxed mb-7">
+This is a common reconciliation problem. Before changing the bill, trace the payment.
+</p>
+
+<div class="space-y-4">
+<div class="flex gap-4"><span class="font-black">01</span><p>Identify the vendor payment.</p></div>
+<div class="flex gap-4"><span class="font-black">02</span><p>Identify the bill or bills it should settle.</p></div>
+<div class="flex gap-4"><span class="font-black">03</span><p>Review the reconciliation and payment account.</p></div>
+<div class="flex gap-4"><span class="font-black">04</span><p>Confirm the vendor balance after correction.</p></div>
+</div>
+</div>
+
+<div class="bg-[#002349] text-white rounded-[2.5rem] p-8 md:p-10">
+<p class="text-xs uppercase tracking-[0.25em] text-[#D8C18A] font-black mb-3">Control</p>
+<h3 class="text-2xl font-black mb-5">Do not use a generic adjustment as the first solution.</h3>
+<p class="text-white/70 leading-relaxed">
+If a payment exists but the bill remains open, there may be a matching, account, timing or transaction issue. Find the cause before creating an adjustment.
+</p>
+</div>
+
+</div>
+</section>
+
+<!-- CREDITS -->
+<section id="credits" class="mb-20">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">05 — Vendor Credits</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+What About Vendor Credit Balances?
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed max-w-4xl mb-8">
+A vendor credit can be completely legitimate, but an unexplained credit balance should be investigated. It may represent a credit note, overpayment, duplicate payment or historical accounting issue.
+</p>
+
+<div class="grid md:grid-cols-3 gap-5">
+<div class="bg-white border border-gray-200 rounded-3xl p-7">
+<p class="text-[#957C3D] font-black text-sm">CREDIT NOTE</p>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Valid Vendor Credit</h3>
+<p class="text-gray-600 text-sm mt-3">Confirm the underlying transaction and determine how the credit should be applied.</p>
+</div>
+<div class="bg-white border border-gray-200 rounded-3xl p-7">
+<p class="text-[#957C3D] font-black text-sm">OVERPAYMENT</p>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Excess Payment</h3>
+<p class="text-gray-600 text-sm mt-3">Verify the payment and the vendor account before deciding how it should be handled.</p>
+</div>
+<div class="bg-white border border-gray-200 rounded-3xl p-7">
+<p class="text-[#957C3D] font-black text-sm">HISTORICAL</p>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Old Balance</h3>
+<p class="text-gray-600 text-sm mt-3">Trace the original transaction instead of simply forcing the balance to zero.</p>
+</div>
+</div>
+</section>
+
+<!-- DUPLICATES -->
+<section id="duplicates" class="mb-20">
+<div class="bg-[#F0F3F6] rounded-[2.5rem] p-8 md:p-12">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">06 — Duplicate Bills</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+Duplicate Vendor Bills Can Distort Both A/P and Expenses
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed max-w-4xl mb-8">
+Duplicate bills are particularly important to identify because the accounting impact can extend beyond Accounts Payable. A duplicate may increase an expense, inventory-related account or another balance while also overstating the vendor liability.
+</p>
+
+<div class="grid md:grid-cols-2 gap-5">
+<div class="bg-white rounded-2xl p-6">
+<h3 class="font-bold text-[#002349] mb-3">Compare</h3>
+<p class="text-gray-600 text-sm">Vendor, invoice number, invoice date, amount and supporting documentation.</p>
+</div>
+<div class="bg-white rounded-2xl p-6">
+<h3 class="font-bold text-[#002349] mb-3">Trace</h3>
+<p class="text-gray-600 text-sm">Follow the duplicate through its accounting entry and payment status.</p>
+</div>
+<div class="bg-white rounded-2xl p-6">
+<h3 class="font-bold text-[#002349] mb-3">Correct</h3>
+<p class="text-gray-600 text-sm">Use the appropriate Odoo accounting correction rather than simply hiding the bill.</p>
+</div>
+<div class="bg-white rounded-2xl p-6">
+<h3 class="font-bold text-[#002349] mb-3">Prevent</h3>
+<p class="text-gray-600 text-sm">Use consistent vendor invoice controls and review procedures.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CLEANUP -->
+<section id="cleanup" class="mb-20">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">07 — Cleanup Framework</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-8">
+A Practical Odoo A/P Cleanup Workflow
+</h2>
+
+<div class="space-y-4">
+
+<div class="bg-white border border-gray-200 rounded-3xl p-7 grid md:grid-cols-[70px_1fr] gap-5">
+<div class="text-3xl font-black text-[#957C3D]">01</div>
+<div><h3 class="text-xl font-bold text-[#002349]">Start With the Aging</h3><p class="text-gray-600 mt-2">Identify the oldest, largest and most unusual vendor balances.</p></div>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-3xl p-7 grid md:grid-cols-[70px_1fr] gap-5">
+<div class="text-3xl font-black text-[#957C3D]">02</div>
+<div><h3 class="text-xl font-bold text-[#002349]">Separate the Exceptions</h3><p class="text-gray-600 mt-2">Group unpaid bills, paid-but-open bills, credits, duplicates and historical issues.</p></div>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-3xl p-7 grid md:grid-cols-[70px_1fr] gap-5">
+<div class="text-3xl font-black text-[#957C3D]">03</div>
+<div><h3 class="text-xl font-bold text-[#002349]">Trace the Source</h3><p class="text-gray-600 mt-2">Follow each material balance back to the vendor bill, payment, credit or journal entry.</p></div>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-3xl p-7 grid md:grid-cols-[70px_1fr] gap-5">
+<div class="text-3xl font-black text-[#957C3D]">04</div>
+<div><h3 class="text-xl font-bold text-[#002349]">Correct the Accounting</h3><p class="text-gray-600 mt-2">Where possible, correct the underlying transaction and preserve an appropriate accounting trail.</p></div>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-3xl p-7 grid md:grid-cols-[70px_1fr] gap-5">
+<div class="text-3xl font-black text-[#957C3D]">05</div>
+<div><h3 class="text-xl font-bold text-[#002349]">Re-run the Aging</h3><p class="text-gray-600 mt-2">Verify that the corrected A/P now agrees with the business's understanding of outstanding obligations.</p></div>
+</div>
+
+</div>
+</section>
+
+<!-- MONTHLY PROCESS -->
+<section id="process" class="mb-20">
+<div class="grid lg:grid-cols-2 gap-7">
+
+<div class="bg-[#002349] text-white rounded-[2.5rem] p-8 md:p-10">
+<p class="text-xs uppercase tracking-[0.25em] text-[#D8C18A] font-black mb-3">08 — Prevention</p>
+<h2 class="text-4xl font-black mb-6">Make A/P a Weekly Process, Not a Year-End Emergency</h2>
+<p class="text-white/70 text-lg leading-relaxed">
+A small amount of regular A/P review can prevent a large cleanup project. Review exceptions as they appear instead of allowing them to accumulate.
+</p>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-[2.5rem] p-8 md:p-10">
+<h3 class="text-2xl font-black text-[#002349] mb-7">Suggested rhythm</h3>
+
+<div class="space-y-6">
+<div class="flex gap-4"><div class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">W</div><div><strong>Weekly A/P review</strong><p class="text-gray-600 text-sm mt-1">Look at newly overdue bills, large invoices and unmatched payments.</p></div></div>
+<div class="flex gap-4"><div class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">M</div><div><strong>Monthly close</strong><p class="text-gray-600 text-sm mt-1">Review aging, vendor credits and unusual balances before reporting.</p></div></div>
+<div class="flex gap-4"><div class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">Q</div><div><strong>Quarterly deeper review</strong><p class="text-gray-600 text-sm mt-1">Investigate persistent old balances and recurring process problems.</p></div></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- CASH FLOW -->
+<section class="mb-20">
+<div class="border border-gray-200 bg-white rounded-[2.5rem] p-8 md:p-12">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">09 — Business Impact</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+Clean A/P Improves More Than the Balance Sheet
+</h2>
+
+<div class="grid md:grid-cols-3 gap-5 mt-8">
+<div class="p-7 rounded-3xl bg-[#F7F8FA]">
+<p class="text-[#957C3D] font-black text-sm">CASH FLOW</p>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Know Upcoming Obligations</h3>
+<p class="text-gray-600 text-sm mt-3">A reliable aging helps management plan vendor payments and cash requirements.</p>
+</div>
+
+<div class="p-7 rounded-3xl bg-[#F7F8FA]">
+<p class="text-[#957C3D] font-black text-sm">REPORTING</p>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Trust the Numbers</h3>
+<p class="text-gray-600 text-sm mt-3">A/P that can be explained makes financial reporting more useful.</p>
+</div>
+
+<div class="p-7 rounded-3xl bg-[#F7F8FA]">
+<p class="text-[#957C3D] font-black text-sm">VENDORS</p>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Avoid Payment Confusion</h3>
+<p class="text-gray-600 text-sm mt-3">Clean payment records make it easier to resolve vendor questions.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" class="mb-20">
+<div class="bg-[#002349] text-white rounded-[2.5rem] p-8 md:p-12">
+<p class="text-xs uppercase tracking-[0.25em] text-[#D8C18A] font-black mb-3">10 — Quick Checklist</p>
+<h2 class="text-4xl md:text-5xl font-black mb-9">
+Odoo Accounts Payable Month-End Checklist
+</h2>
+
+<div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
+
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Review the vendor A/P aging.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Investigate old outstanding bills.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Review vendor payments that appear unmatched.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Investigate vendor credit balances.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Look for duplicate vendor bills.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Review unusual or material A/P balances.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Trace significant historical balances.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Correct source transactions where appropriate.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Document material accounting decisions.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Re-run A/P aging after cleanup.</span></div>
+
+</div>
+</div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support" class="mb-20">
+<div class="bg-[#957C3D] text-[#002349] rounded-[2.5rem] p-9 md:p-12">
+
+<div class="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+
+<div>
+<p class="text-xs uppercase tracking-[0.25em] font-black mb-3">Accountrise Odoo Accounting Support</p>
+<h2 class="text-4xl md:text-5xl font-black mb-5">
+Need Help Cleaning Up Odoo A/P?
+</h2>
+
+<p class="text-lg leading-relaxed max-w-3xl">
+Accountrise provides remote Odoo accounting support for US businesses that need help with vendor bill cleanup, A/P reconciliation, vendor payments, A/P aging, bookkeeping, month-end close and financial reporting.
+</p>
+
+<div class="flex flex-wrap gap-2 mt-7">
+<span class="px-4 py-2 bg-white/50 rounded-full text-sm font-semibold">Odoo A/P</span>
+<span class="px-4 py-2 bg-white/50 rounded-full text-sm font-semibold">Vendor Reconciliation</span>
+<span class="px-4 py-2 bg-white/50 rounded-full text-sm font-semibold">Accounting Cleanup</span>
+<span class="px-4 py-2 bg-white/50 rounded-full text-sm font-semibold">Month-End Close</span>
+</div>
+</div>
+
+<div class="text-center lg:text-right">
+<p class="text-sm text-[#002349]/60">Starting at</p>
+<p class="text-6xl font-black">$12</p>
+<p class="text-sm text-[#002349]/60">/hour</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="mb-20">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">11 — FAQs</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] mb-9">
+Odoo Accounts Payable FAQs
+</h2>
+
+<div class="space-y-4">
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">How do I manage accounts payable in Odoo?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">Use vendor bills, vendor payments, reconciliation and A/P aging together. Review overdue bills, unapplied payments, vendor credits, duplicate bills and unusual balances regularly.</p>
+</details>
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">Why is an Odoo vendor bill still showing as unpaid after payment?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">The payment may not have been matched correctly, may have been recorded against the wrong vendor or account, or the bill may have another accounting issue. Trace the payment and bill before making an adjustment.</p>
+</details>
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">How can I clean old accounts payable balances in Odoo?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">Start with the A/P aging, identify the oldest and largest balances, investigate the related vendor bills, payments and credits, correct source transactions where possible, and document legitimate accounting adjustments.</p>
+</details>
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">Can Accountrise help with Odoo accounts payable?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">Yes. Accountrise provides remote Odoo accounting support including A/P cleanup, vendor bill and payment reconciliation, aging review, bookkeeping, month-end close and financial reporting.</p>
+</details>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="text-center border-t border-gray-200 pt-14">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">Let's Clean Up Your A/P</p>
+<h2 class="text-4xl md:text-6xl font-black text-[#002349] tracking-tight mb-5">
+Know What You Owe. Pay It With Confidence.
+</h2>
+
+<p class="text-lg text-gray-600 max-w-2xl mx-auto mb-9">
+If your Odoo vendor balances are difficult to explain, old bills are piling up or month-end A/P takes too long, let's identify the accounting issues and build a cleaner process.
+</p>
+
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+
+<a href="https://calendly.com/deshrajgocher2012/30min"
+target="_blank"
+class="bg-[#002349] text-white px-9 py-4 rounded-2xl font-bold hover:bg-[#00172f] transition">
+Book Free Consultation
+</a>
+
+<a href="mailto:info@accountrise.com"
+class="border-2 border-[#002349] text-[#002349] px-9 py-4 rounded-2xl font-bold hover:bg-[#002349] hover:text-white transition">
+Email Us
+</a>
+
+</div>
+
+<p class="mt-6 text-sm text-gray-500">Remote Odoo accounting support • Starting at $12/hour</p>
+</section>
+
+</article>
+</div>
+</main>
+
+<!-- RELATED -->
+<section class="bg-white border-t border-gray-200 py-20 px-6">
+<div class="max-w-7xl mx-auto">
+
+<h2 class="text-3xl md:text-4xl font-black text-[#002349] mb-10">
+More Odoo Accounting Guides
+</h2>
+
+<div class="grid md:grid-cols-3 gap-7">
+
+<a href="/blog/odoo-accounts-receivable-overdue-invoices.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+<p class="text-sm font-bold text-[#957C3D] mb-3">Odoo A/R</p>
+<h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">Odoo Accounts Receivable: Fix Overdue Invoices & Customer Balances</h3>
+<p class="text-gray-600">Clean up customer payments, overdue invoices and confusing A/R balances.</p>
+</a>
+
+<a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+<p class="text-sm font-bold text-[#957C3D] mb-3">Month-End Close</p>
+<h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">The Odoo Month-End Close Checklist for US Businesses</h3>
+<p class="text-gray-600">A practical workflow for reconciliation, review and reliable monthly reporting.</p>
+</a>
+
+<a href="/blog/odoo-accounting-cleanup-messy-books.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+<p class="text-sm font-bold text-[#957C3D] mb-3">Odoo Cleanup</p>
+<h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">Odoo Accounting Cleanup: How to Fix Messy Books</h3>
+<p class="text-gray-600">A practical framework for cleaning old balances and unreliable Odoo books.</p>
+</a>
+
+</div>
+</div>
+</section>
+
+<footer class="bg-[#00172f] text-white py-10 text-center">
+<p>© 2026 Accountrise. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
