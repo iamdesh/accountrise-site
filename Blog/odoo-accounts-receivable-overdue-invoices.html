@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Odoo Accounts Receivable: Fix Overdue Invoices & Customer Balances | Accountrise</title>
+<meta name="description" content="Learn how to manage Odoo Accounts Receivable, fix overdue invoices, investigate customer credit balances, reconcile payments, and improve cash flow with a practical US business workflow.">
+<meta name="keywords" content="Odoo accounts receivable, Odoo A/R, Odoo overdue invoices, Odoo customer payments, Odoo invoice reconciliation, Odoo accounting USA, Odoo bookkeeping USA, Odoo accountant, Odoo A/R aging, Odoo accounting support">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.accountrise.com/blog/odoo-accounts-receivable-overdue-invoices.html">
+
+<meta property="og:title" content="Odoo Accounts Receivable: Fix Overdue Invoices & Customer Balances">
+<meta property="og:description" content="A practical guide to cleaning up Odoo A/R, reconciling customer payments, investigating overdue invoices and improving receivables visibility.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.accountrise.com/blog/odoo-accounts-receivable-overdue-invoices.html">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"BlogPosting",
+ "headline":"Odoo Accounts Receivable: Fix Overdue Invoices & Customer Balances",
+ "description":"A practical guide to Odoo accounts receivable, overdue invoices, customer payments and reconciliation.",
+ "author":{"@type":"Organization","name":"Accountrise"},
+ "publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},
+ "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-accounts-receivable-overdue-invoices.html"},
+ "datePublished":"2026-08-31",
+ "dateModified":"2026-08-31"
+}
+</script>
+
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {
+   "@type":"Question",
+   "name":"How do I manage accounts receivable in Odoo?",
+   "acceptedAnswer":{"@type":"Answer","text":"Use Odoo invoices, customer payments, reconciliation and aging information together. Review overdue invoices, unmatched payments, customer credits and unusual balances regularly rather than waiting until month-end."}
+  },
+  {
+   "@type":"Question",
+   "name":"Why is an Odoo customer invoice still showing as unpaid?",
+   "acceptedAnswer":{"@type":"Answer","text":"The invoice may genuinely be unpaid, or the customer payment may not have been matched correctly. Review the payment, invoice, reconciliation status and related accounting entries before changing the balance."}
+  },
+  {
+   "@type":"Question",
+   "name":"How can I clean up old A/R balances in Odoo?",
+   "acceptedAnswer":{"@type":"Answer","text":"Start with the A/R aging, group old balances by customer and investigate the underlying invoices, credits, payments and adjustments. Correct source transactions where possible and document legitimate write-offs or adjustments according to the business's accounting policies."}
+  },
+  {
+   "@type":"Question",
+   "name":"Can Accountrise help with Odoo accounts receivable?",
+   "acceptedAnswer":{"@type":"Answer","text":"Accountrise provides remote Odoo accounting support including A/R cleanup, invoice and payment reconciliation, aging review, bookkeeping, month-end close and financial reporting."}
+  }
+ ]
+}
+</script>
+
+<style>
+html{scroll-behavior:smooth}
+</style>
+</head>
+
+<body class="bg-[#F6F7F9] text-gray-900 font-sans">
+
+<!-- NAVIGATION -->
+<nav class="bg-[#002349] text-white">
+<div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+<a href="/" class="text-2xl font-black tracking-tight">
+Accountrise<span class="text-[#957C3D]">.</span>
+</a>
+
+<div class="hidden md:flex items-center gap-7 text-sm font-semibold">
+<a href="/" class="text-white/70 hover:text-white transition">Home</a>
+<a href="/services/" class="text-white/70 hover:text-white transition">Services</a>
+<a href="/blog/" class="text-white/70 hover:text-white transition">Blog</a>
+<li class="list-none"><a href="/about/" class="text-white/70 hover:text-[#957C3D] transition">About Us</a></li>
+<a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full hover:bg-[#b89a4e] transition">Contact</a>
+</div>
+</div>
+</nav>
+
+<!-- HERO — NEW VISUAL STYLE -->
+<header class="bg-[#002349] text-white overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 py-20 md:py-28">
+<div class="grid lg:grid-cols-[1.1fr_.9fr] gap-14 items-center">
+
+<div>
+<p class="uppercase tracking-[0.3em] text-xs font-bold text-[#D8C18A] mb-6">
+Odoo Accounting • Accounts Receivable
+</p>
+
+<h1 class="text-5xl md:text-7xl font-black leading-[.98] tracking-tight mb-7">
+Your Odoo A/R
+<br>
+<span class="text-[#D8C18A]">Should Tell the Truth.</span>
+</h1>
+
+<p class="text-xl text-white/70 leading-relaxed max-w-2xl">
+A practical guide to fixing overdue invoices, unmatched customer payments, credit balances and confusing A/R aging—so your team can see what customers actually owe.
+</p>
+
+<div class="mt-8 flex flex-wrap gap-4 text-sm text-white/55">
+<span>August 31, 2026</span>
+<span>•</span>
+<span>12 min read</span>
+<span>•</span>
+<span>US Businesses</span>
+</div>
+</div>
+
+<!-- VISUAL A/R DASHBOARD -->
+<div class="relative">
+<div class="bg-white rounded-[2rem] p-6 shadow-2xl text-[#002349]">
+<div class="flex items-center justify-between mb-7">
+<div>
+<p class="text-xs text-gray-400 uppercase tracking-widest font-bold">Receivables</p>
+<p class="text-3xl font-black mt-1">$128,450</p>
+</div>
+<div class="w-12 h-12 rounded-2xl bg-[#957C3D] flex items-center justify-center font-black">
+A/R
+</div>
+</div>
+
+<div class="space-y-4">
+<div>
+<div class="flex justify-between text-xs mb-2"><span>Current</span><strong>$72,400</strong></div>
+<div class="h-2 rounded-full bg-gray-100"><div class="h-2 rounded-full bg-[#002349] w-[72%]"></div></div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2"><span>1–30 Days</span><strong>$24,900</strong></div>
+<div class="h-2 rounded-full bg-gray-100"><div class="h-2 rounded-full bg-[#957C3D] w-[48%]"></div></div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2"><span>31–90 Days</span><strong>$18,750</strong></div>
+<div class="h-2 rounded-full bg-gray-100"><div class="h-2 rounded-full bg-[#002349] w-[34%]"></div></div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2"><span>90+ Days</span><strong>$12,400</strong></div>
+<div class="h-2 rounded-full bg-gray-100"><div class="h-2 rounded-full bg-[#957C3D] w-[25%]"></div></div>
+</div>
+</div>
+
+<div class="mt-7 pt-5 border-t border-gray-100 flex justify-between text-xs">
+<span class="text-gray-400">Example dashboard</span>
+<span class="font-bold text-[#002349]">Review →</span>
+</div>
+</div>
+
+<div class="absolute -bottom-5 -left-5 bg-[#957C3D] text-[#002349] rounded-2xl px-5 py-3 font-black text-sm shadow-lg">
+Fix the source. Not the symptom.
+</div>
+</div>
+
+</div>
+</div>
+</header>
+
+<!-- ARTICLE -->
+<main class="max-w-7xl mx-auto px-6 py-16">
+
+<div class="grid lg:grid-cols-[230px_1fr] gap-12">
+
+<!-- SIDEBAR -->
+<aside class="hidden lg:block">
+<div class="sticky top-24">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-5">Inside This Guide</p>
+<ul class="space-y-3 text-sm text-gray-500">
+<li><a href="#problem" class="hover:text-[#002349]">The A/R Problem</a></li>
+<li><a href="#aging" class="hover:text-[#002349]">Read Your Aging</a></li>
+<li><a href="#invoice" class="hover:text-[#002349]">Overdue Invoices</a></li>
+<li><a href="#payments" class="hover:text-[#002349]">Customer Payments</a></li>
+<li><a href="#credits" class="hover:text-[#002349]">Credit Balances</a></li>
+<li><a href="#cleanup" class="hover:text-[#002349]">A/R Cleanup</a></li>
+<li><a href="#process" class="hover:text-[#002349]">Monthly Process</a></li>
+<li><a href="#checklist" class="hover:text-[#002349]">Checklist</a></li>
+<li><a href="#support" class="hover:text-[#002349]">Support</a></li>
+<li><a href="#faq" class="hover:text-[#002349]">FAQs</a></li>
+</ul>
+</div>
+</aside>
+
+<article class="max-w-4xl">
+
+<!-- INTRO -->
+<section class="mb-16">
+<div class="max-w-3xl">
+<p class="text-xl md:text-2xl text-gray-700 leading-relaxed">
+If your Odoo Accounts Receivable report contains invoices that have been overdue for months, customer payments that do not appear to clear invoices, or credit balances nobody can explain, you have an accounting workflow problem—not just an aging-report problem.
+</p>
+
+<p class="text-lg text-gray-600 leading-relaxed mt-6">
+For a US business, clean A/R matters because management needs to know how much cash is expected, which customers need attention, and whether the reported receivables are actually supported by the underlying transactions.
+</p>
+</div>
+</section>
+
+<!-- PROBLEM -->
+<section id="problem" class="mb-20">
+<div class="bg-white border border-gray-200 rounded-[2.5rem] p-8 md:p-10">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">01 — Diagnose</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+First Ask: Is the Balance Real?
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed mb-8">
+An A/R balance can be wrong for several different reasons. A customer may truly owe the business money, or the balance may exist because a payment was recorded incorrectly, an invoice was duplicated, a credit was left unapplied, or an old accounting entry was never resolved.
+</p>
+
+<div class="grid md:grid-cols-2 gap-4">
+<div class="p-6 rounded-2xl bg-[#F6F7F9]">
+<p class="font-black text-[#002349]">REAL RECEIVABLE</p>
+<p class="text-gray-600 text-sm mt-2">A valid invoice remains unpaid and the customer actually owes the business.</p>
+</div>
+<div class="p-6 rounded-2xl bg-[#F6F7F9]">
+<p class="font-black text-[#002349]">PROCESS ERROR</p>
+<p class="text-gray-600 text-sm mt-2">A payment, credit, duplicate or accounting entry has not been handled correctly.</p>
+</div>
+<div class="p-6 rounded-2xl bg-[#F6F7F9]">
+<p class="font-black text-[#002349]">DATA PROBLEM</p>
+<p class="text-gray-600 text-sm mt-2">Historical transactions or migration/import issues have created unreliable balances.</p>
+</div>
+<div class="p-6 rounded-2xl bg-[#F6F7F9]">
+<p class="font-black text-[#002349]">BUSINESS DECISION</p>
+<p class="text-gray-600 text-sm mt-2">A disputed or uncollectible balance may require management's documented accounting decision.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- AGING -->
+<section id="aging" class="mb-20">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">02 — A/R Aging</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+How to Read an Odoo A/R Aging Report
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed max-w-3xl mb-9">
+Do not look at the total A/R number alone. Break the balance into age groups and investigate where the risk is concentrated.
+</p>
+
+<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-[#002349] text-white rounded-3xl p-7">
+<p class="text-[#D8C18A] text-sm font-bold">CURRENT</p>
+<p class="text-2xl font-black mt-2">Not Yet Due</p>
+<p class="text-white/60 text-sm mt-3">Usually represents invoices within agreed payment terms.</p>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-3xl p-7">
+<p class="text-[#957C3D] text-sm font-bold">1–30</p>
+<p class="text-2xl font-black text-[#002349] mt-2">Recently Late</p>
+<p class="text-gray-600 text-sm mt-3">Review collection status and payment timing.</p>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-3xl p-7">
+<p class="text-[#957C3D] text-sm font-bold">31–90</p>
+<p class="text-2xl font-black text-[#002349] mt-2">Needs Attention</p>
+<p class="text-gray-600 text-sm mt-3">Investigate disputes, follow-up and payment history.</p>
+</div>
+
+<div class="bg-[#957C3D] text-[#002349] rounded-3xl p-7">
+<p class="text-[#002349]/60 text-sm font-bold">90+</p>
+<p class="text-2xl font-black mt-2">Investigate</p>
+<p class="text-[#002349]/70 text-sm mt-3">Determine whether the balance is collectible, disputed or needs accounting action.</p>
+</div>
+</div>
+</section>
+
+<!-- OVERDUE -->
+<section id="invoice" class="mb-20">
+<div class="grid lg:grid-cols-[.75fr_1.25fr] gap-10 items-start">
+
+<div>
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">03 — Overdue Invoices</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight">
+An Overdue Invoice Is a Question, Not an Answer.
+</h2>
+</div>
+
+<div>
+<p class="text-lg text-gray-600 leading-relaxed mb-7">
+When an invoice becomes overdue, identify why before changing the accounting. The same aging bucket can contain completely different situations.
+</p>
+
+<div class="space-y-3">
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Customer has not paid</h3>
+<p class="text-gray-600 text-sm mt-2">The receivable may be valid and should move into the collection workflow.</p>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Customer paid, but invoice remains open</h3>
+<p class="text-gray-600 text-sm mt-2">Trace the payment and review whether it has been recorded and reconciled correctly.</p>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Invoice is disputed</h3>
+<p class="text-gray-600 text-sm mt-2">Separate the collection issue from the accounting question and document the business decision.</p>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-2xl p-6">
+<h3 class="font-bold text-[#002349]">Invoice should not remain outstanding</h3>
+<p class="text-gray-600 text-sm mt-2">Investigate duplicate invoices, credits, cancellations or other source transactions.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- PAYMENTS -->
+<section id="payments" class="mb-20">
+<div class="bg-[#002349] text-white rounded-[2.5rem] p-8 md:p-12">
+<p class="text-xs uppercase tracking-[0.25em] text-[#D8C18A] font-black mb-3">04 — Customer Payments</p>
+<h2 class="text-4xl md:text-5xl font-black mb-6">
+When the Customer Paid but Odoo Still Shows an Open Invoice
+</h2>
+
+<p class="text-lg text-white/70 leading-relaxed max-w-4xl mb-9">
+This is one of the most common situations that makes an A/R report difficult to trust. Do not assume the invoice is wrong or the payment is wrong. Trace both sides of the transaction.
+</p>
+
+<div class="grid md:grid-cols-4 gap-3">
+<div class="bg-white/10 rounded-2xl p-6"><p class="text-[#D8C18A] text-xs font-bold">01</p><h3 class="font-bold mt-2">Find Payment</h3><p class="text-white/55 text-sm mt-2">Identify the customer payment in Odoo.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><p class="text-[#D8C18A] text-xs font-bold">02</p><h3 class="font-bold mt-2">Find Invoice</h3><p class="text-white/55 text-sm mt-2">Identify the invoice the payment should settle.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><p class="text-[#D8C18A] text-xs font-bold">03</p><h3 class="font-bold mt-2">Review Match</h3><p class="text-white/55 text-sm mt-2">Check the reconciliation and accounting flow.</p></div>
+<div class="bg-white/10 rounded-2xl p-6"><p class="text-[#D8C18A] text-xs font-bold">04</p><h3 class="font-bold mt-2">Confirm Balance</h3><p class="text-white/55 text-sm mt-2">Verify the invoice and customer balance after correction.</p></div>
+</div>
+
+<div class="mt-8 bg-[#957C3D] text-[#002349] rounded-2xl p-6">
+<p class="font-black">Key principle:</p>
+<p class="mt-1">Do not create an adjustment simply because an invoice is still open. First determine why the payment did not clear it.</p>
+</div>
+</div>
+</section>
+
+<!-- CREDITS -->
+<section id="credits" class="mb-20">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">05 — Customer Credits</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-6">
+Customer Credit Balances Need an Explanation Too
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed max-w-4xl mb-9">
+A customer credit can be legitimate, but a large number of unexplained credit balances can signal that payments, refunds, credit notes or invoice matching need review.
+</p>
+
+<div class="overflow-x-auto bg-white rounded-[2rem] border border-gray-200">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-gray-200">
+<th class="p-6 text-[#002349]">Possible Cause</th>
+<th class="p-6 text-[#002349]">What to Investigate</th>
+</tr>
+</thead>
+<tbody class="text-gray-600">
+<tr class="border-b border-gray-100"><td class="p-6 font-bold text-[#002349]">Customer overpayment</td><td class="p-6">Confirm the payment and determine whether it should remain as a customer credit or be handled through the appropriate process.</td></tr>
+<tr class="border-b border-gray-100"><td class="p-6 font-bold text-[#002349]">Unapplied payment</td><td class="p-6">Identify the intended invoice or customer account.</td></tr>
+<tr class="border-b border-gray-100"><td class="p-6 font-bold text-[#002349]">Credit note</td><td class="p-6">Confirm why the credit exists and whether it should be applied.</td></tr>
+<tr><td class="p-6 font-bold text-[#002349]">Historical error</td><td class="p-6">Trace the original transaction before making a correction.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<!-- CLEANUP -->
+<section id="cleanup" class="mb-20">
+<div class="bg-white border border-gray-200 rounded-[2.5rem] p-8 md:p-12">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">06 — Cleanup Framework</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] tracking-tight mb-7">
+A Practical 6-Step Odoo A/R Cleanup
+</h2>
+
+<div class="grid md:grid-cols-2 gap-5">
+
+<div class="border border-gray-200 rounded-2xl p-6">
+<span class="text-[#957C3D] font-black text-sm">01</span>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Export / Review Aging</h3>
+<p class="text-gray-600 mt-2">Start with the customer-level A/R aging and identify the oldest or largest balances.</p>
+</div>
+
+<div class="border border-gray-200 rounded-2xl p-6">
+<span class="text-[#957C3D] font-black text-sm">02</span>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Group the Exceptions</h3>
+<p class="text-gray-600 mt-2">Separate unpaid invoices, unapplied payments, credits, duplicates and historical issues.</p>
+</div>
+
+<div class="border border-gray-200 rounded-2xl p-6">
+<span class="text-[#957C3D] font-black text-sm">03</span>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Trace the Source</h3>
+<p class="text-gray-600 mt-2">Follow each material balance back to invoices, payments, credit notes and journal entries.</p>
+</div>
+
+<div class="border border-gray-200 rounded-2xl p-6">
+<span class="text-[#957C3D] font-black text-sm">04</span>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Correct the Transaction</h3>
+<p class="text-gray-600 mt-2">Where possible, fix the underlying accounting transaction rather than posting a generic plug.</p>
+</div>
+
+<div class="border border-gray-200 rounded-2xl p-6">
+<span class="text-[#957C3D] font-black text-sm">05</span>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Document Decisions</h3>
+<p class="text-gray-600 mt-2">Keep support for material write-offs, disputes, adjustments or other management decisions.</p>
+</div>
+
+<div class="border border-gray-200 rounded-2xl p-6">
+<span class="text-[#957C3D] font-black text-sm">06</span>
+<h3 class="text-xl font-bold text-[#002349] mt-2">Recheck the Aging</h3>
+<p class="text-gray-600 mt-2">Run the report again and verify that the corrected balances now tell the expected story.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" class="mb-20">
+<div class="grid lg:grid-cols-2 gap-8">
+
+<div class="bg-[#F0F3F6] rounded-[2.5rem] p-8 md:p-10">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">07 — Prevention</p>
+<h2 class="text-4xl font-black text-[#002349] mb-6">
+Stop Doing A/R Cleanup Once a Year
+</h2>
+<p class="text-lg text-gray-600 leading-relaxed">
+The easiest A/R cleanup is the one you never need to perform. Review exceptions throughout the month so problems do not accumulate until year-end.
+</p>
+</div>
+
+<div class="bg-white border border-gray-200 rounded-[2.5rem] p-8 md:p-10">
+<h3 class="text-2xl font-black text-[#002349] mb-6">Simple recurring rhythm</h3>
+<div class="space-y-5">
+<div class="flex gap-4"><div class="w-9 h-9 rounded-full bg-[#002349] text-white flex items-center justify-center text-sm font-bold">1</div><div><strong>Weekly</strong><p class="text-gray-600 text-sm mt-1">Review significant new overdue invoices and unmatched payments.</p></div></div>
+<div class="flex gap-4"><div class="w-9 h-9 rounded-full bg-[#002349] text-white flex items-center justify-center text-sm font-bold">2</div><div><strong>Monthly</strong><p class="text-gray-600 text-sm mt-1">Review the full A/R aging and investigate old balances.</p></div></div>
+<div class="flex gap-4"><div class="w-9 h-9 rounded-full bg-[#002349] text-white flex items-center justify-center text-sm font-bold">3</div><div><strong>Close</strong><p class="text-gray-600 text-sm mt-1">Confirm A/R balances before finalizing monthly reports.</p></div></div>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- CHECKLIST -->
+<section id="checklist" class="mb-20">
+<div class="bg-[#002349] rounded-[2.5rem] p-8 md:p-12 text-white">
+<p class="text-xs uppercase tracking-[0.25em] text-[#D8C18A] font-black mb-3">08 — Quick Checklist</p>
+<h2 class="text-4xl md:text-5xl font-black mb-8">
+Odoo A/R Month-End Checklist
+</h2>
+
+<div class="grid md:grid-cols-2 gap-x-12 gap-y-4">
+
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Review customer A/R aging.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Investigate overdue invoices.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Review unmatched customer payments.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Investigate customer credit balances.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Look for duplicate invoices or transactions.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Review material disputed balances.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Trace unusual historical balances.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Correct source transactions where appropriate.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Document material accounting decisions.</span></div>
+<div class="flex gap-3"><span class="text-[#D8C18A] font-black">✓</span><span class="text-white/75">Re-run A/R aging after cleanup.</span></div>
+
+</div>
+</div>
+</section>
+
+<!-- TAKEAWAY -->
+<section class="mb-20">
+<div class="bg-[#957C3D] text-[#002349] rounded-[2.5rem] p-9 md:p-12">
+<p class="text-xs uppercase tracking-[0.25em] font-black mb-4">The Bottom Line</p>
+<h2 class="text-3xl md:text-5xl font-black mb-5">
+A/R Is Not Just an Accounting Report. It Is a Cash-Flow Tool.
+</h2>
+<p class="text-lg leading-relaxed max-w-4xl">
+When your Odoo A/R is accurate, management can see which invoices are truly outstanding, which customers need follow-up, and where accounting cleanup is required. The goal is not a perfect-looking aging report. The goal is a receivables balance that can be explained.
+</p>
+</div>
+</section>
+
+<!-- SUPPORT -->
+<section id="support" class="mb-20">
+<div class="bg-white border border-gray-200 rounded-[2.5rem] p-9 md:p-12">
+<div class="grid lg:grid-cols-[1fr_auto] gap-10 items-center">
+
+<div>
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">Odoo Accounting Support</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] mb-5">
+Need Help Cleaning Up Odoo A/R?
+</h2>
+
+<p class="text-lg text-gray-600 leading-relaxed max-w-3xl">
+Accountrise provides remote Odoo accounting support for US businesses that need help with accounts receivable cleanup, customer payment reconciliation, overdue invoice review, bank reconciliation, bookkeeping, month-end close and financial reporting.
+</p>
+
+<div class="flex flex-wrap gap-2 mt-7">
+<span class="px-4 py-2 bg-[#F6F7F9] rounded-full text-sm font-semibold text-[#002349]">Odoo A/R</span>
+<span class="px-4 py-2 bg-[#F6F7F9] rounded-full text-sm font-semibold text-[#002349]">Payment Reconciliation</span>
+<span class="px-4 py-2 bg-[#F6F7F9] rounded-full text-sm font-semibold text-[#002349]">Accounting Cleanup</span>
+<span class="px-4 py-2 bg-[#F6F7F9] rounded-full text-sm font-semibold text-[#002349]">Month-End Close</span>
+</div>
+</div>
+
+<div class="text-center lg:text-right">
+<p class="text-sm text-gray-500">Starting at</p>
+<p class="text-5xl font-black text-[#002349]">$12</p>
+<p class="text-sm text-gray-500">/hour</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="mb-20">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">09 — FAQs</p>
+<h2 class="text-4xl md:text-5xl font-black text-[#002349] mb-9">
+Odoo Accounts Receivable FAQs
+</h2>
+
+<div class="space-y-4">
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">How do I manage accounts receivable in Odoo?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">Use Odoo invoices, customer payments, reconciliation and aging information together. Review overdue invoices, unmatched payments, customer credits and unusual balances regularly rather than waiting until month-end.</p>
+</details>
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">Why is an Odoo customer invoice still showing as unpaid?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">The invoice may genuinely be unpaid, or the customer payment may not have been matched correctly. Review the payment, invoice, reconciliation status and related accounting entries before changing the balance.</p>
+</details>
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">How can I clean up old A/R balances in Odoo?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">Start with the A/R aging, group old balances by customer and investigate the underlying invoices, credits, payments and adjustments. Correct source transactions where possible and document legitimate write-offs or adjustments according to the business's accounting policies.</p>
+</details>
+
+<details class="bg-white border border-gray-200 rounded-2xl p-6">
+<summary class="font-bold text-[#002349] cursor-pointer text-lg">Can Accountrise help with Odoo accounts receivable?</summary>
+<p class="text-gray-600 mt-4 leading-relaxed">Yes. Accountrise provides remote Odoo accounting support including A/R cleanup, invoice and payment reconciliation, aging review, bookkeeping, month-end close and financial reporting.</p>
+</details>
+
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="text-center border-t border-gray-200 pt-14">
+<p class="text-xs uppercase tracking-[0.25em] text-[#957C3D] font-black mb-3">Let's Fix Your A/R</p>
+<h2 class="text-4xl md:text-6xl font-black text-[#002349] tracking-tight mb-5">
+Know What Your Customers Really Owe.
+</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto mb-9">
+If your Odoo A/R contains old invoices, unmatched payments or unexplained customer balances, let's identify the problem and build a cleaner process.
+</p>
+
+<div class="flex flex-col sm:flex-row justify-center gap-4">
+
+<a href="https://calendly.com/deshrajgocher2012/30min"
+target="_blank"
+class="bg-[#002349] text-white px-9 py-4 rounded-2xl font-bold hover:bg-[#00172f] transition">
+Book Free Consultation
+</a>
+
+<a href="mailto:info@accountrise.com"
+class="border-2 border-[#002349] text-[#002349] px-9 py-4 rounded-2xl font-bold hover:bg-[#002349] hover:text-white transition">
+Email Us
+</a>
+
+</div>
+
+<p class="mt-6 text-sm text-gray-500">Remote Odoo accounting support • Starting at $12/hour</p>
+</section>
+
+</article>
+</div>
+</main>
+
+<!-- RELATED ARTICLES -->
+<section class="bg-white border-t border-gray-200 py-20 px-6">
+<div class="max-w-7xl mx-auto">
+
+<h2 class="text-3xl md:text-4xl font-black text-[#002349] mb-10">
+Continue With Odoo Accounting Guides
+</h2>
+
+<div class="grid md:grid-cols-3 gap-7">
+
+<a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+<p class="text-sm font-bold text-[#957C3D] mb-3">Month-End Close</p>
+<h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">The Odoo Month-End Close Checklist for US Businesses</h3>
+<p class="text-gray-600">A practical workflow for reconciling accounts and preparing reliable monthly reports.</p>
+</a>
+
+<a href="/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+<p class="text-sm font-bold text-[#957C3D] mb-3">Bank Reconciliation</p>
+<h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">Odoo Bank Reconciliation: How to Fix Unreconciled Transactions</h3>
+<p class="text-gray-600">Find missing transactions, duplicates, unmatched payments and reconciliation differences.</p>
+</a>
+
+<a href="/blog/odoo-accounting-cleanup-messy-books.html" class="group border border-gray-200 rounded-3xl p-8 hover:shadow-xl transition">
+<p class="text-sm font-bold text-[#957C3D] mb-3">Odoo Cleanup</p>
+<h3 class="text-2xl font-bold text-[#002349] mb-4 group-hover:text-[#957C3D] transition">Odoo Accounting Cleanup: How to Fix Messy Books</h3>
+<p class="text-gray-600">A practical framework for cleaning old balances and unreliable Odoo books.</p>
+</a>
+
+</div>
+</div>
+</section>
+
+<footer class="bg-[#00172f] text-white py-10 text-center">
+<p>© 2026 Accountrise. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
