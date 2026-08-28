@@ -147,6 +147,20 @@
     .links a{text-decoration:none;position:relative;padding:28px 0}
     .links a:after{content:"";position:absolute;left:50%;right:50%;bottom:19px;height:2px;background:var(--gold2);transition:.3s;border-radius:99px}
     .links a:hover:after,.links a.active:after{left:0;right:0}
+    /* Explicit brand lockup: the Accountrise name is text, so it cannot disappear if the logo asset changes. */
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:230px;height:58px;overflow:visible}
+    .logo-mark{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px}
+    .logo-mark img{width:42px;height:42px;object-fit:contain;display:block;filter:none!important;opacity:1!important}
+    .logo-copy{display:flex;flex-direction:column;justify-content:center;line-height:1}
+    .logo-copy strong{font-size:22px;letter-spacing:-.035em;color:#fff;font-weight:950}
+    .logo-copy small{font-size:7px;letter-spacing:.20em;color:#91a4b8;font-weight:800;margin-top:6px;white-space:nowrap}
+    .footer-logo{display:inline-flex!important;align-items:center!important;gap:12px!important;min-height:58px!important;padding:3px 10px!important;border-radius:15px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);text-decoration:none}
+    .footer-mark{width:42px;height:42px;display:grid;place-items:center;flex:0 0 42px}
+    .footer-mark img{width:42px;height:42px;object-fit:contain;display:block;filter:none!important;opacity:1!important}
+    .footer-copy{display:flex;flex-direction:column;justify-content:center;line-height:1}
+    .footer-copy strong{font-size:21px;letter-spacing:-.035em;color:#fff;font-weight:950}
+    .footer-copy small{font-size:7px;letter-spacing:.20em;color:#7f94a8;font-weight:800;margin-top:6px;white-space:nowrap}
+
     .nav-cta{
       display:inline-flex!important;align-items:center;gap:7px;padding:12px 18px!important;
       background:var(--gold2);color:var(--navy)!important;border-radius:999px;font-weight:900!important;
@@ -356,17 +370,20 @@
       *,*:before,*:after{animation:none!important;transition:none!important}
       .reveal{opacity:1!important;transform:none!important}
     }
-  </style>
+  
+/* Final brand visibility safeguard */
+.logo-copy strong,.footer-copy strong{display:block!important;visibility:visible!important;opacity:1!important;color:#fff!important}
+.logo-copy,.footer-copy{display:flex!important;visibility:visible!important;opacity:1!important}
+.logo-mark img,.footer-mark img{display:block!important;visibility:visible!important;opacity:1!important}
+</style>
 </head>
 
 <body>
   <header class="nav">
-    <div class="navin">
-      <a href="/" class="logo" aria-label="Accountrise home">
-        <img src="/accountrise.png" alt="Accountrise logo" class="brand-logo">
-        <span>
-          <span class="logot">Accountrise</span>
-        </span>
+    <div class="container nav-inner">
+      <a class="logo" href="/" aria-label="Accountrise home">
+        <span class="logo-mark"><img src="/accountrise.png" alt="" width="42" height="42"></span>
+        <span class="logo-copy"><strong>Accountrise</strong><small>ACCOUNTING • SIMPLIFIED</small></span>
       </a>
 
       <nav class="links" id="mainNav" aria-label="Main navigation">
@@ -666,11 +683,10 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <a href="/" class="logo" aria-label="Accountrise home">
-          <img src="/accountrise.png" alt="Accountrise logo" class="brand-logo">
-          <span>
-            <span class="logot">Accountrise</span>
-          </span>          </a>
+          <a class="footer-logo" href="/" aria-label="Accountrise home">
+            <span class="footer-mark"><img src="/accountrise.png" alt="" width="42" height="42"></span>
+            <span class="footer-copy"><strong>Accountrise</strong><small>ACCOUNTING • SIMPLIFIED</small></span>
+          </a>
           <p>Remote accounting and bookkeeping support for US businesses and accounting firms.</p>
         </div>
         <div>
