@@ -1,533 +1,538 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Accountrise | Remote Bookkeeping & Accounting Partner</title>
+  <meta name="description" content="Meet Accountrise, a modern remote bookkeeping and accounting partner helping US businesses and CPA firms with QuickBooks, Odoo, reconciliations, reporting, payroll support and scalable accounting operations.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://www.accountrise.com/about/">
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta property="og:title" content="About Accountrise | Remote Bookkeeping & Accounting Partner">
+  <meta property="og:description" content="Meet Accountrise and learn how our remote accounting support helps businesses and CPA firms keep books organized, reporting ready and workflows scalable.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.accountrise.com/about/">
+  <meta property="og:image" content="https://www.accountrise.com/accountrise.png">
 
-  <title>
-    About Accountrise | Remote Accounting & Bookkeeping Partner
-  </title>
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="About Accountrise | Remote Accounting Partner">
+  <meta name="twitter:description" content="Remote bookkeeping and accounting support for businesses and CPA firms.">
+  <meta name="twitter:image" content="https://www.accountrise.com/accountrise.png">
 
-  <meta name="description"
-        content="Learn about Accountrise, a modern remote accounting and bookkeeping company helping businesses and CPA firms with outsourced bookkeeping, QuickBooks, Odoo accounting, payroll, reporting, and scalable financial operations support." />
-
-  <meta name="keywords"
-        content="About Accountrise, outsourced bookkeeping company, remote accounting firm, QuickBooks bookkeeping, Odoo accounting services, CPA outsourcing support, ecommerce bookkeeping, virtual accounting partner" />
-
-  <link rel="canonical"
-        href="https://www.accountrise.com/about/" />
-
-  <!-- Open Graph -->
-  <meta property="og:title"
-        content="About Accountrise | Remote Accounting Partner" />
-
-  <meta property="og:description"
-        content="Accountrise helps businesses and CPA firms simplify bookkeeping, accounting, payroll, QuickBooks, Odoo accounting, and outsourced finance operations." />
-
-  <meta property="og:type"
-        content="website" />
-
-  <meta property="og:url"
-        content="https://www.accountrise.com/about/" />
-
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
-
-  <!-- Font -->
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-
-    body{
-      font-family:'Inter',sans-serif;
+    :root{--navy:#002349;--navy2:#00152d;--gold:#957C3D;--gold2:#b89a4e;--soft:#F5F7FA}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:88px}
+    body{font-family:'Inter',sans-serif;background:var(--soft);color:#111827;overflow-x:hidden}
+    .grid-bg{
+      background-image:linear-gradient(rgba(0,35,73,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,35,73,.045) 1px,transparent 1px);
+      background-size:48px 48px;
+      mask-image:linear-gradient(to bottom,black,transparent 90%);
+      -webkit-mask-image:linear-gradient(to bottom,black,transparent 90%);
     }
-
-    html{
-      scroll-behavior:smooth;
+    .progress{position:fixed;top:0;left:0;height:2px;width:0;z-index:110;background:var(--gold);box-shadow:0 0 14px rgba(149,124,61,.75)}
+    .nav-link{position:relative;padding:.4rem 0;color:rgba(255,255,255,.72);transition:color .25s ease}
+    .nav-link::after{content:"";position:absolute;left:50%;bottom:-5px;width:0;height:2px;border-radius:99px;background:var(--gold);transform:translateX(-50%);transition:width .3s cubic-bezier(.22,1,.36,1)}
+    .nav-link:hover,.nav-link.active{color:#fff}
+    .nav-link:hover::after,.nav-link.active::after{width:100%}
+    .mobile-menu{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s ease,opacity .25s ease}
+    .mobile-menu.open{max-height:520px;opacity:1}
+    .glass{background:rgba(255,255,255,.78);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(0,35,73,.12)}
+    .glass-dark{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11)}
+    .bento-card{position:relative;overflow:hidden;border:1px solid rgba(0,35,73,.10);transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease,border-color .35s ease}
+    .bento-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,50%),rgba(149,124,61,.12),transparent 34%);opacity:0;transition:opacity .35s ease;pointer-events:none}
+    .bento-card:hover{transform:translateY(-7px) scale(1.02);box-shadow:0 24px 55px rgba(0,35,73,.12);border-color:var(--gold)}
+    .bento-card:hover::before{opacity:1}
+    .shine{position:absolute;inset:0;pointer-events:none;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.12) 50%,transparent 70%);transform:translateX(-120%);transition:transform .8s ease}
+    .bento-card:hover .shine{transform:translateX(120%)}
+    .hero-ring{box-shadow:0 30px 90px rgba(0,35,73,.12);border:1px solid rgba(0,35,73,.10)}
+    .float{animation:float 5.5s ease-in-out infinite}.float-delay{animation-delay:-1.8s}.float-delay-2{animation-delay:-3.2s}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .pump-cta{animation:pump 2.8s ease-in-out infinite}
+    @keyframes pump{0%,100%{box-shadow:0 0 0 0 rgba(149,124,61,.22)}50%{box-shadow:0 0 0 9px rgba(149,124,61,0)}}
+    .stat-line{height:1px;background:linear-gradient(90deg,rgba(149,124,61,.7),transparent)}
+    .timeline-line{background:linear-gradient(180deg,var(--gold),rgba(149,124,61,.08))}
+    .value-icon{width:48px;height:48px;border-radius:15px;background:rgba(149,124,61,.11);color:var(--gold);display:flex;align-items:center;justify-content:center}
+    .action-dot{transition:transform .25s ease,background .25s ease}.action-dot:hover{transform:scale(1.35);background:var(--gold)}
+    @media(max-width:767px){.bento-card:hover{transform:translateY(-4px) scale(1.01)}}
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}
     }
-
   </style>
 
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@graph":[
+      {
+        "@type":"AboutPage",
+        "@id":"https://www.accountrise.com/about/#webpage",
+        "url":"https://www.accountrise.com/about/",
+        "name":"About Accountrise",
+        "description":"About Accountrise, a remote bookkeeping and accounting partner for businesses and CPA firms.",
+        "isPartOf":{"@id":"https://www.accountrise.com/#website"},
+        "about":{"@id":"https://www.accountrise.com/#organization"}
+      },
+      {
+        "@type":"Organization",
+        "@id":"https://www.accountrise.com/#organization",
+        "name":"Accountrise",
+        "url":"https://www.accountrise.com/",
+        "logo":"https://www.accountrise.com/accountrise.png",
+        "email":"info@accountrise.com",
+        "sameAs":[
+          "https://www.linkedin.com/company/accountrise",
+          "https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf"
+        ]
+      },
+      {
+        "@type":"WebSite",
+        "@id":"https://www.accountrise.com/#website",
+        "url":"https://www.accountrise.com/",
+        "name":"Accountrise",
+        "publisher":{"@id":"https://www.accountrise.com/#organization"}
+      }
+    ]
+  }
+  </script>
 </head>
 
-<body class="bg-white text-gray-900 overflow-x-hidden">
-
-<!-- NAVBAR -->
-<header class="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-lg border-b border-gray-200">
-
-  <div class="max-w-7xl mx-auto px-6">
-
-    <div class="flex items-center justify-between h-20">
-
-      <!-- Logo -->
-      <a href="/"
-         class="flex items-center gap-3">
-
-        <img src="/accountrise.png"
-             alt="Accountrise Logo"
-             class="h-12 w-auto">
-        <div>
-
-        <p class="text-2xl font-extrabold tracking-tight leading-none">
-          Accountrise
-        </p>
-
-        <p class="text-[10px] uppercase tracking-[0.22em] text-white/50 mt-1">
-          Remote Accounting Partner
-        </p>
-
-      </div>
-
-    </a>
-      </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden lg:flex items-center gap-10">
-
-        <a href="/"
-           class="text-gray-700 hover:text-[#957C3D] font-medium transition">
-          Home
-        </a>
-
-        <a href="/about/"
-           class="text-[#002349] font-semibold">
-          About
-        </a>
-
-        <a href="/services/"
-           class="text-gray-700 hover:text-[#957C3D] font-medium transition">
-          Services
-        </a>
-
-        <a href="/blog/"
-           class="text-gray-700 hover:text-[#957C3D] font-medium transition">
-          Blog
-        </a>
-
-      </nav>
-
-      <!-- CTA -->
-      <div class="hidden lg:flex items-center gap-4">
-
-        <a href="https://calendly.com/deshrajgocher2012/30min"
-           target="_blank"
-           class="bg-[#002349] text-white px-6 py-3 rounded-xl font-semibold hover:bg-[#00152d] transition">
-
-          Schedule Call
-
-        </a>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</header>
-
-<div class="h-20"></div>
-
-<!-- ===== MODERN ABOUT HERO SECTION ===== -->
-
-<section style="
-width:100%;
-min-height:500px;
-background:#f7f8fb;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:120px 20px 100px;
-overflow:hidden;
-">
-
-    <div style="
-    max-width:1200px;
-    margin:auto;
-    ">
-
-        <h1 style="
-        font-size:70px;
-        line-height:1.1;
-        font-weight:800;
-        color:#163560;
-        letter-spacing:-2px;
-        margin-bottom:30px;
-        font-family:Arial,sans-serif;
-        ">
-
-            We Empower Businesses & CPA Firms with Smarter Financial Operations
-
-            <span style="
-            display:block;
-            color:#163560;
-            ">
-            </span>
-
-        </h1>
-
-        <p style="
-        font-size:24px;
-        line-height:1.7;
-        color:#5d6b82;
-        max-width:850px;
-        margin:auto;
-        font-weight:400;
-        font-family:Arial,sans-serif;
-        ">
-
-            Modern remote bookkeeping, accounting, reporting, and CPA support
-            solutions designed for growing businesses worldwide.
-
-        </p>
-
-    </div>
-
-</section>
-  
-  <!-- WHO WE ARE -->
-<section class="py-28 px-6 bg-[#002349] overflow-hidden relative">
-
-  <div class="absolute left-0 top-0 w-80 h-80 bg-white/5 rounded-full blur-3xl"></div>
-
-  <div class="max-w-7xl mx-auto relative z-10">
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-
-      <!-- Left -->
-      <div data-aos="fade-right">
-
-        <h2 class="text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-
-          Who We Are
-
-        </h2>
-
-      </div>
-
-      <!-- Right -->
-      <div data-aos="fade-left">
-
-        <h3 class="text-3xl font-bold text-white mb-8">
-
-          10+ Years of Expertise in Accounting & Bookkeeping
-
-        </h3>
-
-        <p class="text-white/80 text-lg leading-relaxed mb-6">
-
-          Accountrise is a Global Accounting firm based in India. We provides outsourced bookkeeping and accounting solutions
-          for businesses and CPA firms looking for reliable,
-          affordable, and scalable financial operations support.
-
-        </p>
-
-        <p class="text-white/80 text-lg leading-relaxed mb-6">
-
-          Our team acts as remote accounting experts, offering real-time bookkeeping services to help businesses track and improve performance. With deep knowledge of US Accounting Standrads, IFRS, US taxation, and audit regulations, we ensure accuracy and compliance at every step.
-
-
-        </p>
-
-        <p class="text-white/80 text-lg leading-relaxed">
-
-          We are proficient in leading software including QuickBooks (Online & Desktop),Odoo, Xero, NetSuite, Zoho, MYOB, and Wave.
-
-
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- FOUNDER -->
-<section class="py-28 px-6 bg-white overflow-hidden">
-
-  <div class="max-w-7xl mx-auto">
-
-    <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-20 items-center">
-
-      <!-- Image -->
-      <div data-aos="fade-right">
-
-        <div class="relative">
-
-          <div class="absolute -top-6 right-0 w-40 h-40 bg-[#957C3D] rounded-[2rem]"></div>
-
-          <div class="relative bg-[#F7F9FC] rounded-[2.5rem] overflow-hidden shadow-2xl border border-gray-200">
-
-            <img src="/deshraj.png"
-                 alt="Deshraj Gocher CA Founder Accountrise"
-                 class="w-full object-cover">
-
+<body>
+  <div id="progress" class="progress" aria-hidden="true"></div>
+
+  <!-- STICKY NAV -->
+  <header id="site-header" class="fixed top-0 left-0 w-full z-[100] bg-[#002349]/95 backdrop-blur-xl border-b border-white/10 transition-all duration-300">
+    <nav aria-label="Primary navigation">
+      <div class="max-w-7xl mx-auto px-5 sm:px-6">
+        <div class="h-[76px] flex items-center justify-between gap-5">
+          <a href="/" class="logo-link flex items-center gap-3 group shrink-0" aria-label="Accountrise home">
+            <img src="/accountrise.png" alt="Accountrise logo" class="h-11 sm:h-12 w-auto rounded-xl">
+            <div class="hidden sm:block">
+              <div class="text-white text-xl font-extrabold tracking-tight leading-none">Accountrise</div>
+              <div class="text-white/45 text-[9px] uppercase tracking-[.24em] mt-1">Accounting • Simplified</div>
+            </div>
+          </a>
+
+          <div class="hidden lg:flex items-center gap-7 xl:gap-9 text-sm">
+            <a href="/" class="nav-link">Home</a>
+            <a href="/about/" class="nav-link active" aria-current="page">About</a>
+            <a href="/services/" class="nav-link">Services</a>
+            <a href="/blog/" class="nav-link">Insights</a>
+            <a href="/#testimonials" class="nav-link">Reviews</a>
+            <a href="/#faq" class="nav-link">FAQ</a>
+            <a href="/#contact" class="nav-link">Contact</a>
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer"
+               class="pump-cta bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-bold hover:bg-[#b89a4e] transition">
+              Book a Call
+            </a>
           </div>
 
+          <button id="menuBtn" type="button" class="lg:hidden w-11 h-11 rounded-xl border border-white/15 text-white flex items-center justify-center"
+                  aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+            <i class="fas fa-bars"></i>
+          </button>
         </div>
 
+        <div id="mobileMenu" class="mobile-menu lg:hidden">
+          <div class="pb-5 pt-1 grid gap-1 border-t border-white/10">
+            <a href="/" class="mobile-link text-white/75 px-3 py-3 rounded-xl hover:bg-white/10">Home</a>
+            <a href="/about/" class="mobile-link text-white px-3 py-3 rounded-xl bg-white/10">About</a>
+            <a href="/services/" class="mobile-link text-white/75 px-3 py-3 rounded-xl hover:bg-white/10">Services</a>
+            <a href="/blog/" class="mobile-link text-white/75 px-3 py-3 rounded-xl hover:bg-white/10">Insights</a>
+            <a href="/#testimonials" class="mobile-link text-white/75 px-3 py-3 rounded-xl hover:bg-white/10">Reviews</a>
+            <a href="/#faq" class="mobile-link text-white/75 px-3 py-3 rounded-xl hover:bg-white/10">FAQ</a>
+            <a href="/#contact" class="mobile-link text-white/75 px-3 py-3 rounded-xl hover:bg-white/10">Contact</a>
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer"
+               class="mobile-link mt-2 inline-flex items-center justify-center bg-[#957C3D] text-[#002349] px-5 py-3 rounded-xl font-bold">
+              Book a Free Call
+            </a>
+          </div>
+        </div>
       </div>
+    </nav>
+  </header>
 
-      <!-- Content -->
-      <div data-aos="fade-left">
+  <main id="main-content">
+    <!-- HERO -->
+    <section id="top" class="relative min-h-[78vh] lg:min-h-[82vh] flex items-center pt-28 pb-16 sm:pt-32 sm:pb-20 px-5 sm:px-6 bg-gradient-to-br from-[#F5F7FA] via-white to-slate-100 overflow-hidden">
+      <div class="absolute inset-0 grid-bg pointer-events-none"></div>
+      <div class="parallax-orb absolute -top-28 -right-20 w-[430px] h-[430px] rounded-full bg-[#957C3D]/10 blur-3xl pointer-events-none"></div>
+      <div class="parallax-orb absolute -bottom-40 -left-28 w-[400px] h-[400px] rounded-full bg-[#002349]/8 blur-3xl pointer-events-none"></div>
 
-        <p class="uppercase tracking-[0.3em] text-[#957C3D] text-sm font-semibold mb-4">
-          Founder & Leadership
-        </p>
+      <div class="max-w-7xl mx-auto w-full relative z-10">
+        <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-10 xl:gap-16 items-center">
+          <div data-aos="fade-up">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white border border-[#002349]/10 shadow-sm px-4 py-2 text-xs sm:text-sm font-bold text-[#002349] mb-7">
+              <span class="w-2 h-2 rounded-full bg-[#957C3D] animate-pulse"></span>
+              About Accountrise
+            </div>
+            <h1 class="text-[2.8rem] sm:text-6xl lg:text-[4.7rem] font-black tracking-[-.055em] leading-[.98] text-[#002349]">
+              Accounting support
+              <span class="text-[#957C3D]">built around your business.</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-600 leading-relaxed mt-7 max-w-2xl">
+              Accountrise provides remote bookkeeping and accounting support for businesses and CPA firms that want cleaner workflows, dependable reporting and flexible capacity.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 mt-8">
+              <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer"
+                 class="pump-cta inline-flex items-center justify-center gap-2 bg-[#002349] text-white px-7 py-4 rounded-2xl font-bold hover:bg-[#00152d] transition">
+                Meet With Us <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+              </a>
+              <a href="#story" class="inline-flex items-center justify-center gap-2 bg-white border border-[#002349]/15 text-[#002349] px-7 py-4 rounded-2xl font-bold hover:border-[#957C3D] transition">
+                Our Story <i class="fas fa-arrow-down text-xs"></i>
+              </a>
+            </div>
+            <div class="grid grid-cols-3 gap-3 max-w-xl mt-8">
+              <div><div class="text-2xl sm:text-3xl font-black text-[#002349]">10+</div><div class="text-xs text-gray-500 mt-1">Years of expertise</div></div>
+              <div><div class="text-2xl sm:text-3xl font-black text-[#002349]">Cloud</div><div class="text-xs text-gray-500 mt-1">Accounting workflows</div></div>
+              <div><div class="text-2xl sm:text-3xl font-black text-[#002349]">US</div><div class="text-xs text-gray-500 mt-1">Business focused</div></div>
+            </div>
+          </div>
 
-        <h2 class="text-5xl font-extrabold text-[#002349] mb-4">
-          Deshraj Gocher, CA
-        </h2>
+          <div class="relative" data-aos="fade-left">
+            <div class="hero-ring rounded-[2rem] sm:rounded-[2.7rem] bg-white/75 p-3 sm:p-5">
+              <div class="bg-[#002349] rounded-[1.7rem] sm:rounded-[2.2rem] p-5 sm:p-7 text-white relative overflow-hidden">
+                <div class="absolute -right-24 -top-24 w-80 h-80 rounded-full border border-white/10"></div>
+                <div class="absolute -right-12 -top-12 w-52 h-52 rounded-full border border-[#957C3D]/25"></div>
+                <div class="relative z-10">
+                  <div class="flex items-center justify-between gap-4">
+                    <div>
+                      <div class="text-white/40 text-[10px] uppercase tracking-[.2em]">How we think</div>
+                      <h2 class="text-2xl sm:text-3xl font-black mt-2">People + process + technology.</h2>
+                    </div>
+                    <div class="w-12 h-12 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center shrink-0">
+                      <i class="fas fa-layer-group"></i>
+                    </div>
+                  </div>
 
-        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+                  <div class="grid gap-3 mt-7">
+                    <div class="glass-dark rounded-2xl p-4 flex items-center gap-4 float">
+                      <div class="w-10 h-10 rounded-xl bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center"><i class="fas fa-book-open"></i></div>
+                      <div><div class="font-bold">Organized books</div><div class="text-white/45 text-xs mt-1">Transactions, reconciliations & close</div></div>
+                    </div>
+                    <div class="glass-dark rounded-2xl p-4 flex items-center gap-4 float float-delay">
+                      <div class="w-10 h-10 rounded-xl bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center"><i class="fas fa-microchip"></i></div>
+                      <div><div class="font-bold">Modern systems</div><div class="text-white/45 text-xs mt-1">QuickBooks, Odoo & cloud workflows</div></div>
+                    </div>
+                    <div class="glass-dark rounded-2xl p-4 flex items-center gap-4 float float-delay-2">
+                      <div class="w-10 h-10 rounded-xl bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center"><i class="fas fa-chart-line"></i></div>
+                      <div><div class="font-bold">Useful reporting</div><div class="text-white/45 text-xs mt-1">Numbers ready for decisions</div></div>
+                    </div>
+                  </div>
 
-          Deshraj Gocher leads Accountrise with a process-driven, technology-focused, and business-oriented approach to remote accounting and outsourced finance support.
-        </p>
+                  <div class="mt-6 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-3">
+                    <span class="text-xs text-white/45">Remote accounting partner</span>
+                    <span class="text-xs font-bold text-[#957C3D]">Built to plug into your workflow →</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="absolute -bottom-5 -left-3 sm:-left-8 glass rounded-2xl px-4 py-3 shadow-xl float float-delay">
+              <div class="text-[10px] uppercase tracking-[.16em] text-gray-400">Support model</div>
+              <div class="font-bold text-[#002349] mt-1">Flexible • Remote • Scalable</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <p class="text-lg text-gray-600 leading-relaxed mb-6">
+    <!-- WHO WE ARE -->
+    <section id="story" class="py-24 lg:py-32 px-5 sm:px-6 bg-[#002349] text-white relative overflow-hidden">
+      <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
+      <div class="absolute -right-32 -top-40 w-[500px] h-[500px] rounded-full border border-[#957C3D]/15"></div>
+      <div class="absolute -left-32 bottom-0 w-[400px] h-[400px] rounded-full bg-white/5 blur-3xl"></div>
 
-          As a Chartered Accountant, Desh specializes in outsourced bookkeeping, QuickBooks accounting, Odoo accounting, payroll support, financial reporting, and CPA outsourcing services for businesses and accounting firms worldwide.
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="grid lg:grid-cols-[.72fr_1.28fr] gap-12 lg:gap-20 items-start">
+          <div data-aos="fade-right">
+            <p class="text-[#957C3D] text-xs uppercase tracking-[.22em] font-bold">Who we are</p>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] leading-[1.02] mt-4">A remote accounting partner, not just a task provider.</h2>
+            <p class="text-white/55 text-lg leading-relaxed mt-6">We help businesses and CPA firms keep financial operations moving with practical accounting support that can scale with the workload.</p>
+          </div>
 
-        </p>
+          <div class="grid sm:grid-cols-2 gap-4" data-aos="fade-left">
+            <article class="bento-card glass-dark rounded-[1.6rem] p-6 sm:p-7">
+              <span class="shine"></span>
+              <div class="value-icon"><i class="fas fa-handshake"></i></div>
+              <h3 class="text-xl font-extrabold mt-6">Reliable partnership</h3>
+              <p class="text-white/55 leading-relaxed mt-3">We focus on dependable follow-through, clear communication and accounting work that fits the client's existing process.</p>
+            </article>
+            <article class="bento-card glass-dark rounded-[1.6rem] p-6 sm:p-7">
+              <span class="shine"></span>
+              <div class="value-icon"><i class="fas fa-gears"></i></div>
+              <h3 class="text-xl font-extrabold mt-6">Process-driven</h3>
+              <p class="text-white/55 leading-relaxed mt-3">Recurring bookkeeping, reconciliations, close and reporting work is organized around repeatable workflows.</p>
+            </article>
+            <article class="bento-card glass-dark rounded-[1.6rem] p-6 sm:p-7">
+              <span class="shine"></span>
+              <div class="value-icon"><i class="fas fa-laptop-code"></i></div>
+              <h3 class="text-xl font-extrabold mt-6">Technology-focused</h3>
+              <p class="text-white/55 leading-relaxed mt-3">We work across modern accounting platforms including QuickBooks, Odoo, Xero, NetSuite, Zoho, MYOB and Wave.</p>
+            </article>
+            <article class="bento-card glass-dark rounded-[1.6rem] p-6 sm:p-7">
+              <span class="shine"></span>
+              <div class="value-icon"><i class="fas fa-expand"></i></div>
+              <h3 class="text-xl font-extrabold mt-6">Flexible capacity</h3>
+              <p class="text-white/55 leading-relaxed mt-3">Use remote accounting support for the work you need today and expand the scope as the business grows.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <p class="text-lg text-gray-600 leading-relaxed mb-10">
-
-          With nearly one decades of combined experience in accounting, finance operations, outsourcing, and advisory support, he has worked with startups, small businesses, and CPA firms across the US, UK, Canada, Australia, UAE, and the Middle East.
-
-        </p>
-
-        <div class="flex flex-wrap gap-5">
-
-          <a href="https://www.linkedin.com/in/deshraj-gocher-ca-1000b8105/"
-             target="_blank"
-             class="inline-flex items-center gap-3 bg-[#002349] text-white px-7 py-4 rounded-2xl font-semibold hover:bg-[#00152d] transition">
-
-            View LinkedIn
-            <i class="fab fa-linkedin"></i>
-
-          </a>
-
-          <a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf"
-             target="_blank"
-             class="inline-flex items-center gap-3 border border-[#002349] text-[#002349] px-7 py-4 rounded-2xl font-semibold hover:bg-[#002349] hover:text-white transition">
-
-            Upwork Profile
-
-          </a>
-
+    <!-- OPERATING MODEL -->
+    <section class="py-24 lg:py-32 px-5 sm:px-6 bg-white relative overflow-hidden">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-3xl mx-auto" data-aos="fade-up">
+          <p class="text-[#957C3D] text-xs uppercase tracking-[.22em] font-bold">What matters to us</p>
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] text-[#002349] mt-4">Simple accounting should still be serious accounting.</h2>
+          <p class="text-lg text-gray-600 leading-relaxed mt-5">Our approach combines accounting discipline with modern remote workflows, so clients get support that is practical, transparent and easy to work with.</p>
         </div>
 
+        <div class="grid md:grid-cols-3 gap-4 sm:gap-5 mt-12">
+          <article class="bento-card rounded-[1.8rem] bg-[#F7F9FC] p-7 sm:p-8" data-aos="fade-up">
+            <span class="shine"></span>
+            <div class="flex items-center justify-between"><div class="value-icon"><i class="fas fa-check-double"></i></div><span class="text-5xl font-black text-[#002349]/5">01</span></div>
+            <h3 class="text-2xl font-extrabold text-[#002349] mt-8">Accuracy first</h3>
+            <p class="text-gray-600 leading-relaxed mt-3">Reconciliations, organized ledgers and review-ready financial information form the foundation of the work.</p>
+          </article>
+          <article class="bento-card rounded-[1.8rem] bg-[#F7F9FC] p-7 sm:p-8" data-aos="fade-up" data-aos-delay="100">
+            <span class="shine"></span>
+            <div class="flex items-center justify-between"><div class="value-icon"><i class="fas fa-comments"></i></div><span class="text-5xl font-black text-[#002349]/5">02</span></div>
+            <h3 class="text-2xl font-extrabold text-[#002349] mt-8">Clear communication</h3>
+            <p class="text-gray-600 leading-relaxed mt-3">Good accounting is easier to trust when responsibilities, questions and deliverables are easy to understand.</p>
+          </article>
+          <article class="bento-card rounded-[1.8rem] bg-[#F7F9FC] p-7 sm:p-8" data-aos="fade-up" data-aos-delay="200">
+            <span class="shine"></span>
+            <div class="flex items-center justify-between"><div class="value-icon"><i class="fas fa-rocket"></i></div><span class="text-5xl font-black text-[#002349]/5">03</span></div>
+            <h3 class="text-2xl font-extrabold text-[#002349] mt-8">Useful output</h3>
+            <p class="text-gray-600 leading-relaxed mt-3">The goal is not just completed tasks — it is organized financial information that supports owners, operators and CPAs.</p>
+          </article>
+        </div>
       </div>
+    </section>
 
-    </div>
+    <!-- FOUNDER -->
+    <section id="founder" class="py-24 lg:py-32 px-5 sm:px-6 bg-[#F7F9FC] overflow-hidden">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-12 lg:gap-20 items-center">
+          <div data-aos="fade-right">
+            <div class="relative max-w-lg mx-auto lg:mx-0">
+              <div class="absolute -top-5 -right-3 sm:-right-5 w-28 h-28 sm:w-36 sm:h-36 bg-[#957C3D] rounded-[2rem] opacity-90"></div>
+              <div class="absolute -bottom-5 -left-4 w-32 h-32 rounded-full border border-[#002349]/10"></div>
+              <div class="relative rounded-[2rem] overflow-hidden border border-[#002349]/10 bg-white shadow-2xl">
+                <img src="/deshraj.png" alt="Deshraj Gocher, CA and founder of Accountrise" class="w-full aspect-[4/5] object-cover" loading="lazy">
+              </div>
+              <div class="absolute -bottom-4 right-3 sm:right-6 glass rounded-2xl px-4 py-3 shadow-xl">
+                <div class="text-[10px] uppercase tracking-[.16em] text-gray-400">Leadership</div>
+                <div class="font-bold text-[#002349] mt-1">CA • Founder • Accountrise</div>
+              </div>
+            </div>
+          </div>
 
-  </div>
+          <div data-aos="fade-left">
+            <p class="text-[#957C3D] text-xs uppercase tracking-[.24em] font-bold">Founder & leadership</p>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] text-[#002349] mt-4">Deshraj Gocher, CA</h2>
+            <div class="w-16 stat-line mt-6"></div>
+            <p class="text-lg text-gray-600 leading-relaxed mt-7">Deshraj Gocher leads Accountrise with a process-driven, technology-focused and business-oriented approach to remote accounting and outsourced finance support.</p>
+            <p class="text-lg text-gray-600 leading-relaxed mt-5">As a Chartered Accountant, Desh specializes in outsourced bookkeeping, QuickBooks accounting, Odoo accounting, payroll support, financial reporting and CPA outsourcing services for businesses and accounting firms.</p>
+            <p class="text-lg text-gray-600 leading-relaxed mt-5">Accountrise's work supports startups, small businesses and CPA firms across international markets, with a strong focus on practical cloud accounting workflows.</p>
 
-</section>
+            <div class="grid sm:grid-cols-2 gap-3 mt-8">
+              <div class="bg-white rounded-2xl border border-[#002349]/10 p-4"><div class="text-xs uppercase tracking-[.16em] text-[#957C3D] font-bold">Focus</div><div class="font-bold text-[#002349] mt-2">Accounting operations</div></div>
+              <div class="bg-white rounded-2xl border border-[#002349]/10 p-4"><div class="text-xs uppercase tracking-[.16em] text-[#957C3D] font-bold">Technology</div><div class="font-bold text-[#002349] mt-2">Cloud accounting systems</div></div>
+            </div>
 
-<!-- CTA -->
-<section class="py-28 px-6 bg-[#002349] text-white text-center">
-
-  <div class="max-w-4xl mx-auto">
-
-    <h2 class="text-5xl lg:text-6xl font-extrabold leading-tight mb-8">
-
-      Looking for a Reliable
-      Remote Accounting Partner?
-
-    </h2>
-
-    <a href="https://calendly.com/deshrajgocher2012/30min"
-       target="_blank"
-       class="inline-flex items-center gap-3 bg-[#957C3D] text-[#002349] px-10 py-5 rounded-2xl text-lg font-bold hover:bg-[#bca159] transition">
-
-      Schedule Free Consultation
-      <i class="fas fa-calendar-alt"></i>
-
-    </a>
-
-  </div>
-
-</section>
-
-<!-- FOOTER -->
-<footer class="bg-[#00152d] text-white pt-20 pb-10">
-
-  <div class="max-w-7xl mx-auto px-6">
-
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-14 mb-16">
-
-      <!-- Logo -->
-      <div>
-
-        <img src="/accountrise.png"
-             alt="Accountrise Logo"
-             class="h-14 mb-6">
-        
-            <h4 class="text-3xl sm:text-[2rem] font-extrabold tracking-tight leading-none">Accountrise</h4>
-
-        <p class="text-white/70 leading-relaxed">
-
-          Supporting startups, growing businesses, and CPA firms with reliable remote accounting solutions.
-
-        </p>
-
+            <div class="flex flex-col sm:flex-row gap-3 mt-8">
+              <a href="https://www.linkedin.com/in/deshraj-gocher-ca-1000b8105/" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 bg-[#002349] text-white px-6 py-3.5 rounded-xl font-bold hover:bg-[#00152d] transition">
+                View LinkedIn <i class="fab fa-linkedin"></i>
+              </a>
+              <a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center justify-center gap-2 border border-[#002349]/20 text-[#002349] px-6 py-3.5 rounded-xl font-bold hover:bg-[#002349] hover:text-white transition">
+                Upwork Profile <i class="fas fa-arrow-up-right-from-square text-xs"></i>
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Links -->
-      <div>
-
-        <h3 class="text-xl font-bold mb-6">
-          Company
-        </h3>
-
-        <ul class="space-y-4 text-white/70">
-
-          <li>
-            <a href="/" class="hover:text-white transition">
-              Home
-            </a>
-          </li>
-
-          <li>
-            <a href="/about/" class="hover:text-white transition">
-              About
-            </a>
-          </li>
-
-          <li>
-            <a href="/services/" class="hover:text-white transition">
-              Services
-            </a>
-          </li>
-
-          <li>
-            <a href="/blog/" class="hover:text-white transition">
-              Blog
-            </a>
-          </li>
-
-        </ul>
-
+    <!-- TECHNOLOGY -->
+    <section class="py-24 lg:py-28 px-5 sm:px-6 bg-white">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-center">
+          <div data-aos="fade-right">
+            <p class="text-[#957C3D] text-xs uppercase tracking-[.22em] font-bold">Technology stack</p>
+            <h2 class="text-4xl sm:text-5xl font-black tracking-[-.045em] text-[#002349] mt-4">Built for the accounting systems businesses already use.</h2>
+            <p class="text-lg text-gray-600 leading-relaxed mt-5">From cloud bookkeeping to ERP accounting, our team works across leading platforms so support can fit the client's existing environment.</p>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4" data-aos="fade-left">
+            <div class="bento-card rounded-2xl bg-[#F7F9FC] p-5 font-extrabold text-[#002349]"><i class="fas fa-calculator text-[#957C3D] mr-2"></i>QuickBooks</div>
+            <div class="bento-card rounded-2xl bg-[#F7F9FC] p-5 font-extrabold text-[#002349]"><i class="fas fa-cubes text-[#957C3D] mr-2"></i>Odoo</div>
+            <div class="bento-card rounded-2xl bg-[#F7F9FC] p-5 font-extrabold text-[#002349]"><i class="fas fa-chart-line text-[#957C3D] mr-2"></i>Xero</div>
+            <div class="bento-card rounded-2xl bg-[#F7F9FC] p-5 font-extrabold text-[#002349]"><i class="fas fa-database text-[#957C3D] mr-2"></i>NetSuite</div>
+            <div class="bento-card rounded-2xl bg-[#F7F9FC] p-5 font-extrabold text-[#002349]"><i class="fas fa-cloud text-[#957C3D] mr-2"></i>Zoho</div>
+            <div class="bento-card rounded-2xl bg-[#F7F9FC] p-5 font-extrabold text-[#002349]"><i class="fas fa-file-invoice text-[#957C3D] mr-2"></i>MYOB</div>
+          </div>
+        </div>
       </div>
+    </section>
 
-      <!-- Services -->
-      <div>
-
-        <h3 class="text-xl font-bold mb-6">
-          Services
-        </h3>
-
-        <ul class="space-y-4 text-white/70">
-
-          <li>
-            <a href="/services/bookkeeping-services/" class="hover:text-white transition">
-              Bookkeeping
-            </a>
-          </li>
-
-          <li>
-            <a href="/services/quickbooks-bookkeeping/" class="hover:text-white transition">
-              QuickBooks
-            </a>
-          </li>
-
-          <li>
-            <a href="/services/odoo-accounting/" class="hover:text-white transition">
-              Odoo Accounting
-            </a>
-          </li>
-
-          <li>
-            <a href="/services/cpa-outsourcing/" class="hover:text-white transition">
-              CPA Outsourcing
-            </a>
-          </li>
-
-        </ul>
-
-      </div>
-
-      <!-- Contact -->
-      <div>
-
-        <h3 class="text-xl font-bold mb-6">
-          Contact
-        </h3>
-
-        <div class="space-y-5 text-white/70">
-
-          <a href="mailto:info@accountrise.com"
-             class="block hover:text-white transition">
-
-            info@accountrise.com
-
+    <!-- CTA -->
+    <section class="py-24 lg:py-28 px-5 sm:px-6 bg-[#002349] text-white text-center relative overflow-hidden">
+      <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
+      <div class="absolute -right-32 -top-40 w-[450px] h-[450px] rounded-full border border-[#957C3D]/15"></div>
+      <div class="max-w-4xl mx-auto relative z-10" data-aos="fade-up">
+        <p class="text-[#957C3D] text-xs uppercase tracking-[.22em] font-bold">Let's work together</p>
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] leading-[1.02] mt-4">Need accounting capacity without the overhead?</h2>
+        <p class="text-white/55 text-lg leading-relaxed mt-5 max-w-2xl mx-auto">Tell us what you need help with. We'll start with the workflow, scope and systems that matter to your business.</p>
+        <div class="flex flex-col sm:flex-row justify-center gap-3 mt-8">
+          <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer"
+             class="pump-cta inline-flex items-center justify-center gap-2 bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-bold hover:bg-[#b89a4e] transition">
+            Schedule a Free Consultation <i class="fas fa-calendar-days"></i>
           </a>
-
-          <a href="https://wa.me/918104839386"
-             target="_blank"
-             class="block hover:text-white transition">
-
-            WhatsApp
-
+          <a href="mailto:info@accountrise.com" class="inline-flex items-center justify-center gap-2 border border-white/15 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+            Email Accountrise <i class="fas fa-envelope"></i>
           </a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-          <a href="https://www.linkedin.com/company/accountrise"
-             target="_blank"
-             class="block hover:text-white transition">
-
-            LinkedIn
-
+  <!-- FOOTER -->
+  <footer class="bg-[#00152d] text-white pt-16 sm:pt-20 pb-8">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.35fr_.75fr_1fr_1fr] gap-9 sm:gap-12 mb-12 sm:mb-14">
+        <div>
+          <a href="/" class="inline-flex items-center gap-3" aria-label="Accountrise home">
+            <img src="/accountrise.png" alt="Accountrise logo" class="h-11 sm:h-12 w-auto rounded-xl">
+            <span class="text-2xl font-extrabold tracking-tight">Accountrise</span>
           </a>
-
+          <p class="text-white/55 leading-relaxed mt-5 max-w-sm">Professional remote bookkeeping and accounting support for US businesses, growing companies and CPA firms.</p>
+          <div class="mt-5 inline-flex items-center gap-2 rounded-full bg-white/[.06] border border-white/10 px-4 py-2.5"><span class="w-2 h-2 rounded-full bg-[#957C3D]"></span><span class="text-sm font-bold">Remote • Cloud-ready • CPA-friendly</span></div>
         </div>
 
+        <div>
+          <h3 class="text-xs uppercase tracking-[.18em] text-white/75 font-bold mb-5">Company</h3>
+          <ul class="space-y-3 text-white/55">
+            <li><a href="/" class="hover:text-white transition">Home</a></li>
+            <li><a href="/about/" class="hover:text-white transition">About Accountrise</a></li>
+            <li><a href="/blog/" class="hover:text-white transition">Accounting Insights</a></li>
+            <li><a href="/#faq" class="hover:text-white transition">FAQs</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs uppercase tracking-[.18em] text-white/75 font-bold mb-5">Services</h3>
+          <ul class="space-y-3 text-white/55">
+            <li><a href="/services/bookkeeping-services/" class="hover:text-white transition">Bookkeeping</a></li>
+            <li><a href="/services/quickbooks-bookkeeping/" class="hover:text-white transition">QuickBooks</a></li>
+            <li><a href="/services/odoo-accounting/" class="hover:text-white transition">Odoo Accounting</a></li>
+            <li><a href="/services/payroll-services/" class="hover:text-white transition">Payroll Support</a></li>
+            <li><a href="/services/ecommerce-bookkeeping/" class="hover:text-white transition">Ecommerce</a></li>
+            <li><a href="/services/cpa-outsourcing/" class="hover:text-white transition">CPA Outsourcing</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xs uppercase tracking-[.18em] text-white/75 font-bold mb-5">Connect</h3>
+          <ul class="space-y-3 text-white/55">
+            <li><a href="mailto:info@accountrise.com" class="hover:text-white transition"><i class="fas fa-envelope w-5 mr-1"></i>info@accountrise.com</a></li>
+            <li><a href="https://wa.me/918104839386" target="_blank" rel="noopener noreferrer" class="hover:text-white transition"><i class="fab fa-whatsapp w-5 mr-1"></i>WhatsApp</a></li>
+            <li><a href="https://www.linkedin.com/company/accountrise" target="_blank" rel="noopener noreferrer" class="hover:text-white transition"><i class="fab fa-linkedin w-5 mr-1"></i>LinkedIn</a></li>
+            <li><a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf" target="_blank" rel="noopener noreferrer" class="hover:text-white transition"><i class="fas fa-briefcase w-5 mr-1"></i>Upwork</a></li>
+          </ul>
+        </div>
       </div>
 
+      <div class="border-t border-white/10 pt-7 flex flex-col md:flex-row md:items-center md:justify-between gap-3 text-white/35 text-xs sm:text-sm">
+        <span>© 2026 Accountrise. All Rights Reserved.</span>
+        <span>Remote bookkeeping & accounting support for US businesses and CPA firms.</span>
+      </div>
     </div>
+  </footer>
 
-    <div class="border-t border-white/10 pt-8 text-center text-white/50 text-sm">
-
-      © 2026 Accountrise. All Rights Reserved.
-
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/918104839386" target="_blank" rel="noopener noreferrer"
+     class="fixed bottom-5 right-5 z-[90] group" aria-label="Chat with Accountrise on WhatsApp">
+    <div class="pump-cta bg-[#002349] text-white rounded-full shadow-2xl px-4 py-3 flex items-center gap-3 border border-white/10 hover:scale-105 transition">
+      <div class="w-10 h-10 rounded-full bg-[#957C3D] text-[#002349] flex items-center justify-center"><i class="fab fa-whatsapp text-xl"></i></div>
+      <div class="hidden sm:block pr-1"><div class="text-[10px] uppercase tracking-[.18em] text-white/45">Quick chat</div><div class="font-bold">Let's Talk</div></div>
     </div>
+  </a>
 
-  </div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      once:true,
+      duration:750,
+      easing:'cubic-bezier(.22,1,.36,1)',
+      offset:70
+    });
 
-</footer>
+    const menuBtn=document.getElementById('menuBtn');
+    const mobileMenu=document.getElementById('mobileMenu');
 
-<!-- FLOATING WHATSAPP -->
-<a href="https://wa.me/918104839386"
-   target="_blank"
-   class="fixed bottom-6 left-6 z-50 w-16 h-16 rounded-full bg-green-500 flex items-center justify-center shadow-2xl hover:scale-110 transition">
+    menuBtn?.addEventListener('click',()=>{
+      const open=mobileMenu.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded',open?'true':'false');
+      menuBtn.setAttribute('aria-label',open?'Close navigation menu':'Open navigation menu');
+      menuBtn.innerHTML=open?'<i class="fas fa-xmark"></i>':'<i class="fas fa-bars"></i>';
+    });
 
-  <i class="fab fa-whatsapp text-white text-4xl"></i>
+    document.querySelectorAll('.mobile-link').forEach(link=>{
+      link.addEventListener('click',()=>{
+        mobileMenu.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded','false');
+        menuBtn.setAttribute('aria-label','Open navigation menu');
+        menuBtn.innerHTML='<i class="fas fa-bars"></i>';
+      });
+    });
 
-</a>
+    const progress=document.getElementById('progress');
+    const header=document.getElementById('site-header');
 
-<!-- AOS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    function updateScrollUI(){
+      const y=window.scrollY;
+      const max=document.documentElement.scrollHeight-window.innerHeight;
+      progress.style.width=(max>0?(y/max)*100:0)+'%';
+      header.classList.toggle('shadow-2xl',y>15);
+    }
+    window.addEventListener('scroll',updateScrollUI,{passive:true});
+    updateScrollUI();
 
-<script>
-  AOS.init({
-    once:true,
-    duration:900
-  });
-</script>
+    let ticking=false;
+    function parallax(){
+      document.querySelectorAll('.parallax-orb').forEach(el=>{
+        const r=el.getBoundingClientRect();
+        if(r.bottom<-100||r.top>window.innerHeight+100)return;
+        const delta=(window.innerHeight/2-(r.top+r.height/2))*0.035;
+        el.style.transform=`translate3d(0,${delta.toFixed(1)}px,0)`;
+      });
+      ticking=false;
+    }
+    window.addEventListener('scroll',()=>{
+      if(!ticking){requestAnimationFrame(parallax);ticking=true;}
+    },{passive:true});
+    parallax();
 
+    document.querySelectorAll('.bento-card').forEach(card=>{
+      card.addEventListener('pointermove',e=>{
+        const r=card.getBoundingClientRect();
+        card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+        card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+      });
+    });
+  </script>
 </body>
 </html>
