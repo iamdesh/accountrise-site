@@ -334,6 +334,22 @@
     .process-tag{display:inline-flex;align-items:center;padding:.35rem .6rem;border-radius:999px;background:#F7F9FC;color:var(--navy);font-size:.68rem;font-weight:700;border:1px solid rgba(0,35,73,.06)}.process-tag.dark{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.08)}
     .why-card{transform-style:preserve-3d}.why-card:hover{transform:translateY(-6px) rotateX(1deg) rotateY(-1deg) scale(1.015)}
     @media (max-width:639px){.hero-proof{font-size:.68rem;gap:.45rem}.hero-proof>span{width:31px;height:31px}.hero-workflow-step{padding:.6rem;gap:.5rem}.hero-workflow-step>span{width:30px;height:30px}.hero-workflow-step strong{font-size:.68rem}.hero-workflow-step small{font-size:.52rem}.price-pill{font-size:.62rem}}
+
+    /* TESTIMONIAL CAROUSEL — viewport-safe, responsive, no horizontal bleed */
+    .testimonial-viewport{width:100%;contain:layout paint;touch-action:pan-y;overscroll-behavior-x:contain}
+    .testimonial-track{width:100%;transition:transform 650ms cubic-bezier(.22,1,.36,1);transform:translate3d(0,0,0)}
+    .testimonial-slide{box-sizing:border-box;overflow-wrap:anywhere;word-break:normal;hyphens:auto}
+    .testimonial-type{display:inline-flex;align-items:center;padding:.42rem .7rem;border-radius:999px;background:rgba(149,124,61,.12);color:#b89a4e;font-size:.65rem;font-weight:800;text-transform:uppercase;letter-spacing:.16em}
+    .testimonial-counter{font-size:.68rem;letter-spacing:.18em;color:rgba(255,255,255,.32);white-space:nowrap}
+    .testimonial-quote{font-size:clamp(1.35rem,2.4vw,2.15rem);line-height:1.24;font-weight:650;letter-spacing:-.025em;color:#fff;max-width:100%;overflow-wrap:anywhere}
+    .testimonial-heading{font-size:clamp(1.35rem,2.4vw,2.1rem);line-height:1.24;font-weight:650;letter-spacing:-.025em;color:#fff;overflow-wrap:anywhere}
+    .testimonial-avatar{width:44px;height:44px;border-radius:999px;background:rgba(149,124,61,.13);color:#957C3D;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+    .testimonial-nav{width:42px;height:42px;border-radius:999px;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.045);color:#fff;display:flex;align-items:center;justify-content:center;transition:background .25s ease,color .25s ease,transform .25s ease,border-color .25s ease}
+    .testimonial-nav:hover,.testimonial-nav:focus-visible{background:#957C3D;color:#002349;border-color:#957C3D;transform:translateY(-2px);outline:none}
+    .testimonial-dot{height:7px;width:7px;border-radius:999px;background:rgba(255,255,255,.18);border:0;padding:0;transition:width .35s cubic-bezier(.22,1,.36,1),background .3s ease,transform .25s ease}
+    .testimonial-dot.active{width:24px;background:#957C3D}
+    .testimonial-dot:hover{transform:scale(1.3)}
+    @media(max-width:639px){.testimonial-controls{padding:.65rem .75rem}.testimonial-nav{width:38px;height:38px}.testimonial-quote{font-size:1.3rem}.testimonial-heading{font-size:1.3rem}}
     @media (prefers-reduced-motion:reduce){
       *,*::before,*::after{
         animation-duration:.01ms!important;
@@ -552,7 +568,7 @@
             <span class="text-gray-400">Multiple workflows.</span>
           </h2>
           <p class="text-lg text-gray-600 leading-relaxed mt-6">
-            Flexible support for the work that keeps your financial operations moving  without adding another full-time team.
+            Flexible support for the work that keeps your financial operations moving without adding another full-time team.
           </p>
         </div>
 
@@ -630,7 +646,7 @@
           <div data-aos="fade-right">
             <p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">Why Accountrise</p>
             <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] text-[#002349] leading-[1.02]">Professional accounting. <span class="text-gray-400">Without the overhead.</span></h2>
-            <p class="text-lg text-gray-600 leading-relaxed mt-6">Get a flexible accounting partner that works inside your existing systems — keeping your books moving without building another full-time team.</p>
+            <p class="text-lg text-gray-600 leading-relaxed mt-6">Get a flexible accounting partner that works inside your existing systems keeping your books moving without building another full-time team.</p>
             <div class="mt-8 rounded-[1.5rem] bg-[#002349] p-5 sm:p-6 text-white relative overflow-hidden">
               <div class="absolute -right-16 -top-20 w-44 h-44 rounded-full border border-[#957C3D]/20"></div>
               <div class="relative flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center"><i class="fas fa-bolt"></i></div><div><div class="font-extrabold">Scale support when you need it</div><div class="text-white/50 text-sm mt-1">Start with one workflow. Add more as your business grows.</div></div></div>
@@ -651,7 +667,11 @@
             <div class="p-6 sm:p-8"><div class="text-xs uppercase tracking-[.16em] text-[#957C3D] font-bold">03</div><div class="text-2xl font-black text-[#002349] mt-2">Flexible scale</div><p class="text-gray-600 text-sm leading-relaxed mt-2">Outsource one task or build ongoing accounting support around your needs.</p></div>
           </div>
         </div>
+        <div class="mt-5 rounded-[1.8rem] bg-[#002349] text-white p-6 sm:p-8 overflow-hidden relative">
+          <div class="absolute -right-20 -top-20 w-64 h-64 rounded-full border border-[#957C3D]/25"></div>
+          <div class="grid sm:grid-cols-3 gap-6 sm:gap-8 relative z-10"><div><div class="text-3xl font-black">100K+</div><div class="text-white/55 text-sm mt-1">Transactions processed</div></div><div><div class="text-3xl font-black">Cloud</div><div class="text-white/55 text-sm mt-1">Accounting workflows</div></div><div><div class="text-3xl font-black">$10/hr</div><div class="text-white/55 text-sm mt-1">Starting bookkeeping support</div></div></div>
         </div>
+      </div>
     </section>
 
 <!-- PROCESS / ACTION ANCHORS -->
@@ -699,110 +719,178 @@
             <div class="mt-8 font-bold text-[#002349] group-hover:text-[#957C3D] transition">Read article →</div>
           </a>
 
-          <a href="/blog/monthly-bookkeeping-checklist.html" class="bento-card bg-[#F7F9FC] rounded-[2rem] p-8 group">
+          <a href="/blog/bookkeeper-vs-accountant-vs-cpa.html" class="bento-card bg-[#F7F9FC] rounded-[2rem] p-8 group">
             <div class="flex justify-between items-center"><span class="text-[#957C3D] text-xs uppercase tracking-[.2em] font-bold">Bookkeeping</span><span class="w-10 h-10 rounded-full bg-white flex items-center justify-center text-[#002349] group-hover:bg-[#957C3D] transition"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-[#002349] leading-tight mt-8">Monthly Bookkeeping Checklist for Businesses</h3>
-            <p class="text-gray-600 leading-relaxed mt-4">A practical monthly checklist for keeping financial records accurate and organized.</p>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-[#002349] leading-tight mt-8">Bookkeeper vs Accountant vs CPA: Who Does Your Business Need?</h3>
+            <p class="text-gray-600 leading-relaxed mt-4">Learn what each professional does, when to hire one, and how remote accounting support can fit a growing US business.</p>
             <div class="mt-8 font-bold text-[#002349] group-hover:text-[#957C3D] transition">Read article →</div>
           </a>
         </div>
       </div>
     </section>
 
-     <!-- TESTIMONIALS / CLIENT VOICE -->
-    <section id="testimonials" class="snap-section py-20 sm:py-24 lg:py-32 px-5 sm:px-6 bg-[#002349] text-white" data-section="testimonials">
-      <div class="parallax-orb absolute -right-40 top-0 w-[30rem] h-[30rem] rounded-full bg-[#957C3D]/10 blur-3xl"></div>
-      <div class="parallax-orb absolute -left-48 bottom-0 w-[24rem] h-[24rem] rounded-full bg-white/[.025] blur-3xl"></div>
+    <!-- TESTIMONIALS / CLIENT VOICE -->
+    <section id="testimonials" class="snap-section py-24 lg:py-32 px-5 sm:px-6 bg-[#002349] text-white relative overflow-hidden" data-section="testimonials">
+      <div class="parallax-orb absolute -right-40 top-0 w-[30rem] h-[30rem] rounded-full bg-[#957C3D]/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute -left-40 bottom-0 w-[26rem] h-[26rem] rounded-full bg-white/[.025] blur-3xl pointer-events-none"></div>
+
       <div class="max-w-7xl mx-auto relative z-10">
         <div class="grid lg:grid-cols-[.68fr_1.32fr] gap-10 lg:gap-16 items-center">
+
+          <!-- INTRO -->
           <div data-aos="fade-right">
             <p class="section-kicker uppercase text-[#957C3D] text-[11px] sm:text-xs font-bold mb-4">Client voice</p>
-            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] leading-[1.02]">Good accounting support should feel <span class="text-[#957C3D]">easy.</span></h2>
-            <p class="text-white/60 text-base sm:text-lg leading-relaxed mt-6 max-w-xl">Clear communication, organized books and dependable follow-through are the things clients notice most.</p>
-            <div class="mt-7 rounded-2xl border border-white/10 bg-white/[.045] p-4 sm:p-5 max-w-xl">
-              <div class="flex gap-3 items-start">
-                <span class="w-8 h-8 rounded-lg bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center shrink-0"><i class="fas fa-quote-left text-xs"></i></span>
+            <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] leading-[1.02]">
+              Good accounting support should feel <span class="text-[#957C3D]">easy.</span>
+            </h2>
+            <p class="text-white/60 text-base sm:text-lg leading-relaxed mt-6 max-w-xl">
+              Clear communication, organized books and dependable follow-through are the things clients notice most.
+            </p>
+
+            <div class="mt-7 rounded-2xl border border-white/10 bg-white/[.045] p-4 sm:p-5">
+              <div class="flex items-start gap-3">
+                <span class="w-9 h-9 rounded-xl bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center shrink-0">
+                  <i class="fas fa-quote-left text-xs"></i>
+                </span>
                 <div>
-                  <div class="text-sm font-bold text-white">A transparent client-proof section</div>
-                  <p class="text-xs sm:text-sm text-white/45 leading-relaxed mt-1">The quote cards use the anonymized feedback already supplied for this page. Outcome cards are clearly marked as outcomes — not customer quotes. No names, companies or ratings are invented.</p>
+                  <div class="text-sm font-bold text-white">Transparent client feedback</div>
+                  <p class="text-xs sm:text-sm text-white/45 leading-relaxed mt-1">
+                    Feedback is anonymized where appropriate. We do not publish invented names, companies or ratings.
+                  </p>
                 </div>
               </div>
             </div>
+
+            <div class="mt-6 flex flex-wrap gap-2">
+              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-3 py-2 text-xs text-white/55"><i class="fas fa-comments text-[#957C3D]"></i> Communication</span>
+              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-3 py-2 text-xs text-white/55"><i class="fas fa-check-double text-[#957C3D]"></i> Accuracy</span>
+              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[.04] px-3 py-2 text-xs text-white/55"><i class="fas fa-clock text-[#957C3D]"></i> Follow-through</span>
+            </div>
           </div>
 
-          <div class="testimonial-shell min-w-0" data-aos="fade-left">
-            <div id="testimonialViewport" class="testimonial-viewport overflow-hidden rounded-[2rem] sm:rounded-[2.4rem] min-w-0" tabindex="0" aria-label="Accountrise client feedback carousel">
-              <div id="testimonialTrack" class="testimonial-track flex will-change-transform">
+          <!-- CAROUSEL -->
+          <div class="relative min-w-0" data-aos="fade-left">
+            <div id="testimonialViewport"
+                 class="testimonial-viewport relative overflow-hidden rounded-[2rem] sm:rounded-[2.4rem] min-w-0 outline-none"
+                 tabindex="0"
+                 aria-label="Accountrise client feedback carousel"
+                 aria-live="polite">
 
-                <!-- These first three are the existing anonymized feedback supplied in the homepage.
-                     Do not publish as verified testimonials unless the underlying client wording is confirmed. -->
-                <article class="testimonial-slide min-w-0 shrink-0 glass-dark rounded-[2rem] p-6 sm:p-9 lg:p-10 border border-white/10">
+              <div id="testimonialTrack" class="testimonial-track flex items-stretch will-change-transform">
+
+                <!-- Publish only when these statements accurately reflect genuine client feedback. -->
+                <article class="testimonial-slide flex-[0_0_100%] w-full min-w-0 glass-dark rounded-[2rem] sm:rounded-[2.4rem] p-6 sm:p-9 lg:p-10 border border-white/10">
                   <div class="flex items-center justify-between gap-4">
+                    <span class="testimonial-type">Client feedback</span>
                     <span class="testimonial-counter">01 / 06</span>
                   </div>
-                  <div class="testimonial-label mt-7">Client feedback</div>
-                  <div class="testimonial-quote-mark mt-3">“</div>
-                  <blockquote class="testimonial-quote -mt-1">Accountrise helped streamline our bookkeeping and reporting process. Communication was fast, organized, and reliable.</blockquote>
-                  <div class="testimonial-meta mt-8 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
-                    <div><div class="font-bold">Ecommerce Business Owner</div><div class="text-xs sm:text-sm text-white/40 mt-1">Anonymized client feedback</div></div>
+                  <div class="mt-7 flex gap-1 text-[#957C3D]" aria-hidden="true">
+                    <i class="fas fa-quote-left text-sm"></i>
+                  </div>
+                  <blockquote class="testimonial-quote mt-4">
+                    “Accountrise helped streamline our bookkeeping and reporting process. Communication was fast, organized, and reliable.”
+                  </blockquote>
+                  <div class="mt-8 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
+                    <div>
+                      <div class="font-bold text-sm sm:text-base">Ecommerce Business Owner</div>
+                      <div class="text-xs sm:text-sm text-white/40 mt-1">Anonymized client feedback</div>
+                    </div>
                     <div class="testimonial-avatar"><i class="fas fa-store"></i></div>
                   </div>
                 </article>
 
-                <article class="testimonial-slide min-w-0 shrink-0 glass-dark rounded-[2rem] p-6 sm:p-9 lg:p-10 border border-white/10">
+                <article class="testimonial-slide flex-[0_0_100%] w-full min-w-0 glass-dark rounded-[2rem] sm:rounded-[2.4rem] p-6 sm:p-9 lg:p-10 border border-white/10">
                   <div class="flex items-center justify-between gap-4">
+                    <span class="testimonial-type">Client feedback</span>
                     <span class="testimonial-counter">02 / 06</span>
                   </div>
-                  <div class="testimonial-label mt-7">Client feedback</div>
-                  <div class="testimonial-quote-mark mt-3">“</div>
-                  <blockquote class="testimonial-quote -mt-1">Great support for QuickBooks bookkeeping and monthly reconciliations. Their outsourced accounting process is very structured.</blockquote>
-                  <div class="testimonial-meta mt-8 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
-                    <div><div class="font-bold">CPA Firm Partner</div><div class="text-xs sm:text-sm text-white/40 mt-1">Anonymized client feedback</div></div>
+                  <div class="mt-7 flex gap-1 text-[#957C3D]" aria-hidden="true">
+                    <i class="fas fa-quote-left text-sm"></i>
+                  </div>
+                  <blockquote class="testimonial-quote mt-4">
+                    “Great support for QuickBooks bookkeeping and monthly reconciliations. Their outsourced accounting process is very structured.”
+                  </blockquote>
+                  <div class="mt-8 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
+                    <div>
+                      <div class="font-bold text-sm sm:text-base">CPA Firm Partner</div>
+                      <div class="text-xs sm:text-sm text-white/40 mt-1">Anonymized client feedback</div>
+                    </div>
                     <div class="testimonial-avatar"><i class="fas fa-calculator"></i></div>
                   </div>
                 </article>
 
-                <article class="testimonial-slide min-w-0 shrink-0 glass-dark rounded-[2rem] p-6 sm:p-9 lg:p-10 border border-white/10">
+                <article class="testimonial-slide flex-[0_0_100%] w-full min-w-0 glass-dark rounded-[2rem] sm:rounded-[2.4rem] p-6 sm:p-9 lg:p-10 border border-white/10">
                   <div class="flex items-center justify-between gap-4">
+                    <span class="testimonial-type">Client feedback</span>
                     <span class="testimonial-counter">03 / 06</span>
                   </div>
-                  <div class="testimonial-label mt-7">Client feedback</div>
-                  <div class="testimonial-quote-mark mt-3">“</div>
-                  <blockquote class="testimonial-quote -mt-1">Reliable Odoo accounting support, reporting, and payroll coordination. Highly recommended for remote accounting operations.</blockquote>
-                  <div class="testimonial-meta mt-8 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
-                    <div><div class="font-bold">Startup Founder</div><div class="text-xs sm:text-sm text-white/40 mt-1">Anonymized client feedback</div></div>
+                  <div class="mt-7 flex gap-1 text-[#957C3D]" aria-hidden="true">
+                    <i class="fas fa-quote-left text-sm"></i>
+                  </div>
+                  <blockquote class="testimonial-quote mt-4">
+                    “Reliable Odoo accounting support, reporting, and payroll coordination. Highly recommended for remote accounting operations.”
+                  </blockquote>
+                  <div class="mt-8 pt-5 border-t border-white/10 flex items-center justify-between gap-4">
+                    <div>
+                      <div class="font-bold text-sm sm:text-base">Startup Founder</div>
+                      <div class="text-xs sm:text-sm text-white/40 mt-1">Anonymized client feedback</div>
+                    </div>
                     <div class="testimonial-avatar"><i class="fas fa-gears"></i></div>
                   </div>
                 </article>
 
-                <!-- Outcome cards are deliberately not presented as testimonials. -->
-                <article class="testimonial-slide min-w-0 shrink-0 glass-dark rounded-[2rem] p-6 sm:p-9 lg:p-10 border border-white/10">
-                  <div class="flex items-center justify-between gap-4"><span class="testimonial-label">Client outcome</span><span class="testimonial-counter">04 / 06</span></div>
-                  <div class="testimonial-outcome-icon mt-7"><i class="fas fa-chart-line"></i></div>
-                  <h3 class="testimonial-quote mt-5">Cleaner reconciliations and a more consistent month-end workflow.</h3>
-                  <div class="testimonial-meta mt-8 pt-5 border-t border-white/10"><div class="font-bold">Common client outcome</div><div class="text-xs sm:text-sm text-white/40 mt-1">Service outcome — not a customer quote</div></div>
+                <!-- Outcome cards are deliberately NOT presented as customer quotes. -->
+                <article class="testimonial-slide flex-[0_0_100%] w-full min-w-0 glass-dark rounded-[2rem] sm:rounded-[2.4rem] p-6 sm:p-9 lg:p-10 border border-white/10">
+                  <div class="flex items-center justify-between gap-4">
+                    <span class="testimonial-type">Client outcome</span>
+                    <span class="testimonial-counter">04 / 06</span>
+                  </div>
+                  <div class="mt-8">
+                    <div class="w-12 h-12 rounded-2xl bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center"><i class="fas fa-chart-line"></i></div>
+                    <h3 class="testimonial-heading mt-6">Cleaner reconciliations and a more consistent month-end workflow.</h3>
+                  </div>
+                  <div class="mt-8 pt-5 border-t border-white/10">
+                    <div class="font-bold text-sm">Common client outcome</div>
+                    <div class="text-xs sm:text-sm text-white/40 mt-1">Service benefit — not a customer quote</div>
+                  </div>
                 </article>
 
-                <article class="testimonial-slide min-w-0 shrink-0 glass-dark rounded-[2rem] p-6 sm:p-9 lg:p-10 border border-white/10">
-                  <div class="flex items-center justify-between gap-4"><span class="testimonial-label">Client outcome</span><span class="testimonial-counter">05 / 06</span></div>
-                  <div class="testimonial-outcome-icon mt-7"><i class="fas fa-users"></i></div>
-                  <h3 class="testimonial-quote mt-5">Reliable bookkeeping support that gives internal teams more time for higher-value work.</h3>
-                  <div class="testimonial-meta mt-8 pt-5 border-t border-white/10"><div class="font-bold">Common client outcome</div><div class="text-xs sm:text-sm text-white/40 mt-1">Service outcome — not a customer quote</div></div>
+                <article class="testimonial-slide flex-[0_0_100%] w-full min-w-0 glass-dark rounded-[2rem] sm:rounded-[2.4rem] p-6 sm:p-9 lg:p-10 border border-white/10">
+                  <div class="flex items-center justify-between gap-4">
+                    <span class="testimonial-type">Client outcome</span>
+                    <span class="testimonial-counter">05 / 06</span>
+                  </div>
+                  <div class="mt-8">
+                    <div class="w-12 h-12 rounded-2xl bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center"><i class="fas fa-users"></i></div>
+                    <h3 class="testimonial-heading mt-6">Reliable bookkeeping support that gives internal teams more time for higher-value work.</h3>
+                  </div>
+                  <div class="mt-8 pt-5 border-t border-white/10">
+                    <div class="font-bold text-sm">Common client outcome</div>
+                    <div class="text-xs sm:text-sm text-white/40 mt-1">Service benefit — not a customer quote</div>
+                  </div>
                 </article>
 
-                <article class="testimonial-slide min-w-0 shrink-0 glass-dark rounded-[2rem] p-6 sm:p-9 lg:p-10 border border-white/10">
-                  <div class="flex items-center justify-between gap-4"><span class="testimonial-label">Client outcome</span><span class="testimonial-counter">06 / 06</span></div>
-                  <div class="testimonial-outcome-icon mt-7"><i class="fas fa-building"></i></div>
-                  <h3 class="testimonial-quote mt-5">A clearer accounting process with fewer recurring tasks left to chase.</h3>
-                  <div class="testimonial-meta mt-8 pt-5 border-t border-white/10"><div class="font-bold">Common client outcome</div><div class="text-xs sm:text-sm text-white/40 mt-1">Service outcome — not a customer quote</div></div>
+                <article class="testimonial-slide flex-[0_0_100%] w-full min-w-0 glass-dark rounded-[2rem] sm:rounded-[2.4rem] p-6 sm:p-9 lg:p-10 border border-white/10">
+                  <div class="flex items-center justify-between gap-4">
+                    <span class="testimonial-type">Client outcome</span>
+                    <span class="testimonial-counter">06 / 06</span>
+                  </div>
+                  <div class="mt-8">
+                    <div class="w-12 h-12 rounded-2xl bg-[#957C3D]/15 text-[#957C3D] flex items-center justify-center"><i class="fas fa-building"></i></div>
+                    <h3 class="testimonial-heading mt-6">A clearer accounting process with fewer recurring tasks left to chase.</h3>
+                  </div>
+                  <div class="mt-8 pt-5 border-t border-white/10">
+                    <div class="font-bold text-sm">Common client outcome</div>
+                    <div class="text-xs sm:text-sm text-white/40 mt-1">Service benefit — not a customer quote</div>
+                  </div>
                 </article>
               </div>
             </div>
 
-            <div class="mt-4 sm:mt-5 rounded-2xl border border-white/10 bg-white/[.035] px-3 sm:px-4 py-3 flex items-center justify-between gap-4">
-              <div class="min-w-0 flex items-center gap-3">
-                <div id="testimonialDots" class="flex items-center gap-1.5 shrink-0" aria-label="Choose client feedback slide"></div>
-                <span class="hidden sm:inline text-[10px] uppercase tracking-[.16em] text-white/30">Swipe or use arrows</span>
+            <div class="testimonial-controls mt-4 sm:mt-5 rounded-2xl border border-white/10 bg-white/[.035] px-3 sm:px-4 py-3 flex items-center justify-between gap-4">
+              <div class="flex items-center gap-3 min-w-0">
+                <div id="testimonialDots" class="flex items-center gap-2 shrink-0" aria-label="Choose a testimonial"></div>
+                <span class="hidden sm:inline text-[9px] uppercase tracking-[.18em] text-white/30 whitespace-nowrap">Swipe or use arrows</span>
               </div>
               <div class="flex gap-2 shrink-0">
                 <button id="testimonialPrev" type="button" class="testimonial-nav" aria-label="Previous client feedback"><i class="fas fa-arrow-left"></i></button>
@@ -1061,7 +1149,7 @@
       document.getElementById('heroWorkflow')?.addEventListener('mouseleave',()=>{clearInterval(workflowTimer);workflowTimer=setInterval(rotateWorkflow,2800)});
     }
 
-    // Testimonial slider: keyboard-friendly, touch-friendly, autoplay with pause on hover/focus.
+    // Testimonial slider — pixel-based movement prevents the multi-slide track from overshooting.
     const testimonialTrack = document.getElementById('testimonialTrack');
     const testimonialViewport = document.getElementById('testimonialViewport');
     const testimonialSlides = [...document.querySelectorAll('.testimonial-slide')];
@@ -1069,54 +1157,103 @@
     const testimonialPrev = document.getElementById('testimonialPrev');
     const testimonialNext = document.getElementById('testimonialNext');
     let testimonialIndex = 0;
-    let testimonialTimer;
+    let testimonialTimer = null;
+    let testimonialStartX = null;
+    let testimonialStartY = null;
+    let testimonialPointerActive = false;
 
-    if (testimonialTrack && testimonialSlides.length) {
-      testimonialSlides.forEach((_, i) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.className = 'w-2 h-2 rounded-full bg-white/20 transition-all duration-300';
-        dot.setAttribute('aria-label', `Show testimonial ${i + 1}`);
-        dot.addEventListener('click', () => { goToTestimonial(i); restartTestimonials(); });
-        testimonialDots.appendChild(dot);
+    function updateTestimonial(index, animate=true){
+      if(!testimonialTrack || !testimonialViewport || !testimonialSlides.length) return;
+      testimonialIndex = (index + testimonialSlides.length) % testimonialSlides.length;
+      const offset = testimonialViewport.clientWidth * testimonialIndex;
+      testimonialTrack.style.transitionDuration = animate ? '650ms' : '0ms';
+      testimonialTrack.style.transform = `translate3d(-${offset}px,0,0)`;
+
+      [...testimonialDots.children].forEach((dot,i)=>{
+        const active=i===testimonialIndex;
+        dot.classList.toggle('active',active);
+        dot.setAttribute('aria-current',active?'true':'false');
       });
 
-      function goToTestimonial(index){
-        testimonialIndex = (index + testimonialSlides.length) % testimonialSlides.length;
-        testimonialTrack.style.transform = `translateX(-${testimonialIndex * 100}%)`;
-        [...testimonialDots.children].forEach((dot, i) => {
-          dot.classList.toggle('bg-[#957C3D]', i === testimonialIndex);
-          dot.classList.toggle('w-6', i === testimonialIndex);
-          dot.classList.toggle('bg-white/20', i !== testimonialIndex);
-        });
-      }
-      function restartTestimonials(){
-        clearInterval(testimonialTimer);
-        testimonialTimer = setInterval(() => goToTestimonial(testimonialIndex + 1), 6000);
-      }
-      testimonialPrev.addEventListener('click', () => { goToTestimonial(testimonialIndex - 1); restartTestimonials(); });
-      testimonialNext.addEventListener('click', () => { goToTestimonial(testimonialIndex + 1); restartTestimonials(); });
-      testimonialViewport.addEventListener('mouseenter', () => clearInterval(testimonialTimer));
-      testimonialViewport.addEventListener('mouseleave', restartTestimonials);
-      testimonialViewport.addEventListener('focusin', () => clearInterval(testimonialTimer));
-      testimonialViewport.addEventListener('focusout', restartTestimonials);
-      goToTestimonial(0);
-      restartTestimonials();
+      testimonialSlides.forEach((slide,i)=>{
+        slide.setAttribute('aria-hidden',i===testimonialIndex?'false':'true');
+      });
     }
 
-    // Touch / pointer swipe support for the testimonial carousel.
-    let testimonialStartX = null;
-    if (testimonialViewport) {
-      testimonialViewport.addEventListener('pointerdown', e => { testimonialStartX = e.clientX; });
-      testimonialViewport.addEventListener('pointerup', e => {
-        if (testimonialStartX === null) return;
-        const dx = e.clientX - testimonialStartX;
-        if (Math.abs(dx) > 45) {
-          goToTestimonial(testimonialIndex + (dx < 0 ? 1 : -1));
+    function restartTestimonials(){
+      if(!testimonialSlides.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      clearInterval(testimonialTimer);
+      testimonialTimer=setInterval(()=>updateTestimonial(testimonialIndex+1),6500);
+    }
+
+    if(testimonialTrack && testimonialViewport && testimonialSlides.length){
+      testimonialSlides.forEach((_,i)=>{
+        const dot=document.createElement('button');
+        dot.type='button';
+        dot.className='testimonial-dot';
+        dot.setAttribute('aria-label',`Show client feedback slide ${i+1}`);
+        dot.addEventListener('click',()=>{
+          updateTestimonial(i);
           restartTestimonials();
-        }
-        testimonialStartX = null;
+        });
+        testimonialDots?.appendChild(dot);
       });
+
+      testimonialPrev?.addEventListener('click',()=>{
+        updateTestimonial(testimonialIndex-1);
+        restartTestimonials();
+      });
+      testimonialNext?.addEventListener('click',()=>{
+        updateTestimonial(testimonialIndex+1);
+        restartTestimonials();
+      });
+
+      testimonialViewport.addEventListener('mouseenter',()=>clearInterval(testimonialTimer));
+      testimonialViewport.addEventListener('mouseleave',restartTestimonials);
+      testimonialViewport.addEventListener('focusin',()=>clearInterval(testimonialTimer));
+      testimonialViewport.addEventListener('focusout',restartTestimonials);
+
+      testimonialViewport.addEventListener('keydown',e=>{
+        if(e.key==='ArrowLeft'){e.preventDefault();updateTestimonial(testimonialIndex-1);restartTestimonials();}
+        if(e.key==='ArrowRight'){e.preventDefault();updateTestimonial(testimonialIndex+1);restartTestimonials();}
+      });
+
+      testimonialViewport.addEventListener('pointerdown',e=>{
+        testimonialStartX=e.clientX;
+        testimonialStartY=e.clientY;
+        testimonialPointerActive=true;
+        testimonialViewport.setPointerCapture?.(e.pointerId);
+        clearInterval(testimonialTimer);
+      });
+
+      testimonialViewport.addEventListener('pointerup',e=>{
+        if(!testimonialPointerActive || testimonialStartX===null) return;
+        const dx=e.clientX-testimonialStartX;
+        const dy=e.clientY-testimonialStartY;
+        if(Math.abs(dx)>55 && Math.abs(dx)>Math.abs(dy)*1.15){
+          updateTestimonial(testimonialIndex+(dx<0?1:-1));
+        }
+        testimonialStartX=null;
+        testimonialStartY=null;
+        testimonialPointerActive=false;
+        restartTestimonials();
+      });
+
+      testimonialViewport.addEventListener('pointercancel',()=>{
+        testimonialStartX=null;
+        testimonialStartY=null;
+        testimonialPointerActive=false;
+        restartTestimonials();
+      });
+
+      let testimonialResizeTimer;
+      window.addEventListener('resize',()=>{
+        clearTimeout(testimonialResizeTimer);
+        testimonialResizeTimer=setTimeout(()=>updateTestimonial(testimonialIndex,false),120);
+      });
+
+      updateTestimonial(0,false);
+      restartTestimonials();
     }
 
     // Make logo interaction return to the top without a hard page jump.
