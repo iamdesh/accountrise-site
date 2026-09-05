@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Why Is My QuickBooks Bank Reconciliation Off? 10 Causes & Fixes | Accountrise</title>
+  <meta name="description" content="Is your QuickBooks bank reconciliation off? Learn the 10 most common causes, how to find the difference, and how to fix reconciliation problems without creating new bookkeeping errors.">
+  <meta name="keywords" content="QuickBooks bank reconciliation off, QuickBooks reconciliation discrepancy, QuickBooks bank reconciliation does not match, fix QuickBooks reconciliation, QuickBooks reconciliation difference">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.accountrise.com/blog/quickbooks-bank-reconciliation-off.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why Is My QuickBooks Bank Reconciliation Off? 10 Causes & Fixes">
+  <meta property="og:description" content="A practical guide to finding and fixing QuickBooks bank reconciliation differences.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/quickbooks-bank-reconciliation-off.html">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Is My QuickBooks Bank Reconciliation Off?">
+  <meta name="twitter:description" content="Learn what causes reconciliation differences and how to troubleshoot them step by step.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,35,73,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,35,73,.05) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .rise { animation: rise .7s ease-out both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .float-card { animation: floaty 5s ease-in-out infinite; }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .scan-line {
+      animation: scan 3.2s ease-in-out infinite;
+    }
+    @keyframes scan {
+      0%,100% { transform: translateX(-2%); opacity: .55; }
+      50% { transform: translateX(98%); opacity: 1; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Why Is My QuickBooks Bank Reconciliation Off? 10 Causes & Fixes",
+    "description":"A practical guide to diagnosing and fixing QuickBooks bank reconciliation differences.",
+    "author":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.accountrise.com/blog/quickbooks-bank-reconciliation-off.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Why is my QuickBooks bank reconciliation off?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"A reconciliation can be off because of an incorrect beginning balance, missing or duplicate transactions, changed or deleted transactions, bank fees or interest not entered, outstanding items, date errors, or a prior reconciliation that was altered."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What should I check first when QuickBooks will not reconcile?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Start by confirming the statement ending date and ending balance, then review the beginning balance and look for a difference in the reconciliation screen. Next investigate missing, duplicate, changed, or incorrectly dated transactions."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Should I undo a previous QuickBooks reconciliation?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Do not undo a prior reconciliation automatically. First determine what changed and whether the difference can be corrected through the underlying transaction. Reconciliation history and prior-period records should be handled carefully."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"How often should a small business reconcile its bank account?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Monthly reconciliation is a common baseline because it aligns the books with the bank statement. Businesses with high transaction volume, frequent payments, or tighter cash controls may benefit from more frequent review."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+  <header class="bg-[#002349] text-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-5 flex items-center justify-between">
+      <a href="/" class="text-xl font-extrabold tracking-tight">Accountrise</a>
+
+      <nav class="hidden sm:flex items-center gap-7 text-sm">
+        <a href="/" class="hover:text-[#d7bf7b] transition">Home</a>
+        <a href="/services/" class="hover:text-[#d7bf7b] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#d7bf7b] transition">Blog</a>
+        <a href="/about/" class="hover:text-[#d7bf7b] transition">About Us</a>
+        <a href="#contact"
+           class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="grid-bg border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 lg:py-24">
+        <div class="grid lg:grid-cols-[1.12fr_.88fr] gap-12 items-center">
+
+          <div class="rise">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-xs font-bold uppercase tracking-widest text-[#957C3D]">
+              QuickBooks • Bank Reconciliation
+            </div>
+
+            <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-[#002349]">
+              Why Is My QuickBooks Bank Reconciliation Off?
+            </h1>
+
+            <p class="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl">
+              A reconciliation difference does not always mean your entire bookkeeping file is wrong.
+              Most mismatches come from a specific transaction, date, beginning balance, or prior-period change.
+              The goal is to <strong>find the cause before changing the numbers.</strong>
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <span class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-semibold">Beginning Balance</span>
+              <span class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-semibold">Missing Transactions</span>
+              <span class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-semibold">Duplicate Transactions</span>
+              <span class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-semibold">Prior Changes</span>
+            </div>
+          </div>
+
+          <div class="float-card">
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-xl p-6">
+
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs uppercase tracking-widest text-slate-400 font-bold">Reconciliation status</p>
+                  <p class="mt-1 text-xl font-extrabold text-[#002349]">Find the difference</p>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black text-lg">
+                  ✓
+                </div>
+              </div>
+
+              <div class="mt-6 rounded-2xl bg-slate-50 p-5">
+                <div class="flex justify-between items-center">
+                  <span class="font-semibold">Statement ending balance</span>
+                  <strong class="text-[#002349]">$28,640.00</strong>
+                </div>
+
+                <div class="mt-4 flex justify-between items-center">
+                  <span class="font-semibold">Cleared in QuickBooks</span>
+                  <strong class="text-[#002349]">$28,490.00</strong>
+                </div>
+
+                <div class="mt-5 h-2 bg-slate-200 rounded-full overflow-hidden relative">
+                  <div class="h-full w-[88%] bg-[#957C3D] rounded-full"></div>
+                  <div class="scan-line absolute top-0 left-0 h-full w-8 bg-white/60 rounded-full"></div>
+                </div>
+
+                <div class="mt-5 flex justify-between items-center">
+                  <span class="text-sm text-slate-500">Difference</span>
+                  <span class="text-lg font-black text-[#002349]">$150.00</span>
+                </div>
+              </div>
+
+              <div class="mt-5 border border-dashed border-[#957C3D] rounded-2xl p-4">
+                <p class="text-sm text-slate-600">
+                  Start by checking the <strong>beginning balance, dates, and transaction list</strong>.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSWER FIRST -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-14">
+      <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-10 items-start">
+
+        <div>
+          <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">Answer first</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            Most reconciliation problems are traceable
+          </h2>
+
+          <p class="mt-6 text-lg leading-relaxed text-slate-600">
+            When QuickBooks will not reconcile, the most useful question is:
+            <strong>“What changed between the bank statement and the QuickBooks register?”</strong>
+            Common causes include missing bank activity, duplicate entries, wrong dates, incorrect
+            amounts, stale outstanding checks, bank fees or interest that were never entered,
+            and changes to transactions that were already reconciled.
+          </p>
+
+          <p class="mt-5 text-lg leading-relaxed text-slate-600">
+            Avoid forcing the reconciliation with an unexplained adjustment. A clean reconciliation
+            should reflect what actually happened in the bank account.
+          </p>
+        </div>
+
+        <aside class="rounded-3xl bg-[#002349] text-white p-7 shadow-xl">
+          <p class="text-[#d7bf7b] text-xs font-bold uppercase tracking-widest">Fast diagnostic</p>
+
+          <div class="mt-5 space-y-4">
+            <div class="flex gap-3">
+              <span class="text-[#d7bf7b] font-black">01</span>
+              <span>Confirm statement ending date</span>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-[#d7bf7b] font-black">02</span>
+              <span>Confirm statement ending balance</span>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-[#d7bf7b] font-black">03</span>
+              <span>Check the beginning balance</span>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-[#d7bf7b] font-black">04</span>
+              <span>Find missing or duplicate items</span>
+            </div>
+            <div class="flex gap-3">
+              <span class="text-[#d7bf7b] font-black">05</span>
+              <span>Review prior reconciliations</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- 10 CAUSES -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">Common causes</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            10 reasons your QuickBooks reconciliation is off
+          </h2>
+
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            Work through these from the simplest checks to the historical ones.
+            The right fix depends on the actual transaction that created the difference.
+          </p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-5">
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">01</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">The beginning balance is wrong</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              If a previous reconciliation was changed or the opening balance was entered incorrectly,
+              the current reconciliation can carry forward a difference.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">02</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">A bank transaction is missing</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              A check, ACH, deposit, card transaction, fee, or transfer may exist on the bank statement
+              but not in QuickBooks.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">03</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">A transaction was entered twice</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Duplicate imports or manual entries can make the QuickBooks cleared amount larger or smaller
+              than the bank statement activity.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">04</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">The amount is wrong</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Even a small data-entry error can create an exact reconciliation difference.
+              Compare the actual bank amount to the amount recorded in QuickBooks.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">05</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">The transaction date is wrong</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              A transaction recorded in the wrong period may exist in QuickBooks but not appear in the
+              reconciliation you are currently completing.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">06</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Bank fees or interest were never recorded</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Monthly service fees, wire fees, or interest can be visible on the bank statement without
+              a matching QuickBooks entry.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">07</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">A transfer was recorded incorrectly</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Transfers between business accounts can be duplicated, omitted, or entered as income or
+              expense instead of as a transfer.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">08</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">An old outstanding item is no longer valid</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Old checks, deposits, or other uncleared activity can remain on the books long after
+              the underlying transaction should have been resolved.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">09</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">A reconciled transaction was edited</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Editing the date, amount, account, or other important details of a previously reconciled
+              transaction can affect later reconciliation work.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">10</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">A prior reconciliation was undone or altered</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              A historical reconciliation change can move the starting point for later months.
+              When the difference is large or persistent, trace the reconciliation history before posting adjustments.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DECISION TREE -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+      <div class="grid lg:grid-cols-[.82fr_1.18fr] gap-10 items-start">
+
+        <div>
+          <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">Decision tree</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            What to investigate based on the size of the difference
+          </h2>
+
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            The amount can give you a clue, but it does not prove the cause.
+            Use it to prioritize your search rather than to guess the correction.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black shrink-0">≈</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#002349]">Tiny or exact-looking difference</h3>
+                <p class="mt-2 text-slate-600 leading-relaxed">
+                  Look for a small data-entry error, service fee, interest amount, or rounding-related issue.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black shrink-0">1+</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#002349]">Difference equals a known transaction</h3>
+                <p class="mt-2 text-slate-600 leading-relaxed">
+                  Search for a missing or duplicated transaction for exactly that amount before changing any prior-period entries.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black shrink-0">↺</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#002349]">Difference appeared after a prior month was already reconciled</h3>
+                <p class="mt-2 text-slate-600 leading-relaxed">
+                  Investigate edits, deleted transactions, changed dates, or altered prior reconciliations.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="flex items-start gap-4">
+              <div class="w-12 h-12 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black shrink-0">!</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#002349]">Large, old, or unexplained difference</h3>
+                <p class="mt-2 text-slate-600 leading-relaxed">
+                  Stop and review the historical register, reconciliation reports, and supporting bank statements before making a correction.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DO / DON'T -->
+    <section class="bg-[#002349] text-white">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">Avoid common cleanup mistakes</p>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+            Fix the transaction, not just the reconciliation screen
+          </h2>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-5">
+
+          <div class="rounded-3xl bg-white/5 border border-white/10 p-7">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">✓</div>
+              <h3 class="text-xl font-extrabold">Do trace the source</h3>
+            </div>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Compare the bank statement to the QuickBooks register and identify the exact missing,
+              duplicate, edited, or incorrectly dated transaction.
+            </p>
+          </div>
+
+          <div class="rounded-3xl bg-white/5 border border-white/10 p-7">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center font-black">×</div>
+              <h3 class="text-xl font-extrabold">Don't force a plug</h3>
+            </div>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              An unexplained adjustment may make the reconciliation equal zero while leaving the accounting records incomplete or misleading.
+            </p>
+          </div>
+
+          <div class="rounded-3xl bg-white/5 border border-white/10 p-7">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">✓</div>
+              <h3 class="text-xl font-extrabold">Do document material fixes</h3>
+            </div>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Keep a record of what was changed, why, the bank statement reference, and any supporting documentation.
+            </p>
+          </div>
+
+          <div class="rounded-3xl bg-white/5 border border-white/10 p-7">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center font-black">×</div>
+              <h3 class="text-xl font-extrabold">Don't casually undo old reconciliations</h3>
+            </div>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Historical reconciliation changes can affect later periods. Understand the cause before changing prior-period records.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- MONTHLY PROCESS -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="max-w-3xl">
+        <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">Better monthly process</p>
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+          A clean reconciliation workflow for small businesses
+        </h2>
+      </div>
+
+      <div class="mt-10 grid lg:grid-cols-5 gap-4">
+
+        <div class="bg-white rounded-3xl border border-slate-200 p-6">
+          <div class="text-2xl font-black text-[#957C3D]">01</div>
+          <h3 class="mt-3 font-extrabold text-[#002349]">Collect</h3>
+          <p class="mt-2 text-sm text-slate-600">Use the complete monthly bank statement, including the correct ending date.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-200 p-6">
+          <div class="text-2xl font-black text-[#957C3D]">02</div>
+          <h3 class="mt-3 font-extrabold text-[#002349]">Compare</h3>
+          <p class="mt-2 text-sm text-slate-600">Compare statement activity to the QuickBooks register.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-200 p-6">
+          <div class="text-2xl font-black text-[#957C3D]">03</div>
+          <h3 class="mt-3 font-extrabold text-[#002349]">Investigate</h3>
+          <p class="mt-2 text-sm text-slate-600">Find missing, duplicate, incorrect, or stale items.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-200 p-6">
+          <div class="text-2xl font-black text-[#957C3D]">04</div>
+          <h3 class="mt-3 font-extrabold text-[#002349]">Correct</h3>
+          <p class="mt-2 text-sm text-slate-600">Fix the underlying transaction and preserve an audit trail.</p>
+        </div>
+
+        <div class="bg-white rounded-3xl border border-slate-200 p-6">
+          <div class="text-2xl font-black text-[#957C3D]">05</div>
+          <h3 class="mt-3 font-extrabold text-[#002349]">Confirm</h3>
+          <p class="mt-2 text-sm text-slate-600">Finish only when the reconciliation difference is resolved and the records make sense.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- WARNING SIGNS -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 pb-16">
+      <div class="bg-[#f3eee2] rounded-[2rem] p-7 sm:p-10">
+
+        <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 items-start">
+
+          <div>
+            <p class="text-[#957C3D] text-sm font-bold uppercase tracking-widest">Warning signs</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+              Your reconciliation may need deeper cleanup
+            </h2>
+            <p class="mt-5 text-slate-700 leading-relaxed">
+              A one-time error is different from a recurring bookkeeping problem. Look deeper when
+              the same account never reconciles cleanly or old outstanding items continue month after month.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="bg-white rounded-3xl border border-slate-200 p-5">
+              <div class="font-extrabold text-[#002349]">Same difference repeats</div>
+              <p class="mt-2 text-sm text-slate-600">The exact amount appears in multiple periods.</p>
+            </div>
+            <div class="bg-white rounded-3xl border border-slate-200 p-5">
+              <div class="font-extrabold text-[#002349]">Old uncleared items pile up</div>
+              <p class="mt-2 text-sm text-slate-600">Outstanding transactions remain unresolved for long periods.</p>
+            </div>
+            <div class="bg-white rounded-3xl border border-slate-200 p-5">
+              <div class="font-extrabold text-[#002349]">Beginning balance keeps changing</div>
+              <p class="mt-2 text-sm text-slate-600">Prior-period activity may have been edited or altered.</p>
+            </div>
+            <div class="bg-white rounded-3xl border border-slate-200 p-5">
+              <div class="font-extrabold text-[#002349]">Bank and books rarely agree</div>
+              <p class="mt-2 text-sm text-slate-600">The file may need a wider bookkeeping review beyond one reconciliation.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 pb-4">
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 sm:p-9">
+
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div>
+            <p class="text-[#957C3D] text-xs font-bold uppercase tracking-widest">Related Accountrise guides</p>
+            <h2 class="mt-2 text-2xl font-black text-[#002349]">
+              Keep your QuickBooks books accurate from month to month
+            </h2>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="/blog/how-often-should-small-business-reconcile-bank-accounts.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Reconciliation Frequency →
+            </a>
+
+            <a href="/blog/why-quickbooks-balance-sheet-is-wrong.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Balance Sheet Fixes →
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+
+      <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm text-center">FAQ</p>
+
+      <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349] text-center">
+        QuickBooks reconciliation questions
+      </h2>
+
+      <div class="mt-10 space-y-4">
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why is my QuickBooks bank reconciliation off?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Common causes include an incorrect beginning balance, missing or duplicate transactions,
+            wrong amounts or dates, unrecorded bank fees or interest, old outstanding items, and changes
+            to transactions that were previously reconciled.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            What should I check first when QuickBooks will not reconcile?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Confirm the statement ending date and balance, verify the beginning balance, then compare
+            the bank statement to the QuickBooks transaction list for missing, duplicate, or incorrectly
+            dated items.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Should I undo a previous QuickBooks reconciliation?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Do not undo it automatically. First identify what changed and whether the underlying transaction
+            can be corrected without disturbing accurate historical reconciliations.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            How often should a small business reconcile its bank account?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Monthly is a common baseline. Higher-volume businesses or businesses that need tighter cash
+            visibility may choose a more frequent review.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- SINGLE CTA -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 sm:px-8 pb-20">
+
+      <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-12">
+
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 items-center">
+
+          <div>
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">
+              Need help with QuickBooks?
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Stop carrying reconciliation problems into the next month.
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Accountrise helps small businesses reconcile bank accounts, clean up historical
+              bookkeeping issues, investigate differences, and keep QuickBooks ready for
+              monthly reporting and tax preparation.
+            </p>
+
+            <p class="mt-4 text-slate-300">
+              <strong class="text-white">Starting at $10/hour.</strong>
+              Final pricing depends on scope, transaction volume, complexity, and engagement requirements.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               class="text-center bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-bold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="text-center border border-white/25 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+              Email Us
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-100 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-8 flex flex-col sm:flex-row justify-between gap-3 text-sm text-slate-500">
+      <span>© Accountrise</span>
+
+      <div class="flex gap-5">
+        <a href="/services/" class="hover:text-[#002349]">Services</a>
+        <a href="/blog/" class="hover:text-[#002349]">Blog</a>
+        <a href="/about/" class="hover:text-[#002349]">About Us</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
