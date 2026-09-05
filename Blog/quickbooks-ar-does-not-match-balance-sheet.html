@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Why Doesn't Accounts Receivable Match in QuickBooks? 9 Causes & Fixes | Accountrise</title>
+  <meta name="description" content="Why doesn't your QuickBooks Accounts Receivable aging match the Balance Sheet? Learn the 9 most common causes, how to diagnose the difference, and how to fix A/R without creating new accounting errors." />
+  <meta name="keywords" content="QuickBooks accounts receivable does not match balance sheet, QuickBooks A/R mismatch, accounts receivable aging does not match balance sheet, QuickBooks accounts receivable wrong, fix A/R in QuickBooks" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.accountrise.com/blog/quickbooks-ar-does-not-match-balance-sheet.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Why Doesn't Accounts Receivable Match in QuickBooks? 9 Causes & Fixes" />
+  <meta property="og:description" content="A practical guide to diagnosing and fixing QuickBooks Accounts Receivable mismatches." />
+  <meta property="og:url" content="https://www.accountrise.com/blog/quickbooks-ar-does-not-match-balance-sheet.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Why Doesn't Accounts Receivable Match in QuickBooks?" />
+  <meta name="twitter:description" content="Find and fix common QuickBooks A/R mismatches without creating new bookkeeping problems." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .grid-bg {
+      background-image:
+        linear-gradient(rgba(0,35,73,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,35,73,.045) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .rise { animation: rise .7s ease-out both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .float-card { animation: floaty 5s ease-in-out infinite; }
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Why Doesn't Accounts Receivable Match in QuickBooks? 9 Causes & Fixes",
+    "description": "A practical guide to diagnosing and fixing QuickBooks Accounts Receivable mismatches.",
+    "author": {
+      "@type": "Organization",
+      "name": "Accountrise",
+      "url": "https://www.accountrise.com"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Accountrise",
+      "url": "https://www.accountrise.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/quickbooks-ar-does-not-match-balance-sheet.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why doesn't Accounts Receivable match the Balance Sheet in QuickBooks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The A/R aging and Balance Sheet can differ because of report settings, date ranges, unapplied payments or credits, transactions posted directly to A/R, deleted or changed transactions, or other posting issues."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can a payment make QuickBooks A/R incorrect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. A payment can be recorded without correctly applying it to an invoice, leaving an unapplied credit or creating a difference between customer-level activity and the expected A/R balance."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I make a journal entry to fix an Accounts Receivable mismatch?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually, do not start with a journal entry. First identify the underlying customer, invoice, payment, credit memo, or posting issue. A journal entry can change the balance without fixing the detailed customer records."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I clean up old Accounts Receivable in QuickBooks?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with an A/R aging report, identify old balances by customer, trace invoices and payments, review credits and unapplied cash, verify opening balances, and document any approved write-offs or corrections before changing historical transactions."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+  <header class="bg-[#002349] text-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-5 flex items-center justify-between">
+      <a href="/" class="text-xl font-extrabold tracking-tight">Accountrise</a>
+
+      <nav class="hidden sm:flex items-center gap-7 text-sm">
+        <a href="/" class="hover:text-[#d7bf7b] transition">Home</a>
+        <a href="/services/" class="hover:text-[#d7bf7b] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#d7bf7b] transition">Blog</a>
+        <a href="/about/" class="hover:text-[#d7bf7b] transition">About Us</a>
+        <a href="#contact"
+           class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="grid-bg border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 lg:py-24">
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-12 items-center">
+
+          <div class="rise">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-xs font-bold uppercase tracking-widest text-[#957C3D]">
+              QuickBooks • Accounts Receivable
+            </div>
+
+            <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl font-black leading-tight tracking-tight text-[#002349]">
+              Why Doesn't Accounts Receivable Match in QuickBooks?
+            </h1>
+
+            <p class="mt-6 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl">
+              When your <strong>A/R Aging report</strong> does not match the
+              <strong>Accounts Receivable balance on the Balance Sheet</strong>,
+              do not immediately post a plug entry. First find the transaction causing the difference.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <span class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-semibold">A/R Aging</span>
+              <span class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-semibold">Balance Sheet</span>
+              <span class="px-4 py-2 rounded-xl bg-white border border-slate-200 text-sm font-semibold">Customer Detail</span>
+            </div>
+          </div>
+
+          <div class="float-card">
+            <div class="bg-white rounded-3xl border border-slate-200 shadow-xl p-6">
+
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs uppercase tracking-widest text-slate-400 font-bold">Mismatch example</p>
+                  <p class="mt-1 text-xl font-extrabold text-[#002349]">Find the gap</p>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black text-xl">
+                  A/R
+                </div>
+              </div>
+
+              <div class="mt-6 grid grid-cols-2 gap-4">
+                <div class="rounded-2xl bg-slate-50 p-5">
+                  <p class="text-xs uppercase tracking-widest text-slate-400 font-bold">A/R Aging</p>
+                  <p class="mt-2 text-3xl font-black text-[#002349]">$48,250</p>
+                </div>
+
+                <div class="rounded-2xl bg-slate-50 p-5">
+                  <p class="text-xs uppercase tracking-widest text-slate-400 font-bold">Balance Sheet</p>
+                  <p class="mt-2 text-3xl font-black text-[#002349]">$50,250</p>
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-2xl border border-dashed border-[#957C3D] p-4">
+                <p class="text-sm text-slate-600">
+                  Difference to investigate:
+                  <strong class="text-[#002349]">$2,000</strong>
+                </p>
+                <p class="mt-1 text-xs text-slate-400">
+                  Do not “fix” the difference until you know what caused it.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSWER FIRST -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-14">
+      <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-10 items-start">
+
+        <div>
+          <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">Answer first</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            The two reports should tell the same A/R story—when they are built on the same basis
+          </h2>
+
+          <p class="mt-6 text-lg leading-relaxed text-slate-600">
+            A common QuickBooks problem is seeing one A/R number in the customer aging report
+            and a different number on the Balance Sheet. The gap can come from the report date,
+            unapplied customer payments or credits, transactions posted directly to A/R,
+            deleted or changed transactions, or historical cleanup problems.
+          </p>
+
+          <p class="mt-5 text-lg leading-relaxed text-slate-600">
+            The safest approach is to work from the <strong>difference back to the transaction</strong>,
+            not from the desired ending balance back to a journal entry.
+          </p>
+        </div>
+
+        <aside class="rounded-3xl bg-[#002349] text-white p-7 shadow-xl">
+          <p class="text-[#d7bf7b] text-xs font-bold uppercase tracking-widest">3 reports to compare</p>
+          <div class="mt-4 space-y-4">
+            <div class="rounded-2xl bg-white/5 p-4">
+              <div class="font-extrabold">A/R Aging</div>
+              <div class="mt-1 text-sm text-slate-300">Shows outstanding customer balances by age.</div>
+            </div>
+            <div class="rounded-2xl bg-white/5 p-4">
+              <div class="font-extrabold">Balance Sheet</div>
+              <div class="mt-1 text-sm text-slate-300">Shows the A/R account balance in the ledger.</div>
+            </div>
+            <div class="rounded-2xl bg-white/5 p-4">
+              <div class="font-extrabold">Customer Transaction Detail</div>
+              <div class="mt-1 text-sm text-slate-300">Helps locate the transactions behind the customer balance.</div>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- 9 CAUSES -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">Common causes</p>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            9 reasons QuickBooks A/R may not match
+          </h2>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-5">
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">01</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Different report dates</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              A/R Aging and Balance Sheet reports must be compared for the same date and, where relevant,
+              the same accounting basis. A simple date mismatch can create an apparent difference.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">02</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Unapplied customer payments</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              A payment received from a customer may exist in QuickBooks without being properly applied
+              to the related invoice. This can leave customer-level activity that needs investigation.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">03</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Unapplied credits or credit memos</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Customer credits can reduce what a customer owes without being applied to a specific invoice.
+              Old credits are a frequent reason A/R becomes hard to interpret.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">04</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Journal entries posted to A/R</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Direct journal entries to Accounts Receivable can change the ledger without behaving like
+              normal invoice-and-payment activity in the customer subledger.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">05</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Old opening balance problems</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Historical migrations, opening balances, or prior cleanup entries can leave old A/R balances
+              that no longer tie to the detailed customer records.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">06</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Deleted, edited, or re-dated transactions</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Changes to invoices, payments, credits, or dates can alter the relationship between the
+              customer detail and the general ledger.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">07</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Multiple A/R accounts</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Businesses that created more than one Accounts Receivable account can accidentally compare
+              one account on the Balance Sheet with a customer report that covers a different setup.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition">
+            <div class="text-[#957C3D] font-black text-3xl">08</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Transactions posted to the wrong account</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              A receipt, invoice adjustment, or other transaction classified outside the expected A/R flow
+              can make customer balances and the ledger tell different stories.
+            </p>
+          </article>
+
+          <article class="rounded-3xl border border-slate-200 p-6 hover:shadow-lg transition md:col-span-2">
+            <div class="text-[#957C3D] font-black text-3xl">09</div>
+            <h3 class="mt-3 text-xl font-extrabold text-[#002349]">Historical books need a structured cleanup</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed max-w-4xl">
+              If a company has years of stale invoices, credits, manual entries, and unmatched payments,
+              the mismatch may be a symptom of a larger bookkeeping problem. In that situation, correcting
+              only the ending A/R number can make the books look cleaner while leaving the underlying records wrong.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DIAGNOSTIC WORKFLOW -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+      <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+
+        <div>
+          <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">Diagnostic workflow</p>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            Find the difference in the right order
+          </h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            A structured review is faster than clicking through random invoices. Work from the report-level
+            difference into the customer transactions that created it.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+
+          <div class="flex gap-4 bg-white rounded-3xl border border-slate-200 p-5">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black">1</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Lock the date</h3>
+              <p class="mt-1 text-sm text-slate-600">
+                Run both reports for the exact same as-of date. Record the difference.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 bg-white rounded-3xl border border-slate-200 p-5">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black">2</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Confirm the A/R account setup</h3>
+              <p class="mt-1 text-sm text-slate-600">
+                Make sure the Balance Sheet account and customer reporting structure are actually referring to the same A/R setup.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 bg-white rounded-3xl border border-slate-200 p-5">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black">3</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Review unapplied cash and credits</h3>
+              <p class="mt-1 text-sm text-slate-600">
+                Look for customer payments, credits, or adjustments that have not been cleanly applied.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 bg-white rounded-3xl border border-slate-200 p-5">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black">4</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Search for direct A/R journal entries</h3>
+              <p class="mt-1 text-sm text-slate-600">
+                Investigate entries that hit A/R without a normal invoice/payment flow.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 bg-white rounded-3xl border border-slate-200 p-5">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black">5</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Trace old balances by customer</h3>
+              <p class="mt-1 text-sm text-slate-600">
+                Prioritize large or unusually old items. Identify the original transaction before making a correction.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4 bg-white rounded-3xl border border-slate-200 p-5">
+            <div class="w-11 h-11 shrink-0 rounded-2xl bg-[#f3eee2] flex items-center justify-center text-[#957C3D] font-black">6</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Document the correction</h3>
+              <p class="mt-1 text-sm text-slate-600">
+                Keep a clear explanation of what changed, why it changed, and what supporting records were reviewed.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DON'T DO THIS -->
+    <section class="bg-[#002349] text-white">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-start">
+
+          <div>
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">Important</p>
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Don't force A/R to the number you want
+            </h2>
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              A journal entry may make the Balance Sheet look closer to the aging report, but
+              it can leave individual customers with incorrect balances. That creates a bigger problem
+              when the next payment arrives or the CPA reviews the file.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+              <div class="text-[#d7bf7b] font-black text-2xl">Avoid</div>
+              <h3 class="mt-2 text-lg font-extrabold">Blind plug entries</h3>
+              <p class="mt-3 text-sm text-slate-300">
+                Do not post an unexplained adjustment just to make two reports equal.
+              </p>
+            </div>
+
+            <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+              <div class="text-[#d7bf7b] font-black text-2xl">Prefer</div>
+              <h3 class="mt-2 text-lg font-extrabold">Source-level cleanup</h3>
+              <p class="mt-3 text-sm text-slate-300">
+                Correct the invoice, payment, credit, or historical entry that caused the difference.
+              </p>
+            </div>
+
+            <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+              <div class="text-[#d7bf7b] font-black text-2xl">Document</div>
+              <h3 class="mt-2 text-lg font-extrabold">Keep an audit trail</h3>
+              <p class="mt-3 text-sm text-slate-300">
+                Record the reason, date, amount, and supporting documentation for significant fixes.
+              </p>
+            </div>
+
+            <div class="rounded-3xl bg-white/5 border border-white/10 p-6">
+              <div class="text-[#d7bf7b] font-black text-2xl">Recheck</div>
+              <h3 class="mt-2 text-lg font-extrabold">Run reports again</h3>
+              <p class="mt-3 text-sm text-slate-300">
+                Confirm the detailed customer records and Balance Sheet tell the same story after cleanup.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CLEANUP CHECKLIST -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+      <div class="bg-[#f3eee2] rounded-[2rem] p-7 sm:p-10">
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm">A/R cleanup checklist</p>
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            Before you close the books, confirm these items
+          </h2>
+        </div>
+
+        <div class="mt-9 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-[#957C3D] text-2xl">✓</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Same report date</h3>
+            <p class="mt-2 text-sm text-slate-600">A/R reports use the same as-of date for comparison.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-[#957C3D] text-2xl">✓</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Old customer balances reviewed</h3>
+            <p class="mt-2 text-sm text-slate-600">Large and aging balances have a documented explanation.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-[#957C3D] text-2xl">✓</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Payments applied correctly</h3>
+            <p class="mt-2 text-sm text-slate-600">Unapplied customer cash has been investigated.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-[#957C3D] text-2xl">✓</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Credits reviewed</h3>
+            <p class="mt-2 text-sm text-slate-600">Old credits and credit memos have a clear treatment.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-[#957C3D] text-2xl">✓</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Direct A/R entries reviewed</h3>
+            <p class="mt-2 text-sm text-slate-600">Journal entries touching A/R are explained and supported.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl p-6 border border-slate-200">
+            <div class="text-[#957C3D] text-2xl">✓</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Final tie-out completed</h3>
+            <p class="mt-2 text-sm text-slate-600">Customer detail and the Balance Sheet agree after cleanup.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERNAL LINK / RELATED -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 pb-4">
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 sm:p-9">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+          <div>
+            <p class="text-[#957C3D] text-xs font-bold uppercase tracking-widest">Related Accountrise guides</p>
+            <h2 class="mt-2 text-2xl font-black text-[#002349]">
+              Keep your QuickBooks books clean from both sides of the ledger
+            </h2>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <a href="/blog/why-quickbooks-balance-sheet-is-wrong.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Balance Sheet Troubleshooting →
+            </a>
+
+            <a href="/blog/quickbooks-profit-but-no-cash.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Profit vs. Cash →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+      <p class="text-[#957C3D] font-bold uppercase tracking-widest text-sm text-center">FAQ</p>
+      <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349] text-center">
+        QuickBooks A/R questions
+      </h2>
+
+      <div class="mt-10 space-y-4">
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why doesn't Accounts Receivable match the Balance Sheet in QuickBooks?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            The difference can come from report dates, unapplied payments or credits, direct A/R journal
+            entries, historical opening balances, changed transactions, multiple A/R accounts, or other posting issues.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Can a payment make QuickBooks A/R incorrect?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Yes. A payment can exist without being properly applied to the related invoice. Review customer
+            payment activity and unapplied cash before making an adjustment.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Should I make a journal entry to fix an A/R mismatch?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Usually, no. Start by tracing the underlying invoice, payment, credit, or historical transaction.
+            A journal entry may change the ledger without correcting customer-level detail.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            How do I clean up old Accounts Receivable in QuickBooks?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Begin with an A/R aging report, investigate old balances by customer, trace invoices and payments,
+            review credits and unapplied cash, verify opening balances, and document approved corrections or write-offs.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- SINGLE CTA -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 sm:px-8 pb-20">
+      <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-12">
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 items-center">
+
+          <div>
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">
+              Need help cleaning up QuickBooks?
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Get your A/R, Balance Sheet, and customer records telling the same story.
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Accountrise helps small businesses clean up QuickBooks, reconcile accounts,
+              investigate historical differences, and build a reliable monthly bookkeeping process.
+            </p>
+
+            <p class="mt-4 text-slate-300">
+              <strong class="text-white">Starting at $10/hour.</strong>
+              Final pricing depends on scope, transaction volume, complexity, and engagement requirements.
+            </p>
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               class="text-center bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-bold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="text-center border border-white/25 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+              Email Us
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-100 border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-8 flex flex-col sm:flex-row justify-between gap-3 text-sm text-slate-500">
+      <span>© Accountrise</span>
+
+      <div class="flex gap-5">
+        <a href="/services/" class="hover:text-[#002349]">Services</a>
+        <a href="/blog/" class="hover:text-[#002349]">Blog</a>
+        <a href="/about/" class="hover:text-[#002349]">About Us</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
