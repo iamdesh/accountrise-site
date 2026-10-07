@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Odoo Landed Costs: Why Inventory Value & COGS Don't Match</title>
+  <meta name="description" content="Learn how Odoo landed costs affect inventory value and COGS. Diagnose freight, duties, brokerage, insurance, allocation and accounting setup issues with a practical US business workflow.">
+  <meta name="keywords" content="Odoo landed costs, Odoo inventory valuation, Odoo freight costs, Odoo customs duties, Odoo COGS, Odoo accounting, landed cost accounting">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-landed-costs-inventory-cogs.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Landed Costs: Why Inventory Value & COGS Don't Match">
+  <meta property="og:description" content="A practical guide to Odoo landed costs, inventory capitalization, COGS timing and the accounting checks that keep inventory value accurate.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-landed-costs-inventory-cogs.html">
+  <meta property="og:site_name" content="Accountrise">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Landed Costs: Why Inventory Value & COGS Don't Match">
+  <meta name="twitter:description" content="Diagnose landed cost and inventory valuation problems in Odoo with a simple transaction-to-Balance-Sheet workflow.">
+
+  <link rel="preconnect" href="https://cdn.tailwindcss.com">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .grid-paper {
+      background-image:
+        linear-gradient(rgba(0,35,73,.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,35,73,.055) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .soft-shadow { box-shadow: 0 18px 50px rgba(0,35,73,.10); }
+    .deep-shadow { box-shadow: 0 28px 80px rgba(0,35,73,.16); }
+    .sticky-offset { scroll-margin-top: 90px; }
+    .flow-line {
+      background: linear-gradient(90deg, rgba(149,124,61,.18), rgba(0,35,73,.12), rgba(149,124,61,.18));
+    }
+    details summary { cursor: pointer; list-style: none; }
+    details summary::-webkit-details-marker { display: none; }
+    .reveal {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity .55s ease, transform .55s ease;
+    }
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#10243A',
+            mist: '#F5F7FA'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#10243A] antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="font-black tracking-tight text-2xl text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero: completely different "freight manifest" visual -->
+  <main>
+    <section class="relative overflow-hidden bg-[#002349] text-white">
+      <div class="absolute inset-0 opacity-30 grid-paper"></div>
+      <div class="absolute -right-28 top-8 w-80 h-80 rounded-full bg-[#957C3D]/20 blur-3xl"></div>
+      <div class="absolute -left-28 bottom-0 w-96 h-96 rounded-full bg-sky-500/10 blur-3xl"></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 sm:px-8 py-16 lg:py-24">
+        <div class="max-w-4xl">
+          <div class="flex flex-wrap items-center gap-3 mb-7">
+            <span class="px-3 py-1 rounded-full bg-white/10 border border-white/15 text-xs font-bold uppercase tracking-[0.18em] text-[#E5D6A8]">Odoo Accounting</span>
+            <span class="text-sm text-slate-300">Inventory • Freight • COGS</span>
+          </div>
+
+          <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight">
+            Odoo Landed Costs:
+            <span class="text-[#D8C58F]">Why Inventory Value &amp; COGS Don't Match</span>
+          </h1>
+
+          <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-3xl">
+            Freight, customs, brokerage and other acquisition costs can change the real cost of inventory.
+            When those costs are recorded in the wrong place—or too late—your inventory, margin and Balance Sheet can drift apart.
+          </p>
+
+          <div class="mt-10 grid sm:grid-cols-3 gap-4 max-w-3xl">
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Problem</div>
+              <div class="mt-2 font-bold">Inventory cost looks too low</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Risk</div>
+              <div class="mt-2 font-bold">Margins and COGS are distorted</div>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-xs uppercase tracking-widest text-slate-400">Fix</div>
+              <div class="mt-2 font-bold">Trace the cost to inventory</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Manifest card -->
+        <div class="mt-14 max-w-5xl bg-white text-[#10243A] rounded-[2rem] p-5 sm:p-7 deep-shadow">
+          <div class="flex items-center justify-between border-b border-slate-200 pb-5">
+            <div>
+              <p class="text-xs uppercase tracking-[0.2em] font-bold text-[#957C3D]">Landed Cost Manifest</p>
+              <p class="mt-1 font-extrabold text-[#002349]">Purchase Order → Freight → Inventory</p>
+            </div>
+            <div class="hidden sm:block text-right">
+              <div class="text-xs text-slate-500">Control question</div>
+              <div class="font-bold text-[#002349]">“Did the acquisition cost reach stock?”</div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-5 gap-3 items-center py-7">
+            <div class="rounded-2xl bg-slate-50 p-5 text-center">
+              <div class="text-xs font-bold text-slate-500">01</div>
+              <div class="mt-2 font-black">Goods</div>
+              <div class="mt-1 text-sm text-slate-600">Supplier invoice</div>
+            </div>
+            <div class="hidden md:block h-px bg-slate-300"></div>
+            <div class="rounded-2xl bg-[#FFF9ED] p-5 text-center border border-[#E8D49D]">
+              <div class="text-xs font-bold text-[#957C3D]">02</div>
+              <div class="mt-2 font-black text-[#002349]">Landed Cost</div>
+              <div class="mt-1 text-sm text-slate-600">Freight / duty / fees</div>
+            </div>
+            <div class="hidden md:block h-px bg-slate-300"></div>
+            <div class="rounded-2xl bg-slate-50 p-5 text-center">
+              <div class="text-xs font-bold text-slate-500">03</div>
+              <div class="mt-2 font-black">Stock Value</div>
+              <div class="mt-1 text-sm text-slate-600">Capitalized cost</div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1.5 rounded-full bg-slate-100 text-sm">Freight</span>
+            <span class="px-3 py-1.5 rounded-full bg-slate-100 text-sm">Customs / Duties</span>
+            <span class="px-3 py-1.5 rounded-full bg-slate-100 text-sm">Insurance</span>
+            <span class="px-3 py-1.5 rounded-full bg-slate-100 text-sm">Brokerage</span>
+            <span class="px-3 py-1.5 rounded-full bg-slate-100 text-sm">Handling</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer first -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-10 items-start">
+        <div>
+          <span class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Answer first</span>
+          <h2 class="sticky-offset mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Why does the mismatch happen?</h2>
+          <p class="mt-5 text-lg text-slate-600 leading-relaxed">
+            The most common issue is that a cost related to acquiring inventory gets recorded as an immediate expense,
+            while the inventory itself remains on the Balance Sheet—or the opposite happens and a cost is attached to stock that
+            has already been sold.
+          </p>
+          <p class="mt-4 text-lg text-slate-600 leading-relaxed">
+            In Odoo, the useful question is not simply “Was freight entered?” It is:
+            <strong class="text-[#002349]">“Was the right cost allocated to the right inventory movement at the right time?”</strong>
+          </p>
+        </div>
+
+        <aside class="rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+          <div class="text-sm font-bold text-[#957C3D] uppercase tracking-widest">The three-way check</div>
+          <div class="mt-6 space-y-4">
+            <div class="flex gap-4">
+              <div class="w-9 h-9 rounded-xl bg-[#002349] text-white flex items-center justify-center font-black">1</div>
+              <div><div class="font-extrabold">Vendor cost</div><div class="text-sm text-slate-500">What did the business pay?</div></div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-9 h-9 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">2</div>
+              <div><div class="font-extrabold">Inventory cost</div><div class="text-sm text-slate-500">What cost reached stock?</div></div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-9 h-9 rounded-xl bg-slate-200 text-[#002349] flex items-center justify-center font-black">3</div>
+              <div><div class="font-extrabold">COGS</div><div class="text-sm text-slate-500">What cost moved out with sales?</div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- Interactive calculator -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <span class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Quick calculation</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">See how landed cost changes unit economics</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Use this simple estimate to visualize the accounting logic. It is a planning tool, not a substitute for your configured Odoo valuation method.
+          </p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-[.9fr_1.1fr] gap-8">
+          <div class="rounded-3xl bg-[#F5F7FA] border border-slate-200 p-7">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Units received</span>
+                <input id="units" type="number" min="1" value="1000" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Supplier cost / unit</span>
+                <input id="unitCost" type="number" min="0" value="20" step="0.01" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Freight + duty</span>
+                <input id="landed" type="number" min="0" value="1800" step="0.01" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Units sold</span>
+                <input id="sold" type="number" min="0" value="250" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+          </div>
+
+          <div class="rounded-3xl bg-[#002349] text-white p-7 sm:p-8">
+            <div class="text-sm uppercase tracking-widest text-[#D8C58F] font-bold">Estimated view</div>
+            <div class="mt-7 grid sm:grid-cols-3 gap-4">
+              <div class="rounded-2xl bg-white/10 p-5">
+                <div class="text-xs text-slate-300">Base unit cost</div>
+                <div id="basePerUnit" class="mt-2 text-2xl font-black">$20.00</div>
+              </div>
+              <div class="rounded-2xl bg-white/10 p-5">
+                <div class="text-xs text-slate-300">Landed cost / unit</div>
+                <div id="landedPerUnit" class="mt-2 text-2xl font-black">$1.80</div>
+              </div>
+              <div class="rounded-2xl bg-white/10 p-5">
+                <div class="text-xs text-slate-300">Revised unit cost</div>
+                <div id="revisedPerUnit" class="mt-2 text-2xl font-black text-[#E5D6A8]">$21.80</div>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl border border-white/10 p-5">
+              <div class="text-sm text-slate-300">Illustrative incremental cost carried by the 250 units sold</div>
+              <div id="cogsImpact" class="mt-2 text-3xl font-black">$450.00</div>
+              <p class="mt-2 text-sm text-slate-400">Actual COGS behavior depends on your Odoo configuration, valuation method and timing.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Problem map -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto">
+        <span class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Find the break</span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Where landed cost can go wrong</h2>
+        <p class="mt-4 text-slate-600">
+          Start with the symptom you can see in the financials, then trace backward to the transaction.
+        </p>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article class="reveal rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-4xl">01</div>
+          <h3 class="mt-6 text-xl font-black text-[#002349]">Inventory is too low</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Freight or import-related acquisition costs may have been expensed instead of included in inventory when appropriate.</p>
+        </article>
+
+        <article class="reveal rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-4xl">02</div>
+          <h3 class="mt-6 text-xl font-black text-[#002349]">COGS jumps unexpectedly</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">A cost may have been attached after units were sold, or timing may have pushed an adjustment into a later period.</p>
+        </article>
+
+        <article class="reveal rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-4xl">03</div>
+          <h3 class="mt-6 text-xl font-black text-[#002349]">Vendor balance is right, stock is wrong</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">The freight invoice can be financially correct while the inventory valuation remains incomplete.</p>
+        </article>
+
+        <article class="reveal rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-4xl">04</div>
+          <h3 class="mt-6 text-xl font-black text-[#002349]">Margin changes after a close</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Late landed-cost adjustments can change the cost attached to remaining stock and previously sold units.</p>
+        </article>
+
+        <article class="reveal rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-4xl">05</div>
+          <h3 class="mt-6 text-xl font-black text-[#002349]">One product absorbs too much cost</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">The allocation basis may not reflect the real driver of the freight, duty or handling cost.</p>
+        </article>
+
+        <article class="reveal rounded-3xl bg-[#002349] text-white p-6 soft-shadow">
+          <div class="text-4xl text-[#D8C58F]">06</div>
+          <h3 class="mt-6 text-xl font-black">Balance Sheet &amp; operational report disagree</h3>
+          <p class="mt-3 text-slate-300 leading-relaxed">The fastest route is to reconcile the inventory report, valuation entries and source documents in one timeline.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="bg-[#EEF2F5] border-y border-slate-200">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <span class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Transaction trail</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Trace one shipment from dock to financial statements</h2>
+        </div>
+
+        <div class="mt-12 relative">
+          <div class="absolute left-5 sm:left-8 top-0 bottom-0 w-px bg-slate-300"></div>
+
+          <div class="relative pl-14 sm:pl-20 pb-10">
+            <div class="absolute left-2.5 sm:left-5 top-1 w-5 h-5 rounded-full bg-[#002349] ring-8 ring-[#EEF2F5]"></div>
+            <div class="rounded-3xl bg-white p-6 border border-slate-200 soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Step 1 • Receive goods</div>
+              <h3 class="mt-2 text-xl font-black text-[#002349]">The product arrives before every cost is known</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">The inventory may be received while freight, duty or brokerage documentation is still outstanding. That creates a timing question—not automatically an accounting error.</p>
+            </div>
+          </div>
+
+          <div class="relative pl-14 sm:pl-20 pb-10">
+            <div class="absolute left-2.5 sm:left-5 top-1 w-5 h-5 rounded-full bg-[#957C3D] ring-8 ring-[#EEF2F5]"></div>
+            <div class="rounded-3xl bg-white p-6 border border-slate-200 soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Step 2 • Record additional acquisition costs</div>
+              <h3 class="mt-2 text-xl font-black text-[#002349]">Identify what should be attached to inventory</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">Separate costs that are part of bringing inventory to its usable or saleable location from normal operating expenses that should remain period costs.</p>
+            </div>
+          </div>
+
+          <div class="relative pl-14 sm:pl-20 pb-10">
+            <div class="absolute left-2.5 sm:left-5 top-1 w-5 h-5 rounded-full bg-[#002349] ring-8 ring-[#EEF2F5]"></div>
+            <div class="rounded-3xl bg-white p-6 border border-slate-200 soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Step 3 • Allocate</div>
+              <h3 class="mt-2 text-xl font-black text-[#002349]">Use an allocation basis that makes business sense</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">Depending on the cost, an allocation may use quantity, weight, volume, current cost or another configured basis. The key is consistency and a defensible rationale.</p>
+            </div>
+          </div>
+
+          <div class="relative pl-14 sm:pl-20">
+            <div class="absolute left-2.5 sm:left-5 top-1 w-5 h-5 rounded-full bg-[#957C3D] ring-8 ring-[#EEF2F5]"></div>
+            <div class="rounded-3xl bg-[#002349] p-6 text-white soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#D8C58F]">Step 4 • Reconcile</div>
+              <h3 class="mt-2 text-xl font-black">Tie Odoo back to the accounting record</h3>
+              <p class="mt-3 text-slate-300 leading-relaxed">Compare the landed-cost adjustment, inventory valuation and related journal entries. Then confirm the impact on on-hand inventory and COGS.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Case study -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+        <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-10">
+          <div class="text-xs font-black uppercase tracking-[0.2em] text-[#D8C58F]">Mini case study</div>
+          <h2 class="mt-4 text-3xl font-black">US importer: “Our freight expense is right, but margin is wrong.”</h2>
+          <p class="mt-5 text-slate-300 leading-relaxed">
+            A distributor purchases 1,000 units, pays the supplier separately from freight and later sees gross margin change after a landed-cost adjustment.
+            The correct investigation starts with transaction timing, not with the income statement alone.
+          </p>
+
+          <div class="mt-8 space-y-4">
+            <div class="rounded-2xl bg-white/10 p-5">
+              <div class="font-bold">What to compare</div>
+              <div class="mt-2 text-sm text-slate-300">Receipt quantity • purchase cost • freight bill • duty/brokerage • landed cost record • valuation entries • units already sold</div>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-5">
+              <div class="font-bold">What the result should explain</div>
+              <div class="mt-2 text-sm text-slate-300">Why inventory increased, why COGS changed, and which period received the adjustment.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-white border border-slate-200 p-8 sm:p-10 soft-shadow">
+          <div class="text-xs font-black uppercase tracking-[0.2em] text-[#957C3D]">US business scenarios</div>
+          <div class="mt-6 space-y-5">
+            <div class="border-b border-slate-200 pb-5">
+              <div class="font-extrabold text-[#002349]">Ecommerce importer</div>
+              <p class="mt-2 text-slate-600">Freight and duties can materially change product margin, especially when products have low selling prices.</p>
+            </div>
+            <div class="border-b border-slate-200 pb-5">
+              <div class="font-extrabold text-[#002349]">Wholesale / distribution</div>
+              <p class="mt-2 text-slate-600">Allocation consistency matters when one shipment contains products with very different weights, values or quantities.</p>
+            </div>
+            <div>
+              <div class="font-extrabold text-[#002349]">Manufacturing</div>
+              <p class="mt-2 text-slate-600">Imported components can affect finished-product economics when acquisition costs are not captured consistently.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Do / Don't -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-2 gap-7">
+          <div class="rounded-[2rem] border border-emerald-200 bg-emerald-50 p-7 sm:p-9">
+            <div class="text-xs font-black uppercase tracking-[0.2em] text-emerald-700">Do</div>
+            <h2 class="mt-3 text-3xl font-black text-[#002349]">Build one audit trail</h2>
+            <ul class="mt-7 space-y-4 text-slate-700">
+              <li class="flex gap-3"><span class="font-black text-emerald-700">✓</span><span>Keep supplier, freight and duty documents tied to the shipment or receipt they relate to.</span></li>
+              <li class="flex gap-3"><span class="font-black text-emerald-700">✓</span><span>Review the allocation basis before posting a large adjustment.</span></li>
+              <li class="flex gap-3"><span class="font-black text-emerald-700">✓</span><span>Reconcile inventory valuation to the general ledger during month-end close.</span></li>
+              <li class="flex gap-3"><span class="font-black text-emerald-700">✓</span><span>Document unusual timing or manual adjustments for the next close.</span></li>
+            </ul>
+          </div>
+
+          <div class="rounded-[2rem] border border-rose-200 bg-rose-50 p-7 sm:p-9">
+            <div class="text-xs font-black uppercase tracking-[0.2em] text-rose-700">Avoid</div>
+            <h2 class="mt-3 text-3xl font-black text-[#002349]">Fixing the symptom only</h2>
+            <ul class="mt-7 space-y-4 text-slate-700">
+              <li class="flex gap-3"><span class="font-black text-rose-700">×</span><span>Do not simply reclassify a freight expense to inventory without checking what shipment it belongs to.</span></li>
+              <li class="flex gap-3"><span class="font-black text-rose-700">×</span><span>Do not force a Balance Sheet number to match without understanding the valuation entries behind it.</span></li>
+              <li class="flex gap-3"><span class="font-black text-rose-700">×</span><span>Do not use a single allocation rule for every type of landed cost when the economics are different.</span></li>
+              <li class="flex gap-3"><span class="font-black text-rose-700">×</span><span>Do not ignore transactions that occurred after some of the stock was already sold.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practical checklist -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+        <div>
+          <span class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Month-end control</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">A 9-point Odoo landed-cost review</h2>
+        </div>
+        <div class="text-sm text-slate-500 max-w-sm">
+          Use this before finalizing inventory and gross margin reporting.
+        </div>
+      </div>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>01.</b> List open inbound shipments.</div>
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>02.</b> Identify freight and import invoices.</div>
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>03.</b> Separate inventory-related and period costs.</div>
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>04.</b> Check allocation basis.</div>
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>05.</b> Confirm affected receipts/products.</div>
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>06.</b> Review valuation adjustment entries.</div>
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>07.</b> Check sold vs. unsold units.</div>
+        <div class="p-5 bg-white border border-slate-200 rounded-2xl"><b>08.</b> Tie inventory value to the ledger.</div>
+        <div class="p-5 bg-[#002349] text-white border border-[#002349] rounded-2xl"><b class="text-[#D8C58F]">09.</b> Document exceptions before close.</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F5F7FA] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <span class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">FAQ</span>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Questions US businesses commonly ask</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="bg-white rounded-2xl border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">
+              What are landed costs?
+              <span class="text-[#957C3D] text-xl">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Landed costs are additional costs associated with acquiring and bringing inventory to its intended location or condition, such as certain freight, duties, insurance or handling charges. Whether a specific cost should be capitalized depends on the applicable accounting policy and circumstances.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">
+              Why can COGS change after a landed-cost adjustment?
+              <span class="text-[#957C3D] text-xl">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              If part of the related inventory has already been sold, an adjustment made later can affect the cost associated with those sold units as well as the remaining on-hand inventory, depending on the configured valuation logic and timing.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">
+              Is every freight invoice a landed cost?
+              <span class="text-[#957C3D] text-xl">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              No. The accounting treatment depends on what the freight relates to, your capitalization policy and the circumstances of the transaction. Freight connected to inventory acquisition may be treated differently from delivery or operating freight incurred after the goods are ready for sale.
+            </p>
+          </details>
+
+          <details class="bg-white rounded-2xl border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">
+              How do I troubleshoot a large inventory adjustment in Odoo?
+              <span class="text-[#957C3D] text-xl">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Start with the affected receipts and products, identify every related acquisition-cost document, review the landed-cost allocation, then tie the resulting valuation entries to the general ledger and confirm whether the inventory was partly sold before the adjustment.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex items-center justify-between gap-6 flex-wrap">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Keep reading</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">More Odoo accounting guides</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-inventory-valuation-not-matching.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Odoo Accounting</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet</h3>
+        </a>
+        <a href="/blog/odoo-accounting-setup-guide-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Odoo Setup</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Accounting Setup Guide for US Businesses</h3>
+        </a>
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="relative overflow-hidden bg-[#002349] text-white">
+      <div class="absolute inset-0 opacity-20 grid-paper"></div>
+      <div class="relative max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#D8C58F]">Need a second set of eyes?</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Get your Odoo inventory and landed-cost workflow reconciled.</h2>
+          <p class="mt-5 text-slate-300 text-lg leading-relaxed">
+            Accountrise helps businesses and accounting firms clean up Odoo books, reconcile inventory, investigate valuation issues and build repeatable month-end processes.
+          </p>
+
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+            <a href="mailto:info@accountrise.com"
+               class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">
+              Email Us
+            </a>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-400">
+            Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const money = (n) => '$' + Number(n || 0).toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    function recalc() {
+      const units = Math.max(1, Number(document.getElementById('units').value) || 1);
+      const unitCost = Math.max(0, Number(document.getElementById('unitCost').value) || 0);
+      const landed = Math.max(0, Number(document.getElementById('landed').value) || 0);
+      const sold = Math.max(0, Math.min(units, Number(document.getElementById('sold').value) || 0));
+
+      const landedPerUnit = landed / units;
+      const revisedPerUnit = unitCost + landedPerUnit;
+      const illustrativeCogsImpact = landedPerUnit * sold;
+
+      document.getElementById('basePerUnit').textContent = money(unitCost);
+      document.getElementById('landedPerUnit').textContent = money(landedPerUnit);
+      document.getElementById('revisedPerUnit').textContent = money(revisedPerUnit);
+      document.getElementById('cogsImpact').textContent = money(illustrativeCogsImpact);
+    }
+
+    ['units', 'unitCost', 'landed', 'sold'].forEach(id => {
+      document.getElementById(id).addEventListener('input', recalc);
+    });
+    recalc();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('show');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+  <!-- BlogPosting schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Landed Costs: Why Inventory Value & COGS Don't Match",
+    "description": "A practical guide to Odoo landed costs, inventory valuation, COGS timing and accounting checks for US businesses.",
+    "author": {
+      "@type": "Organization",
+      "name": "Accountrise"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Accountrise",
+      "url": "https://www.accountrise.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-landed-costs-inventory-cogs.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-landed-costs-inventory-cogs.html"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What are landed costs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Landed costs are additional costs associated with acquiring and bringing inventory to its intended location or condition, such as certain freight, duties, insurance or handling charges. Whether a specific cost should be capitalized depends on the applicable accounting policy and circumstances."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why can COGS change after a landed-cost adjustment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If part of the related inventory has already been sold, a later adjustment can affect the cost associated with sold units as well as remaining on-hand inventory, depending on configured valuation logic and timing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is every freight invoice a landed cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Treatment depends on what the freight relates to, the business's capitalization policy and the circumstances of the transaction."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I troubleshoot a large inventory adjustment in Odoo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with affected receipts and products, identify related acquisition-cost documents, review the landed-cost allocation, tie valuation entries to the general ledger and check whether inventory was partly sold before the adjustment."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
