@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>1099 Vendor Cleanup in QuickBooks: What US Small Businesses Should Fix Before Year-End | Accountrise</title>
+  <meta name="description" content="Getting ready for year-end tax prep? Use this practical QuickBooks 1099 vendor cleanup guide to find missing W-9 information, duplicate vendors, wrong payment categories, and other problems before handing your books to your CPA.">
+  <meta name="keywords" content="1099 vendor cleanup QuickBooks, QuickBooks 1099 cleanup, 1099 vendor setup QuickBooks, missing W-9 QuickBooks, year end bookkeeping cleanup, contractor bookkeeping US small business">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.accountrise.com/blog/quickbooks-1099-vendor-cleanup.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="1099 Vendor Cleanup in QuickBooks: What US Small Businesses Should Fix Before Year-End">
+  <meta property="og:description" content="A practical year-end QuickBooks cleanup workflow for businesses paying contractors and other vendors.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/quickbooks-1099-vendor-cleanup.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="1099 Vendor Cleanup in QuickBooks">
+  <meta name="twitter:description" content="Fix vendor setup, missing W-9 data, duplicate vendors, and payment-classification issues before year-end tax prep.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .soft-grid {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(0,35,73,.07) 1px, transparent 0);
+      background-size: 22px 22px;
+    }
+    .lift {
+      animation: lift .65s ease-out both;
+    }
+    @keyframes lift {
+      from { opacity:0; transform:translateY(18px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    .float {
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-5px); }
+    }
+    .sticky-note {
+      position: relative;
+    }
+    .sticky-note:before {
+      content:"";
+      position:absolute;
+      left:18px;
+      top:-7px;
+      width:28px;
+      height:10px;
+      border-radius:999px;
+      background:rgba(149,124,61,.2);
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"1099 Vendor Cleanup in QuickBooks: What US Small Businesses Should Fix Before Year-End",
+    "description":"A practical year-end QuickBooks vendor cleanup workflow for businesses working with contractors and other vendors.",
+    "author":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.accountrise.com/blog/quickbooks-1099-vendor-cleanup.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Why should I clean up my 1099 vendors in QuickBooks before year-end?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Vendor records, payment classifications, missing tax information, duplicate vendors, and uncategorized transactions can make year-end contractor reporting and CPA review slower and more error-prone. Cleaning the records before year-end makes the final review easier."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What QuickBooks vendor information should I review for 1099 preparation?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Review vendor names, business or individual details, tax classification information provided by the vendor, address and tax ID information where applicable, and whether the vendor record is correctly marked and mapped for the intended reporting workflow."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What if a contractor never gave me a W-9?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Do not guess the vendor's tax information. Request the appropriate information from the vendor and keep the documentation with your business records. For tax-specific treatment, coordinate with your CPA or tax professional."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Can payments to contractors be missed for 1099 review in QuickBooks?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Yes. Payments can be difficult to identify when vendors are duplicated, expenses are coded inconsistently, transactions are posted to the wrong accounts, or payments flow through different methods and accounts. A year-end review should trace vendor activity across the books."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-[#f8f8f6] text-slate-800">
+
+  <!-- HEADER -->
+  <header class="bg-[#002349] text-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-5 flex items-center justify-between">
+      <a href="/" class="text-xl font-extrabold tracking-tight">Accountrise</a>
+
+      <nav class="hidden sm:flex items-center gap-7 text-sm">
+        <a href="/" class="hover:text-[#d7bf7b] transition">Home</a>
+        <a href="/services/" class="hover:text-[#d7bf7b] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#d7bf7b] transition">Blog</a>
+        <a href="/about/" class="hover:text-[#d7bf7b] transition">About Us</a>
+        <a href="#contact"
+           class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- NEW STYLE HERO: "YEAR-END CONTROL ROOM" -->
+    <section class="bg-[#002349] text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-14 lg:py-20">
+
+        <div class="grid lg:grid-cols-[1fr_.9fr] gap-12 items-end">
+
+          <div class="lift">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-[#d7bf7b]">
+              US Small Business • Year-End Cleanup
+            </div>
+
+            <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.02] tracking-tight">
+              1099 Vendor Cleanup in QuickBooks:
+              <span class="text-[#d7bf7b]">What to Fix Before Year-End</span>
+            </h1>
+
+            <p class="mt-7 max-w-3xl text-lg sm:text-xl text-slate-300 leading-relaxed">
+              Paid contractors this year? Before your books go to your CPA, clean the vendor records,
+              payment coding, duplicate profiles, and missing tax information that can turn a simple
+              year-end review into a cleanup project.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#cleanup"
+                 class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-[#002349] font-bold hover:bg-slate-100 transition">
+                Start the cleanup →
+              </a>
+              <a href="#checklist"
+                 class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-white/20 text-white font-bold hover:bg-white/5 transition">
+                Jump to checklist
+              </a>
+            </div>
+          </div>
+
+          <div class="float">
+
+            <div class="rounded-[2rem] bg-[#f3eee2] p-5 sm:p-6 text-[#002349] shadow-2xl">
+
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-xs uppercase tracking-[0.2em] font-bold text-[#957C3D]">Year-end control room</div>
+                  <div class="mt-1 text-xl font-black">Vendor file status</div>
+                </div>
+
+                <div class="w-12 h-12 rounded-2xl bg-white flex items-center justify-center font-black text-[#957C3D]">
+                  1099
+                </div>
+              </div>
+
+              <div class="mt-6 space-y-3">
+
+                <div class="bg-white rounded-2xl p-4">
+                  <div class="flex items-center justify-between gap-3 text-sm">
+                    <span class="font-semibold">Vendor records reviewed</span>
+                    <strong>42 / 58</strong>
+                  </div>
+                  <div class="mt-3 h-2 bg-slate-200 rounded-full overflow-hidden">
+                    <div class="w-[72%] h-full bg-[#957C3D] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="bg-white rounded-2xl p-4">
+                    <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Missing info</div>
+                    <div class="mt-1 text-2xl font-black">7</div>
+                  </div>
+
+                  <div class="bg-white rounded-2xl p-4">
+                    <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Duplicates</div>
+                    <div class="mt-1 text-2xl font-black">3</div>
+                  </div>
+                </div>
+
+                <div class="bg-[#002349] text-white rounded-2xl p-4">
+                  <div class="text-xs uppercase tracking-widest text-[#d7bf7b] font-bold">Next move</div>
+                  <div class="mt-1 font-bold">Review the vendor + payment trail</div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ONE-LINE ANSWER -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-12">
+
+      <div class="grid lg:grid-cols-[.28fr_1fr] gap-8 items-start">
+
+        <div class="pt-1">
+          <div class="text-5xl font-black text-[#957C3D]">01</div>
+          <div class="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Bottom line</div>
+        </div>
+
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-black text-[#002349]">
+            If contractor payments are messy now, tax prep will be harder later.
+          </h2>
+
+          <p class="mt-5 text-lg text-slate-600 leading-relaxed max-w-4xl">
+            The fastest way to reduce year-end bookkeeping stress is to clean the
+            <strong>source records</strong>: vendor profiles, bills, expenses, checks, ACH payments,
+            cards, and other transactions. Do not wait until the final tax-prep review to discover
+            duplicate vendors or missing contractor information.
+          </p>
+
+          <div class="mt-6 rounded-2xl border-l-4 border-[#957C3D] bg-white p-5 shadow-sm">
+            <p class="font-semibold text-[#002349]">
+              Important: this is a bookkeeping workflow, not a substitute for tax advice.
+              Have your CPA or tax professional confirm filing requirements and final tax treatment.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- "YOU ARE HERE" PROBLEM MAP -->
+    <section id="cleanup" class="bg-white border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] font-bold uppercase tracking-[0.18em] text-sm">Problem map</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            Which 1099 cleanup problem sounds like your books?
+          </h2>
+
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            Start with the symptom you recognize. That usually points you toward the records that need attention.
+          </p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-2 gap-6">
+
+          <a href="#missing" class="group rounded-[2rem] border border-slate-200 p-7 hover:border-[#957C3D] hover:shadow-xl transition bg-[#fbfbfa]">
+            <div class="flex items-start justify-between gap-5">
+              <div>
+                <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom A</div>
+                <h3 class="mt-2 text-2xl font-black text-[#002349]">“I have contractors, but some vendor records are incomplete.”</h3>
+              </div>
+              <span class="w-11 h-11 rounded-2xl bg-[#f3eee2] flex items-center justify-center font-black text-[#957C3D] group-hover:translate-x-1 transition">→</span>
+            </div>
+            <p class="mt-4 text-slate-600">Go to vendor information and document collection.</p>
+          </a>
+
+          <a href="#duplicates" class="group rounded-[2rem] border border-slate-200 p-7 hover:border-[#957C3D] hover:shadow-xl transition bg-[#fbfbfa]">
+            <div class="flex items-start justify-between gap-5">
+              <div>
+                <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom B</div>
+                <h3 class="mt-2 text-2xl font-black text-[#002349]">“The same contractor appears under two or three names.”</h3>
+              </div>
+              <span class="w-11 h-11 rounded-2xl bg-[#f3eee2] flex items-center justify-center font-black text-[#957C3D] group-hover:translate-x-1 transition">→</span>
+            </div>
+            <p class="mt-4 text-slate-600">Go to duplicate-vendor cleanup.</p>
+          </a>
+
+          <a href="#payments" class="group rounded-[2rem] border border-slate-200 p-7 hover:border-[#957C3D] hover:shadow-xl transition bg-[#fbfbfa]">
+            <div class="flex items-start justify-between gap-5">
+              <div>
+                <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom C</div>
+                <h3 class="mt-2 text-2xl font-black text-[#002349]">“I know I paid contractors, but the totals don't look complete.”</h3>
+              </div>
+              <span class="w-11 h-11 rounded-2xl bg-[#f3eee2] flex items-center justify-center font-black text-[#957C3D] group-hover:translate-x-1 transition">→</span>
+            </div>
+            <p class="mt-4 text-slate-600">Go to payment-trail review.</p>
+          </a>
+
+          <a href="#coding" class="group rounded-[2rem] border border-slate-200 p-7 hover:border-[#957C3D] hover:shadow-xl transition bg-[#fbfbfa]">
+            <div class="flex items-start justify-between gap-5">
+              <div>
+                <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom D</div>
+                <h3 class="mt-2 text-2xl font-black text-[#002349]">“Contractor payments are scattered across different expense accounts.”</h3>
+              </div>
+              <span class="w-11 h-11 rounded-2xl bg-[#f3eee2] flex items-center justify-center font-black text-[#957C3D] group-hover:translate-x-1 transition">→</span>
+            </div>
+            <p class="mt-4 text-slate-600">Go to transaction coding review.</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION: MISSING VENDOR INFO -->
+    <section id="missing" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-10 items-start">
+
+        <div class="sticky-note bg-[#f3eee2] rounded-[2rem] p-7 sm:p-8">
+
+          <div class="text-4xl font-black text-[#002349]">A</div>
+
+          <h2 class="mt-3 text-3xl font-black text-[#002349]">
+            Missing vendor information
+          </h2>
+
+          <p class="mt-4 text-slate-700 leading-relaxed">
+            This is where many year-end cleanup projects begin: a vendor exists in QuickBooks,
+            but the record is incomplete or the documentation was never collected.
+          </p>
+
+          <div class="mt-6 text-sm font-bold uppercase tracking-widest text-[#957C3D]">
+            Fix path
+          </div>
+
+          <div class="mt-3 text-sm font-semibold text-[#002349]">
+            Vendor list → document collection → profile review → reporting setup
+          </div>
+
+        </div>
+
+        <div class="space-y-4">
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="flex gap-4">
+              <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">1</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#002349]">Create a “needs review” vendor list</h3>
+                <p class="mt-2 text-slate-600 leading-relaxed">
+                  Pull the vendors who received business payments and flag records with missing or inconsistent information.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="flex gap-4">
+              <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">2</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#002349]">Request missing documentation from the vendor</h3>
+                <p class="mt-2 text-slate-600 leading-relaxed">
+                  Do not guess tax or identity information. Request the appropriate vendor documentation and retain it with your business records.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="flex gap-4">
+              <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">3</div>
+              <div>
+                <h3 class="text-xl font-extrabold text-[#002349]">Standardize the vendor profile</h3>
+                <p class="mt-2 text-slate-600 leading-relaxed">
+                  Make sure the vendor is not represented under multiple variations of the same business name and that the profile reflects the available documentation.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DUPLICATES -->
+    <section id="duplicates" class="bg-[#002349] text-white">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[1fr_1fr] gap-10 items-start">
+
+          <div>
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-[0.18em]">Problem B</p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Duplicate vendors can split one contractor's payment history
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              A contractor might appear as “ABC Design,” “ABC Design LLC,” and “A.B.C. Design.”
+              When payments are split between profiles, your review becomes harder and your vendor history becomes fragmented.
+            </p>
+
+            <div class="mt-8 rounded-3xl bg-white/5 border border-white/10 p-6">
+              <div class="text-xs font-bold uppercase tracking-widest text-[#d7bf7b]">Quick test</div>
+              <p class="mt-3 font-semibold">
+                Search by vendor name, email, phone, and recurring payment amount—not only by the exact QuickBooks display name.
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-3">
+
+            <div class="bg-white rounded-2xl p-5 text-[#002349]">
+              <div class="flex items-center justify-between gap-4">
+                <span class="font-extrabold">ABC Design</span>
+                <span class="font-black">$8,400</span>
+              </div>
+              <div class="mt-2 text-sm text-slate-500">8 payments</div>
+            </div>
+
+            <div class="text-center text-[#d7bf7b] text-2xl">+</div>
+
+            <div class="bg-white rounded-2xl p-5 text-[#002349]">
+              <div class="flex items-center justify-between gap-4">
+                <span class="font-extrabold">ABC Design LLC</span>
+                <span class="font-black">$5,600</span>
+              </div>
+              <div class="mt-2 text-sm text-slate-500">5 payments</div>
+            </div>
+
+            <div class="text-center text-[#d7bf7b] text-2xl">↓</div>
+
+            <div class="rounded-2xl border border-[#d7bf7b]/40 p-5">
+              <div class="text-xs uppercase tracking-widest text-[#d7bf7b] font-bold">One contractor trail</div>
+              <div class="mt-1 text-2xl font-black">$14,000</div>
+              <div class="mt-2 text-sm text-slate-300">Consolidate the bookkeeping view without inventing new transactions.</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENTS -->
+    <section id="payments" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="max-w-3xl">
+        <p class="text-[#957C3D] font-bold uppercase tracking-[0.18em] text-sm">Problem C</p>
+
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+          “I paid the contractor” is not enough—trace how the payment entered the books
+        </h2>
+
+        <p class="mt-5 text-slate-600 leading-relaxed">
+          Year-end cleanup gets difficult when contractor payments are spread across checking accounts,
+          credit cards, bill payments, reimbursements, ACH transactions, or manual journal entries.
+          Review the full payment trail rather than looking at one expense account in isolation.
+        </p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-4 gap-4">
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Source 01</div>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Bank</h3>
+          <p class="mt-2 text-sm text-slate-600">Review checking, savings, ACH, and other business-bank activity.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Source 02</div>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Credit Cards</h3>
+          <p class="mt-2 text-sm text-slate-600">Check contractor-related charges paid by business cards.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Source 03</div>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Bills / A/P</h3>
+          <p class="mt-2 text-sm text-slate-600">Trace bills, credits, and bill payments for vendors using A/P workflows.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Source 04</div>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Manual Entries</h3>
+          <p class="mt-2 text-sm text-slate-600">Investigate unusual journal entries and reclasses affecting contractor costs.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CODING / CATEGORY AUDIT -->
+    <section id="coding" class="bg-white border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-start">
+
+          <div>
+            <p class="text-[#957C3D] font-bold uppercase tracking-[0.18em] text-sm">Problem D</p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+              Contractor payments scattered across accounts?
+            </h2>
+
+            <p class="mt-5 text-slate-600 leading-relaxed">
+              Inconsistent coding makes year-end reporting and management analysis harder.
+              A contractor may have been coded to subcontractor expense in one month, professional services
+              in another, and an uncategorized account later.
+            </p>
+
+            <div class="mt-7 rounded-3xl bg-[#f3eee2] p-6">
+              <div class="text-xs uppercase tracking-widest font-bold text-[#957C3D]">Goal</div>
+              <div class="mt-2 text-xl font-black text-[#002349]">One clear bookkeeping story</div>
+              <p class="mt-2 text-sm text-slate-700">
+                Standardize where similar transactions belong based on the company's accounting policy and CPA guidance.
+              </p>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] border border-slate-200 overflow-hidden bg-[#fbfbfa]">
+
+            <div class="grid grid-cols-3 bg-[#002349] text-white text-sm font-bold">
+              <div class="p-4">What you find</div>
+              <div class="p-4">Risk</div>
+              <div class="p-4">Action</div>
+            </div>
+
+            <div class="grid grid-cols-3 border-t border-slate-200 text-sm">
+              <div class="p-4 font-semibold">Same contractor, 3 accounts</div>
+              <div class="p-4 text-slate-600">Fragmented review</div>
+              <div class="p-4 text-slate-600">Review coding policy</div>
+            </div>
+
+            <div class="grid grid-cols-3 border-t border-slate-200 text-sm">
+              <div class="p-4 font-semibold">Large uncategorized payments</div>
+              <div class="p-4 text-slate-600">Incomplete books</div>
+              <div class="p-4 text-slate-600">Trace to source document</div>
+            </div>
+
+            <div class="grid grid-cols-3 border-t border-slate-200 text-sm">
+              <div class="p-4 font-semibold">Vendor used inconsistently</div>
+              <div class="p-4 text-slate-600">Bad trend visibility</div>
+              <div class="p-4 text-slate-600">Standardize future coding</div>
+            </div>
+
+            <div class="grid grid-cols-3 border-t border-slate-200 text-sm">
+              <div class="p-4 font-semibold">Manual reclasses every month</div>
+              <div class="p-4 text-slate-600">Recurring cleanup</div>
+              <div class="p-4 text-slate-600">Fix process upstream</div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 10-POINT CLEANUP -->
+    <section id="checklist" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] font-bold uppercase tracking-[0.18em] text-sm">Year-end action list</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            The 10-minute-at-a-time 1099 cleanup checklist
+          </h2>
+        </div>
+
+        <div class="rounded-2xl bg-[#002349] text-white px-5 py-3 text-sm font-bold">
+          Work from the source records
+        </div>
+
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-4">
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">01</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">List contractor/vendor records that need review</h3>
+          <p class="mt-2 text-sm text-slate-600">Start with vendor activity rather than relying on memory.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">02</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Find duplicate vendors</h3>
+          <p class="mt-2 text-sm text-slate-600">Search variations of names and contact information.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">03</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Request missing vendor documentation</h3>
+          <p class="mt-2 text-sm text-slate-600">Do not guess tax information.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">04</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Review vendor profiles</h3>
+          <p class="mt-2 text-sm text-slate-600">Standardize names and available business details.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">05</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Trace contractor payments</h3>
+          <p class="mt-2 text-sm text-slate-600">Check bank, card, A/P, reimbursements, and manual entries.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">06</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Review expense coding</h3>
+          <p class="mt-2 text-sm text-slate-600">Look for inconsistent or unclear contractor categories.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">07</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Investigate uncategorized transactions</h3>
+          <p class="mt-2 text-sm text-slate-600">Do not let year-end reporting become the first time these are reviewed.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">08</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Look for unusual vendor credits or refunds</h3>
+          <p class="mt-2 text-sm text-slate-600">Trace unusual balances to the original transactions.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">09</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Save documentation in one place</h3>
+          <p class="mt-2 text-sm text-slate-600">Make the CPA's review faster by keeping support organized.</p>
+        </div>
+
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-[#957C3D] font-black text-2xl">10</div>
+          <h3 class="mt-2 font-extrabold text-[#002349]">Send the CPA a clean exception list</h3>
+          <p class="mt-2 text-sm text-slate-600">Flag unresolved questions instead of hiding them.</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- "CPA HANDOFF" -->
+    <section class="bg-[#eef2f5] border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-center">
+
+          <div>
+            <p class="text-[#957C3D] font-bold uppercase tracking-[0.18em] text-sm">CPA handoff</p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+              The goal is not a “perfect” file. It is a file your CPA can review quickly.
+            </h2>
+
+            <p class="mt-5 text-slate-600 leading-relaxed">
+              Give your tax professional a clean set of books plus a short exception list.
+              The exception list should explain what remains open, what documentation is pending,
+              and which transactions need professional tax judgment.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-[2rem] border border-slate-200 p-7 shadow-sm">
+
+            <div class="text-xs uppercase tracking-[0.18em] text-[#957C3D] font-bold">
+              Ideal handoff folder
+            </div>
+
+            <div class="mt-5 space-y-3">
+
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50">
+                <span class="font-semibold text-[#002349]">Vendor review list</span>
+                <span class="text-xs font-bold text-slate-400">READY</span>
+              </div>
+
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50">
+                <span class="font-semibold text-[#002349]">Missing-document list</span>
+                <span class="text-xs font-bold text-slate-400">PENDING</span>
+              </div>
+
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50">
+                <span class="font-semibold text-[#002349]">Unusual payment list</span>
+                <span class="text-xs font-bold text-slate-400">READY</span>
+              </div>
+
+              <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50">
+                <span class="font-semibold text-[#002349]">Open questions for CPA</span>
+                <span class="text-xs font-bold text-slate-400">READY</span>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+
+      <p class="text-[#957C3D] font-bold uppercase tracking-[0.18em] text-sm text-center">FAQ</p>
+
+      <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349] text-center">
+        1099 vendor cleanup questions
+      </h2>
+
+      <div class="mt-10 space-y-4">
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why should I clean up my 1099 vendors in QuickBooks before year-end?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Vendor records, payment classifications, missing information, duplicate vendors, and uncategorized
+            transactions can make year-end contractor reporting and CPA review slower and more error-prone.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            What QuickBooks vendor information should I review?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Review the vendor name, available business or individual details, tax classification information
+            supplied by the vendor, address and tax ID information where applicable, and the vendor's setup for the intended reporting workflow.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            What if a contractor never gave me a W-9?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Do not guess the vendor's tax information. Request the appropriate documentation from the vendor
+            and retain it with your records. Ask your CPA or tax professional about the correct tax treatment and next steps.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Can contractor payments be missed during QuickBooks 1099 review?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Yes. Payments can be hard to identify when vendor profiles are duplicated, transactions are
+            coded inconsistently, or activity is spread across bank, card, A/P, reimbursement, and manual-entry workflows.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- SINGLE CTA -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 sm:px-8 pb-20">
+
+      <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-12">
+
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 items-center">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">
+              Need year-end bookkeeping help?
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Clean the books before the CPA has to clean them for you.
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Accountrise helps US small businesses clean QuickBooks, review vendor records,
+              reconcile accounts, organize year-end books, and prepare a clear handoff for the tax professional.
+            </p>
+
+            <p class="mt-4 text-slate-300">
+              <strong class="text-white">Starting at $10/hour.</strong>
+              Final pricing depends on scope, transaction volume, complexity, and engagement requirements.
+            </p>
+
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               class="text-center bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-bold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="text-center border border-white/25 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+              Email Us
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#f0f1ef] border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-8 flex flex-col sm:flex-row justify-between gap-3 text-sm text-slate-500">
+
+      <span>© Accountrise</span>
+
+      <div class="flex gap-5">
+        <a href="/services/" class="hover:text-[#002349]">Services</a>
+        <a href="/blog/" class="hover:text-[#002349]">Blog</a>
+        <a href="/about/" class="hover:text-[#002349]">About Us</a>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
