@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Odoo Foreign Currency Accounting: Why Exchange Gain/Loss Looks Wrong</title>
+  <meta name="description" content="Why does Odoo foreign currency gain or loss look wrong? Learn how to trace exchange rates, unpaid invoices, revaluation, realized vs. unrealized FX and month-end accounting with a practical US business workflow.">
+  <meta name="keywords" content="Odoo foreign currency accounting, Odoo exchange gain loss, Odoo FX accounting, Odoo multi currency, Odoo unrealized gain loss, Odoo realized gain loss, Odoo accounting">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-foreign-currency-accounting.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Foreign Currency Accounting: Why Exchange Gain/Loss Looks Wrong">
+  <meta property="og:description" content="A practical guide to diagnosing foreign-currency accounting differences in Odoo, from invoice rates to payment settlement and period-end revaluation.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-foreign-currency-accounting.html">
+  <meta property="og:site_name" content="Accountrise">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Foreign Currency Accounting: Why Exchange Gain/Loss Looks Wrong">
+  <meta name="twitter:description" content="Trace foreign-currency invoices, payments and FX differences in Odoo using a simple transaction-to-ledger workflow.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .fx-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .soft-shadow { box-shadow: 0 18px 55px rgba(0,35,73,.10); }
+    .deep-shadow { box-shadow: 0 30px 90px rgba(0,35,73,.18); }
+    .glow {
+      box-shadow:
+        0 0 0 1px rgba(149,124,61,.14),
+        0 18px 50px rgba(0,35,73,.08);
+    }
+    .rate-line {
+      height: 2px;
+      background: linear-gradient(90deg, #957C3D 0%, #D8C58F 50%, #957C3D 100%);
+      transform-origin: left;
+    }
+    .flip {
+      transition: transform .55s cubic-bezier(.2,.75,.2,1);
+      transform-style: preserve-3d;
+    }
+    .flip-wrap:hover .flip { transform: rotateY(180deg); }
+    .face {
+      backface-visibility: hidden;
+    }
+    .back {
+      transform: rotateY(180deg);
+    }
+    .pulse-dot {
+      animation: pulseDot 2.2s infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.25); opacity: .68; }
+    }
+    .rise {
+      animation: rise .75s ease both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .pulse-dot, .rise { animation: none; }
+      .flip { transition: none; }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#10243A',
+            cloud: '#F4F7FA'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#10243A] antialiased">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 bg-white/92 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO: FX CONTROL ROOM -->
+    <section class="relative overflow-hidden bg-[#001A32] text-white">
+      <div class="absolute inset-0 fx-grid"></div>
+
+      <div class="absolute top-10 right-10 w-80 h-80 rounded-full bg-[#957C3D]/10 blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-sky-400/10 blur-3xl"></div>
+
+      <div class="relative max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+
+          <div class="rise">
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[0.18em] text-[#E4D5A8]">
+                <span class="w-2 h-2 rounded-full bg-[#957C3D] pulse-dot"></span>
+                Odoo Accounting
+              </span>
+              <span class="text-sm text-slate-400">Multi-Currency • FX • Month-End</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.02]">
+              Odoo Foreign Currency Accounting:
+              <span class="text-[#D8C58F]">Why Exchange Gain/Loss Looks Wrong</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl">
+              A foreign-currency invoice can look correct while the payment, receivable,
+              payable or exchange gain/loss still seems wrong. The fix usually starts with
+              the <strong class="text-white">rate, date and settlement trail</strong>.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#diagnose" class="rounded-2xl bg-[#957C3D] text-[#002349] px-6 py-3.5 font-bold hover:bg-[#b89a4e] transition">
+                Diagnose the Difference
+              </a>
+              <a href="#workflow" class="rounded-2xl border border-white/15 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">
+                See the Workflow
+              </a>
+            </div>
+          </div>
+
+          <!-- FX cockpit -->
+          <div class="relative rise" style="animation-delay:.12s;">
+            <div class="rounded-[2rem] border border-white/10 bg-white/[.07] p-5 sm:p-7 deep-shadow">
+              <div class="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+                <div>
+                  <div class="text-[11px] font-black uppercase tracking-[0.22em] text-[#D8C58F]">FX Control Room</div>
+                  <div class="mt-1 text-sm text-slate-400">Illustrative USD reporting view</div>
+                </div>
+                <div class="text-xs text-slate-400">STATUS <span class="text-[#D8C58F]">● LIVE LOGIC</span></div>
+              </div>
+
+              <div class="mt-6 grid grid-cols-2 gap-4">
+                <div class="rounded-2xl border border-white/10 bg-black/10 p-4">
+                  <div class="text-xs text-slate-400">Invoice</div>
+                  <div class="mt-2 text-2xl font-black">€10,000</div>
+                  <div class="mt-1 text-xs text-slate-400">Booked at 1.0800</div>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-black/10 p-4">
+                  <div class="text-xs text-slate-400">Settlement</div>
+                  <div class="mt-2 text-2xl font-black">€10,000</div>
+                  <div class="mt-1 text-xs text-slate-400">Paid at 1.0950</div>
+                </div>
+              </div>
+
+              <div class="mt-6 rounded-2xl bg-white text-[#002349] p-5">
+                <div class="flex items-center justify-between">
+                  <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Rate movement</div>
+                  <div class="text-sm font-black">+0.0150</div>
+                </div>
+
+                <div class="mt-6 relative">
+                  <div class="h-2 rounded-full bg-slate-100 overflow-hidden">
+                    <div class="h-full w-[76%] bg-[#957C3D]"></div>
+                  </div>
+                  <div class="flex justify-between mt-3 text-xs font-bold text-slate-500">
+                    <span>1.0800 invoice</span>
+                    <span>1.0950 payment</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-4 grid grid-cols-3 gap-3 text-center">
+                <div class="rounded-xl bg-white/5 p-3">
+                  <div class="text-[11px] text-slate-400">RATE</div>
+                  <div class="mt-1 font-black">Invoice</div>
+                </div>
+                <div class="rounded-xl bg-white/5 p-3">
+                  <div class="text-[11px] text-slate-400">RATE</div>
+                  <div class="mt-1 font-black">Payment</div>
+                </div>
+                <div class="rounded-xl bg-white/5 p-3">
+                  <div class="text-[11px] text-slate-400">RESULT</div>
+                  <div class="mt-1 font-black text-[#E4D5A8]">FX Diff.</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute -bottom-5 -left-5 hidden sm:flex items-center gap-3 rounded-2xl bg-white text-[#002349] px-4 py-3 shadow-2xl">
+              <span class="w-9 h-9 rounded-xl bg-[#957C3D]/15 flex items-center justify-center font-black">FX</span>
+              <div>
+                <div class="text-xs text-slate-500">First question</div>
+                <div class="text-sm font-black">Which rate changed?</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK ANSWER -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-10 items-start">
+
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Quick answer</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">
+            FX gain/loss usually looks “wrong” because two values are being compared at different rates.
+          </h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            For a foreign-currency receivable or payable, the functional-currency value can change between
+            the original recognition date and later settlement or reporting dates.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">01</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Original recognition</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              The invoice is recorded using the applicable exchange rate for the transaction date under the configured accounting process.
+            </p>
+          </div>
+
+          <div class="rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">02</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Reporting or revaluation</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              An outstanding foreign-currency balance may have a different reporting value when the rate changes.
+            </p>
+          </div>
+
+          <div class="rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-11 h-11 rounded-2xl bg-slate-200 text-[#002349] flex items-center justify-center font-black">03</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Settlement</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              When the invoice is paid, the actual settlement amount can differ from the amount originally recognized in functional currency.
+            </p>
+          </div>
+
+          <div class="rounded-3xl bg-[#002349] text-white p-7 soft-shadow">
+            <div class="w-11 h-11 rounded-2xl bg-white/10 text-[#E4D5A8] flex items-center justify-center font-black">04</div>
+            <h3 class="mt-5 text-xl font-black">Accounting result</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">
+              The difference becomes an FX gain or loss based on the transaction and the configured accounting treatment.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE RATE CALCULATOR -->
+    <section id="diagnose" class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Rate difference calculator</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">See the FX difference before opening Odoo</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Enter a foreign-currency amount and two exchange rates. This shows the simple functional-currency difference between the two rates.
+          </p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-[.8fr_1.2fr] gap-8">
+
+          <div class="rounded-[2rem] bg-[#F4F7FA] border border-slate-200 p-7">
+            <div class="space-y-5">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Foreign-currency amount</span>
+                <input id="fxAmount" type="number" min="0" value="10000" step="0.01"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Original rate (functional / FC)</span>
+                <input id="rateOne" type="number" min="0.000001" value="1.08" step="0.0001"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Later rate (functional / FC)</span>
+                <input id="rateTwo" type="number" min="0.000001" value="1.095" step="0.0001"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#002349] text-white p-7 sm:p-9">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div class="rounded-2xl bg-white/10 p-6">
+                <div class="text-xs uppercase tracking-widest text-slate-400">Original functional value</div>
+                <div id="valueOne" class="mt-3 text-3xl font-black">$10,800.00</div>
+              </div>
+
+              <div class="rounded-2xl bg-white/10 p-6">
+                <div class="text-xs uppercase tracking-widest text-slate-400">Later functional value</div>
+                <div id="valueTwo" class="mt-3 text-3xl font-black">$10,950.00</div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl bg-white text-[#002349] p-6">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Illustrative FX movement</div>
+              <div id="fxDifference" class="mt-2 text-4xl font-black">+$150.00</div>
+              <p id="fxDirection" class="mt-2 text-sm text-slate-500">Later rate increases the functional-currency value.</p>
+            </div>
+
+            <p class="mt-5 text-xs text-slate-400 leading-relaxed">
+              This calculator is illustrative only. Actual journal entries can depend on currency direction,
+              document type, valuation/revaluation process and your Odoo configuration.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2x2 DIAGNOSTIC MATRIX -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Diagnostic matrix</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Find the symptom, then follow the likely cause</h2>
+      </div>
+
+      <div class="mt-12 grid md:grid-cols-2 gap-6">
+
+        <div class="flip-wrap h-[250px]">
+          <div class="flip relative h-full w-full">
+            <div class="face absolute inset-0 rounded-[2rem] bg-[#002349] text-white p-7 deep-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#D8C58F]">Symptom A</div>
+              <h3 class="mt-4 text-2xl font-black">“The FX gain/loss is much bigger than expected.”</h3>
+              <p class="mt-4 text-slate-300">Hover / tap to reveal the first checks.</p>
+            </div>
+            <div class="back face absolute inset-0 rounded-[2rem] bg-white border border-slate-200 p-7 soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Check these first</div>
+              <ul class="mt-4 space-y-3 text-slate-600">
+                <li>• Invoice currency and functional currency</li>
+                <li>• Original transaction rate</li>
+                <li>• Payment/settlement rate</li>
+                <li>• Whether the balance was revalued before settlement</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-wrap h-[250px]">
+          <div class="flip relative h-full w-full">
+            <div class="face absolute inset-0 rounded-[2rem] bg-[#957C3D] text-[#002349] p-7 deep-shadow">
+              <div class="text-xs font-black uppercase tracking-widest">Symptom B</div>
+              <h3 class="mt-4 text-2xl font-black">“The foreign-currency invoice is correct, but the balance sheet is odd.”</h3>
+              <p class="mt-4 text-[#002349]/70">Hover / tap to reveal the first checks.</p>
+            </div>
+            <div class="back face absolute inset-0 rounded-[2rem] bg-white border border-slate-200 p-7 soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Check these first</div>
+              <ul class="mt-4 space-y-3 text-slate-600">
+                <li>• Outstanding foreign-currency balance</li>
+                <li>• Period-end reporting/revaluation logic</li>
+                <li>• Exchange gain/loss accounts</li>
+                <li>• Date of the last rate update or adjustment</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-wrap h-[250px]">
+          <div class="flip relative h-full w-full">
+            <div class="face absolute inset-0 rounded-[2rem] bg-white border border-slate-200 p-7 soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Symptom C</div>
+              <h3 class="mt-4 text-2xl font-black text-[#002349]">“Payment cleared the invoice, but an FX amount appeared.”</h3>
+              <p class="mt-4 text-slate-500">Hover / tap to reveal the first checks.</p>
+            </div>
+            <div class="back face absolute inset-0 rounded-[2rem] bg-[#002349] text-white p-7 deep-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#D8C58F]">Likely explanation</div>
+              <p class="mt-4 text-slate-300 leading-relaxed">
+                Settlement can occur at a rate different from the rate used when the invoice was originally recognized.
+                The difference is not automatically an error.
+              </p>
+              <p class="mt-4 font-bold text-white">Start with the invoice and payment dates.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flip-wrap h-[250px]">
+          <div class="flip relative h-full w-full">
+            <div class="face absolute inset-0 rounded-[2rem] bg-slate-100 border border-slate-200 p-7">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Symptom D</div>
+              <h3 class="mt-4 text-2xl font-black text-[#002349]">“My income statement changed even though there was no new sale.”</h3>
+              <p class="mt-4 text-slate-500">Hover / tap to reveal the first checks.</p>
+            </div>
+            <div class="back face absolute inset-0 rounded-[2rem] bg-white border border-slate-200 p-7 soft-shadow">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Check this</div>
+              <p class="mt-4 text-slate-600 leading-relaxed">
+                An outstanding monetary balance can change in functional-currency terms as the exchange rate moves.
+                Review whether a period-end revaluation or similar adjustment was posted.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="mt-6 text-center text-sm text-slate-500">Interactive cards: hover to flip on desktop.</p>
+    </section>
+
+    <!-- WORKFLOW -->
+    <section id="workflow" class="bg-[#EEF2F5] border-y border-slate-200">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Investigation workflow</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Don't start with the P&amp;L. Start with the document.</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            A clean FX investigation moves from source transaction → exchange rate → settlement/reporting event → journal entry.
+          </p>
+        </div>
+
+        <div class="mt-12 space-y-5">
+
+          <div class="grid md:grid-cols-[80px_1fr] gap-5 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-[#002349] text-white flex items-center justify-center text-xl font-black">01</div>
+            <div class="rounded-3xl bg-white p-6 sm:p-7 border border-slate-200 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <h3 class="text-xl font-black text-[#002349]">Read the original invoice</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Source</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">
+                Confirm currency, amount, invoice date, due date, customer/vendor and the functional-currency amount recognized.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-[80px_1fr] gap-5 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center text-xl font-black">02</div>
+            <div class="rounded-3xl bg-white p-6 sm:p-7 border border-slate-200 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <h3 class="text-xl font-black text-[#002349]">Check the rate path</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Rate</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">
+                Compare the relevant transaction, reporting and settlement dates. The rate itself is often where the apparent mismatch becomes understandable.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-[80px_1fr] gap-5 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-[#002349] text-white flex items-center justify-center text-xl font-black">03</div>
+            <div class="rounded-3xl bg-white p-6 sm:p-7 border border-slate-200 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <h3 class="text-xl font-black text-[#002349]">Check what happened before payment</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Event</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">
+                Determine whether the outstanding balance was revalued at a reporting date before it was settled.
+              </p>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-[80px_1fr] gap-5 items-start">
+            <div class="w-16 h-16 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center text-xl font-black">04</div>
+            <div class="rounded-3xl bg-white p-6 sm:p-7 border border-slate-200 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-4">
+                <h3 class="text-xl font-black text-[#002349]">Tie the FX entry back to the ledger</h3>
+                <span class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Accounting</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">
+                Review the resulting gain/loss journal and confirm that the amount, date, account and related receivable/payable movement make sense together.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- REALIZED VS UNREALIZED -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.92fr_1.08fr] gap-8 items-stretch">
+
+        <div class="rounded-[2rem] bg-white border border-slate-200 p-8 sm:p-10 soft-shadow">
+          <div class="text-xs font-black uppercase tracking-[0.2em] text-[#957C3D]">The distinction that clears up confusion</div>
+          <h2 class="mt-4 text-3xl font-black text-[#002349]">Realized vs. unrealized FX</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            Businesses often mix these concepts when troubleshooting a month-end report.
+            The cleanest approach is to ask whether the foreign-currency monetary balance has actually been settled.
+          </p>
+
+          <div class="mt-8 rounded-3xl bg-[#F4F7FA] p-6">
+            <div class="text-sm font-black text-[#002349]">Decision question</div>
+            <div class="mt-2 text-2xl font-black">Has the invoice been settled?</div>
+            <div class="mt-5 h-px bg-slate-200"></div>
+            <div class="mt-5 grid grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-white border border-slate-200 p-4">
+                <div class="font-black text-[#002349]">No</div>
+                <div class="mt-1 text-sm text-slate-500">Think reporting-date / revaluation effects.</div>
+              </div>
+              <div class="rounded-2xl bg-white border border-slate-200 p-4">
+                <div class="font-black text-[#002349]">Yes</div>
+                <div class="mt-1 text-sm text-slate-500">Think settlement-date difference.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-10 deep-shadow">
+          <div class="text-xs font-black uppercase tracking-[0.2em] text-[#D8C58F]">Example</div>
+          <h2 class="mt-4 text-3xl font-black">€10,000 invoice → USD reporting</h2>
+
+          <div class="mt-8 space-y-3">
+            <div class="flex items-center justify-between gap-4 rounded-2xl bg-white/10 px-5 py-4">
+              <span class="text-slate-300">Invoice rate</span>
+              <strong>1.0800</strong>
+            </div>
+            <div class="flex items-center justify-between gap-4 rounded-2xl bg-white/10 px-5 py-4">
+              <span class="text-slate-300">Original USD value</span>
+              <strong>$10,800</strong>
+            </div>
+            <div class="flex items-center justify-between gap-4 rounded-2xl bg-white/10 px-5 py-4">
+              <span class="text-slate-300">Settlement rate</span>
+              <strong>1.0950</strong>
+            </div>
+            <div class="flex items-center justify-between gap-4 rounded-2xl bg-[#957C3D] text-[#002349] px-5 py-4">
+              <span class="font-bold">Illustrative difference</span>
+              <strong>$150</strong>
+            </div>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-300 leading-relaxed">
+            The example shows why the exchange difference exists. The actual accounting presentation depends on the configured process and transaction facts.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMMON MISTAKES -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Common mistakes</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Five things to check before calling the FX result “wrong”</h2>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div class="rounded-3xl bg-[#F4F7FA] border border-slate-200 p-6">
+            <div class="text-[#957C3D] font-black text-4xl">01</div>
+            <h3 class="mt-5 font-black text-[#002349]">Wrong date</h3>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Comparing rates from different transaction dates.</p>
+          </div>
+
+          <div class="rounded-3xl bg-[#F4F7FA] border border-slate-200 p-6">
+            <div class="text-[#957C3D] font-black text-4xl">02</div>
+            <h3 class="mt-5 font-black text-[#002349]">Wrong direction</h3>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Reading the quoted rate in the opposite currency direction.</p>
+          </div>
+
+          <div class="rounded-3xl bg-[#F4F7FA] border border-slate-200 p-6">
+            <div class="text-[#957C3D] font-black text-4xl">03</div>
+            <h3 class="mt-5 font-black text-[#002349]">Skipped revaluation</h3>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Not accounting for an outstanding monetary balance at reporting date.</p>
+          </div>
+
+          <div class="rounded-3xl bg-[#F4F7FA] border border-slate-200 p-6">
+            <div class="text-[#957C3D] font-black text-4xl">04</div>
+            <h3 class="mt-5 font-black text-[#002349]">Wrong account</h3>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">The amount is right but the gain/loss lands in an unexpected account.</p>
+          </div>
+
+          <div class="rounded-3xl bg-[#F4F7FA] border border-slate-200 p-6">
+            <div class="text-[#957C3D] font-black text-4xl">05</div>
+            <h3 class="mt-5 font-black text-[#002349]">Manual override</h3>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">A manual journal or adjustment changes the FX trail.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MONTH-END CONTROL BOARD -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="rounded-[2rem] bg-[#0B2B4D] text-white p-8 sm:p-10 lg:p-12">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">
+          <div class="max-w-3xl">
+            <div class="text-xs font-black uppercase tracking-[0.22em] text-[#D8C58F]">Month-end FX control board</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black">A 7-point review before you close</h2>
+          </div>
+          <div class="text-sm text-slate-300 max-w-xs">Keep the review focused on foreign-currency monetary balances and the entries created around them.</div>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-3">
+          <label class="flex items-center gap-4 rounded-2xl bg-white/10 p-4 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-[#957C3D]">
+            <span>List open foreign-currency receivables and payables.</span>
+          </label>
+          <label class="flex items-center gap-4 rounded-2xl bg-white/10 p-4 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-[#957C3D]">
+            <span>Confirm the relevant transaction dates and rates.</span>
+          </label>
+          <label class="flex items-center gap-4 rounded-2xl bg-white/10 p-4 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-[#957C3D]">
+            <span>Review reporting-date FX treatment for open balances.</span>
+          </label>
+          <label class="flex items-center gap-4 rounded-2xl bg-white/10 p-4 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-[#957C3D]">
+            <span>Check payments made after period-end.</span>
+          </label>
+          <label class="flex items-center gap-4 rounded-2xl bg-white/10 p-4 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-[#957C3D]">
+            <span>Trace large FX entries to source balances.</span>
+          </label>
+          <label class="flex items-center gap-4 rounded-2xl bg-white/10 p-4 cursor-pointer">
+            <input type="checkbox" class="w-5 h-5 accent-[#957C3D]">
+            <span>Confirm gain/loss accounts are used consistently.</span>
+          </label>
+          <label class="flex items-center gap-4 rounded-2xl bg-[#957C3D] text-[#002349] p-4 cursor-pointer md:col-span-2">
+            <input type="checkbox" class="w-5 h-5 accent-[#002349]">
+            <span class="font-bold">Tie the total FX movement back to the general ledger before final reporting.</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F4F7FA] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Foreign-currency questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              Why does Odoo show a foreign exchange gain or loss?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              A foreign-currency monetary balance can have a different functional-currency value when the exchange rate changes between recognition, reporting and settlement. The resulting difference can be recognized as an exchange gain or loss under the configured accounting process.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              What should I check when Odoo FX gain/loss looks too high?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Check the foreign-currency amount, original rate, settlement rate, reporting-date rate, transaction dates, prior revaluation or adjustment entries and the accounts used for the resulting difference.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              What is the difference between realized and unrealized FX?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Realized FX generally relates to a foreign-currency balance that has been settled. Unrealized FX generally refers to changes in the functional-currency value of an outstanding foreign-currency monetary balance at a reporting date.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              Can exchange-rate changes affect my Balance Sheet even when no payment was made?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Yes. An outstanding foreign-currency monetary balance can change in functional-currency terms as exchange rates move, so reporting-date accounting may change the Balance Sheet and the related exchange gain/loss.
+            </p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">More Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Continue the accounting cleanup series</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-landed-costs-inventory-cogs.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Odoo Inventory</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Landed Costs: Why Inventory Value &amp; COGS Don't Match</h3>
+        </a>
+
+        <a href="/blog/odoo-inventory-valuation-not-matching.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Odoo Accounting</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet</h3>
+        </a>
+
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- SINGLE CTA -->
+    <section id="contact" class="relative overflow-hidden bg-[#002349] text-white">
+      <div class="absolute inset-0 fx-grid opacity-50"></div>
+      <div class="relative max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#D8C58F]">Need help with Odoo?</div>
+
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">
+            Make your multi-currency books easier to reconcile.
+          </h2>
+
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">
+            Accountrise helps US businesses and accounting firms clean up Odoo,
+            reconcile foreign-currency balances, investigate FX differences and build reliable month-end processes.
+          </p>
+
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">
+              Email Us
+            </a>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-400">
+            Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const money = (n) =>
+      (n < 0 ? '-$' : '$') +
+      Math.abs(Number(n || 0)).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+    function recalcFX() {
+      const amount = Math.max(0, Number(document.getElementById('fxAmount').value) || 0);
+      const rateOne = Math.max(0.000001, Number(document.getElementById('rateOne').value) || 0.000001);
+      const rateTwo = Math.max(0.000001, Number(document.getElementById('rateTwo').value) || 0.000001);
+
+      const one = amount * rateOne;
+      const two = amount * rateTwo;
+      const difference = two - one;
+
+      document.getElementById('valueOne').textContent = money(one);
+      document.getElementById('valueTwo').textContent = money(two);
+      document.getElementById('fxDifference').textContent = (difference >= 0 ? '+' : '-') + money(Math.abs(difference));
+
+      let direction = 'The later rate reduces the functional-currency value.';
+      if (difference > 0) direction = 'The later rate increases the functional-currency value.';
+      if (Math.abs(difference) < 0.005) direction = 'The two rates produce essentially the same functional-currency value.';
+      document.getElementById('fxDirection').textContent = direction;
+    }
+
+    ['fxAmount', 'rateOne', 'rateTwo'].forEach(id => {
+      document.getElementById(id).addEventListener('input', recalcFX);
+    });
+
+    recalcFX();
+  </script>
+
+  <!-- BlogPosting structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Foreign Currency Accounting: Why Exchange Gain/Loss Looks Wrong",
+    "description": "A practical guide to diagnosing foreign-currency accounting differences in Odoo, from invoice rates to settlement and reporting-date FX effects.",
+    "author": {
+      "@type": "Organization",
+      "name": "Accountrise"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Accountrise",
+      "url": "https://www.accountrise.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-foreign-currency-accounting.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-foreign-currency-accounting.html"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does Odoo show a foreign exchange gain or loss?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A foreign-currency monetary balance can have a different functional-currency value when the exchange rate changes between recognition, reporting and settlement. The resulting difference can be recognized as an exchange gain or loss under the configured accounting process."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I check when Odoo FX gain/loss looks too high?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Check the foreign-currency amount, original rate, settlement rate, reporting-date rate, transaction dates, prior revaluation or adjustment entries and the accounts used for the resulting difference."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between realized and unrealized FX?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Realized FX generally relates to a foreign-currency balance that has been settled. Unrealized FX generally refers to changes in the functional-currency value of an outstanding foreign-currency monetary balance at a reporting date."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can exchange-rate changes affect my Balance Sheet even when no payment was made?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. An outstanding foreign-currency monetary balance can change in functional-currency terms as exchange rates move, so reporting-date accounting may change the Balance Sheet and the related exchange gain or loss."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>
