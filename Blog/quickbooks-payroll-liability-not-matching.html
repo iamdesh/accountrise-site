@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Why Does QuickBooks Payroll Liability Not Match? 10 Causes & Fixes | Accountrise</title>
+  <meta name="description" content="Why doesn't your QuickBooks payroll liability match payroll reports or tax payments? Learn 10 common causes, how to trace the difference, and how to clean up payroll liabilities safely.">
+  <meta name="keywords" content="QuickBooks payroll liability not matching, QuickBooks payroll liabilities wrong, payroll liability mismatch QuickBooks, payroll liabilities not balancing, fix payroll liability QuickBooks, payroll bookkeeping cleanup">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.accountrise.com/blog/quickbooks-payroll-liability-not-matching.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why Does QuickBooks Payroll Liability Not Match? 10 Causes & Fixes">
+  <meta property="og:description" content="A practical guide to diagnosing payroll liability mismatches in QuickBooks.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/quickbooks-payroll-liability-not-matching.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Does QuickBooks Payroll Liability Not Match?">
+  <meta name="twitter:description" content="Find the source of payroll liability differences before they create bigger month-end or tax-prep issues.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .soft-grid {
+      background-image:
+        linear-gradient(rgba(0,35,73,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,35,73,.045) 1px, transparent 1px);
+      background-size: 26px 26px;
+    }
+
+    .rise { animation: rise .7s ease-out both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .float {
+      animation: floaty 5s ease-in-out infinite;
+    }
+
+    @keyframes floaty {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .row-hover {
+      transition: transform .24s ease, box-shadow .24s ease;
+    }
+
+    .row-hover:hover {
+      transform: translateX(4px);
+      box-shadow: 0 12px 30px rgba(0,35,73,.08);
+    }
+
+    .signal {
+      animation: signal 2.8s ease-in-out infinite;
+    }
+
+    @keyframes signal {
+      0%,100% { opacity: .45; }
+      50% { opacity: 1; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Why Does QuickBooks Payroll Liability Not Match? 10 Causes & Fixes",
+    "description":"A practical guide to diagnosing payroll liability mismatches in QuickBooks.",
+    "author":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.accountrise.com/blog/quickbooks-payroll-liability-not-matching.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Why does QuickBooks payroll liability not match payroll reports?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"A mismatch can come from payroll entries recorded in different periods, tax payments posted incorrectly, stale payroll liabilities, manual journal entries, corrections to prior payroll, duplicated or missing transactions, or differences between the payroll system and the accounting file."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Why does my QuickBooks payroll liability stay high after I paid payroll taxes?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"The payment may have been recorded to the wrong liability account, period, bank account, or amount. The underlying payroll transaction and the actual tax payment should be traced together."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Should I use a journal entry to clear old payroll liabilities?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Do not use a blind journal entry simply to make the liability account zero. First identify whether the balance comes from a real unpaid obligation, an already-paid item, a duplicate, a historical correction, or an incorrect payroll posting."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"How can I prevent payroll liabilities from becoming a year-end cleanup problem?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Reconcile payroll liabilities regularly, match tax payments to payroll records, review old balances by liability type, investigate negative or unusually large balances, and document corrections before year-end."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-[#f7f8f7] text-slate-800">
+
+  <!-- HEADER -->
+  <header class="bg-[#002349] text-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-5 flex items-center justify-between">
+      <a href="/" class="text-xl font-extrabold tracking-tight">Accountrise</a>
+
+      <nav class="hidden sm:flex items-center gap-7 text-sm">
+        <a href="/" class="hover:text-[#d7bf7b] transition">Home</a>
+        <a href="/services/" class="hover:text-[#d7bf7b] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#d7bf7b] transition">Blog</a>
+        <a href="/about/" class="hover:text-[#d7bf7b] transition">About Us</a>
+        <a href="#contact"
+           class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="soft-grid border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 lg:py-24">
+
+        <div class="grid lg:grid-cols-[1.1fr_.9fr] gap-12 items-center">
+
+          <div class="rise">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-slate-200 text-xs font-bold uppercase tracking-[0.2em] text-[#957C3D]">
+              US Small Business • Payroll Bookkeeping
+            </div>
+
+            <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.03] tracking-tight text-[#002349]">
+              Why Does QuickBooks
+              <span class="text-[#957C3D]">Payroll Liability Not Match?</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-3xl">
+              Payroll can be processed successfully while the accounting file still shows
+              old or unexpected payroll liabilities. The fix is usually to <strong>trace the payroll,
+              liability, and payment together</strong>—not simply zero out the balance.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#diagnose"
+                 class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-[#002349] text-white font-bold hover:bg-[#00172f] transition">
+                Diagnose the mismatch →
+              </a>
+
+              <a href="#checklist"
+                 class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-slate-300 text-[#002349] font-bold hover:border-[#957C3D] transition">
+                Payroll checklist
+              </a>
+            </div>
+
+          </div>
+
+          <div class="float">
+
+            <div class="rounded-[2rem] bg-[#002349] text-white p-6 shadow-2xl">
+
+              <div class="flex items-center justify-between">
+
+                <div>
+                  <div class="text-xs uppercase tracking-[0.2em] font-bold text-[#d7bf7b]">Payroll control desk</div>
+                  <div class="mt-1 text-xl font-black">Liability check</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <span class="signal w-2.5 h-2.5 rounded-full bg-[#d7bf7b]"></span>
+                  <span class="text-xs font-bold text-slate-300">REVIEW</span>
+                </div>
+
+              </div>
+
+              <div class="mt-6 space-y-3">
+
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                  <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">QuickBooks payroll liability</div>
+                  <div class="mt-1 text-3xl font-black">$18,620</div>
+                </div>
+
+                <div class="rounded-2xl bg-white/5 border border-white/10 p-4">
+                  <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Expected outstanding</div>
+                  <div class="mt-1 text-3xl font-black">$14,870</div>
+                </div>
+
+                <div class="rounded-2xl bg-[#f3eee2] text-[#002349] p-4">
+                  <div class="flex justify-between items-center">
+                    <span class="text-sm font-semibold">Difference</span>
+                    <strong class="text-xl font-black">$3,750</strong>
+                  </div>
+                </div>
+
+                <div class="rounded-2xl bg-white text-[#002349] p-4">
+                  <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">First check</div>
+                  <div class="mt-1 font-bold">Payroll report → liability → tax payment</div>
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSWER FIRST -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-14">
+
+      <div class="grid lg:grid-cols-[.24fr_1fr] gap-8">
+
+        <div>
+          <div class="text-5xl font-black text-[#957C3D]">01</div>
+          <div class="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Bottom line</div>
+        </div>
+
+        <div>
+
+          <h2 class="text-3xl sm:text-4xl font-black text-[#002349]">
+            Payroll liability mismatches are usually a timing, posting, payment, or historical-record problem
+          </h2>
+
+          <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-4xl">
+            A payroll liability is more than a number on the Balance Sheet. It represents obligations
+            created by payroll activity and later reduced by payments, corrections, or other transactions.
+            When those pieces do not connect correctly, the liability can look too high, too low, or never clear.
+          </p>
+
+          <div class="mt-6 rounded-2xl border-l-4 border-[#957C3D] bg-white p-5 shadow-sm">
+            <p class="font-semibold text-[#002349]">
+              The best rule: <strong>trace the obligation from the payroll run to the payment.</strong>
+              Do not force the account to zero until you know what the balance represents.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SYMPTOM MAP -->
+    <section class="bg-white border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+            Find your symptom
+          </p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            What does your payroll liability problem look like?
+          </h2>
+
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-2 gap-5">
+
+          <a href="#high"
+             class="row-hover rounded-[2rem] bg-[#fbfbfa] border border-slate-200 p-7">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom A</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “Payroll taxes were paid, but QuickBooks still shows a big liability.”
+            </h3>
+            <p class="mt-3 text-slate-600">Start with the payment trail and liability account.</p>
+          </a>
+
+          <a href="#old"
+             class="row-hover rounded-[2rem] bg-[#fbfbfa] border border-slate-200 p-7">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom B</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “There are payroll liabilities from years ago.”
+            </h3>
+            <p class="mt-3 text-slate-600">Start with the old-balance and historical cleanup workflow.</p>
+          </a>
+
+          <a href="#negative"
+             class="row-hover rounded-[2rem] bg-[#fbfbfa] border border-slate-200 p-7">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom C</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “One payroll liability account is negative.”
+            </h3>
+            <p class="mt-3 text-slate-600">Look for overpayments, duplicate payments, or misapplied activity.</p>
+          </a>
+
+          <a href="#timing"
+             class="row-hover rounded-[2rem] bg-[#fbfbfa] border border-slate-200 p-7">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom D</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “The payroll report looks right, but the Balance Sheet does not.”
+            </h3>
+            <p class="mt-3 text-slate-600">Compare posting dates, manual entries, and the accounting file.</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- HIGH LIABILITY -->
+    <section id="high" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="grid lg:grid-cols-[.88fr_1.12fr] gap-10 items-start">
+
+        <div class="rounded-[2rem] bg-[#f3eee2] p-8">
+
+          <div class="text-5xl font-black text-[#002349]">A</div>
+
+          <h2 class="mt-3 text-3xl font-black text-[#002349]">
+            Payroll taxes were paid—but liability is still high
+          </h2>
+
+          <p class="mt-5 text-slate-700 leading-relaxed">
+            This is one of the most common cleanup symptoms. The business may have actually paid
+            the payroll taxes, but the payment was not recorded against the same liability created by payroll.
+          </p>
+
+          <div class="mt-7 rounded-2xl bg-white p-5 border border-slate-200">
+            <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Trace it in this order</div>
+            <div class="mt-2 font-extrabold text-[#002349]">
+              Payroll run → liability created → tax payment → bank withdrawal
+            </div>
+          </div>
+
+        </div>
+
+        <div class="space-y-4">
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold text-[#002349]">1. Identify exactly what was paid</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Match the actual bank payment to the payroll tax notice, payment confirmation, or payroll provider record.
+            </p>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold text-[#002349]">2. Find the QuickBooks payment entry</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Check amount, date, bank account, and liability account. A payment recorded as an ordinary expense
+              may not reduce the payroll liability as expected.
+            </p>
+          </div>
+
+          <div class="bg-white border border-slate-200 rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold text-[#002349]">3. Compare the liability by payroll period</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              A current payment can be applied to an older obligation or vice versa. The period relationship matters.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- OLD LIABILITIES -->
+    <section id="old" class="bg-[#002349] text-white">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[1fr_.95fr] gap-10 items-center">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-[0.18em]">
+              Symptom B • Historical balances
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Old payroll liabilities are rarely solved by one “cleanup” entry
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              A liability from a prior year could mean a real unpaid obligation, a payment that was never
+              linked correctly, a duplicated entry, a prior payroll correction, or a conversion problem.
+            </p>
+
+            <div class="mt-8 grid sm:grid-cols-2 gap-4">
+
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <div class="text-[#d7bf7b] text-xs uppercase tracking-widest font-bold">Good question</div>
+                <div class="mt-2 font-extrabold">Was this ever actually paid?</div>
+              </div>
+
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <div class="text-[#d7bf7b] text-xs uppercase tracking-widest font-bold">Better question</div>
+                <div class="mt-2 font-extrabold">Can the payment be tied to this liability?</div>
+              </div>
+
+            </div>
+
+          </div>
+
+          <div class="rounded-[2rem] bg-white p-6 text-[#002349] shadow-2xl">
+
+            <div class="text-xs uppercase tracking-[0.2em] font-bold text-[#957C3D]">
+              Historical review
+            </div>
+
+            <div class="mt-6 space-y-3">
+
+              <div class="row-hover rounded-2xl bg-slate-50 p-4">
+                <div class="flex justify-between gap-4">
+                  <span class="font-semibold">2024 payroll tax</span>
+                  <strong>$2,850</strong>
+                </div>
+                <div class="mt-1 text-xs text-slate-400">Old open balance</div>
+              </div>
+
+              <div class="row-hover rounded-2xl bg-slate-50 p-4">
+                <div class="flex justify-between gap-4">
+                  <span class="font-semibold">2025 correction</span>
+                  <strong>$1,420</strong>
+                </div>
+                <div class="mt-1 text-xs text-slate-400">Historical activity</div>
+              </div>
+
+              <div class="row-hover rounded-2xl bg-slate-50 p-4">
+                <div class="flex justify-between gap-4">
+                  <span class="font-semibold">Unidentified payment</span>
+                  <strong>-$1,100</strong>
+                </div>
+                <div class="mt-1 text-xs text-slate-400">Needs tracing</div>
+              </div>
+
+              <div class="rounded-2xl bg-[#f3eee2] p-5">
+                <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Do not assume</div>
+                <div class="mt-1 font-black text-lg">Old = wrong</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NEGATIVE -->
+    <section id="negative" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-10 items-start">
+
+        <div>
+
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+            Symptom C • Negative balances
+          </p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            A negative payroll liability is a clue—not automatically a mistake
+          </h2>
+
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            A negative balance can happen when a payment exceeds the liability recorded in the books,
+            when a correction is posted without the expected offset, or when transactions are duplicated
+            or misapplied.
+          </p>
+
+          <div class="mt-7 rounded-3xl bg-[#f3eee2] p-6">
+            <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">First test</div>
+            <div class="mt-2 text-xl font-black text-[#002349]">
+              Find the exact transaction that pushed the account below zero.
+            </div>
+          </div>
+
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="text-[#957C3D] font-black text-2xl">01</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Payment too large</h3>
+            <p class="mt-2 text-sm text-slate-600">A payment may exceed the liability that was recorded.</p>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="text-[#957C3D] font-black text-2xl">02</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Duplicate payment</h3>
+            <p class="mt-2 text-sm text-slate-600">A bank import and manual entry may both represent one payment.</p>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="text-[#957C3D] font-black text-2xl">03</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Misapplied correction</h3>
+            <p class="mt-2 text-sm text-slate-600">An adjustment may have hit the wrong liability account or period.</p>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <div class="text-[#957C3D] font-black text-2xl">04</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Historical opening problem</h3>
+            <p class="mt-2 text-sm text-slate-600">A migration or opening balance can leave a negative legacy amount.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TIMING -->
+    <section id="timing" class="bg-white border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+            Symptom D • Timing
+          </p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            Payroll report looks right, but the Balance Sheet does not
+          </h2>
+
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            When the payroll provider report looks reasonable but QuickBooks shows an unexpected liability,
+            compare the accounting entries generated by payroll with the bank and liability activity.
+          </p>
+
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-4 gap-4">
+
+          <div class="rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">01</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Payroll date</h3>
+            <p class="mt-2 text-sm text-slate-600">Was the payroll posted in the same period as expected?</p>
+          </div>
+
+          <div class="rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">02</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Payment date</h3>
+            <p class="mt-2 text-sm text-slate-600">When did the tax or payroll payment actually clear?</p>
+          </div>
+
+          <div class="rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">03</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Posting account</h3>
+            <p class="mt-2 text-sm text-slate-600">Did the payment reduce the intended liability account?</p>
+          </div>
+
+          <div class="rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">04</div>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Historical edits</h3>
+            <p class="mt-2 text-sm text-slate-600">Were prior payroll entries changed after the original reconciliation?</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 CAUSES -->
+    <section id="diagnose" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="max-w-3xl">
+
+        <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+          Diagnostic board
+        </p>
+
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+          10 causes to investigate before clearing payroll liabilities
+        </h2>
+
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-4">
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">01</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Tax payment posted to the wrong account</h3>
+          <p class="mt-2 text-sm text-slate-600">Cash left the bank, but the expected payroll liability was not reduced.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">02</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Payment recorded twice</h3>
+          <p class="mt-2 text-sm text-slate-600">One real payment may exist as multiple QuickBooks transactions.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">03</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Payroll liability was never cleared</h3>
+          <p class="mt-2 text-sm text-slate-600">The business paid the obligation, but the books still show it outstanding.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">04</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Wrong payment amount</h3>
+          <p class="mt-2 text-sm text-slate-600">A small amount difference can accumulate over multiple filings.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">05</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Payment date does not match the expected period</h3>
+          <p class="mt-2 text-sm text-slate-600">The bank payment and liability may fall into different reporting periods.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">06</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Prior payroll was corrected</h3>
+          <p class="mt-2 text-sm text-slate-600">A historical correction can change the liability without a matching current payment.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">07</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Manual journal entry changed the liability</h3>
+          <p class="mt-2 text-sm text-slate-600">A direct entry can create or remove a balance outside the normal payroll workflow.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">08</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Opening payroll balances were incorrect</h3>
+          <p class="mt-2 text-sm text-slate-600">A converted or newly created file may begin with liabilities that need validation.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">09</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Historical reconciled transactions were edited</h3>
+          <p class="mt-2 text-sm text-slate-600">Changes to older payroll payments or journal entries can affect later periods.</p>
+        </div>
+
+        <div class="row-hover rounded-3xl border border-slate-200 bg-white p-6">
+          <span class="text-[#957C3D] font-black text-2xl">10</span>
+          <h3 class="mt-2 text-lg font-extrabold text-[#002349]">The payroll provider and QuickBooks are not fully tied out</h3>
+          <p class="mt-2 text-sm text-slate-600">A recurring mismatch may require a full payroll-to-GL reconciliation rather than a one-off entry.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- TIE-OUT FLOW -->
+    <section class="bg-[#eef2f5] border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-10 items-start">
+
+          <div>
+
+            <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+              Payroll-to-GL tie-out
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+              Use one chain to explain the entire liability
+            </h2>
+
+            <p class="mt-5 text-slate-600 leading-relaxed">
+              When the numbers disagree, map the same payroll event through each stage.
+              This makes the missing or duplicate piece much easier to see.
+            </p>
+
+          </div>
+
+          <div class="space-y-3">
+
+            <div class="bg-white rounded-3xl border border-slate-200 p-5 flex gap-4 items-center">
+              <div class="w-12 h-12 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">1</div>
+              <div>
+                <div class="font-extrabold text-[#002349]">Payroll run</div>
+                <div class="text-sm text-slate-500">Gross pay, deductions, employer amounts, and liabilities are generated.</div>
+              </div>
+            </div>
+
+            <div class="text-center text-[#957C3D] font-black">↓</div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 p-5 flex gap-4 items-center">
+              <div class="w-12 h-12 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">2</div>
+              <div>
+                <div class="font-extrabold text-[#002349]">QuickBooks posting</div>
+                <div class="text-sm text-slate-500">The accounting entries land in payroll expense and liability accounts.</div>
+              </div>
+            </div>
+
+            <div class="text-center text-[#957C3D] font-black">↓</div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 p-5 flex gap-4 items-center">
+              <div class="w-12 h-12 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">3</div>
+              <div>
+                <div class="font-extrabold text-[#002349]">Tax/payment event</div>
+                <div class="text-sm text-slate-500">The business pays payroll obligations through the relevant bank or payroll workflow.</div>
+              </div>
+            </div>
+
+            <div class="text-center text-[#957C3D] font-black">↓</div>
+
+            <div class="bg-white rounded-3xl border border-slate-200 p-5 flex gap-4 items-center">
+              <div class="w-12 h-12 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black shrink-0">4</div>
+              <div>
+                <div class="font-extrabold text-[#002349]">Final tie-out</div>
+                <div class="text-sm text-slate-500">The remaining liability should be explainable by unpaid obligations and timing.</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT NOT TO DO -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="max-w-3xl">
+
+        <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+          Avoid bad cleanup
+        </p>
+
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+          Three tempting fixes that can make payroll bookkeeping worse
+        </h2>
+
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-5">
+
+        <div class="card-hover bg-white rounded-3xl border border-slate-200 p-7">
+          <div class="text-[#957C3D] font-black text-2xl">01</div>
+          <h3 class="mt-3 text-xl font-extrabold text-[#002349]">“Just make the liability zero.”</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Zero is not automatically the right answer. You may be hiding a real unpaid obligation.
+          </p>
+        </div>
+
+        <div class="card-hover bg-white rounded-3xl border border-slate-200 p-7">
+          <div class="text-[#957C3D] font-black text-2xl">02</div>
+          <h3 class="mt-3 text-xl font-extrabold text-[#002349]">“Book it to payroll expense.”</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            A payment can reduce a liability without becoming a new payroll expense.
+            The right classification depends on what the payment actually represents.
+          </p>
+        </div>
+
+        <div class="card-hover bg-white rounded-3xl border border-slate-200 p-7">
+          <div class="text-[#957C3D] font-black text-2xl">03</div>
+          <h3 class="mt-3 text-xl font-extrabold text-[#002349]">“Undo old reconciliations first.”</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Historical changes can affect later periods. Find the source of the discrepancy before rewriting the history.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7-POINT MONTHLY CHECK -->
+    <section id="checklist" class="bg-[#002349] text-white">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-[0.18em]">
+              Monthly payroll control
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Seven checks that can prevent a year-end payroll cleanup
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Make payroll liability review a normal month-end process instead of an annual emergency.
+            </p>
+
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">01</div>
+              <h3 class="mt-2 font-extrabold">Review liability balances</h3>
+              <p class="mt-2 text-sm text-slate-300">Look for unusual increases, negatives, or stale amounts.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">02</div>
+              <h3 class="mt-2 font-extrabold">Tie payroll to the GL</h3>
+              <p class="mt-2 text-sm text-slate-300">Confirm payroll activity posted as expected.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">03</div>
+              <h3 class="mt-2 font-extrabold">Trace tax payments</h3>
+              <p class="mt-2 text-sm text-slate-300">Match bank withdrawals to payroll tax obligations.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">04</div>
+              <h3 class="mt-2 font-extrabold">Review old items</h3>
+              <p class="mt-2 text-sm text-slate-300">Investigate anything that remains open beyond the expected timing.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">05</div>
+              <h3 class="mt-2 font-extrabold">Check negative balances</h3>
+              <p class="mt-2 text-sm text-slate-300">Find the transaction that pushed the account below zero.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">06</div>
+              <h3 class="mt-2 font-extrabold">Document adjustments</h3>
+              <p class="mt-2 text-sm text-slate-300">Keep support for corrections and historical changes.</p>
+            </div>
+
+            <div class="sm:col-span-2 rounded-2xl bg-[#957C3D] text-[#002349] p-5">
+              <div class="font-black">07 — Close the loop</div>
+              <p class="mt-1 text-sm font-semibold">
+                Do not finish month-end until every material payroll liability has a clear explanation.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- US TAX NOTE -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-14">
+
+      <div class="rounded-[2rem] bg-[#f3eee2] p-8 sm:p-10">
+
+        <p class="text-[#957C3D] text-xs font-bold uppercase tracking-[0.18em]">
+          US payroll note
+        </p>
+
+        <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">
+          Keep the bookkeeping tie-out separate from tax decisions
+        </h2>
+
+        <p class="mt-5 text-slate-700 leading-relaxed">
+          Payroll reporting can involve federal, state, and local requirements, and the correct treatment
+          depends on the employer, employees, payroll provider, jurisdiction, and specific filing.
+          Use the workflow in this article to reconcile the accounting records, and have your payroll provider,
+          CPA, or tax professional confirm filing and tax treatment questions.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-10">
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 sm:p-9">
+
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+          <div>
+            <p class="text-[#957C3D] text-xs font-bold uppercase tracking-widest">
+              Related Accountrise guides
+            </p>
+
+            <h2 class="mt-2 text-2xl font-black text-[#002349]">
+              More practical bookkeeping problem-solving guides
+            </h2>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+
+            <a href="/blog/what-should-small-business-bookkeeper-do-every-month.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Monthly Bookkeeping →
+            </a>
+
+            <a href="/blog/month-end-close-small-business-checklist.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Month-End Close →
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+
+      <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em] text-center">
+        FAQ
+      </p>
+
+      <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349] text-center">
+        QuickBooks payroll liability questions
+      </h2>
+
+      <div class="mt-10 space-y-4">
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why does QuickBooks payroll liability not match payroll reports?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Common causes include different posting periods, incorrect tax payments,
+            stale liabilities, manual journal entries, corrections to prior payroll,
+            duplicate transactions, missing payments, or differences between the payroll provider and accounting file.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why does my QuickBooks payroll liability stay high after I paid payroll taxes?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            The payment may have been posted to the wrong liability account, period, bank account, or amount.
+            Trace the actual bank payment together with the payroll liability it was intended to settle.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Should I use a journal entry to clear old payroll liabilities?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Do not use a blind journal entry just to make the account zero. First determine whether the balance
+            represents a real obligation, a payment, duplicate activity, historical correction, or an opening-balance issue.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            How can I prevent payroll liabilities from becoming a year-end cleanup problem?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Reconcile payroll liabilities regularly, match tax payments to payroll records,
+            investigate old and negative balances, and document corrections before year-end.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- SINGLE CTA -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 sm:px-8 pb-20">
+
+      <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-12">
+
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 items-center">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">
+              Need payroll bookkeeping help?
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Clean up payroll liabilities before they become a tax-season surprise.
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Accountrise helps US small businesses reconcile payroll liabilities,
+              clean up QuickBooks, investigate historical balances, and maintain reliable
+              month-end books for owners and tax professionals.
+            </p>
+
+            <p class="mt-4 text-slate-300">
+              <strong class="text-white">Starting at $10/hour.</strong>
+              Final pricing depends on scope, transaction volume, complexity, and engagement requirements.
+            </p>
+
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               class="text-center bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-bold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="text-center border border-white/25 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+              Email Us
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer class="bg-[#eef0ee] border-t border-slate-200">
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-8 flex flex-col sm:flex-row justify-between gap-3 text-sm text-slate-500">
+
+      <span>© Accountrise</span>
+
+      <div class="flex gap-5">
+        <a href="/services/" class="hover:text-[#002349]">Services</a>
+        <a href="/blog/" class="hover:text-[#002349]">Blog</a>
+        <a href="/about/" class="hover:text-[#002349]">About Us</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
