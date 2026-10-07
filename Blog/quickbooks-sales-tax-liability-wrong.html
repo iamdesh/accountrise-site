@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Why Is My QuickBooks Sales Tax Liability Wrong? 10 Causes & Fixes | Accountrise</title>
+  <meta name="description" content="Is your QuickBooks sales tax liability wrong or not matching your tax filing? Learn the most common causes, how to trace the difference, and how to clean up sales tax records safely before filing.">
+  <meta name="keywords" content="QuickBooks sales tax liability wrong, QuickBooks sales tax not matching, sales tax liability QuickBooks, fix sales tax QuickBooks, QuickBooks sales tax cleanup, sales tax bookkeeping">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.accountrise.com/blog/quickbooks-sales-tax-liability-wrong.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Why Is My QuickBooks Sales Tax Liability Wrong? 10 Causes & Fixes">
+  <meta property="og:description" content="A practical guide to diagnosing and cleaning up sales tax liability in QuickBooks.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/quickbooks-sales-tax-liability-wrong.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Why Is My QuickBooks Sales Tax Liability Wrong?">
+  <meta name="twitter:description" content="Find out why QuickBooks sales tax may not match your expected filing balance and how to investigate it safely.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .mesh {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(149,124,61,.16), transparent 28%),
+        radial-gradient(circle at 90% 30%, rgba(255,255,255,.08), transparent 25%),
+        linear-gradient(135deg, #002349, #00172f);
+    }
+
+    .card-hover {
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0,35,73,.11);
+    }
+
+    .rise { animation: rise .7s ease-out both; }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .float {
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .tax-dot {
+      animation: dot 2.8s ease-in-out infinite;
+    }
+
+    @keyframes dot {
+      0%,100% { opacity:.45; }
+      50% { opacity:1; }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Why Is My QuickBooks Sales Tax Liability Wrong? 10 Causes & Fixes",
+    "description":"A practical guide to diagnosing and cleaning up sales tax liability in QuickBooks.",
+    "author":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.accountrise.com/blog/quickbooks-sales-tax-liability-wrong.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Why is my QuickBooks sales tax liability wrong?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"A sales tax liability can look wrong because of report dates, sales tax setup, exempt or non-taxable transactions, credit memos and refunds, manually entered tax adjustments, deleted or edited sales transactions, payments that were recorded incorrectly, or differences between QuickBooks and the tax return."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Why doesn't QuickBooks sales tax match my tax return?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"The books and the filed return may use different periods, adjustments, taxability rules, or transaction classifications. Start by tying the sales tax report to the exact filing period and then trace the difference to source transactions and prior payments or adjustments."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Should I adjust sales tax liability with a journal entry?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Do not use a blind journal entry simply to make the liability match a desired number. First identify the underlying sales, tax, credit, refund, payment, or adjustment that caused the difference and coordinate tax treatment with the appropriate tax professional."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"How can I prevent sales tax cleanup problems in QuickBooks?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Use consistent customer and product tax settings, reconcile sales tax regularly, review exemptions and refunds, record tax payments correctly, and maintain a month-end exception list for unusual transactions."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-[#f7f8f7] text-slate-800">
+
+  <header class="bg-[#002349] text-white">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-5 flex items-center justify-between">
+      <a href="/" class="text-xl font-extrabold tracking-tight">Accountrise</a>
+
+      <nav class="hidden sm:flex items-center gap-7 text-sm">
+        <a href="/" class="hover:text-[#d7bf7b] transition">Home</a>
+        <a href="/services/" class="hover:text-[#d7bf7b] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#d7bf7b] transition">Blog</a>
+        <a href="/about/" class="hover:text-[#d7bf7b] transition">About Us</a>
+        <a href="#contact"
+           class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO: TAX CONTROL DESK -->
+    <section class="mesh text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 lg:py-24">
+
+        <div class="grid lg:grid-cols-[1.08fr_.92fr] gap-12 items-center">
+
+          <div class="rise">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 text-xs font-bold uppercase tracking-[0.22em] text-[#d7bf7b]">
+              US Small Business • Sales Tax
+            </div>
+
+            <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.04] tracking-tight">
+              Why Is My QuickBooks
+              <span class="text-[#d7bf7b]">Sales Tax Liability Wrong?</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
+              If the sales tax number in QuickBooks does not match what you expect to file or pay,
+              <strong>stop before posting an adjustment.</strong> First find the transaction, tax setup,
+              period, or prior payment that created the difference.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#diagnose"
+                 class="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-white text-[#002349] font-bold hover:bg-slate-100 transition">
+                Diagnose the difference →
+              </a>
+
+              <a href="#checklist"
+                 class="inline-flex items-center justify-center px-6 py-3 rounded-xl border border-white/20 text-white font-bold hover:bg-white/5 transition">
+                Use the checklist
+              </a>
+            </div>
+
+          </div>
+
+          <div class="float">
+
+            <div class="bg-white rounded-[2rem] p-6 text-[#002349] shadow-2xl">
+
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-xs uppercase tracking-[0.2em] text-[#957C3D] font-bold">Tax control desk</div>
+                  <div class="mt-1 text-xl font-black">Liability check</div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <span class="tax-dot w-2.5 h-2.5 rounded-full bg-[#957C3D]"></span>
+                  <span class="text-xs font-bold text-slate-400">REVIEW</span>
+                </div>
+              </div>
+
+              <div class="mt-6 space-y-3">
+
+                <div class="rounded-2xl bg-slate-50 p-4">
+                  <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">QuickBooks liability</div>
+                  <div class="mt-1 text-3xl font-black">$12,480</div>
+                </div>
+
+                <div class="rounded-2xl bg-slate-50 p-4">
+                  <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Expected filing balance</div>
+                  <div class="mt-1 text-3xl font-black">$11,960</div>
+                </div>
+
+                <div class="rounded-2xl bg-[#f3eee2] p-4">
+                  <div class="flex items-center justify-between">
+                    <span class="text-sm font-semibold text-slate-600">Difference to explain</span>
+                    <span class="text-xl font-black text-[#957C3D]">$520</span>
+                  </div>
+                </div>
+
+                <div class="rounded-2xl bg-[#002349] text-white p-4">
+                  <div class="text-xs uppercase tracking-widest text-[#d7bf7b] font-bold">Next move</div>
+                  <div class="mt-1 font-bold">Trace the source — don't plug the gap</div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- QUICK ANSWER -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-14">
+
+      <div class="grid lg:grid-cols-[.22fr_1fr] gap-8">
+
+        <div>
+          <div class="text-5xl font-black text-[#957C3D]">01</div>
+          <div class="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Bottom line</div>
+        </div>
+
+        <div>
+          <h2 class="text-3xl sm:text-4xl font-black text-[#002349]">
+            A sales tax mismatch usually comes from timing, setup, classification, or an old transaction
+          </h2>
+
+          <p class="mt-6 text-lg leading-relaxed text-slate-600 max-w-4xl">
+            Sales tax becomes difficult when the amount in QuickBooks is treated as one simple number.
+            In reality, the balance can be affected by taxable sales, exempt transactions, credits,
+            refunds, tax payments, adjustments, transaction dates, customer or product tax settings,
+            and prior-period changes.
+          </p>
+
+          <p class="mt-5 text-lg leading-relaxed text-slate-600 max-w-4xl">
+            Because US sales tax rules vary by jurisdiction, use this guide as a bookkeeping diagnostic.
+            Your CPA, tax preparer, or sales-tax specialist should confirm the filing treatment for your business.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SYMPTOM CARDS -->
+    <section class="bg-white border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+            Start with the symptom
+          </p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            What does your QuickBooks sales tax problem look like?
+          </h2>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-5">
+
+          <a href="#missing"
+             class="card-hover rounded-[2rem] border border-slate-200 p-7 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom A</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “QuickBooks says I owe more tax than my filing.”
+            </h3>
+            <p class="mt-3 text-slate-600">Check period dates, payments, prior adjustments, credits, and tax setup.</p>
+          </a>
+
+          <a href="#taxable"
+             class="card-hover rounded-[2rem] border border-slate-200 p-7 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom B</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “The sales tax report doesn't look like my sales.”
+            </h3>
+            <p class="mt-3 text-slate-600">Review taxable vs. non-taxable transactions and customer/product setup.</p>
+          </a>
+
+          <a href="#payments"
+             class="card-hover rounded-[2rem] border border-slate-200 p-7 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom C</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “I paid sales tax, but the liability still looks high.”
+            </h3>
+            <p class="mt-3 text-slate-600">Trace the tax payment, date, account, and period it was meant to cover.</p>
+          </a>
+
+          <a href="#credits"
+             class="card-hover rounded-[2rem] border border-slate-200 p-7 bg-[#fbfbfa]">
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">Symptom D</div>
+            <h3 class="mt-2 text-2xl font-black text-[#002349]">
+              “Returns, refunds, or credits keep changing the liability.”
+            </h3>
+            <p class="mt-3 text-slate-600">Review credit memos, refunds, returns, and how they affect taxable sales.</p>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- TAXABILITY -->
+    <section id="taxable" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 items-start">
+
+        <div class="bg-[#f3eee2] rounded-[2rem] p-8">
+
+          <div class="text-5xl font-black text-[#002349]">A</div>
+
+          <h2 class="mt-3 text-3xl font-black text-[#002349]">
+            Taxable vs. non-taxable sales
+          </h2>
+
+          <p class="mt-5 text-slate-700 leading-relaxed">
+            If the sales tax report feels too high or too low, start by checking the transactions that feed it.
+            A wrong tax setting on a product, customer, invoice, credit, or sales receipt can change the result.
+          </p>
+
+          <div class="mt-7 rounded-2xl bg-white p-5 border border-slate-200">
+            <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Bookkeeping question</div>
+            <p class="mt-2 font-extrabold text-[#002349]">
+              Is the transaction coded according to the business's actual tax treatment?
+            </p>
+          </div>
+
+        </div>
+
+        <div class="space-y-4">
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold text-[#002349]">1. Review unusual large transactions</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              One large sale, return, or adjustment can create a noticeable liability difference.
+              Start with exceptions before reviewing every transaction.
+            </p>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold text-[#002349]">2. Check customer and product tax settings</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Inconsistent setup can make similar sales behave differently in the books.
+              Review the source transaction and the configuration behind it.
+            </p>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold text-[#002349]">3. Review refunds and credits</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              Returns and credits can change taxable sales and therefore the related tax calculations.
+              Make sure the refund or credit is connected to the correct original transaction.
+            </p>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold text-[#002349]">4. Separate bookkeeping from tax judgment</h3>
+            <p class="mt-2 text-slate-600 leading-relaxed">
+              The bookkeeping job is to record transactions consistently and preserve documentation.
+              Whether a transaction is legally taxable in a particular jurisdiction is a tax question.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT TRACE -->
+    <section id="payments" class="bg-[#002349] text-white">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="grid lg:grid-cols-[1fr_.92fr] gap-10 items-center">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-[0.18em]">
+              Symptom C • Payment trail
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              “I already paid the sales tax.” So why does QuickBooks still show a balance?
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              A payment does not automatically prove the liability is correct. The payment must be recorded
+              against the right tax liability, with the right date and amount, and the accounting records need
+              to line up with the period being reviewed.
+            </p>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              When the balance still looks wrong, trace the payment from bank statement to QuickBooks and then
+              from QuickBooks back to the filing or payment documentation.
+            </p>
+
+          </div>
+
+          <div class="rounded-[2rem] bg-white/5 border border-white/10 p-7">
+
+            <div class="text-xs uppercase tracking-[0.18em] font-bold text-[#d7bf7b]">
+              Payment trace
+            </div>
+
+            <div class="mt-6 space-y-4">
+
+              <div class="flex gap-4 items-center">
+                <div class="w-10 h-10 rounded-xl bg-white text-[#002349] flex items-center justify-center font-black">01</div>
+                <div>
+                  <div class="font-extrabold">Bank statement</div>
+                  <div class="text-sm text-slate-400">Actual payment cleared</div>
+                </div>
+              </div>
+
+              <div class="h-px bg-white/10 ml-5"></div>
+
+              <div class="flex gap-4 items-center">
+                <div class="w-10 h-10 rounded-xl bg-white text-[#002349] flex items-center justify-center font-black">02</div>
+                <div>
+                  <div class="font-extrabold">QuickBooks entry</div>
+                  <div class="text-sm text-slate-400">Correct account + amount + date</div>
+                </div>
+              </div>
+
+              <div class="h-px bg-white/10 ml-5"></div>
+
+              <div class="flex gap-4 items-center">
+                <div class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">03</div>
+                <div>
+                  <div class="font-extrabold">Tax filing record</div>
+                  <div class="text-sm text-slate-400">Period + reported amount</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CREDITS -->
+    <section id="credits" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="max-w-3xl">
+        <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">Symptom D • Returns & credits</p>
+
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+          Refunds can change the tax story without looking like a normal sale
+        </h2>
+
+        <p class="mt-5 text-slate-600 leading-relaxed">
+          When a customer return or credit is recorded incorrectly, the sales side of the books can look reasonable
+          while the sales tax liability becomes confusing. Review the original transaction and the reason for the adjustment.
+        </p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-3 gap-5">
+
+        <div class="card-hover bg-white rounded-3xl border border-slate-200 p-7">
+          <div class="text-xs uppercase tracking-widest font-bold text-[#957C3D]">Check</div>
+          <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Original invoice</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Confirm the original sale and tax treatment are recorded correctly.
+          </p>
+        </div>
+
+        <div class="card-hover bg-white rounded-3xl border border-slate-200 p-7">
+          <div class="text-xs uppercase tracking-widest font-bold text-[#957C3D]">Check</div>
+          <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Credit / refund</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Confirm the adjustment is tied to the right customer and transaction.
+          </p>
+        </div>
+
+        <div class="card-hover bg-white rounded-3xl border border-slate-200 p-7">
+          <div class="text-xs uppercase tracking-widest font-bold text-[#957C3D]">Check</div>
+          <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Tax impact</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Confirm the bookkeeping treatment matches the tax professional's instructions.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- 10 CAUSES -->
+    <section id="diagnose" class="bg-white border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">Diagnostic board</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            10 causes to investigate before you adjust sales tax liability
+          </h2>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-4">
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">01</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Wrong reporting period</h3>
+            <p class="mt-2 text-sm text-slate-600">The tax report and the filing are using different dates or periods.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">02</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Tax payment posted incorrectly</h3>
+            <p class="mt-2 text-sm text-slate-600">The payment may be recorded to the wrong account, date, or liability flow.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">03</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Edited prior-period sale</h3>
+            <p class="mt-2 text-sm text-slate-600">A historical transaction changed after the related return or period was reviewed.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">04</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Deleted transaction</h3>
+            <p class="mt-2 text-sm text-slate-600">A removed invoice, receipt, or credit changed the underlying activity.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">05</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Incorrect tax setup</h3>
+            <p class="mt-2 text-sm text-slate-600">Customer, product, or transaction settings do not match the intended tax treatment.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">06</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Refund or credit handled incorrectly</h3>
+            <p class="mt-2 text-sm text-slate-600">Returns can change taxable sales if the source transaction is not handled correctly.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">07</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Manual adjustment has no support</h3>
+            <p class="mt-2 text-sm text-slate-600">A prior adjustment may explain part of the difference but lack clear documentation.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">08</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Payment was entered twice</h3>
+            <p class="mt-2 text-sm text-slate-600">A duplicate tax payment or import can distort the liability balance.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">09</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">Taxable sales were classified inconsistently</h3>
+            <p class="mt-2 text-sm text-slate-600">Similar transactions may have been treated differently across the books.</p>
+          </div>
+
+          <div class="card-hover rounded-3xl border border-slate-200 bg-[#fbfbfa] p-6">
+            <span class="text-[#957C3D] font-black text-2xl">10</span>
+            <h3 class="mt-2 text-lg font-extrabold text-[#002349]">The books and tax records need a formal tie-out</h3>
+            <p class="mt-2 text-sm text-slate-600">A recurring mismatch can indicate a wider process problem, not one bad transaction.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 STEP TIE-OUT -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-10 items-start">
+
+        <div>
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">The 5-step tie-out</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            A cleaner way to reconcile sales tax
+          </h2>
+
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            Use the same workflow every month. Consistency makes unusual balances much easier to spot.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-5 flex gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">1</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Lock the period</h3>
+              <p class="mt-1 text-sm text-slate-600">Use the exact same filing period when comparing reports.</p>
+            </div>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-5 flex gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">2</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Capture the expected tax amount</h3>
+              <p class="mt-1 text-sm text-slate-600">Document the filed or approved tax amount before comparing it to QuickBooks.</p>
+            </div>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-5 flex gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">3</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Run the matching QuickBooks sales tax report</h3>
+              <p class="mt-1 text-sm text-slate-600">Use the same period and review the transactions behind the total.</p>
+            </div>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-5 flex gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black shrink-0">4</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Trace the difference</h3>
+              <p class="mt-1 text-sm text-slate-600">Search for payments, credits, refunds, changed transactions, and setup exceptions.</p>
+            </div>
+          </div>
+
+          <div class="card-hover bg-white border border-slate-200 rounded-3xl p-5 flex gap-4">
+            <div class="w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black shrink-0">5</div>
+            <div>
+              <h3 class="font-extrabold text-[#002349]">Document and recheck</h3>
+              <p class="mt-1 text-sm text-slate-600">Make the source correction, keep support, and rerun the report.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- RED FLAGS -->
+    <section class="bg-[#eef2f5] border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">Red flags</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            Signs the problem is bigger than one sales tax entry
+          </h2>
+        </div>
+
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+          <div class="bg-white rounded-3xl border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">01</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Same difference repeats</h3>
+            <p class="mt-2 text-sm text-slate-600">The exact mismatch appears month after month.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">02</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Tax payments are hard to trace</h3>
+            <p class="mt-2 text-sm text-slate-600">Payments are coming from multiple accounts or lack documentation.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">03</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">Refunds are frequent exceptions</h3>
+            <p class="mt-2 text-sm text-slate-600">Returns or credits are changing the liability unexpectedly.</p>
+          </div>
+
+          <div class="bg-white rounded-3xl border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">04</div>
+            <h3 class="mt-3 font-extrabold text-[#002349]">CPA finds surprises at year-end</h3>
+            <p class="mt-2 text-sm text-slate-600">The sales tax account repeatedly needs last-minute corrections.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section id="checklist" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="bg-[#002349] text-white rounded-[2rem] p-8 sm:p-10">
+
+        <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10">
+
+          <div>
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-[0.18em]">
+              Month-end checklist
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Keep the liability clean before filing season arrives.
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Five small checks each month can prevent a much larger sales-tax cleanup project later.
+            </p>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">✓</div>
+              <h3 class="mt-2 font-extrabold">Review the liability balance</h3>
+              <p class="mt-2 text-sm text-slate-300">Look for unusual month-to-month changes.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">✓</div>
+              <h3 class="mt-2 font-extrabold">Tie payments to bank activity</h3>
+              <p class="mt-2 text-sm text-slate-300">Confirm the amount, date, and account.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">✓</div>
+              <h3 class="mt-2 font-extrabold">Review refunds and credits</h3>
+              <p class="mt-2 text-sm text-slate-300">Investigate unusual tax-related adjustments.</p>
+            </div>
+
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+              <div class="text-[#d7bf7b] font-black">✓</div>
+              <h3 class="mt-2 font-extrabold">Check uncategorized sales activity</h3>
+              <p class="mt-2 text-sm text-slate-300">Do not let exceptions accumulate.</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DISCLAIMER / US -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 pb-10">
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 sm:p-9">
+
+        <p class="text-xs uppercase tracking-[0.18em] font-bold text-[#957C3D]">
+          US tax note
+        </p>
+
+        <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">
+          Bookkeeping can identify the difference; tax professionals should decide the tax treatment.
+        </h2>
+
+        <p class="mt-4 text-slate-600 leading-relaxed">
+          Sales-tax requirements differ across states, local jurisdictions, products, services, exemptions,
+          filing periods, and business circumstances. Use the accounting workflow above to organize and reconcile
+          the records, then confirm the final filing position with your qualified tax professional.
+        </p>
+
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-10">
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 sm:p-9">
+
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+          <div>
+            <p class="text-[#957C3D] text-xs font-bold uppercase tracking-widest">
+              Related Accountrise guides
+            </p>
+
+            <h2 class="mt-2 text-2xl font-black text-[#002349]">
+              More practical QuickBooks cleanup guides
+            </h2>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+
+            <a href="/blog/quickbooks-bank-reconciliation-off.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Bank Reconciliation →
+            </a>
+
+            <a href="/blog/why-quickbooks-balance-sheet-is-wrong.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Balance Sheet Fixes →
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+
+      <p class="text-[#957C3D] font-bold uppercase tracking-[0.18em] text-sm text-center">
+        FAQ
+      </p>
+
+      <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349] text-center">
+        QuickBooks sales tax questions
+      </h2>
+
+      <div class="mt-10 space-y-4">
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why is my QuickBooks sales tax liability wrong?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Common causes include report-period differences, incorrect tax setup, exempt or non-taxable
+            transactions, refunds and credits, tax payments, manual adjustments, and edited or deleted sales transactions.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why doesn't QuickBooks sales tax match my tax return?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            The books and the return may use different periods, adjustments, classifications, or payment timing.
+            Start by tying the QuickBooks report to the exact filing period and then trace the difference to source transactions.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Should I adjust sales tax liability with a journal entry?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Do not post a blind adjustment simply to reach a target balance. Find the underlying sales, credit,
+            refund, payment, or other transaction first and coordinate tax treatment with the appropriate professional.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            How can I prevent sales tax cleanup problems in QuickBooks?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Keep customer and product tax settings consistent, review sales tax regularly, reconcile tax payments,
+            investigate refunds and exemptions, and maintain a month-end exception list.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+    <!-- SINGLE CTA -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 sm:px-8 pb-20">
+
+      <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-12">
+
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 items-center">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">
+              Need QuickBooks cleanup?
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Reconcile the books before a small sales-tax issue becomes a year-end cleanup project.
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Accountrise helps US small businesses clean QuickBooks, reconcile sales-tax and balance-sheet
+              accounts, investigate historical differences, and prepare organized books for owners and tax professionals.
+            </p>
+
+            <p class="mt-4 text-slate-300">
+              <strong class="text-white">Starting at $10/hour.</strong>
+              Final pricing depends on scope, transaction volume, complexity, and engagement requirements.
+            </p>
+
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               class="text-center bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-bold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="text-center border border-white/25 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+              Email Us
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#f0f1ef] border-t border-slate-200">
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-8 flex flex-col sm:flex-row justify-between gap-3 text-sm text-slate-500">
+
+      <span>© Accountrise</span>
+
+      <div class="flex gap-5">
+        <a href="/services/" class="hover:text-[#002349]">Services</a>
+        <a href="/blog/" class="hover:text-[#002349]">Blog</a>
+        <a href="/about/" class="hover:text-[#002349]">About Us</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
