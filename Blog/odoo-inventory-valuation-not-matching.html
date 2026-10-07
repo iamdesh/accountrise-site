@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet | Accountrise</title>
+  <meta name="description" content="Is Odoo inventory valuation wrong or not matching your Balance Sheet? Diagnose stock valuation, COGS, product categories, costing, receipts, deliveries, adjustments, and accounting entries with this practical guide for US businesses.">
+  <meta name="keywords" content="Odoo inventory valuation wrong, Odoo stock valuation not matching balance sheet, Odoo inventory accounting, Odoo COGS not correct, Odoo inventory valuation difference, Odoo accounting US, Odoo bookkeeping USA, Odoo inventory accounting USA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-inventory-valuation-not-matching.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Accountrise">
+  <meta property="og:title" content="Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet">
+  <meta property="og:description" content="A practical Odoo troubleshooting guide for stock valuation, COGS, product configuration and inventory-to-GL differences.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-inventory-valuation-not-matching.html">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet">
+  <meta name="twitter:description" content="Find the source of Odoo inventory valuation differences before posting manual accounting adjustments.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .scan-bg {
+      background:
+        radial-gradient(circle at 20% 20%, rgba(149,124,61,.16), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(255,255,255,.06), transparent 24%),
+        linear-gradient(135deg, #002349 0%, #00172f 70%, #000d1c 100%);
+    }
+
+    .soft-grid {
+      background-image:
+        linear-gradient(rgba(0,35,73,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,35,73,.045) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+
+    .rise { animation: rise .65s ease-out both; }
+    @keyframes rise {
+      from { opacity:0; transform:translateY(18px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    .float { animation: float 5.5s ease-in-out infinite; }
+    @keyframes float {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-7px); }
+    }
+
+    .pulse { animation: pulse 2.6s ease-in-out infinite; }
+    @keyframes pulse {
+      0%,100% { opacity:.35; }
+      50% { opacity:1; }
+    }
+
+    .slide-in { animation: slideIn .75s ease-out both; }
+    @keyframes slideIn {
+      from { opacity:0; transform:translateX(-18px); }
+      to { opacity:1; transform:translateX(0); }
+    }
+
+    .flip-wrap { perspective:1200px; }
+    .flip-card { transition: transform .65s ease; transform-style: preserve-3d; }
+    .flip-wrap:hover .flip-card { transform: rotateY(180deg); }
+    .flip-front, .flip-back { backface-visibility:hidden; }
+    .flip-back { transform: rotateY(180deg); }
+
+    .meter {
+      position:relative;
+      overflow:hidden;
+    }
+
+    .meter:after {
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      width:40px;
+      background:rgba(255,255,255,.35);
+      filter:blur(2px);
+      animation:sweep 3.2s ease-in-out infinite;
+    }
+
+    @keyframes sweep {
+      0% { left:-15%; }
+      50% { left:110%; }
+      100% { left:110%; }
+    }
+
+    .danger-ring {
+      box-shadow: 0 0 0 1px rgba(149,124,61,.25), 0 0 0 7px rgba(149,124,61,.05);
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet",
+    "description":"A practical Odoo troubleshooting guide for inventory valuation, COGS, product configuration and inventory-to-general-ledger differences.",
+    "author":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "publisher":{
+      "@type":"Organization",
+      "name":"Accountrise",
+      "url":"https://www.accountrise.com"
+    },
+    "mainEntityOfPage":{
+      "@type":"WebPage",
+      "@id":"https://www.accountrise.com/blog/odoo-inventory-valuation-not-matching.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {
+        "@type":"Question",
+        "name":"Why doesn't Odoo inventory valuation match the Balance Sheet?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Differences can come from product and category configuration, costing settings, inventory valuation method, receipts or deliveries posted in different periods, stock adjustments, landed costs, manual accounting entries, negative stock situations, or timing between inventory movements and accounting entries."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Why is COGS wrong in Odoo?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"COGS can look wrong when product costs, categories, costing configuration, inventory movements, returns, adjustments, or accounting mappings do not reflect the intended business workflow. Trace the product transaction and accounting entry before making manual corrections."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"Should I fix Odoo inventory valuation with a journal entry?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Do not start with a manual journal entry just to make the Balance Sheet match a target amount. First identify whether the difference comes from product configuration, stock movements, costing, valuation, or a genuine accounting adjustment."
+        }
+      },
+      {
+        "@type":"Question",
+        "name":"What should a US business check when Odoo stock valuation is wrong?",
+        "acceptedAnswer":{
+          "@type":"Answer",
+          "text":"Review product categories, inventory and accounting configuration, costing settings, stock movements, receipts, deliveries, returns, inventory adjustments, valuation layers where applicable, COGS, and the related Balance Sheet accounts. Exact accounting treatment should follow the company's accounting policy and professional advice."
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="bg-[#f7f8f7] text-slate-800">
+
+  <!-- HEADER -->
+  <header class="bg-white border-b border-slate-200">
+    <nav class="max-w-7xl mx-auto px-6 sm:px-8 py-5 flex items-center justify-between">
+
+      <a href="/" class="text-2xl font-black text-[#002349] tracking-tight">
+        Accountrise<span class="text-[#957C3D]">.</span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+        <a href="/" class="hover:text-[#957C3D] transition">Home</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-xl font-bold hover:bg-[#b89a4e] transition">Contact</a>
+      </div>
+
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HERO / DIAGNOSTIC CONSOLE -->
+    <section class="scan-bg text-white overflow-hidden">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16 lg:py-24">
+
+        <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+
+          <div class="rise">
+
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/15 bg-white/5 text-xs font-bold uppercase tracking-[0.22em] text-[#d7bf7b]">
+              Odoo Accounting • Inventory • US Business
+            </div>
+
+            <h1 class="mt-7 text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.03] tracking-tight">
+              Odoo Inventory Valuation Wrong?
+              <span class="text-[#d7bf7b]">Find the Real Cause</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-3xl">
+              Your warehouse says one thing. Your Balance Sheet says another.
+              Before posting an adjustment, trace the product, stock movement, costing,
+              valuation, and accounting entry that produced the difference.
+            </p>
+
+            <div class="mt-8 flex flex-wrap gap-3">
+              <a href="#diagnose"
+                 class="bg-[#957C3D] text-[#002349] px-6 py-3 rounded-xl font-bold hover:bg-[#b89a4e] transition">
+                Run the diagnostic →
+              </a>
+
+              <a href="#checklist"
+                 class="border border-white/20 text-white px-6 py-3 rounded-xl font-bold hover:bg-white/5 transition">
+                Open checklist
+              </a>
+            </div>
+
+          </div>
+
+          <div class="float">
+
+            <div class="rounded-[2rem] bg-white text-[#002349] p-6 shadow-2xl">
+
+              <div class="flex items-center justify-between">
+
+                <div>
+                  <div class="text-xs uppercase tracking-[0.2em] text-[#957C3D] font-bold">
+                    Inventory diagnostic
+                  </div>
+                  <div class="mt-1 text-xl font-black">Valuation vs. GL</div>
+                </div>
+
+                <div class="pulse w-3 h-3 rounded-full bg-[#957C3D]"></div>
+
+              </div>
+
+              <div class="mt-6 grid grid-cols-2 gap-4">
+
+                <div class="bg-slate-50 rounded-2xl p-5">
+                  <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Stock value</div>
+                  <div class="mt-1 text-3xl font-black">$486,240</div>
+                </div>
+
+                <div class="bg-slate-50 rounded-2xl p-5">
+                  <div class="text-xs uppercase tracking-widest text-slate-400 font-bold">Inventory GL</div>
+                  <div class="mt-1 text-3xl font-black">$472,990</div>
+                </div>
+
+              </div>
+
+              <div class="mt-4 rounded-2xl bg-[#f3eee2] p-5 danger-ring">
+                <div class="flex justify-between items-center">
+                  <span class="font-semibold text-slate-600">Unexplained gap</span>
+                  <strong class="text-2xl font-black text-[#957C3D]">$13,250</strong>
+                </div>
+
+                <div class="meter mt-4 h-2 bg-white rounded-full">
+                  <div class="w-[58%] h-full bg-[#957C3D] rounded-full"></div>
+                </div>
+              </div>
+
+              <div class="mt-4 bg-[#002349] text-white rounded-2xl p-4">
+                <div class="text-xs uppercase tracking-widest text-[#d7bf7b] font-bold">Next move</div>
+                <div class="mt-1 font-bold">Trace the source—not the symptom</div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSWER FIRST -->
+    <section class="soft-grid border-b border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-14">
+
+        <div class="grid lg:grid-cols-[.22fr_1fr] gap-8">
+
+          <div>
+            <div class="text-5xl font-black text-[#957C3D]">01</div>
+            <div class="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-slate-400">Bottom line</div>
+          </div>
+
+          <div>
+
+            <h2 class="text-3xl sm:text-4xl font-black text-[#002349]">
+              An inventory valuation mismatch usually starts upstream
+            </h2>
+
+            <p class="mt-6 text-lg text-slate-600 leading-relaxed max-w-4xl">
+              When Odoo inventory value does not agree with the related Balance Sheet account,
+              the answer is often found in product configuration, costing, stock movements,
+              receipt or delivery timing, returns, inventory adjustments, or accounting mappings.
+              The Balance Sheet is showing the symptom; the transaction flow is where the diagnosis begins.
+            </p>
+
+            <p class="mt-5 text-lg text-slate-600 leading-relaxed max-w-4xl">
+              This matters especially for US manufacturers, wholesalers, distributors, and ecommerce businesses
+              where inventory can be one of the largest assets on the books.
+            </p>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE "FLIP" CARDS -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="max-w-3xl">
+        <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">Flip to diagnose</p>
+
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+          Start with the symptom you see in Odoo
+        </h2>
+
+        <p class="mt-5 text-slate-600 leading-relaxed">
+          Hover over a card to reveal the first area worth checking.
+        </p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+        <div class="flip-wrap h-64">
+          <div class="flip-card relative w-full h-full">
+
+            <div class="flip-front absolute inset-0 rounded-[2rem] bg-[#002349] text-white p-7 flex flex-col justify-between">
+              <div class="text-4xl font-black text-[#d7bf7b]">A</div>
+              <div>
+                <div class="text-xs uppercase tracking-widest text-[#d7bf7b] font-bold">Symptom</div>
+                <h3 class="mt-2 text-xl font-black">Stock value doesn't match the Balance Sheet</h3>
+              </div>
+            </div>
+
+            <div class="flip-back absolute inset-0 rounded-[2rem] bg-[#f3eee2] text-[#002349] p-7">
+              <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">First check</div>
+              <h3 class="mt-2 text-xl font-black">Inventory valuation + accounting mapping</h3>
+              <p class="mt-3 text-sm text-slate-700 leading-relaxed">
+                Confirm how stock movements are expected to affect inventory accounts and whether the product/category setup follows that design.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="flip-wrap h-64">
+          <div class="flip-card relative w-full h-full">
+
+            <div class="flip-front absolute inset-0 rounded-[2rem] bg-white border border-slate-200 p-7 flex flex-col justify-between">
+              <div class="text-4xl font-black text-[#957C3D]">B</div>
+              <div>
+                <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Symptom</div>
+                <h3 class="mt-2 text-xl font-black text-[#002349]">COGS looks too high or too low</h3>
+              </div>
+            </div>
+
+            <div class="flip-back absolute inset-0 rounded-[2rem] bg-[#002349] text-white p-7">
+              <div class="text-xs uppercase tracking-widest text-[#d7bf7b] font-bold">First check</div>
+              <h3 class="mt-2 text-xl font-black">Product cost + stock movement</h3>
+              <p class="mt-3 text-sm text-slate-300 leading-relaxed">
+                Trace an actual sale from product configuration through delivery and the accounting entry that recognizes cost.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="flip-wrap h-64">
+          <div class="flip-card relative w-full h-full">
+
+            <div class="flip-front absolute inset-0 rounded-[2rem] bg-[#957C3D] text-[#002349] p-7 flex flex-col justify-between">
+              <div class="text-4xl font-black">C</div>
+              <div>
+                <div class="text-xs uppercase tracking-widest font-bold">Symptom</div>
+                <h3 class="mt-2 text-xl font-black">Large inventory adjustment changed profit</h3>
+              </div>
+            </div>
+
+            <div class="flip-back absolute inset-0 rounded-[2rem] bg-white border border-slate-200 text-[#002349] p-7">
+              <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">First check</div>
+              <h3 class="mt-2 text-xl font-black">Count, reason code, and period</h3>
+              <p class="mt-3 text-sm text-slate-600 leading-relaxed">
+                Validate whether the physical count, adjustment reason, cost, and transaction date support the accounting result.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="flip-wrap h-64">
+          <div class="flip-card relative w-full h-full">
+
+            <div class="flip-front absolute inset-0 rounded-[2rem] bg-white border border-slate-200 p-7 flex flex-col justify-between">
+              <div class="text-4xl font-black text-[#002349]">D</div>
+              <div>
+                <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">Symptom</div>
+                <h3 class="mt-2 text-xl font-black text-[#002349]">Receipt or delivery numbers look strange</h3>
+              </div>
+            </div>
+
+            <div class="flip-back absolute inset-0 rounded-[2rem] bg-[#f3eee2] text-[#002349] p-7">
+              <div class="text-xs uppercase tracking-widest text-[#957C3D] font-bold">First check</div>
+              <h3 class="mt-2 text-xl font-black">Cutoff + incomplete stock flow</h3>
+              <p class="mt-3 text-sm text-slate-700 leading-relaxed">
+                Compare the physical movement date, document date, posting period, and accounting entries around month-end.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 9 CAUSES -->
+    <section class="bg-white border-y border-slate-200" id="diagnose">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">The diagnostic board</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            9 causes of Odoo inventory valuation differences
+          </h2>
+
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-4">
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">01</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Product/category accounting configuration</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Inventory, income, expense, valuation, or related account mapping may not match the intended workflow.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">02</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Costing configuration does not match the business process</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              The costing method and the way products are actually purchased, stored, and sold need to work together.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">03</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Receipts were posted in a different period</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Cutoff differences can make physical stock and accounting balances appear out of sync at month-end.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">04</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Deliveries or returns are incomplete</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Stock movement and sales activity need to be traced together when investigating COGS and inventory.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">05</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Inventory adjustments are unexplained</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Large count adjustments can materially affect stock and profitability. Review the business reason and support.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">06</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Negative stock created a strange valuation path</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Inventory going below zero can create unusual cost and valuation results that require transaction-level investigation.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">07</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Landed costs or additional purchase costs were not handled consistently</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Additional costs can change inventory value depending on the configured workflow. Check whether these costs were captured consistently.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa]">
+            <div class="text-[#957C3D] font-black text-3xl">08</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">Manual journal entries bypassed the inventory flow</h3>
+            <p class="mt-2 text-sm text-slate-600">
+              Direct entries to inventory or COGS can create a gap between operational stock records and the accounting ledger.
+            </p>
+          </article>
+
+          <article class="row-hover rounded-3xl border border-slate-200 p-6 bg-[#fbfbfa] md:col-span-2">
+            <div class="text-[#957C3D] font-black text-3xl">09</div>
+            <h3 class="mt-2 text-xl font-extrabold text-[#002349]">The warehouse and accounting processes are not synchronized</h3>
+            <p class="mt-2 text-sm text-slate-600 max-w-4xl">
+              When purchasing, receiving, inventory, sales, returns, and accounting are maintained differently by different teams,
+              valuation problems tend to repeat. Fixing the workflow upstream is often more valuable than repeatedly correcting the Balance Sheet.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDING TIMELINE -->
+    <section class="soft-grid py-16">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8">
+
+        <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-10 items-start">
+
+          <div>
+
+            <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">
+              Trace one product
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+              Stop comparing totals. Follow the transaction.
+            </h2>
+
+            <p class="mt-5 text-slate-600 leading-relaxed">
+              Pick one SKU with a noticeable difference and follow it from purchase to warehouse to sale.
+              One complete trace can reveal the process failure affecting hundreds of transactions.
+            </p>
+
+          </div>
+
+          <div class="space-y-3">
+
+            <div class="slide-in bg-white rounded-3xl border border-slate-200 p-6">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">01</div>
+                <div>
+                  <div class="font-extrabold text-[#002349]">Purchase order / vendor bill</div>
+                  <div class="text-sm text-slate-500">What was purchased, at what cost, and when?</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center text-[#957C3D] font-black">↓</div>
+
+            <div class="slide-in bg-white rounded-3xl border border-slate-200 p-6" style="animation-delay:.08s">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">02</div>
+                <div>
+                  <div class="font-extrabold text-[#002349]">Receipt / stock movement</div>
+                  <div class="text-sm text-slate-500">Did the warehouse movement occur when expected?</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center text-[#957C3D] font-black">↓</div>
+
+            <div class="slide-in bg-white rounded-3xl border border-slate-200 p-6" style="animation-delay:.16s">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">03</div>
+                <div>
+                  <div class="font-extrabold text-[#002349]">Cost / valuation</div>
+                  <div class="text-sm text-slate-500">How was the inventory value calculated?</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center text-[#957C3D] font-black">↓</div>
+
+            <div class="slide-in bg-white rounded-3xl border border-slate-200 p-6" style="animation-delay:.24s">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">04</div>
+                <div>
+                  <div class="font-extrabold text-[#002349]">Delivery / sale</div>
+                  <div class="text-sm text-slate-500">When the product leaves inventory, what cost is recognized?</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center text-[#957C3D] font-black">↓</div>
+
+            <div class="slide-in bg-[#957C3D] rounded-3xl p-6 text-[#002349]" style="animation-delay:.32s">
+              <div class="flex items-center gap-4">
+                <div class="w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">05</div>
+                <div>
+                  <div class="font-extrabold">Accounting entry</div>
+                  <div class="text-sm">Does the general ledger reflect the operational transaction correctly?</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- DROPDOWN / ACCORDION -->
+    <section class="bg-[#002349] text-white">
+
+      <div class="max-w-5xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="text-center">
+          <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-[0.18em]">
+            Open the diagnosis
+          </p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+            What should you check inside Odoo?
+          </h2>
+
+          <p class="mt-4 text-slate-300">
+            Open each area only when it is relevant to the symptom.
+          </p>
+        </div>
+
+        <div class="mt-10 space-y-3">
+
+          <details class="group rounded-2xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold">
+              Product & category configuration
+              <span class="text-[#d7bf7b] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Review the product category and the accounting configuration connected to inventory, income, expenses,
+              valuation, and related accounts. The objective is to ensure the setup reflects the business's actual workflow.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold">
+              Costing and valuation method
+              <span class="text-[#d7bf7b] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Confirm that the costing approach matches how the business purchases, stores, and sells inventory.
+              Inconsistent costing logic can create recurring valuation surprises.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold">
+              Receipts, deliveries, returns & adjustments
+              <span class="text-[#d7bf7b] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Pick representative transactions and compare document dates, stock movement dates, quantities, costs,
+              and accounting effects. Pay particular attention to month-end cutoff.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold">
+              Manual inventory or accounting adjustments
+              <span class="text-[#d7bf7b] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Search for direct accounting entries or inventory adjustments that bypass the normal operational flow.
+              These should have a clear business reason and support.
+            </p>
+          </details>
+
+          <details class="group rounded-2xl border border-white/10 bg-white/5 p-5">
+            <summary class="cursor-pointer list-none flex items-center justify-between gap-5 font-bold">
+              Inventory-to-GL reconciliation
+              <span class="text-[#d7bf7b] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-300 leading-relaxed">
+              Compare the operational inventory valuation to the relevant general-ledger accounts using the same cutoff.
+              Investigate the biggest products, periods, and transaction types first.
+            </p>
+          </details>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- US BUSINESS SCENARIOS -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="max-w-3xl">
+        <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">US business scenarios</p>
+
+        <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+          Where inventory valuation problems show up fastest
+        </h2>
+
+      </div>
+
+      <div class="mt-10 grid lg:grid-cols-3 gap-5">
+
+        <article class="row-hover bg-white rounded-[2rem] border border-slate-200 p-7">
+          <div class="text-xs uppercase tracking-[0.18em] text-[#957C3D] font-bold">Ecommerce</div>
+          <h3 class="mt-2 text-2xl font-black text-[#002349]">High SKU volume</h3>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Hundreds or thousands of products make small configuration or costing problems scale quickly.
+            Focus on high-value SKUs and recurring exceptions first.
+          </p>
+        </article>
+
+        <article class="row-hover bg-white rounded-[2rem] border border-slate-200 p-7">
+          <div class="text-xs uppercase tracking-[0.18em] text-[#957C3D] font-bold">Wholesale / Distribution</div>
+          <h3 class="mt-2 text-2xl font-black text-[#002349]">Purchasing + receiving cutoff</h3>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Goods received near month-end can create timing questions between purchasing documents, physical stock,
+            vendor bills, and accounting.
+          </p>
+        </article>
+
+        <article class="row-hover bg-white rounded-[2rem] border border-slate-200 p-7">
+          <div class="text-xs uppercase tracking-[0.18em] text-[#957C3D] font-bold">Manufacturing</div>
+          <h3 class="mt-2 text-2xl font-black text-[#002349]">Materials + COGS</h3>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Raw materials, finished goods, production movements, and cost structures make it important to understand
+            how operational events flow into financial reporting.
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+    <!-- DO / DON'T -->
+    <section class="soft-grid border-y border-slate-200">
+
+      <div class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+        <div class="max-w-3xl">
+          <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em]">Cleanup rules</p>
+
+          <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349]">
+            Do this before you touch the Balance Sheet
+          </h2>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-5">
+
+          <div class="bg-white rounded-[2rem] border border-slate-200 p-7">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-[#002349] text-white flex items-center justify-center font-black">✓</span>
+              <h3 class="text-xl font-extrabold text-[#002349]">Trace a real transaction</h3>
+            </div>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Use a real purchase, receipt, delivery, return, or adjustment and follow it end-to-end.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-[2rem] border border-slate-200 p-7">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">×</span>
+              <h3 class="text-xl font-extrabold text-[#002349]">Don't post a blind plug</h3>
+            </div>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Making the GL match a target number without understanding the operational records can create a second problem.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-[2rem] border border-slate-200 p-7">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-[#002349] text-white flex items-center justify-center font-black">✓</span>
+              <h3 class="text-xl font-extrabold text-[#002349]">Document material corrections</h3>
+            </div>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Keep the reason, supporting records, period, and approval trail for significant changes.
+            </p>
+          </div>
+
+          <div class="bg-white rounded-[2rem] border border-slate-200 p-7">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">×</span>
+              <h3 class="text-xl font-extrabold text-[#002349]">Don't ignore recurring differences</h3>
+            </div>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Repeated inventory adjustments usually indicate a process or configuration issue upstream.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 8-POINT CHECKLIST -->
+    <section id="checklist" class="max-w-7xl mx-auto px-6 sm:px-8 py-16">
+
+      <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-10">
+
+        <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-10">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-[0.18em]">
+              Odoo inventory health check
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              The 8-point monthly checklist
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Make inventory-to-ledger review part of the monthly close instead of a year-end surprise.
+            </p>
+
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-[#d7bf7b] font-black">01</div>
+              <h3 class="mt-2 font-extrabold">Review inventory valuation</h3>
+              <p class="mt-2 text-sm text-slate-300">Look for material changes and unusual movements.</p>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-[#d7bf7b] font-black">02</div>
+              <h3 class="mt-2 font-extrabold">Tie inventory to GL</h3>
+              <p class="mt-2 text-sm text-slate-300">Compare operational stock value with the relevant ledger accounts.</p>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-[#d7bf7b] font-black">03</div>
+              <h3 class="mt-2 font-extrabold">Review negative stock</h3>
+              <p class="mt-2 text-sm text-slate-300">Investigate unusual or repeated negative-quantity situations.</p>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-[#d7bf7b] font-black">04</div>
+              <h3 class="mt-2 font-extrabold">Review adjustments</h3>
+              <p class="mt-2 text-sm text-slate-300">Document material count and valuation corrections.</p>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-[#d7bf7b] font-black">05</div>
+              <h3 class="mt-2 font-extrabold">Check cutoff</h3>
+              <p class="mt-2 text-sm text-slate-300">Review receipts, deliveries, returns, and related period timing.</p>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-[#d7bf7b] font-black">06</div>
+              <h3 class="mt-2 font-extrabold">Sample product flows</h3>
+              <p class="mt-2 text-sm text-slate-300">Trace high-value SKUs from purchase through sale.</p>
+            </div>
+
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5">
+              <div class="text-[#d7bf7b] font-black">07</div>
+              <h3 class="mt-2 font-extrabold">Investigate COGS</h3>
+              <p class="mt-2 text-sm text-slate-300">Review major gross-margin movements and product costs.</p>
+            </div>
+
+            <div class="rounded-2xl border border-[#957C3D]/40 bg-[#957C3D] text-[#002349] p-5">
+              <div class="font-black">08 — Close the loop</div>
+              <p class="mt-1 text-sm font-semibold">Resolve or document every material inventory-to-GL exception.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED -->
+    <section class="max-w-7xl mx-auto px-6 sm:px-8 py-10">
+
+      <div class="rounded-3xl border border-slate-200 bg-white p-7 sm:p-9">
+
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
+
+          <div>
+            <p class="text-[#957C3D] text-xs font-bold uppercase tracking-widest">Related Odoo guides</p>
+            <h2 class="mt-2 text-2xl font-black text-[#002349]">
+              Build the accounting process around the inventory process
+            </h2>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+
+            <a href="/blog/odoo-accounting-setup-guide-us-businesses.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Odoo Setup Guide →
+            </a>
+
+            <a href="/blog/odoo-month-end-close-checklist-us-businesses.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Month-End Close →
+            </a>
+
+            <a href="/blog/odoo-accounting-cleanup-messy-books.html"
+               class="inline-flex items-center justify-center px-5 py-3 rounded-xl border border-slate-200 font-bold text-[#002349] hover:border-[#957C3D] transition">
+              Cleanup Guide →
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="max-w-4xl mx-auto px-6 sm:px-8 py-16">
+
+      <p class="text-[#957C3D] text-sm font-bold uppercase tracking-[0.18em] text-center">FAQ</p>
+
+      <h2 class="mt-2 text-3xl sm:text-4xl font-black text-[#002349] text-center">
+        Odoo inventory accounting questions
+      </h2>
+
+      <div class="mt-10 space-y-4">
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why doesn't Odoo inventory valuation match the Balance Sheet?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Common causes include product and category configuration, costing settings, receipts or deliveries
+            posted in different periods, returns, inventory adjustments, manual accounting entries, negative stock,
+            additional purchase costs, and timing differences.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Why is COGS wrong in Odoo?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            COGS can look wrong when product costs, categories, costing configuration, stock movements, returns,
+            adjustments, or accounting mappings do not match the intended workflow.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            Should I fix Odoo inventory valuation with a journal entry?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Do not start with a blind journal entry. First identify whether the difference comes from product setup,
+            stock movements, costing, valuation, or a genuine accounting adjustment.
+          </p>
+        </details>
+
+        <details class="bg-white border border-slate-200 rounded-2xl p-5">
+          <summary class="cursor-pointer font-bold text-[#002349]">
+            What should a US business check when Odoo stock valuation is wrong?
+          </summary>
+          <p class="mt-3 text-slate-600 leading-relaxed">
+            Review product categories, accounting and inventory configuration, costing, stock movements,
+            receipts, deliveries, returns, adjustments, valuation, COGS, and the related Balance Sheet accounts.
+            Exact accounting treatment should follow the company's accounting policy and professional advice.
+          </p>
+        </details>
+
+      </div>
+
+    </section>
+
+    <!-- SINGLE CTA -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 sm:px-8 pb-20">
+
+      <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-12">
+
+        <div class="grid lg:grid-cols-[1.15fr_.85fr] gap-10 items-center">
+
+          <div>
+
+            <p class="text-[#d7bf7b] text-sm font-bold uppercase tracking-widest">
+              Need Odoo accounting support?
+            </p>
+
+            <h2 class="mt-2 text-3xl sm:text-4xl font-black">
+              Get inventory and accounting telling the same story.
+            </h2>
+
+            <p class="mt-5 text-slate-300 leading-relaxed">
+              Accountrise provides remote Odoo accounting and bookkeeping support for US businesses,
+              including reconciliations, inventory accounting support, A/R, A/P, cleanup,
+              month-end close, and financial reporting.
+            </p>
+
+            <p class="mt-4 text-slate-300">
+              <strong class="text-white">Starting at $10/hour.</strong>
+              Final pricing depends on scope, transaction volume, complexity, and engagement requirements.
+            </p>
+
+          </div>
+
+          <div class="flex flex-col sm:flex-row lg:flex-col gap-3">
+
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               class="text-center bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-bold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="text-center border border-white/25 text-white px-8 py-4 rounded-2xl font-bold hover:bg-white/10 transition">
+              Email Us
+            </a>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#eef0ee] border-t border-slate-200">
+
+    <div class="max-w-7xl mx-auto px-6 sm:px-8 py-8 flex flex-col sm:flex-row justify-between gap-3 text-sm text-slate-500">
+
+      <span>© Accountrise</span>
+
+      <div class="flex gap-5">
+        <a href="/services/" class="hover:text-[#002349]">Services</a>
+        <a href="/blog/" class="hover:text-[#002349]">Blog</a>
+        <a href="/about/" class="hover:text-[#002349]">About Us</a>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
