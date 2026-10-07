@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Odoo Fixed Assets &amp; Depreciation: Why Your Balance Sheet Looks Wrong</title>
+  <meta name="description" content="Odoo fixed assets and depreciation explained for US businesses. Find out why asset balances, accumulated depreciation, monthly expense and disposals may look wrong, with a practical reconciliation method.">
+  <meta name="keywords" content="Odoo fixed assets, Odoo depreciation, Odoo asset accounting, Odoo accumulated depreciation, Odoo asset disposal, Odoo Balance Sheet, Odoo month end close, Odoo accounting">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-fixed-assets-depreciation.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Fixed Assets &amp; Depreciation: Why Your Balance Sheet Looks Wrong">
+  <meta property="og:description" content="A practical asset reconciliation guide for Odoo users: additions, depreciation, accumulated depreciation, disposals and month-end checks.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-fixed-assets-depreciation.html">
+  <meta property="og:site_name" content="Accountrise">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Fixed Assets &amp; Depreciation: Why Your Balance Sheet Looks Wrong">
+  <meta name="twitter:description" content="Diagnose Odoo fixed asset and depreciation differences with a simple asset-to-ledger reconciliation workflow.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior:smooth; }
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .paper {
+      background:
+        radial-gradient(circle at top right, rgba(149,124,61,.12), transparent 28%),
+        linear-gradient(#fff, #f7f8fa);
+    }
+    .ledger-grid {
+      background-image:
+        linear-gradient(rgba(0,35,73,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,35,73,.045) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .shadow-soft { box-shadow: 0 18px 55px rgba(0,35,73,.09); }
+    .shadow-deep { box-shadow: 0 28px 85px rgba(0,35,73,.15); }
+    .stamp {
+      border: 2px dashed rgba(149,124,61,.65);
+      transform: rotate(-3deg);
+    }
+    .asset-card {
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .asset-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 45px rgba(0,35,73,.10);
+    }
+    .bar {
+      transition: width .35s ease;
+    }
+    .number-dot {
+      box-shadow: 0 0 0 8px rgba(149,124,61,.10);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .asset-card { transition:none; }
+      .bar { transition:none; }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#10243A'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-[#F6F8FA] text-[#10243A] antialiased">
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white/92 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO: Financial statement "blueprint" style -->
+    <section class="paper overflow-hidden border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1fr_.92fr] gap-12 items-center">
+
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="px-3 py-1.5 rounded-full bg-[#002349] text-white text-xs font-black uppercase tracking-[0.18em]">
+                Odoo Accounting
+              </span>
+              <span class="text-sm font-semibold text-slate-500">Fixed Assets • Depreciation • Close</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight text-[#002349]">
+              Odoo Fixed Assets &amp; Depreciation:
+              <span class="text-[#957C3D]">Why Your Balance Sheet Looks Wrong</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-600 max-w-2xl">
+              A fixed-asset problem rarely lives in one journal entry. The difference can come from
+              the purchase, capitalization date, useful life, depreciation schedule, accumulated depreciation,
+              disposal or a manual adjustment.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#reconcile" class="rounded-2xl bg-[#002349] text-white px-6 py-3.5 font-bold hover:bg-[#00172f] transition">
+                Reconcile the Asset
+              </a>
+              <a href="#calculator" class="rounded-2xl border border-slate-300 bg-white px-6 py-3.5 font-bold text-[#002349] hover:border-[#957C3D] transition">
+                Calculate Depreciation
+              </a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-500">
+              <span>✓ US business focused</span>
+              <span>✓ Practical month-end workflow</span>
+              <span>✓ No spreadsheet archaeology required</span>
+            </div>
+          </div>
+
+          <!-- Asset statement blueprint -->
+          <div class="relative">
+            <div class="absolute -top-6 -right-4 hidden sm:block">
+              <div class="stamp bg-[#FFF8E8] text-[#957C3D] rounded-2xl px-4 py-3 text-xs font-black uppercase tracking-widest shadow-sm">
+                Reconciliation Copy
+              </div>
+            </div>
+
+            <div class="rounded-[2rem] bg-white border border-slate-200 p-6 sm:p-8 shadow-deep">
+              <div class="flex items-start justify-between gap-4 border-b border-slate-200 pb-5">
+                <div>
+                  <div class="text-[11px] font-black uppercase tracking-[0.22em] text-[#957C3D]">Fixed Asset Register</div>
+                  <div class="mt-1 text-xl font-black text-[#002349]">Balance Sheet Bridge</div>
+                </div>
+                <div class="text-right">
+                  <div class="text-xs text-slate-400">Period</div>
+                  <div class="font-black text-[#002349]">Month-End</div>
+                </div>
+              </div>
+
+              <div class="mt-7 space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm font-bold">
+                    <span>Asset Cost</span><span>$120,000</span>
+                  </div>
+                  <div class="mt-2 h-3 rounded-full bg-slate-100 overflow-hidden">
+                    <div class="bar w-full h-full bg-[#002349]"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-sm font-bold">
+                    <span>Accumulated Depreciation</span><span>($24,000)</span>
+                  </div>
+                  <div class="mt-2 h-3 rounded-full bg-slate-100 overflow-hidden">
+                    <div class="bar w-[20%] h-full bg-[#957C3D]"></div>
+                  </div>
+                </div>
+
+                <div class="mt-6 rounded-2xl bg-[#F4F7FA] p-5">
+                  <div class="text-xs uppercase tracking-widest text-slate-500 font-black">Net Book Value</div>
+                  <div class="mt-2 text-4xl font-black text-[#002349]">$96,000</div>
+                  <div class="mt-2 text-sm text-slate-500">What the ledger should explain at the reporting date.</div>
+                </div>
+              </div>
+
+              <div class="mt-6 grid grid-cols-3 gap-3">
+                <div class="rounded-xl border border-slate-200 p-3 text-center">
+                  <div class="text-[10px] uppercase tracking-wider text-slate-400">ADD</div>
+                  <div class="mt-1 font-black text-[#002349]">Purchase</div>
+                </div>
+                <div class="rounded-xl border border-slate-200 p-3 text-center">
+                  <div class="text-[10px] uppercase tracking-wider text-slate-400">MONTHLY</div>
+                  <div class="mt-1 font-black text-[#002349]">Depreciate</div>
+                </div>
+                <div class="rounded-xl border border-slate-200 p-3 text-center">
+                  <div class="text-[10px] uppercase tracking-wider text-slate-400">REMOVE</div>
+                  <div class="mt-1 font-black text-[#002349]">Dispose</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSWER-FIRST -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10 items-start">
+
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">The fast answer</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">
+            Your Balance Sheet can be wrong even when the asset invoice is correct.
+          </h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            The number on the Balance Sheet is the end result of several events. To find the difference,
+            reconcile the asset's full life cycle instead of checking only the latest depreciation entry.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="asset-card rounded-3xl bg-white border border-slate-200 p-7 shadow-soft">
+            <div class="text-4xl font-black text-[#957C3D]">01</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Was the purchase capitalized correctly?</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Review whether the transaction was classified and capitalized according to the business's accounting policy.
+            </p>
+          </div>
+
+          <div class="asset-card rounded-3xl bg-white border border-slate-200 p-7 shadow-soft">
+            <div class="text-4xl font-black text-[#957C3D]">02</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Did depreciation start at the expected time?</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              Compare the intended in-service or capitalization timing with the schedule actually being used.
+            </p>
+          </div>
+
+          <div class="asset-card rounded-3xl bg-white border border-slate-200 p-7 shadow-soft">
+            <div class="text-4xl font-black text-[#957C3D]">03</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Does accumulated depreciation tie?</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">
+              The accumulated depreciation balance should be explainable from the asset schedule, posted depreciation and any adjustments.
+            </p>
+          </div>
+
+          <div class="asset-card rounded-3xl bg-[#002349] text-white border border-[#002349] p-7 shadow-deep">
+            <div class="text-4xl font-black text-[#D8C58F]">04</div>
+            <h3 class="mt-5 text-xl font-black">Were disposals handled completely?</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">
+              A sold, scrapped or retired asset can leave stale cost or accumulated depreciation when the full disposal trail is incomplete.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIFE CYCLE -->
+    <section id="reconcile" class="bg-[#002349] text-white border-y border-[#002349]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#D8C58F]">Asset life cycle</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black">Follow the asset from “bought” to “gone.”</h2>
+          <p class="mt-4 text-slate-300 leading-relaxed">
+            This is the cleanest troubleshooting sequence when an Odoo fixed-asset balance does not make sense.
+          </p>
+        </div>
+
+        <div class="mt-12 relative">
+          <div class="hidden lg:block absolute left-[10%] right-[10%] top-10 h-px bg-white/15"></div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5 relative">
+
+            <div class="rounded-3xl bg-white/7 border border-white/10 p-6 backdrop-blur">
+              <div class="w-12 h-12 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black text-lg">1</div>
+              <div class="mt-6 text-xs uppercase tracking-widest text-[#D8C58F] font-black">Acquire</div>
+              <h3 class="mt-2 text-xl font-black">Purchase</h3>
+              <p class="mt-3 text-sm text-slate-300 leading-relaxed">Confirm cost, vendor, date and capitalization treatment.</p>
+            </div>
+
+            <div class="rounded-3xl bg-white/7 border border-white/10 p-6 backdrop-blur">
+              <div class="w-12 h-12 rounded-2xl bg-white text-[#002349] flex items-center justify-center font-black text-lg">2</div>
+              <div class="mt-6 text-xs uppercase tracking-widest text-[#D8C58F] font-black">Set</div>
+              <h3 class="mt-2 text-xl font-black">Schedule</h3>
+              <p class="mt-3 text-sm text-slate-300 leading-relaxed">Check useful life, method, start timing and residual assumptions where applicable.</p>
+            </div>
+
+            <div class="rounded-3xl bg-white/7 border border-white/10 p-6 backdrop-blur">
+              <div class="w-12 h-12 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black text-lg">3</div>
+              <div class="mt-6 text-xs uppercase tracking-widest text-[#D8C58F] font-black">Post</div>
+              <h3 class="mt-2 text-xl font-black">Depreciate</h3>
+              <p class="mt-3 text-sm text-slate-300 leading-relaxed">Tie monthly depreciation expense to the accumulated depreciation movement.</p>
+            </div>
+
+            <div class="rounded-3xl bg-white/7 border border-white/10 p-6 backdrop-blur">
+              <div class="w-12 h-12 rounded-2xl bg-white text-[#002349] flex items-center justify-center font-black text-lg">4</div>
+              <div class="mt-6 text-xs uppercase tracking-widest text-[#D8C58F] font-black">Adjust</div>
+              <h3 class="mt-2 text-xl font-black">Review</h3>
+              <p class="mt-3 text-sm text-slate-300 leading-relaxed">Investigate manual entries, changes in estimates or corrections to prior periods.</p>
+            </div>
+
+            <div class="rounded-3xl bg-[#957C3D] text-[#002349] p-6 shadow-deep">
+              <div class="w-12 h-12 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black text-lg">5</div>
+              <div class="mt-6 text-xs uppercase tracking-widest text-[#002349]/65 font-black">Exit</div>
+              <h3 class="mt-2 text-xl font-black">Dispose</h3>
+              <p class="mt-3 text-sm text-[#002349]/75 leading-relaxed">Clear asset cost and related accumulated depreciation and record the resulting disposal accounting.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALCULATOR -->
+    <section id="calculator" class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Illustrative calculator</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">What does straight-line depreciation look like?</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            Enter the asset cost, estimated residual value and useful life to see an illustrative annual and monthly amount.
+            Your actual accounting treatment should follow your accounting policy and circumstances.
+          </p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-[.82fr_1.18fr] gap-8">
+
+          <div class="rounded-[2rem] bg-[#F4F7FA] border border-slate-200 p-7">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <label class="block sm:col-span-2">
+                <span class="text-sm font-bold text-[#002349]">Asset cost</span>
+                <input id="assetCost" type="number" min="0" value="60000" step="100"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Residual value</span>
+                <input id="residual" type="number" min="0" value="0" step="100"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Useful life (years)</span>
+                <input id="life" type="number" min="1" value="5" step="1"
+                  class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#002349] text-white p-7 sm:p-9">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <div class="rounded-2xl bg-white/10 p-5">
+                <div class="text-xs uppercase tracking-widest text-slate-400">Depreciable base</div>
+                <div id="deprBase" class="mt-3 text-2xl font-black">$60,000.00</div>
+              </div>
+
+              <div class="rounded-2xl bg-white/10 p-5">
+                <div class="text-xs uppercase tracking-widest text-slate-400">Annual</div>
+                <div id="annualDepr" class="mt-3 text-2xl font-black">$12,000.00</div>
+              </div>
+
+              <div class="rounded-2xl bg-white/10 p-5">
+                <div class="text-xs uppercase tracking-widest text-slate-400">Monthly</div>
+                <div id="monthlyDepr" class="mt-3 text-2xl font-black text-[#E5D6A8]">$1,000.00</div>
+              </div>
+            </div>
+
+            <div class="mt-7">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-slate-300">Illustrative annual depreciation</span>
+                <span id="percent" class="font-bold text-[#D8C58F]">20.00%</span>
+              </div>
+              <div class="mt-3 h-3 rounded-full bg-white/10 overflow-hidden">
+                <div id="lifeBar" class="h-full bg-[#957C3D]" style="width:20%"></div>
+              </div>
+            </div>
+
+            <p class="mt-6 text-xs text-slate-400 leading-relaxed">
+              This is an educational calculation and does not determine the appropriate tax depreciation method or tax life.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY IT LOOKS WRONG -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Troubleshooting map</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Six patterns that make an Odoo asset balance look wrong</h2>
+        </div>
+        <div class="max-w-sm text-sm text-slate-500">
+          Use the visible symptom to decide where to start—not where to finish.
+        </div>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+        <article class="asset-card rounded-3xl bg-white border border-slate-200 p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-[#957C3D]">01</span>
+            <span class="text-xs uppercase tracking-wider text-slate-400">Cost</span>
+          </div>
+          <h3 class="mt-5 text-xl font-black text-[#002349]">Fixed asset cost is too high</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Look for duplicate capitalization, duplicate vendor bills, manual journals or costs assigned to the wrong asset.</p>
+        </article>
+
+        <article class="asset-card rounded-3xl bg-white border border-slate-200 p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-[#957C3D]">02</span>
+            <span class="text-xs uppercase tracking-wider text-slate-400">Schedule</span>
+          </div>
+          <h3 class="mt-5 text-xl font-black text-[#002349]">Depreciation started too early</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Compare the business's intended timing with the depreciation start date actually used in the asset record.</p>
+        </article>
+
+        <article class="asset-card rounded-3xl bg-white border border-slate-200 p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-[#957C3D]">03</span>
+            <span class="text-xs uppercase tracking-wider text-slate-400">Estimate</span>
+          </div>
+          <h3 class="mt-5 text-xl font-black text-[#002349]">Monthly expense is not what you expected</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Check useful life, residual value and the depreciation method before changing journal entries manually.</p>
+        </article>
+
+        <article class="asset-card rounded-3xl bg-white border border-slate-200 p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-[#957C3D]">04</span>
+            <span class="text-xs uppercase tracking-wider text-slate-400">Accumulated</span>
+          </div>
+          <h3 class="mt-5 text-xl font-black text-[#002349]">Accumulated depreciation does not tie</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Reconcile posted depreciation, reversals, prior adjustments and the number of periods the asset has been active.</p>
+        </article>
+
+        <article class="asset-card rounded-3xl bg-white border border-slate-200 p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-[#957C3D]">05</span>
+            <span class="text-xs uppercase tracking-wider text-slate-400">Disposal</span>
+          </div>
+          <h3 class="mt-5 text-xl font-black text-[#002349]">Disposed assets still appear on the Balance Sheet</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Trace the disposal date, asset cost, accumulated depreciation and any resulting gain or loss entry.</p>
+        </article>
+
+        <article class="asset-card rounded-3xl bg-[#FFF8E8] border border-[#E8D39B] p-7">
+          <div class="flex items-center justify-between">
+            <span class="font-black text-[#957C3D]">06</span>
+            <span class="text-xs uppercase tracking-wider text-[#957C3D]">Close</span>
+          </div>
+          <h3 class="mt-5 text-xl font-black text-[#002349]">Subledger and GL disagree</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Compare the fixed-asset register to the general ledger rather than adjusting either side blindly.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- RECONCILIATION TABLE -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Reconciliation worksheet</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Five numbers should tell one story</h2>
+        </div>
+
+        <div class="mt-10 overflow-x-auto rounded-[2rem] border border-slate-200 shadow-soft">
+          <table class="w-full min-w-[760px] bg-white">
+            <thead class="bg-[#002349] text-white">
+              <tr>
+                <th class="text-left px-6 py-5 text-sm font-black">Control</th>
+                <th class="text-right px-6 py-5 text-sm font-black">What to compare</th>
+                <th class="text-left px-6 py-5 text-sm font-black">Why it matters</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              <tr>
+                <td class="px-6 py-5 font-black text-[#002349]">Asset Cost</td>
+                <td class="px-6 py-5 text-right font-semibold">$120,000</td>
+                <td class="px-6 py-5 text-slate-600">Should be explainable from capitalized additions and approved adjustments.</td>
+              </tr>
+              <tr class="bg-[#F7F8FA]">
+                <td class="px-6 py-5 font-black text-[#002349]">Accumulated Depreciation</td>
+                <td class="px-6 py-5 text-right font-semibold">($24,000)</td>
+                <td class="px-6 py-5 text-slate-600">Should agree with posted depreciation history and adjustments.</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-5 font-black text-[#002349]">Net Book Value</td>
+                <td class="px-6 py-5 text-right font-semibold">$96,000</td>
+                <td class="px-6 py-5 text-slate-600">Should reconcile to asset cost less accumulated depreciation, subject to applicable accounting treatment.</td>
+              </tr>
+              <tr class="bg-[#F7F8FA]">
+                <td class="px-6 py-5 font-black text-[#002349]">Depreciation Expense</td>
+                <td class="px-6 py-5 text-right font-semibold">$12,000</td>
+                <td class="px-6 py-5 text-slate-600">Should tie to the current-period depreciation activity for the relevant assets.</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-5 font-black text-[#002349]">Disposals / Adjustments</td>
+                <td class="px-6 py-5 text-right font-semibold">Review individually</td>
+                <td class="px-6 py-5 text-slate-600">Large unexplained entries can make an otherwise healthy schedule look wrong.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- BUSINESS SCENARIOS -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Where this matters</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Common US business scenarios</h2>
+      </div>
+
+      <div class="mt-10 grid lg:grid-cols-3 gap-5">
+
+        <article class="rounded-[2rem] bg-[#002349] text-white p-8">
+          <div class="text-xs uppercase tracking-widest text-[#D8C58F] font-black">Office / professional services</div>
+          <h3 class="mt-4 text-2xl font-black">Large equipment purchases</h3>
+          <p class="mt-4 text-slate-300 leading-relaxed">
+            Computers, furniture, equipment and leasehold improvements can create a recurring month-end reconciliation task when additions are posted inconsistently.
+          </p>
+          <div class="mt-6 rounded-2xl bg-white/10 p-4 text-sm text-slate-300">Control: additions + capitalization date + current-period depreciation.</div>
+        </article>
+
+        <article class="rounded-[2rem] bg-white border border-slate-200 p-8 shadow-soft">
+          <div class="text-xs uppercase tracking-widest text-[#957C3D] font-black">Construction / field services</div>
+          <h3 class="mt-4 text-2xl font-black text-[#002349]">Vehicles and heavy equipment</h3>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            High-value equipment can create meaningful differences when acquisitions, disposals or repairs are classified differently across periods.
+          </p>
+          <div class="mt-6 rounded-2xl bg-[#F4F7FA] p-4 text-sm text-slate-600">Control: fixed asset register + disposal trail + policy review.</div>
+        </article>
+
+        <article class="rounded-[2rem] bg-[#FFF8E8] border border-[#E8D39B] p-8">
+          <div class="text-xs uppercase tracking-widest text-[#957C3D] font-black">Growing business</div>
+          <h3 class="mt-4 text-2xl font-black text-[#002349]">Many additions every month</h3>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            The bigger the asset register becomes, the more important a repeatable reconciliation process is for catching duplicates, missing assets and stale balances.
+          </p>
+          <div class="mt-6 rounded-2xl bg-white/70 p-4 text-sm text-slate-600">Control: standardized asset intake and monthly review ownership.</div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- DO / DON'T -->
+    <section class="bg-[#EEF2F5] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-2 gap-7">
+
+          <div class="rounded-[2rem] bg-white border border-slate-200 p-8 sm:p-10 shadow-soft">
+            <div class="text-xs font-black uppercase tracking-[0.2em] text-emerald-700">Do this</div>
+            <h2 class="mt-3 text-3xl font-black text-[#002349]">Reconcile before adjusting</h2>
+            <div class="mt-7 space-y-4">
+              <div class="flex gap-3"><span class="text-emerald-700 font-black">✓</span><span class="text-slate-700">Tie asset cost to additions and disposals.</span></div>
+              <div class="flex gap-3"><span class="text-emerald-700 font-black">✓</span><span class="text-slate-700">Tie accumulated depreciation to the asset schedule.</span></div>
+              <div class="flex gap-3"><span class="text-emerald-700 font-black">✓</span><span class="text-slate-700">Check the date and useful-life assumptions for outliers.</span></div>
+              <div class="flex gap-3"><span class="text-emerald-700 font-black">✓</span><span class="text-slate-700">Document unusual manual entries.</span></div>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#002349] text-white p-8 sm:p-10 shadow-deep">
+            <div class="text-xs font-black uppercase tracking-[0.2em] text-[#D8C58F]">Don't do this</div>
+            <h2 class="mt-3 text-3xl font-black">Don't plug the difference</h2>
+            <div class="mt-7 space-y-4">
+              <div class="flex gap-3"><span class="text-[#D8C58F] font-black">×</span><span class="text-slate-300">Do not create a round-number journal entry just to make the Balance Sheet match.</span></div>
+              <div class="flex gap-3"><span class="text-[#D8C58F] font-black">×</span><span class="text-slate-300">Do not change useful life solely to correct a historical posting error.</span></div>
+              <div class="flex gap-3"><span class="text-[#D8C58F] font-black">×</span><span class="text-slate-300">Do not remove a disposed asset without reviewing accumulated depreciation and disposal accounting.</span></div>
+              <div class="flex gap-3"><span class="text-[#D8C58F] font-black">×</span><span class="text-slate-300">Do not mix book accounting corrections with tax depreciation assumptions without professional review.</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- MONTH-END CHECKLIST -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-8">
+
+        <div>
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Month-end playbook</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">The 8-minute fixed-asset review</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">
+            It does not have to be complicated. A consistent review catches most obvious exceptions before financial statements are finalized.
+          </p>
+        </div>
+
+        <div class="rounded-[2rem] bg-white border border-slate-200 shadow-soft divide-y divide-slate-200 overflow-hidden">
+          <label class="flex gap-4 p-5 cursor-pointer hover:bg-slate-50 transition">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Review additions.</b> Compare current-period purchases requiring capitalization with the asset register.</span>
+          </label>
+          <label class="flex gap-4 p-5 cursor-pointer hover:bg-slate-50 transition">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Check start dates.</b> Look for assets beginning depreciation unexpectedly early or late.</span>
+          </label>
+          <label class="flex gap-4 p-5 cursor-pointer hover:bg-slate-50 transition">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Run depreciation.</b> Confirm the period's expense is posted and reviewed.</span>
+          </label>
+          <label class="flex gap-4 p-5 cursor-pointer hover:bg-slate-50 transition">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Inspect outliers.</b> Investigate assets with unusual remaining lives, values or depreciation amounts.</span>
+          </label>
+          <label class="flex gap-4 p-5 cursor-pointer hover:bg-slate-50 transition">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Review disposals.</b> Confirm sold, scrapped or retired assets are cleared appropriately.</span>
+          </label>
+          <label class="flex gap-4 p-5 cursor-pointer hover:bg-slate-50 transition">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Tie cost.</b> Reconcile the fixed asset cost balance to the register and supporting transactions.</span>
+          </label>
+          <label class="flex gap-4 p-5 cursor-pointer hover:bg-slate-50 transition">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Tie accumulated depreciation.</b> Compare the register movement with the ledger.</span>
+          </label>
+          <label class="flex gap-4 p-5 cursor-pointer bg-[#FFF8E8]">
+            <input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]">
+            <span><b class="text-[#002349]">Sign off.</b> Record exceptions and the person responsible for resolving them.</span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Fixed asset questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+
+          <details class="group bg-[#F7F8FA] border border-slate-200 rounded-2xl p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              Why does my Odoo fixed asset balance look wrong?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              The difference may come from asset additions, capitalization timing, depreciation assumptions, accumulated depreciation, disposals or manual adjustments. Reconcile the asset's full life cycle to the general ledger.
+            </p>
+          </details>
+
+          <details class="group bg-[#F7F8FA] border border-slate-200 rounded-2xl p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              How do I reconcile accumulated depreciation?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Start with the opening accumulated depreciation, add current-period posted depreciation, then review disposals, reversals and other adjustments. The resulting amount should agree with the relevant Balance Sheet account.
+            </p>
+          </details>
+
+          <details class="group bg-[#F7F8FA] border border-slate-200 rounded-2xl p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              Why is depreciation expense higher or lower than expected?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Check asset cost, useful life, residual value, depreciation method, start date, prior adjustments and which assets were active during the period.
+            </p>
+          </details>
+
+          <details class="group bg-[#F7F8FA] border border-slate-200 rounded-2xl p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              What should I do with a disposed asset that is still on the Balance Sheet?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Review the disposal transaction, disposal date, asset cost, accumulated depreciation and any resulting gain or loss. Avoid deleting or force-clearing the balance before understanding the underlying entries.
+            </p>
+          </details>
+
+          <details class="group bg-[#F7F8FA] border border-slate-200 rounded-2xl p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">
+              Is book depreciation the same as tax depreciation?
+              <span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span>
+            </summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">
+              Not necessarily. Financial reporting and tax rules can use different methods, lives, conventions and rules. Keep the accounting records aligned with the applicable financial reporting policy and handle tax depreciation separately as required.
+            </p>
+          </details>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Related -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Related Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Keep building a cleaner Odoo close</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-foreign-currency-accounting.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Odoo FX</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Foreign Currency Accounting: Why Exchange Gain/Loss Looks Wrong</h3>
+        </a>
+
+        <a href="/blog/odoo-inventory-valuation-not-matching.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Odoo Inventory</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet</h3>
+        </a>
+
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#D8C58F]">Need your Odoo books reviewed?</div>
+
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">
+            Reconcile your fixed assets before they become a month-end problem.
+          </h2>
+
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">
+            Accountrise supports US businesses and accounting firms with Odoo bookkeeping,
+            fixed-asset reconciliation, cleanup and repeatable month-end accounting processes.
+          </p>
+
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">
+              Book Free Consultation
+            </a>
+
+            <a href="mailto:info@accountrise.com"
+               class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">
+              Email Us
+            </a>
+          </div>
+
+          <p class="mt-6 text-sm text-slate-400">
+            Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const money = (n) =>
+      (n < 0 ? '-$' : '$') +
+      Math.abs(Number(n || 0)).toLocaleString('en-US', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+
+    function calcDepreciation() {
+      const cost = Math.max(0, Number(document.getElementById('assetCost').value) || 0);
+      const residual = Math.max(0, Number(document.getElementById('residual').value) || 0);
+      const life = Math.max(1, Number(document.getElementById('life').value) || 1);
+
+      const validResidual = Math.min(residual, cost);
+      const base = cost - validResidual;
+      const annual = base / life;
+      const monthly = annual / 12;
+      const percent = cost > 0 ? (annual / cost) * 100 : 0;
+
+      document.getElementById('deprBase').textContent = money(base);
+      document.getElementById('annualDepr').textContent = money(annual);
+      document.getElementById('monthlyDepr').textContent = money(monthly);
+      document.getElementById('percent').textContent = percent.toFixed(2) + '%';
+
+      const width = Math.min(100, Math.max(0, percent * 3));
+      document.getElementById('lifeBar').style.width = width + '%';
+    }
+
+    ['assetCost', 'residual', 'life'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calcDepreciation);
+    });
+
+    calcDepreciation();
+  </script>
+
+  <!-- BlogPosting schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Fixed Assets & Depreciation: Why Your Balance Sheet Looks Wrong",
+    "description": "A practical fixed asset reconciliation guide covering additions, depreciation, accumulated depreciation, disposals and month-end controls for Odoo users.",
+    "author": {
+      "@type": "Organization",
+      "name": "Accountrise"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Accountrise",
+      "url": "https://www.accountrise.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-fixed-assets-depreciation.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-fixed-assets-depreciation.html"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why does my Odoo fixed asset balance look wrong?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The difference may come from asset additions, capitalization timing, depreciation assumptions, accumulated depreciation, disposals or manual adjustments. Reconcile the asset's full life cycle to the general ledger."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I reconcile accumulated depreciation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start with opening accumulated depreciation, add current-period posted depreciation, then review disposals, reversals and other adjustments. The resulting amount should agree with the relevant Balance Sheet account."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is depreciation expense higher or lower than expected?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Check asset cost, useful life, residual value, depreciation method, start date, prior adjustments and which assets were active during the period."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What should I do with a disposed asset that is still on the Balance Sheet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Review the disposal transaction, disposal date, asset cost, accumulated depreciation and any resulting gain or loss. Do not force-clear the balance before understanding the underlying entries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is book depreciation the same as tax depreciation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not necessarily. Financial reporting and tax rules can use different methods, lives, conventions and rules. Keep accounting records aligned with the applicable financial reporting policy and handle tax depreciation separately as required."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>
