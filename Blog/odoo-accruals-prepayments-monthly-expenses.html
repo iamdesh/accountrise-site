@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Odoo Accruals &amp; Prepayments: Why Monthly Expenses Look Wrong</title>
+  <meta name="description" content="Fix Odoo accrual and prepayment mismatches with a practical month-end guide. Learn when to accrue expenses, amortize prepaid costs, reconcile balances and avoid misstated monthly profit.">
+  <meta name="keywords" content="Odoo accruals, Odoo prepayments, Odoo accrued expenses, Odoo prepaid expenses, Odoo month end close, expense recognition, accrual accounting, prepaid insurance Odoo, accrued liabilities Odoo">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-accruals-prepayments-monthly-expenses.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Accruals &amp; Prepayments: Why Monthly Expenses Look Wrong">
+  <meta property="og:description" content="Understand expense timing in Odoo, with prepaid expense and accrual calculators, month-end controls and practical answers to common accounting questions.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-accruals-prepayments-monthly-expenses.html">
+  <meta property="og:site_name" content="Accountrise">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Accruals &amp; Prepayments: Why Monthly Expenses Look Wrong">
+  <meta name="twitter:description" content="Diagnose Odoo accrued expenses and prepaid costs with practical examples, calculators and a month-end checklist.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#142A40',
+            mist: '#F4F6F8',
+            paper: '#F8F6F0',
+            plum: '#6B526F',
+            sage: '#DCE7D6',
+            amberlite: '#F3E7C8'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .timing-hero {
+      background:
+        radial-gradient(circle at 12% 14%, rgba(243,231,200,.13), transparent 24%),
+        radial-gradient(circle at 90% 80%, rgba(220,231,214,.13), transparent 27%),
+        linear-gradient(135deg, #191d37, #002349 64%, #2C3C55);
+    }
+    .shadow-soft { box-shadow: 0 18px 52px rgba(0,35,73,.09); }
+    .shadow-deep { box-shadow: 0 28px 90px rgba(0,35,73,.17); }
+    .calendar-cell { min-height: 72px; }
+    .ledger-paper {
+      background-image: linear-gradient(rgba(0,35,73,.055) 1px, transparent 1px);
+      background-size: 100% 30px;
+    }
+    .float-card { transition: transform .2s ease, box-shadow .2s ease; }
+    .float-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(0,35,73,.10); }
+    .mini-dot { box-shadow: 0 0 0 6px rgba(149,124,61,.13); }
+    details summary { list-style: none; cursor: pointer; }
+    details summary::-webkit-details-marker { display:none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .float-card { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#142A40] antialiased">
+
+  <!-- Main navigation -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: accounting timing lab -->
+    <section class="timing-hero text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.95fr_1.05fr] gap-12 items-center">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[.18em] text-[#F3E7C8]">Odoo Accounting</span>
+              <span class="text-sm text-slate-300">Accruals • Prepaid Expenses • Month-End</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight">
+              Odoo Accruals &amp; Prepayments:
+              <span class="text-[#F3E7C8]">Why Monthly Expenses Look Wrong</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-2xl">
+              The cash may have left your bank in January, or the vendor invoice may not arrive until February.
+              Neither date automatically tells you which month should carry the expense.
+              The key is to match the cost to the period in which it belongs under your accounting policy.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#timing-test" class="rounded-2xl bg-[#F3E7C8] text-[#002349] px-6 py-3.5 font-bold hover:bg-[#f9efd8] transition">Identify the Timing Issue</a>
+              <a href="#calculators" class="rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">Use the Calculators</a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-300">
+              <span>✓ Expenses in the right period</span>
+              <span>✓ Cleaner balance sheets</span>
+              <span>✓ Repeatable close process</span>
+            </div>
+          </div>
+
+          <!-- Timing visual -->
+          <div class="rounded-[2rem] bg-white text-[#142A40] p-5 sm:p-7 shadow-deep">
+            <div class="flex items-start justify-between gap-4 border-b border-slate-200 pb-5">
+              <div>
+                <div class="text-[11px] uppercase tracking-[.22em] font-black text-[#957C3D]">Expense Timing Lab</div>
+                <div class="mt-1 text-xl font-black text-[#002349]">Same expense. Different timing problem.</div>
+              </div>
+              <div class="rounded-xl bg-[#F4F0E5] px-3 py-2 text-right">
+                <div class="text-[10px] uppercase tracking-wider text-slate-500">Example</div>
+                <div class="font-black text-[#002349]">$12,000</div>
+              </div>
+            </div>
+
+            <div class="mt-6 grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-[#F1EAF3] p-5 border border-[#E1D2E4]">
+                <div class="text-xs uppercase tracking-widest font-black text-[#6B526F]">Prepayment</div>
+                <h2 class="mt-3 text-xl font-black text-[#002349]">Paid before use</h2>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">Cash is paid up front for a service that covers future months.</p>
+                <div class="mt-5 rounded-xl bg-white/80 p-3">
+                  <div class="text-xs text-slate-500">Typical starting point</div>
+                  <div class="mt-1 font-black text-[#002349]">Prepaid asset</div>
+                </div>
+              </div>
+
+              <div class="rounded-2xl bg-[#EAF0E5] p-5 border border-[#D5E1CC]">
+                <div class="text-xs uppercase tracking-widest font-black text-emerald-900">Accrual</div>
+                <h2 class="mt-3 text-xl font-black text-[#002349]">Used before billing</h2>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">A service has been received, but the supplier invoice or payment is still pending.</p>
+                <div class="mt-5 rounded-xl bg-white/80 p-3">
+                  <div class="text-xs text-slate-500">Typical starting point</div>
+                  <div class="mt-1 font-black text-[#002349]">Accrued liability</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl bg-[#002349] text-white p-5">
+              <div class="text-xs uppercase tracking-widest font-black text-[#F3E7C8]">The month-end question</div>
+              <div class="mt-2 text-lg sm:text-xl font-black">Was the expense recognized in the period it belongs to?</div>
+              <div class="mt-4 h-2 bg-white/10 rounded-full overflow-hidden flex">
+                <div class="w-1/2 bg-[#957C3D]"></div>
+                <div class="w-1/2 bg-[#DCE7D6]"></div>
+              </div>
+              <div class="mt-2 flex justify-between text-xs text-slate-300"><span>Expense timing</span><span>Balance sheet timing</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer first -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Quick answer</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">Accruals and prepayments solve opposite timing problems.</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            An accrual records an expense already incurred when the bill has not yet been recorded or paid.
+            A prepayment keeps the unused portion of a cost on the Balance Sheet and releases it to expense as the benefit is consumed.
+            The exact entry and schedule depend on transaction facts, your policy and Odoo configuration.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <article class="float-card rounded-3xl bg-white border border-slate-200 p-7 shadow-soft">
+            <div class="w-12 h-12 rounded-2xl bg-[#EAF0E5] text-emerald-900 flex items-center justify-center text-xl font-black">A</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Expense incurred, invoice missing</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Record the estimated amount in the period the service or resource was consumed, with an appropriate accrual or liability, when required by the accounting policy.</p>
+            <div class="mt-5 rounded-xl bg-[#EAF0E5] p-4 text-sm"><b class="text-[#002349]">Example:</b> December utilities billed in January.</div>
+          </article>
+
+          <article class="float-card rounded-3xl bg-white border border-slate-200 p-7 shadow-soft">
+            <div class="w-12 h-12 rounded-2xl bg-[#F1EAF3] text-[#6B526F] flex items-center justify-center text-xl font-black">P</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Cash paid, benefit remains</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Record the future benefit as a prepaid asset where appropriate, then recognize expense across the coverage period using a supportable allocation method.</p>
+            <div class="mt-5 rounded-xl bg-[#F1EAF3] p-4 text-sm"><b class="text-[#002349]">Example:</b> Annual insurance paid up front.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timing decision test -->
+    <section id="timing-test" class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Timing decision test</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Which question describes your transaction?</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Use the business event—not the invoice arrival date alone—to decide what needs investigation.</p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-5">
+          <div class="rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8 shadow-soft">
+            <div class="inline-flex rounded-full bg-[#EAF0E5] px-3 py-1.5 text-xs font-black uppercase tracking-widest text-emerald-900">Choose accrual review</div>
+            <h3 class="mt-4 text-2xl font-black text-[#002349]">“We used the service, but no bill is posted yet.”</h3>
+            <ul class="mt-5 space-y-3 text-slate-600">
+              <li class="flex gap-3"><span class="font-black text-[#957C3D]">→</span><span>Confirm the service was received before period-end.</span></li>
+              <li class="flex gap-3"><span class="font-black text-[#957C3D]">→</span><span>Estimate the obligation using available evidence.</span></li>
+              <li class="flex gap-3"><span class="font-black text-[#957C3D]">→</span><span>Check the accrual account and next-period reversal or clearing process.</span></li>
+            </ul>
+          </div>
+
+          <div class="rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8 shadow-soft">
+            <div class="inline-flex rounded-full bg-[#F1EAF3] px-3 py-1.5 text-xs font-black uppercase tracking-widest text-[#6B526F]">Choose prepayment review</div>
+            <h3 class="mt-4 text-2xl font-black text-[#002349]">“We paid now, but the service covers future months.”</h3>
+            <ul class="mt-5 space-y-3 text-slate-600">
+              <li class="flex gap-3"><span class="font-black text-[#957C3D]">→</span><span>Confirm the coverage start/end dates and eligible prepaid portion.</span></li>
+              <li class="flex gap-3"><span class="font-black text-[#957C3D]">→</span><span>Check the prepaid asset account and expense recognition schedule.</span></li>
+              <li class="flex gap-3"><span class="font-black text-[#957C3D]">→</span><span>Reconcile the remaining asset balance to the unused coverage.</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two calculators -->
+    <section id="calculators" class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Interactive tools</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Estimate both sides of the timing equation</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">These simple examples help quantify timing differences. They do not automatically determine the entry, account or recognition method that is correct for a specific contract.</p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-2 gap-6">
+          <!-- Prepayment calculator -->
+          <div class="rounded-[2rem] bg-[#F1EAF3] border border-[#DFD1E4] p-6 sm:p-8">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="text-xs uppercase tracking-widest font-black text-[#6B526F]">Tool 01</div>
+                <h3 class="mt-2 text-2xl font-black text-[#002349]">Prepaid expense</h3>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-white/80 flex items-center justify-center text-2xl">◷</div>
+            </div>
+
+            <div class="mt-6 space-y-4">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Amount paid upfront ($)</span>
+                <input id="prepaidTotal" type="number" min="0" value="12000" step="100" class="mt-2 w-full rounded-xl border border-[#D8C8DE] bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <div class="grid grid-cols-2 gap-4">
+                <label class="block">
+                  <span class="text-sm font-bold text-[#002349]">Coverage months</span>
+                  <input id="prepaidTerm" type="number" min="1" max="120" value="12" step="1" class="mt-2 w-full rounded-xl border border-[#D8C8DE] bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+                </label>
+                <label class="block">
+                  <span class="text-sm font-bold text-[#002349]">Months used</span>
+                  <input id="prepaidElapsed" type="number" min="0" max="120" value="3" step="1" class="mt-2 w-full rounded-xl border border-[#D8C8DE] bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+                </label>
+              </div>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-white p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Expense to date</div>
+                <div id="prepaidExpense" class="mt-2 text-2xl font-black text-[#002349]">$3,000.00</div>
+              </div>
+              <div class="rounded-2xl bg-[#002349] text-white p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-[#E7DDF0]">Remaining prepaid</div>
+                <div id="prepaidBalance" class="mt-2 text-2xl font-black">$9,000.00</div>
+              </div>
+            </div>
+            <div class="mt-4 text-sm text-[#6B526F]">Monthly allocation: <strong id="prepaidMonthly">$1,000.00</strong></div>
+          </div>
+
+          <!-- Accrual calculator -->
+          <div class="rounded-[2rem] bg-[#EAF0E5] border border-[#D5E1CC] p-6 sm:p-8">
+            <div class="flex items-center justify-between gap-4">
+              <div>
+                <div class="text-xs uppercase tracking-widest font-black text-emerald-900">Tool 02</div>
+                <h3 class="mt-2 text-2xl font-black text-[#002349]">Expense accrual</h3>
+              </div>
+              <div class="w-12 h-12 rounded-2xl bg-white/80 flex items-center justify-center text-2xl">⌁</div>
+            </div>
+
+            <div class="mt-6 space-y-4">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Estimated expense per month ($)</span>
+                <input id="accrualMonthlyInput" type="number" min="0" value="1800" step="50" class="mt-2 w-full rounded-xl border border-[#C7D8BE] bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Unbilled months to accrue</span>
+                <input id="accrualMonthsInput" type="number" min="0" max="24" value="1" step="1" class="mt-2 w-full rounded-xl border border-[#C7D8BE] bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+
+            <div class="mt-6 rounded-2xl bg-white p-6">
+              <div class="text-xs uppercase tracking-widest font-black text-slate-500">Illustrative accrual</div>
+              <div id="accrualResult" class="mt-2 text-4xl font-black text-[#002349]">$1,800.00</div>
+              <p class="mt-3 text-sm text-slate-600 leading-relaxed">Estimated expense incurred but not yet recorded in the normal vendor invoice process. Validate against contracts, usage, estimates and subsequent bills.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Odoo process -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.82fr_1.18fr] gap-10 items-start">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Odoo workflow</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Build a schedule you can explain at close</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Odoo's exact menus, options and automated entries can vary by version and configuration. Verify the configured process in a test environment before changing live accounting rules.</p>
+          <div class="mt-6 rounded-2xl bg-[#F8F6F0] border border-[#E7DDC2] p-5">
+            <div class="font-black text-[#002349]">Control principle</div>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">Every schedule should have a source document, period logic, posting trail, account mapping and reconciliation owner.</p>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="shrink-0 w-12 h-12 rounded-2xl bg-[#F1EAF3] text-[#6B526F] flex items-center justify-center font-black">01</div>
+            <div><h3 class="text-xl font-black text-[#002349]">Collect the support</h3><p class="mt-2 text-slate-600 leading-relaxed">Use the vendor bill, contract, service dates, usage data, purchase order or other evidence to establish the amount and period.</p></div>
+          </div>
+          <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="shrink-0 w-12 h-12 rounded-2xl bg-[#EAF0E5] text-emerald-900 flex items-center justify-center font-black">02</div>
+            <div><h3 class="text-xl font-black text-[#002349]">Choose the correct timing treatment</h3><p class="mt-2 text-slate-600 leading-relaxed">Distinguish a cost already incurred but not yet billed from a payment for future benefits, then confirm how your accounting policy treats it.</p></div>
+          </div>
+          <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="shrink-0 w-12 h-12 rounded-2xl bg-[#F4E7C8] text-[#806629] flex items-center justify-center font-black">03</div>
+            <div><h3 class="text-xl font-black text-[#002349]">Check accounts, dates and schedule</h3><p class="mt-2 text-slate-600 leading-relaxed">Verify the expense, prepaid asset or accrual account, coverage dates, recognition periods, amounts and any reversal/clearing logic.</p></div>
+          </div>
+          <div class="flex gap-5 rounded-3xl bg-[#002349] text-white border border-[#002349] p-6 shadow-deep">
+            <div class="shrink-0 w-12 h-12 rounded-2xl bg-[#DCE7D6] text-[#002349] flex items-center justify-center font-black">04</div>
+            <div><h3 class="text-xl font-black">Reconcile and document</h3><p class="mt-2 text-slate-300 leading-relaxed">Tie the ending balance to an itemized schedule and review next month's invoice, reversal or amortization entry so the same cost is not recorded twice.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Root causes -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Troubleshooting board</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Seven reasons monthly expenses may look wrong</h2>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">01</div><h3 class="mt-4 font-black text-[#002349]">Expense posted on payment date</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">A cost paid in advance may have been expensed before the related benefit was consumed.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">02</div><h3 class="mt-4 font-black text-[#002349]">Invoice posted in the wrong period</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">The bill date may not reflect when the related service was received or consumed.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">03</div><h3 class="mt-4 font-black text-[#002349]">Accrual estimate is stale</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">An old estimate may remain after the actual bill is posted or the underlying facts change.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">04</div><h3 class="mt-4 font-black text-[#002349]">Reversal missing or incorrect</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">The accrual and the subsequent vendor invoice can double-count or leave a gap if clearing logic is wrong.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">05</div><h3 class="mt-4 font-black text-[#002349]">Prepaid schedule dates are wrong</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">Incorrect start/end dates can shift the expense into months that do not match the coverage period.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-3xl font-black text-[#957C3D]">06</div><h3 class="mt-4 font-black text-[#002349]">Balance sheet schedule not reconciled</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">The prepaid or accrual ledger balance may not agree with itemized open schedules and supporting documents.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6 md:col-span-2 lg:col-span-3">
+            <div class="flex flex-col sm:flex-row gap-4 sm:items-center">
+              <div class="text-3xl font-black text-[#957C3D]">07</div>
+              <div><h3 class="font-black text-[#002349]">Manual journal bypassed the normal process</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">A manual entry can change expense and balance sheet totals without updating the schedule used for the reconciliation. Document the entry and adjust the supporting schedule when required.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community-style Q&A / Reddit search intent -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-9 items-start">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-[#F4E7C8] px-3 py-1.5 text-xs font-black uppercase tracking-widest text-[#806629]">
+            Community questions
+          </div>
+          <h2 class="mt-4 text-3xl sm:text-4xl font-black text-[#002349]">Straight answers to the questions people ask in accounting forums</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            These concise, discussion-style answers are designed around real practical questions that can appear in Reddit threads, small-business forums or month-end conversations. They are not quotations from specific Reddit posts.
+          </p>
+          <p class="mt-4 text-sm text-slate-500 leading-relaxed">
+            For community participation, share the useful explanation first, include the business context, and follow each community's rules. Avoid posting repetitive promotional links or presenting a generic answer as a personalized accounting opinion.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <article class="rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 01</div>
+            <h3 class="mt-3 text-xl font-black text-[#002349]">“I paid my annual insurance in January. Should all of it hit January expenses?”</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Not necessarily. If the payment buys coverage across future months, the portion relating to future coverage may remain a prepaid asset and be recognized as expense over the coverage period, subject to your accounting policy and materiality threshold.</p>
+          </article>
+
+          <article class="rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 02</div>
+            <h3 class="mt-3 text-xl font-black text-[#002349]">“The December vendor bill arrived in January. Does December still need an expense?”</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">If the underlying service or cost belongs to December, an accrual may be appropriate under the applicable accounting framework and policy. Use reasonable supporting evidence, then clear or true up the estimate when the actual bill is recorded.</p>
+          </article>
+
+          <article class="rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 03</div>
+            <h3 class="mt-3 text-xl font-black text-[#002349]">“Why did the same expense appear twice after month-end?”</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Check whether the prior-period accrual reversed as intended and whether the actual vendor invoice also posted to expense. Compare the opening accrual, reversal, bill and ending liability before making a correction.</p>
+          </article>
+
+          <article class="rounded-3xl bg-[#002349] text-white border border-[#002349] p-6 shadow-soft">
+            <div class="text-xs uppercase tracking-widest font-black text-[#F3E7C8]">Question 04</div>
+            <h3 class="mt-3 text-xl font-black">“How do I prove that prepaid expenses are correct?”</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">Keep a schedule by contract or invoice with original cost, coverage dates, monthly allocation, cumulative expense and remaining prepaid balance. Tie its total to the general ledger and investigate stale or negative items.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Month-end checklist -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-8 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Month-end close</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Accruals &amp; prepayments sign-off checklist</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">A short, consistent review helps catch period errors before the management reports are finalized.</p>
+          </div>
+
+          <div class="rounded-[2rem] bg-white border border-slate-200 overflow-hidden divide-y divide-slate-200 shadow-soft">
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review services received but not billed.</strong> Identify material costs belonging to the closed period.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Reassess accrual estimates.</strong> Use current evidence and investigate stale estimates.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Confirm reversals or clearing.</strong> Check what should happen when the actual supplier bill arrives.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review prepaid schedules.</strong> Validate amounts, start/end dates, period allocations and supporting agreements.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Tie schedules to the ledger.</strong> Explain the prepaid asset and accrued liability balances.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Investigate duplicates and manual journals.</strong> Confirm each amount is counted once in the correct period.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer bg-[#F8F6F0]"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Document and sign off.</strong> Keep support, approval, exception owner and resolution date.</span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Odoo accrual and prepayment questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What is the difference between an accrual and a prepayment?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">An accrual generally recognizes a cost that has been incurred but not yet recorded through the usual bill process. A prepayment generally represents a cost paid or recorded in advance for benefits that relate to future periods.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Why are expenses too high in one month in Odoo?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Potential causes include advance payments posted entirely to expense, late invoices, duplicate bills, a missing accrual reversal, incorrect schedule dates or a manual journal that bypassed the standard process. Trace the source document and the expense period.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">How do I reconcile prepaid expenses at month-end?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Maintain an itemized schedule showing original cost, coverage period, cumulative expense and remaining benefit. Tie its total to the prepaid asset ledger and investigate expired, stale, negative or missing items.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Should accruals always reverse next month?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Not always. Reversal is one method, but the appropriate process depends on the nature of the accrual, how the actual invoice is recorded and the accounting policy. Avoid double-counting and confirm how the actual bill clears the estimate.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Can every prepaid cost be spread evenly across the year?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">No. Straight-line allocation can be reasonable when it reflects the consumption pattern, but the actual contract, service period, accounting policy and materiality should guide the method.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related guides -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Related Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Build a more dependable month-end close</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-deferred-revenue-recognition.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Revenue Recognition</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Deferred Revenue: How to Stop Recognizing Revenue Too Early</h3>
+        </a>
+        <a href="/blog/odoo-fixed-assets-depreciation.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Fixed Assets</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Fixed Assets &amp; Depreciation: Why Your Balance Sheet Looks Wrong</h3>
+        </a>
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#F3E7C8]">Need your Odoo close reviewed?</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Make every expense belong to the right period.</h2>
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise helps US businesses and accounting firms review Odoo accruals and prepayments, reconcile balance sheet accounts, clean up historical entries and create repeatable month-end procedures.</p>
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a>
+          </div>
+          <p class="mt-6 text-sm text-slate-400">Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const money = (n) => '$' + Math.abs(Number(n || 0)).toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    function calculatePrepaid() {
+      const total = Math.max(0, Number(document.getElementById('prepaidTotal').value) || 0);
+      const term = Math.max(1, Math.min(120, Math.floor(Number(document.getElementById('prepaidTerm').value) || 1)));
+      const elapsed = Math.max(0, Math.min(term, Math.floor(Number(document.getElementById('prepaidElapsed').value) || 0)));
+      const monthly = total / term;
+      const expense = monthly * elapsed;
+      const remaining = Math.max(0, total - expense);
+
+      document.getElementById('prepaidTerm').value = term;
+      document.getElementById('prepaidElapsed').value = elapsed;
+      document.getElementById('prepaidMonthly').textContent = money(monthly);
+      document.getElementById('prepaidExpense').textContent = money(expense);
+      document.getElementById('prepaidBalance').textContent = money(remaining);
+    }
+
+    function calculateAccrual() {
+      const monthly = Math.max(0, Number(document.getElementById('accrualMonthlyInput').value) || 0);
+      const months = Math.max(0, Math.min(24, Math.floor(Number(document.getElementById('accrualMonthsInput').value) || 0)));
+      document.getElementById('accrualMonthsInput').value = months;
+      document.getElementById('accrualResult').textContent = money(monthly * months);
+    }
+
+    ['prepaidTotal', 'prepaidTerm', 'prepaidElapsed'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calculatePrepaid);
+    });
+    ['accrualMonthlyInput', 'accrualMonthsInput'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calculateAccrual);
+    });
+
+    calculatePrepaid();
+    calculateAccrual();
+  </script>
+
+  <!-- BlogPosting structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Accruals & Prepayments: Why Monthly Expenses Look Wrong",
+    "description": "A practical month-end guide to Odoo accruals and prepaid expenses, including timing differences, reconciliations, calculation examples and common accounting questions.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-accruals-prepayments-monthly-expenses.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-accruals-prepayments-monthly-expenses.html"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between an accrual and a prepayment?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An accrual generally recognizes a cost that has been incurred but not yet recorded through the usual bill process. A prepayment generally represents a cost paid or recorded in advance for benefits that relate to future periods."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are expenses too high in one month in Odoo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Potential causes include advance payments posted entirely to expense, late invoices, duplicate bills, a missing accrual reversal, incorrect schedule dates or a manual journal that bypassed the standard process. Trace the source document and the expense period."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I reconcile prepaid expenses at month-end?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Maintain an itemized schedule showing original cost, coverage period, cumulative expense and remaining benefit. Tie its total to the prepaid asset ledger and investigate expired, stale, negative or missing items."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should accruals always reverse next month?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not always. Reversal is one method, but the appropriate process depends on the nature of the accrual, how the actual invoice is recorded and the accounting policy. Avoid double-counting and confirm how the actual bill clears the estimate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can every prepaid cost be spread evenly across the year?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Straight-line allocation can be reasonable when it reflects the consumption pattern, but the actual contract, service period, accounting policy and materiality should guide the method."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
