@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Odoo Credit Notes & Customer Refunds: Accounting Process Guide | Accountrise</title>
+  <meta name="description" content="Learn how to manage customer credit notes and refunds in Odoo, including invoice corrections, product returns, partial credits, refund payments, reconciliation, and month-end controls." />
+  <meta name="keywords" content="Odoo credit note, Odoo customer refund, Odoo refund process, Odoo customer invoice correction, Odoo credit note reconciliation, Odoo accounting workflow" />
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-customer-credit-notes-refunds-process.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Odoo Credit Notes & Customer Refunds: The Accounting Process" />
+  <meta property="og:description" content="A practical workflow for issuing customer credit notes, processing refunds, and keeping Odoo receivables and accounting records accurate." />
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-customer-credit-notes-refunds-process.html" />
+  <meta property="og:site_name" content="Accountrise" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Odoo Credit Notes & Customer Refunds" />
+  <meta name="twitter:description" content="Learn a controlled Odoo workflow for customer credits, returns, refunds, and reconciliation." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            paper: '#F7F5EF',
+            ink: '#142235',
+            mist: '#E7EDF3'
+          },
+          boxShadow: {
+            lift: '0 22px 55px rgba(0,35,73,.10)'
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #F7F5EF; }
+    .case-grid { background-image: linear-gradient(rgba(0,35,73,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(0,35,73,.055) 1px, transparent 1px); background-size: 24px 24px; }
+    .focus-ring:focus-visible { outline: 3px solid #957C3D; outline-offset: 3px; }
+    .step-rail::before { content: ''; position: absolute; left: 19px; top: 30px; bottom: -26px; width: 2px; background: #D8DDE3; }
+    .step-rail:last-child::before { display: none; }
+    .scenario-panel[hidden] { display: none; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Credit Notes and Customer Refunds: A Practical Accounting Process",
+    "description": "A practical guide to issuing customer credit notes and processing refunds in Odoo, with controls for returns, invoice corrections, reconciliation, and reporting.",
+    "url": "https://www.accountrise.com/blog/odoo-customer-credit-notes-refunds-process.html",
+    "mainEntityOfPage": {"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-customer-credit-notes-refunds-process.html"},
+    "publisher": {"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},
+    "author": {"@type":"Organization","name":"Accountrise"},
+    "articleSection": "Odoo Accounting",
+    "keywords": ["Odoo credit note", "Odoo customer refund", "Odoo accounting workflow", "credit note reconciliation"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Is a credit note the same as a refund in Odoo?","acceptedAnswer":{"@type":"Answer","text":"No. A credit note records a reduction or reversal of a customer receivable and may adjust revenue, taxes, or other accounts. A refund payment records money returned to the customer. Depending on the case, both steps may be required."}},
+      {"@type":"Question","name":"Should I cancel a posted customer invoice or issue a credit note?","acceptedAnswer":{"@type":"Answer","text":"For a posted invoice that needs a formal reversal or reduction, a credit note is generally the traceable accounting document. The appropriate treatment depends on the invoice status, applicable tax rules, and your Odoo configuration. Avoid deleting or altering posted records outside the approved process."}},
+      {"@type":"Question","name":"Can I issue a partial credit note in Odoo?","acceptedAnswer":{"@type":"Answer","text":"Odoo workflows commonly support crediting selected quantities or amounts, subject to the version and configuration. Confirm the quantities, tax treatment, original invoice reference, and reason before posting."}},
+      {"@type":"Question","name":"Why does a customer still show an open balance after a refund?","acceptedAnswer":{"@type":"Answer","text":"The credit note, refund payment, and original invoice may not all be reconciled correctly, or the refund may not have been registered against the intended customer and receivable account. Review the customer ledger, payment status, and outstanding entries."}},
+      {"@type":"Question","name":"Does a credit note automatically put returned products back into stock?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. Accounting crediting and physical inventory returns are related but distinct flows. When products are physically returned, verify that the return transfer or inventory adjustment is completed and linked according to your configured sales and warehouse workflow."}}
+    ]
+  }
+  </script>
+</head>
+<body class="text-ink antialiased">
+  <div class="bg-navy text-white text-sm">
+    <div class="max-w-7xl mx-auto px-5 py-2.5 flex flex-wrap items-center justify-between gap-3">
+      <a href="/" class="font-extrabold tracking-wide">ACC<span class="text-gold">OUNTRISE</span></a>
+      <div class="flex items-center gap-5 text-white/80">
+        <a href="/services/" class="hover:text-white transition">Services</a>
+        <a href="/blog/" class="hover:text-white transition">Blog</a>
+        <a href="/about/" class="hover:text-white transition">About Us</a>
+      </div>
+    </div>
+  </div>
+
+  <header class="relative overflow-hidden bg-white border-b border-slate-200">
+    <div class="absolute inset-0 case-grid opacity-70"></div>
+    <div class="absolute -right-24 -top-28 w-96 h-96 rounded-full border border-gold/20"></div>
+    <div class="absolute -right-12 -top-16 w-72 h-72 rounded-full border border-gold/30"></div>
+    <div class="relative max-w-7xl mx-auto px-5 pt-12 pb-16 lg:pt-20 lg:pb-24">
+      <div class="flex flex-wrap items-center gap-3 mb-7 text-xs font-bold uppercase tracking-[.2em]">
+        <span class="bg-navy text-white px-3 py-2 rounded-full">Odoo Accounting</span>
+        <span class="text-slate-500">Process Playbook / Customer Credits</span>
+      </div>
+      <div class="grid lg:grid-cols-[1.2fr_.8fr] gap-12 items-center">
+        <div>
+          <p class="text-gold font-bold mb-4">A cleaner path from invoice correction to cash refund</p>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-[1.04] tracking-tight text-navy max-w-4xl">Odoo Credit Notes &amp; Customer Refunds: The Right Accounting Process</h1>
+          <p class="mt-6 text-lg sm:text-xl leading-relaxed text-slate-600 max-w-3xl">A customer return, pricing correction, or duplicate invoice should not turn into a confusing receivables balance. Use a controlled workflow to document the reason, issue the credit, handle any cash refund, and reconcile the complete trail.</p>
+          <div class="flex flex-wrap items-center gap-4 mt-8 text-sm text-slate-500">
+            <span>Practical workflow guide</span><span class="w-1 h-1 rounded-full bg-gold"></span><span>For finance and operations teams</span><span class="w-1 h-1 rounded-full bg-gold"></span><span>Odoo setup may vary</span>
+          </div>
+        </div>
+        <div class="relative">
+          <div class="bg-navy text-white rounded-[2rem] p-6 sm:p-8 shadow-lift rotate-1">
+            <div class="flex justify-between items-start gap-4 border-b border-white/15 pb-5">
+              <div><p class="text-xs uppercase tracking-[.18em] text-white/60">Credit case</p><p class="text-2xl font-black mt-1">CN-0148</p></div>
+              <span class="px-3 py-1.5 bg-amber-300 text-navy rounded-full text-xs font-extrabold">Review Required</span>
+            </div>
+            <div class="space-y-4 py-6">
+              <div class="flex justify-between gap-4"><span class="text-white/60">Original invoice</span><span class="font-semibold">INV/2026/0421</span></div>
+              <div class="flex justify-between gap-4"><span class="text-white/60">Credit reason</span><span class="font-semibold">Partial return</span></div>
+              <div class="flex justify-between gap-4"><span class="text-white/60">Credit amount</span><span class="text-2xl font-black text-amber-300">$480.00</span></div>
+              <div class="flex justify-between gap-4"><span class="text-white/60">Refund status</span><span class="font-semibold">Not yet paid</span></div>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-4 text-sm text-white/75">Illustrative case only. Document IDs, amounts, and statuses are examples—not actual records.</div>
+          </div>
+          <div class="absolute -bottom-5 -left-5 bg-white rounded-2xl p-4 shadow-lg border border-slate-100 hidden sm:block">
+            <p class="text-xs uppercase tracking-wider text-slate-500">Control goal</p><p class="font-extrabold text-navy mt-1">One reason. One audit trail.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-5 py-14 lg:py-20">
+    <section class="grid lg:grid-cols-[.7fr_1.3fr] gap-10 lg:gap-16 mb-20">
+      <div>
+        <p class="text-xs font-black tracking-[.2em] uppercase text-gold mb-3">Start with the distinction</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-navy leading-tight">A credit note is not the same as a cash refund.</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 gap-4">
+        <article class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 text-navy flex items-center justify-center text-xl font-black">1</div>
+          <h3 class="text-xl font-extrabold mt-5">Credit note</h3>
+          <p class="text-slate-600 leading-relaxed mt-3">Adjusts or reverses all or part of the customer invoice balance. Depending on the reason, it can affect revenue, tax, receivables, or other accounts.</p>
+          <p class="mt-5 text-sm font-bold text-navy">Accounting document</p>
+        </article>
+        <article class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm">
+          <div class="w-11 h-11 rounded-xl bg-amber-50 text-gold flex items-center justify-center text-xl font-black">2</div>
+          <h3 class="text-xl font-extrabold mt-5">Refund payment</h3>
+          <p class="text-slate-600 leading-relaxed mt-3">Records money sent back to the customer. It affects cash or the relevant payment account and must be connected to the customer’s open items properly.</p>
+          <p class="mt-5 text-sm font-bold text-navy">Cash movement</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <div class="max-w-3xl mb-10">
+        <p class="text-xs font-black tracking-[.2em] uppercase text-gold mb-3">The operating workflow</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-navy">A seven-step process for traceable customer credits</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Keep the commercial reason, accounting document, inventory movement, and cash settlement connected—but do not treat them as the same transaction.</p>
+      </div>
+      <div class="max-w-4xl space-y-7">
+        <article class="relative step-rail flex gap-5">
+          <div class="relative z-10 w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-black">01</div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap justify-between gap-3"><h3 class="text-xl font-extrabold text-navy">Log the business reason</h3><span class="text-xs font-bold uppercase tracking-wider text-slate-400">Sales / Support</span></div>
+            <p class="text-slate-600 mt-3 leading-relaxed">Record why the customer needs a credit: returned goods, a price correction, damaged items, a duplicate invoice, a service adjustment, or an approved goodwill credit. Capture the original invoice, customer, lines, quantities, dates, and approval.</p>
+            <p class="mt-3 text-sm"><strong class="text-navy">Control:</strong> Require a reason code or standard description; avoid vague entries such as “adjustment”.</p>
+          </div>
+        </article>
+        <article class="relative step-rail flex gap-5">
+          <div class="relative z-10 w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-black">02</div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap justify-between gap-3"><h3 class="text-xl font-extrabold text-navy">Choose the correct source document</h3><span class="text-xs font-bold uppercase tracking-wider text-slate-400">Accounting</span></div>
+            <p class="text-slate-600 mt-3 leading-relaxed">For a posted customer invoice that needs to be reduced or reversed, use the approved credit-note/reversal workflow rather than quietly changing the accounting history. Link the credit to the original invoice wherever the configured workflow supports it.</p>
+            <p class="mt-3 text-sm"><strong class="text-navy">Control:</strong> Confirm invoice status, company, currency, tax treatment, and the accounting period before proceeding.</p>
+          </div>
+        </article>
+        <article class="relative step-rail flex gap-5">
+          <div class="relative z-10 w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-black">03</div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap justify-between gap-3"><h3 class="text-xl font-extrabold text-navy">Create a full or partial credit note</h3><span class="text-xs font-bold uppercase tracking-wider text-slate-400">Credit document</span></div>
+            <p class="text-slate-600 mt-3 leading-relaxed">Credit only the affected lines, quantities, or approved amount. Review accounts, taxes, analytic distributions, fiscal position, currency, and customer reference before posting. A full reversal and a partial commercial adjustment may require different checks.</p>
+            <p class="mt-3 text-sm"><strong class="text-navy">Control:</strong> Compare the credit lines with the approved reason and original invoice.</p>
+          </div>
+        </article>
+        <article class="relative step-rail flex gap-5">
+          <div class="relative z-10 w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-black">04</div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap justify-between gap-3"><h3 class="text-xl font-extrabold text-navy">Handle the physical return separately</h3><span class="text-xs font-bold uppercase tracking-wider text-slate-400">Warehouse</span></div>
+            <p class="text-slate-600 mt-3 leading-relaxed">If goods are physically returned, complete the appropriate return transfer or inventory process and inspect the items as required. Decide whether goods return to sellable stock, quarantine, repair, or scrap. An accounting credit by itself does not prove stock was received.</p>
+            <p class="mt-3 text-sm"><strong class="text-navy">Control:</strong> Reconcile credited quantities to actual returned or otherwise approved quantities.</p>
+          </div>
+        </article>
+        <article class="relative step-rail flex gap-5">
+          <div class="relative z-10 w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-black">05</div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap justify-between gap-3"><h3 class="text-xl font-extrabold text-navy">Decide whether cash actually leaves the business</h3><span class="text-xs font-bold uppercase tracking-wider text-slate-400">Settlement</span></div>
+            <p class="text-slate-600 mt-3 leading-relaxed">Not every credit requires a bank refund. A credit may remain available against a future invoice, offset an unpaid receivable, or be refunded through the approved payment method. Follow the customer agreement and the business’s refund policy.</p>
+            <p class="mt-3 text-sm"><strong class="text-navy">Control:</strong> Do not register a cash refund solely because a credit note exists.</p>
+          </div>
+        </article>
+        <article class="relative step-rail flex gap-5">
+          <div class="relative z-10 w-10 h-10 shrink-0 rounded-full bg-navy text-white flex items-center justify-center font-black">06</div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap justify-between gap-3"><h3 class="text-xl font-extrabold text-navy">Register and reconcile the refund or offset</h3><span class="text-xs font-bold uppercase tracking-wider text-slate-400">Cash / AR</span></div>
+            <p class="text-slate-600 mt-3 leading-relaxed">When cash is returned, record the payment through the configured Odoo payment workflow and reconcile it with the correct customer credit/open items and bank transaction. If the credit offsets an invoice, reconcile the applicable receivable entries so the customer balance is accurate.</p>
+            <p class="mt-3 text-sm"><strong class="text-navy">Control:</strong> Check the customer ledger and outstanding items after reconciliation—not just the payment status.</p>
+          </div>
+        </article>
+        <article class="relative step-rail flex gap-5">
+          <div class="relative z-10 w-10 h-10 shrink-0 rounded-full bg-gold text-white flex items-center justify-center font-black">07</div>
+          <div class="flex-1 bg-white p-6 rounded-2xl border border-slate-200">
+            <div class="flex flex-wrap justify-between gap-3"><h3 class="text-xl font-extrabold text-navy">Review the audit trail and month-end balances</h3><span class="text-xs font-bold uppercase tracking-wider text-slate-400">Close</span></div>
+            <p class="text-slate-600 mt-3 leading-relaxed">Confirm the original invoice, credit note, related return (when relevant), refund payment, and bank reconciliation can be traced. Review open credit notes, unapplied customer credits, unusual refund amounts, tax impact, and aged customer balances.</p>
+            <p class="mt-3 text-sm"><strong class="text-navy">Control:</strong> Assign unresolved credits to an owner and document the next action.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="mb-20 rounded-[2rem] overflow-hidden border border-slate-200 bg-white shadow-sm">
+      <div class="bg-navy p-7 sm:p-9 text-white">
+        <p class="text-xs uppercase tracking-[.2em] text-amber-300 font-bold">Choose the scenario</p>
+        <h2 class="text-2xl sm:text-3xl font-black mt-3">What happened with this customer?</h2>
+        <p class="text-white/70 mt-3 max-w-2xl">Select the situation to see the main workflow checkpoints. The exact menu labels and steps can differ by Odoo version, localization, installed apps, and configuration.</p>
+      </div>
+      <div class="p-6 sm:p-9">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3" role="group" aria-label="Choose customer credit scenario">
+          <button type="button" class="scenario-btn focus-ring text-left p-4 rounded-2xl border-2 border-gold bg-amber-50" data-scenario="return" aria-pressed="true"><span class="block text-xs uppercase tracking-wider text-gold font-black">Scenario 01</span><span class="block mt-2 font-extrabold text-navy">Product return</span></button>
+          <button type="button" class="scenario-btn focus-ring text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-gold transition" data-scenario="price" aria-pressed="false"><span class="block text-xs uppercase tracking-wider text-slate-400 font-black">Scenario 02</span><span class="block mt-2 font-extrabold text-navy">Price correction</span></button>
+          <button type="button" class="scenario-btn focus-ring text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-gold transition" data-scenario="duplicate" aria-pressed="false"><span class="block text-xs uppercase tracking-wider text-slate-400 font-black">Scenario 03</span><span class="block mt-2 font-extrabold text-navy">Duplicate invoice</span></button>
+          <button type="button" class="scenario-btn focus-ring text-left p-4 rounded-2xl border-2 border-slate-200 hover:border-gold transition" data-scenario="refund" aria-pressed="false"><span class="block text-xs uppercase tracking-wider text-slate-400 font-black">Scenario 04</span><span class="block mt-2 font-extrabold text-navy">Cash refund</span></button>
+        </div>
+        <div class="mt-5 space-y-4">
+          <div id="panel-return" class="scenario-panel bg-paper rounded-2xl p-6" role="region" aria-live="polite"><h3 class="text-xl font-extrabold text-navy">Product return: track both stock and accounting</h3><p class="mt-2 text-slate-600">Verify the original sale, confirm the returned quantity, complete the return transfer or approved stock adjustment, and issue the credit note using the correct lines and taxes. Check whether the items are resalable or require a different inventory destination. Reconcile the resulting customer credit based on the agreed settlement.</p></div>
+          <div id="panel-price" class="scenario-panel bg-paper rounded-2xl p-6" role="region" aria-live="polite" hidden><h3 class="text-xl font-extrabold text-navy">Price correction: credit the approved difference</h3><p class="mt-2 text-slate-600">Retain evidence for the revised price or discount. Credit only the approved difference, verify tax and currency, and do not create a warehouse return unless goods are actually moving. Decide whether the remaining credit offsets the invoice or is paid back.</p></div>
+          <div id="panel-duplicate" class="scenario-panel bg-paper rounded-2xl p-6" role="region" aria-live="polite" hidden><h3 class="text-xl font-extrabold text-navy">Duplicate invoice: verify before reversing</h3><p class="mt-2 text-slate-600">Confirm which invoice reflects the valid sale and whether either document was paid, reported, or included in a tax filing. Use the approved reversal/credit-note process for the invalid posted document, preserve references, and check for a duplicate payment or open receivable after reconciliation.</p></div>
+          <div id="panel-refund" class="scenario-panel bg-paper rounded-2xl p-6" role="region" aria-live="polite" hidden><h3 class="text-xl font-extrabold text-navy">Cash refund: reconcile every layer</h3><p class="mt-2 text-slate-600">Approve the refund amount and method, ensure the credit note is posted correctly, register the outgoing payment through the configured workflow, and match it with the bank transaction. Review the customer ledger for an unreconciled credit or residual amount before closing the case.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 mb-20">
+      <div>
+        <p class="text-xs font-black tracking-[.2em] uppercase text-gold mb-3">Frequent trouble spots</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-navy leading-tight">Why customer credits get messy in Odoo</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">The issue is often not the credit-note button itself. It is an incomplete process between sales, warehouse, accounting, and cash application.</p>
+      </div>
+      <div class="space-y-3">
+        <details class="group bg-white rounded-2xl border border-slate-200 p-5" open><summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-extrabold text-navy">The credit note is posted, but the invoice still appears open <span class="text-gold text-xl group-open:rotate-45 transition">+</span></summary><p class="text-slate-600 mt-3 leading-relaxed">Review reconciliation between the receivable entries on the invoice and credit note. Posting a credit does not always mean the applicable open items have been matched or settled.</p></details>
+        <details class="group bg-white rounded-2xl border border-slate-200 p-5"><summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-extrabold text-navy">A refund was paid, but the customer ledger looks wrong <span class="text-gold text-xl group-open:rotate-45 transition">+</span></summary><p class="text-slate-600 mt-3 leading-relaxed">Check the refund payment journal, customer, receivable account, payment status, and reconciliation. Confirm the payment is linked to the appropriate credit balance and bank transaction.</p></details>
+        <details class="group bg-white rounded-2xl border border-slate-200 p-5"><summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-extrabold text-navy">Inventory and accounting show different results <span class="text-gold text-xl group-open:rotate-45 transition">+</span></summary><p class="text-slate-600 mt-3 leading-relaxed">A commercial credit and a physical return are different events. Verify return transfers, product destination, costing method, and automated valuation configuration where applicable.</p></details>
+        <details class="group bg-white rounded-2xl border border-slate-200 p-5"><summary class="cursor-pointer list-none flex items-center justify-between gap-4 font-extrabold text-navy">Tax amounts do not match the original invoice <span class="text-gold text-xl group-open:rotate-45 transition">+</span></summary><p class="text-slate-600 mt-3 leading-relaxed">Review the credit lines, tax mapping, fiscal position, tax-inclusive/exclusive pricing, company localization, and relevant tax-period requirements. Have the responsible tax professional approve the treatment where needed.</p></details>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <div class="max-w-3xl mb-8">
+        <p class="text-xs font-black tracking-[.2em] uppercase text-gold mb-3">Month-end case review</p>
+        <h2 class="text-3xl sm:text-4xl font-black text-navy">Customer credit control checklist</h2>
+        <p class="mt-4 text-slate-600">Use this review to catch uncompleted settlements before finalizing the period. Mark items as your team works through them.</p>
+      </div>
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm">
+        <div class="grid md:grid-cols-2 gap-x-10 gap-y-4" id="credit-checklist">
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Reason approved</strong><span class="block text-sm text-slate-500 mt-1">Credit has a documented business purpose and owner.</span></span></label>
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Original invoice referenced</strong><span class="block text-sm text-slate-500 mt-1">Customer, invoice, company, currency, and period are correct.</span></span></label>
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Amount and tax reviewed</strong><span class="block text-sm text-slate-500 mt-1">Lines, quantities, discounts, and tax treatment are verified.</span></span></label>
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Return processed if applicable</strong><span class="block text-sm text-slate-500 mt-1">Physical goods are accounted for in the warehouse workflow.</span></span></label>
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Settlement decision recorded</strong><span class="block text-sm text-slate-500 mt-1">Offset, future credit, or cash refund is clearly identified.</span></span></label>
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Payment and bank matched</strong><span class="block text-sm text-slate-500 mt-1">Refund payment ties to the customer and bank transaction.</span></span></label>
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Open credits investigated</strong><span class="block text-sm text-slate-500 mt-1">Unapplied credits have an owner and documented next step.</span></span></label>
+          <label class="flex items-start gap-3 cursor-pointer"><input type="checkbox" class="mt-1 accent-[#957C3D] w-4 h-4"><span><strong class="text-navy">Audit trail retained</strong><span class="block text-sm text-slate-500 mt-1">Supporting documents and approval evidence are accessible.</span></span></label>
+        </div>
+        <div class="mt-7 pt-5 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3"><p id="check-progress" class="text-sm text-slate-500" aria-live="polite">0 of 8 review checks completed</p><button type="button" id="reset-checklist" class="text-sm font-bold text-navy underline underline-offset-4">Reset checklist</button></div>
+      </div>
+    </section>
+
+    <section class="mb-20 bg-white border border-slate-200 rounded-3xl p-7 sm:p-10">
+      <p class="text-xs font-black tracking-[.2em] uppercase text-gold mb-3">Questions finance teams ask</p>
+      <h2 class="text-3xl sm:text-4xl font-black text-navy mb-8">Odoo credit note and refund FAQs</h2>
+      <div class="space-y-5">
+        <div><h3 class="font-extrabold text-navy">Is a credit note the same as a refund in Odoo?</h3><p class="text-slate-600 mt-2 leading-relaxed">No. A credit note records a reduction or reversal of a customer receivable and may adjust revenue, taxes, or other accounts. A refund payment records money returned to the customer. Depending on the case, both steps may be required.</p></div>
+        <div class="border-t border-slate-100 pt-5"><h3 class="font-extrabold text-navy">Should I cancel a posted customer invoice or issue a credit note?</h3><p class="text-slate-600 mt-2 leading-relaxed">For a posted invoice that needs a formal reversal or reduction, a credit note is generally the traceable accounting document. The correct treatment depends on status, tax rules, and configuration. Avoid deleting or changing posted records outside your approved process.</p></div>
+        <div class="border-t border-slate-100 pt-5"><h3 class="font-extrabold text-navy">Can I issue a partial credit note in Odoo?</h3><p class="text-slate-600 mt-2 leading-relaxed">Odoo workflows commonly support crediting selected quantities or amounts, subject to version and configuration. Confirm the quantities, tax treatment, original invoice reference, and reason before posting.</p></div>
+        <div class="border-t border-slate-100 pt-5"><h3 class="font-extrabold text-navy">Why does a customer still show an open balance after a refund?</h3><p class="text-slate-600 mt-2 leading-relaxed">The credit note, refund payment, and original invoice may not all be reconciled correctly. Review the customer ledger, payment status, and outstanding entries to find the remaining balance.</p></div>
+        <div class="border-t border-slate-100 pt-5"><h3 class="font-extrabold text-navy">Does a credit note automatically return products to stock?</h3><p class="text-slate-600 mt-2 leading-relaxed">Not necessarily. Accounting crediting and physical inventory returns are related but distinct flows. Verify the return transfer or inventory adjustment is completed according to the configured sales and warehouse workflow.</p></div>
+      </div>
+    </section>
+
+    <section class="mb-20">
+      <div class="flex flex-wrap items-end justify-between gap-5 mb-7">
+        <div><p class="text-xs font-black tracking-[.2em] uppercase text-gold mb-3">Continue improving your workflow</p><h2 class="text-3xl font-black text-navy">Related Odoo accounting guides</h2></div>
+        <a href="/blog/" class="font-bold text-navy underline underline-offset-4">Explore all articles →</a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <a href="/blog/odoo-customer-payments-not-reconciled.html" class="focus-ring bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition"><span class="text-xs uppercase tracking-wider font-black text-gold">Receivables</span><h3 class="text-lg font-extrabold text-navy mt-3">Odoo Customer Payments Not Reconciled</h3><p class="text-slate-500 mt-2 text-sm leading-relaxed">Investigate open customer balances and unreconciled payments.</p><span class="inline-block mt-4 text-sm font-bold text-navy">Read guide →</span></a>
+        <a href="/blog/odoo-accounts-receivable-overdue-invoices.html" class="focus-ring bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition"><span class="text-xs uppercase tracking-wider font-black text-gold">Accounts Receivable</span><h3 class="text-lg font-extrabold text-navy mt-3">Fix Overdue Invoices &amp; Customer Balances</h3><p class="text-slate-500 mt-2 text-sm leading-relaxed">Improve follow-up and customer account visibility.</p><span class="inline-block mt-4 text-sm font-bold text-navy">Read guide →</span></a>
+        <a href="/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html" class="focus-ring bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition"><span class="text-xs uppercase tracking-wider font-black text-gold">Bank Reconciliation</span><h3 class="text-lg font-extrabold text-navy mt-3">Fix Unreconciled Transactions in Odoo</h3><p class="text-slate-500 mt-2 text-sm leading-relaxed">Match statement lines and identify exceptions before close.</p><span class="inline-block mt-4 text-sm font-bold text-navy">Read guide →</span></a>
+      </div>
+    </section>
+
+    <section id="contact" class="relative overflow-hidden bg-navy text-white rounded-[2rem] p-8 sm:p-12 lg:p-14">
+      <div class="absolute -right-20 -top-24 h-72 w-72 rounded-full border border-white/10"></div><div class="absolute -right-8 -top-12 h-48 w-48 rounded-full border border-gold/40"></div>
+      <div class="relative grid lg:grid-cols-[1fr_auto] gap-8 items-center">
+        <div class="max-w-3xl"><p class="text-xs uppercase tracking-[.2em] text-amber-300 font-black">Need a more reliable Odoo process?</p><h2 class="text-3xl sm:text-4xl font-black mt-4">Make customer credits easier to trace, reconcile, and close.</h2><p class="text-white/75 mt-4 leading-relaxed">Accountrise supports Odoo accounting cleanup, receivables, reconciliation, and month-end workflows for businesses and accounting teams. Support starts at <strong class="text-white">$10/hour</strong>; final pricing depends on scope, transaction volume, complexity, and engagement requirements.</p></div>
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-3 min-w-fit"><a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-gold text-navy px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition text-center">Book Free Consultation</a><a href="mailto:info@accountrise.com" class="border border-white/30 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition text-center">Email Us</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 py-8 flex flex-col sm:flex-row gap-4 items-center justify-between text-sm text-slate-500"><p>© <span id="year"></span> Accountrise. Practical accounting support for growing businesses.</p><div class="flex gap-5"><a href="/" class="hover:text-navy">Home</a><a href="/services/" class="hover:text-navy">Services</a><a href="/blog/" class="hover:text-navy">Blog</a><a href="/about/" class="hover:text-navy">About Us</a></div></div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const scenarioButtons = document.querySelectorAll('.scenario-btn');
+    const scenarioPanels = document.querySelectorAll('.scenario-panel');
+    scenarioButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selected = button.dataset.scenario;
+        scenarioButtons.forEach((item) => {
+          const active = item === button;
+          item.setAttribute('aria-pressed', String(active));
+          item.classList.toggle('border-gold', active);
+          item.classList.toggle('bg-amber-50', active);
+          item.classList.toggle('border-slate-200', !active);
+        });
+        scenarioPanels.forEach((panel) => {
+          panel.hidden = panel.id !== `panel-${selected}`;
+        });
+      });
+    });
+    const checklist = document.querySelectorAll('#credit-checklist input[type="checkbox"]');
+    const progress = document.getElementById('check-progress');
+    function updateProgress() {
+      const complete = [...checklist].filter((item) => item.checked).length;
+      progress.textContent = `${complete} of ${checklist.length} review checks completed`;
+    }
+    checklist.forEach((item) => item.addEventListener('change', updateProgress));
+    document.getElementById('reset-checklist').addEventListener('click', () => {
+      checklist.forEach((item) => { item.checked = false; });
+      updateProgress();
+    });
+  </script>
+</body>
+</html>
