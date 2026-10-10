@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Manufacturing Costing: BOM, Work Centers, WIP &amp; COGS</title>
+  <meta name="description" content="A practical guide to Odoo manufacturing costing for US businesses. Review BoM costs, work-center rates, actual production variances, inventory valuation, WIP and COGS reconciliation.">
+  <meta name="keywords" content="Odoo manufacturing costing, Odoo BOM cost, Odoo bill of materials costing, Odoo work center cost, Odoo manufacturing variance, Odoo WIP accounting, Odoo COGS reconciliation, Odoo production order costing">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-manufacturing-costing-bom-wip-cogs.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Manufacturing Costing: BOM, Work Centers, WIP &amp; COGS">
+  <meta property="og:description" content="Trace planned versus actual manufacturing costs in Odoo, diagnose cost variances, and review inventory valuation and COGS with a practical close workflow.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-manufacturing-costing-bom-wip-cogs.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Manufacturing Costing: BOM, Work Centers, WIP &amp; COGS">
+  <meta name="twitter:description" content="A field guide to BOM costs, work-center rates, production variances, inventory valuation and COGS in Odoo.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: {
+      navy: '#002349', gold: '#957C3D', ink: '#132940', copper: '#E7A16F', cloud: '#F4F7FA', teal: '#8FD5C4', steel: '#D9E3EC'
+    }}}};
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .factory-hero {
+      background:
+        radial-gradient(circle at 82% 14%, rgba(143,213,196,.18), transparent 22%),
+        radial-gradient(circle at 15% 90%, rgba(231,161,111,.14), transparent 24%),
+        linear-gradient(140deg, #00162b 0%, #002349 54%, #0C3C57 100%);
+      position: relative;
+      isolation: isolate;
+    }
+    .factory-hero:before {
+      content:""; position:absolute; inset:0; z-index:-1; opacity:.21;
+      background-image:linear-gradient(rgba(255,255,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.10) 1px,transparent 1px);
+      background-size:36px 36px; mask-image:linear-gradient(to bottom,black,transparent 93%);
+    }
+    .soft-shadow { box-shadow: 0 20px 60px rgba(0,35,73,.09); }
+    .deep-shadow { box-shadow: 0 30px 90px rgba(0,14,33,.26); }
+    .rise { animation: riseIn .75s cubic-bezier(.2,.75,.2,1) both; }
+    .rise-delay-1 { animation-delay:.12s; }
+    .rise-delay-2 { animation-delay:.23s; }
+    .rise-delay-3 { animation-delay:.34s; }
+    @keyframes riseIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes pulseRing { 0%,100% { box-shadow:0 0 0 0 rgba(143,213,196,.22); } 50% { box-shadow:0 0 0 10px rgba(143,213,196,0); } }
+    @keyframes trace { from { stroke-dashoffset:180; } to { stroke-dashoffset:0; } }
+    .pulse-ring { animation:pulseRing 3.2s ease-in-out infinite; }
+    .trace-line { stroke-dasharray:180; animation:trace 2.2s ease-out both; }
+    .process-card { transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    .process-card:hover { transform:translateY(-4px); box-shadow:0 18px 42px rgba(0,35,73,.12); border-color:rgba(149,124,61,.45); }
+    .cost-row:nth-child(even) { background:#F7F9FB; }
+    details summary { list-style:none; cursor:pointer; }
+    details summary::-webkit-details-marker { display:none; }
+    details[open] .faq-plus { transform:rotate(45deg); }
+    .faq-plus { transition:transform .2s ease; }
+    .meter-fill { transition:width .35s ease; }
+    .mobile-menu[hidden] { display:none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#F5F7FA] text-[#132940] antialiased">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between gap-4">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]" aria-label="Accountrise home">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600" aria-label="Main navigation">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+      <button id="mobileMenuButton" class="md:hidden inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-[#002349]" aria-expanded="false" aria-controls="mobileMenu">
+        Menu <span aria-hidden="true">☰</span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden border-t border-slate-200 bg-white px-5 py-4" hidden>
+      <nav class="flex flex-col gap-4 text-sm font-semibold text-slate-700" aria-label="Mobile navigation">
+        <a href="/about/" class="hover:text-[#957C3D]">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D]">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D]">Blog</a>
+        <a href="#contact" class="hover:text-[#957C3D]">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: Factory Costing Lab — visual treatment intentionally distinct from the sales-process blueprint -->
+    <section class="factory-hero text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1.05fr_.95fr] gap-12 items-center">
+          <div class="rise">
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="rounded-full border border-[#8FD5C4]/30 bg-[#8FD5C4]/10 px-3 py-1.5 text-xs font-black uppercase tracking-[.18em] text-[#B8F0E2]">Odoo Manufacturing Finance</span>
+              <span class="text-sm text-slate-300">BOM • Work Centers • Cost Variance</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight">Odoo Manufacturing Costing: <span class="text-[#B8F0E2]">BOM, Work Centers, WIP &amp; COGS</span></h1>
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-2xl">When a product looks profitable in a quote but the margin shrinks after production, the problem may sit in component costs, operation time, scrap, inventory valuation, or the way production entries are reviewed. This field guide helps you connect those moving parts into a repeatable costing control.</p>
+            <div class="mt-8 flex flex-wrap gap-3 text-sm font-semibold">
+              <a href="#costing-workflow" class="rounded-full bg-[#8FD5C4] px-5 py-3 text-[#002349] hover:bg-[#B8F0E2] transition">Explore the workflow ↓</a>
+              <a href="#variance-lab" class="rounded-full border border-white/20 px-5 py-3 text-white hover:bg-white/10 transition">Open cost variance lab ↗</a>
+            </div>
+            <div class="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-400">
+              <span>Practical review process</span><span>•</span><span>Version/configuration aware</span><span>•</span><span>Built for finance + operations</span>
+            </div>
+          </div>
+
+          <div class="rise rise-delay-2 relative">
+            <div class="absolute -inset-5 rounded-[2.5rem] bg-[#8FD5C4]/[.07] blur-2xl"></div>
+            <div class="relative rounded-[2rem] border border-white/15 bg-white/[.07] p-5 sm:p-7 backdrop-blur deep-shadow">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <div class="text-xs font-black uppercase tracking-[.18em] text-[#B8F0E2]">Costing lab / unit 04</div>
+                  <h2 class="mt-2 text-2xl font-extrabold">Where does margin move?</h2>
+                </div>
+                <div class="pulse-ring grid size-12 place-items-center rounded-2xl border border-[#8FD5C4]/30 bg-[#8FD5C4]/10 text-2xl" aria-hidden="true">⌁</div>
+              </div>
+              <div class="mt-7 rounded-2xl border border-white/10 bg-[#00182F]/65 p-4 sm:p-5">
+                <div class="flex justify-between text-xs text-slate-400"><span>Illustrative expected unit cost</span><span>PLAN</span></div>
+                <div class="mt-1 flex items-end justify-between gap-3"><span class="text-3xl sm:text-4xl font-black tracking-tight">$130.00</span><span class="rounded-full bg-[#8FD5C4]/15 px-3 py-1 text-xs font-bold text-[#B8F0E2]">Baseline</span></div>
+                <div class="mt-5 h-px bg-white/10"></div>
+                <div class="mt-4 flex justify-between text-xs text-slate-400"><span>Illustrative actual unit cost</span><span>ACTUAL</span></div>
+                <div class="mt-1 flex items-end justify-between gap-3"><span class="text-3xl sm:text-4xl font-black tracking-tight text-[#F6C7A5]">$136.75</span><span class="rounded-full bg-[#E7A16F]/15 px-3 py-1 text-xs font-bold text-[#F6C7A5]">+$6.75 / unit</span></div>
+                <div class="mt-5 flex items-center gap-3">
+                  <div class="flex-1 h-2 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-[74%] rounded-full bg-[#8FD5C4]"></div></div>
+                  <span class="text-xs font-bold text-[#B8F0E2]">5.2% variance</span>
+                </div>
+              </div>
+              <div class="mt-4 grid grid-cols-3 gap-3">
+                <div class="rounded-xl bg-white/[.06] p-3"><div class="text-[10px] uppercase tracking-wider text-slate-400">Materials</div><div class="mt-1 text-sm font-extrabold">BoM</div></div>
+                <div class="rounded-xl bg-white/[.06] p-3"><div class="text-[10px] uppercase tracking-wider text-slate-400">Operations</div><div class="mt-1 text-sm font-extrabold">Time × rate</div></div>
+                <div class="rounded-xl bg-white/[.06] p-3"><div class="text-[10px] uppercase tracking-wider text-slate-400">Accounting</div><div class="mt-1 text-sm font-extrabold">Valuation</div></div>
+              </div>
+              <p class="mt-4 text-xs leading-relaxed text-slate-400">Illustrative figures only. Actual cost calculation and journal behavior depend on product costing, valuation settings, manufacturing configuration and Odoo version.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-[#E7F4EF] text-lg">⌖</span><div><p class="font-bold text-[#002349]">The goal: explain the gap, not just report it</p><p class="text-sm text-slate-500">Use the records behind the number to understand cost and margin.</p></div></div>
+        <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-slate-600" aria-label="Article contents">
+          <a href="#costing-foundation" class="hover:text-[#957C3D]">Costing foundations</a><a href="#costing-workflow" class="hover:text-[#957C3D]">Workflow</a><a href="#variance-lab" class="hover:text-[#957C3D]">Variance lab</a><a href="#month-end" class="hover:text-[#957C3D]">Month-end</a><a href="#faqs" class="hover:text-[#957C3D]">FAQs</a>
+        </nav>
+      </div>
+    </section>
+
+    <section id="costing-foundation" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">01 / Before you diagnose</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Separate product cost, production performance, and inventory value.</h2>
+          <p class="mt-5 leading-relaxed text-slate-600">These measures are related, but they answer different questions. Looking at only one number can send the team toward the wrong fix.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow">
+            <div class="flex items-center justify-between"><span class="rounded-full bg-[#E7F4EF] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#1C7058]">Plan</span><span class="text-2xl">▤</span></div>
+            <h3 class="mt-5 text-xl font-extrabold text-[#002349]">BoM / expected cost</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">What should a unit consume under the assumptions used for the bill of materials and operations? Check quantities, units of measure, scrap assumptions, component cost and routing.</p>
+            <div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: are assumptions current?</div>
+          </article>
+          <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow">
+            <div class="flex items-center justify-between"><span class="rounded-full bg-[#FFF1E7] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#98572C]">Actual</span><span class="text-2xl">◷</span></div>
+            <h3 class="mt-5 text-xl font-extrabold text-[#002349]">Production performance</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">What material was actually consumed, what quantity was produced, and how much time or outside processing was recorded? Include scrap, rework and partial production where applicable.</p>
+            <div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: what changed on the shop floor?</div>
+          </article>
+          <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow">
+            <div class="flex items-center justify-between"><span class="rounded-full bg-[#EBF1FD] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#315B9B]">Value</span><span class="text-2xl">◫</span></div>
+            <h3 class="mt-5 text-xl font-extrabold text-[#002349]">Inventory valuation</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">What amount is reflected in stock valuation and related accounts? Review product category accounts, valuation method, stock moves, journal entries and the relevant accounting configuration.</p>
+            <div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: do stock and ledger agree?</div>
+          </article>
+          <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow">
+            <div class="flex items-center justify-between"><span class="rounded-full bg-[#F0EBFA] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#6A4D9A]">Margin</span><span class="text-2xl">↗</span></div>
+            <h3 class="mt-5 text-xl font-extrabold text-[#002349]">COGS and profitability</h3>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">What cost reaches the income statement when finished goods are delivered or sold, given the configured flow? Review the transaction path and do not assume every setup posts identical entries.</p>
+            <div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: is margin measured consistently?</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#EAF0F5] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-18">
+        <div class="max-w-3xl">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">02 / Root-cause map</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Start with the symptom. Follow the record.</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Instead of making a manual journal entry as the first response, trace the operational transaction that created the difference. These checks help narrow the investigation.</p>
+        </div>
+        <div class="mt-9 overflow-hidden rounded-3xl border border-slate-200 bg-white soft-shadow">
+          <div class="grid md:grid-cols-[.76fr_1.24fr]">
+            <div class="bg-[#002349] p-6 sm:p-8 text-white">
+              <div class="text-xs font-black uppercase tracking-[.18em] text-[#B8F0E2]">Choose a symptom</div>
+              <label for="symptomSelect" class="mt-5 block text-sm font-bold text-slate-200">What are you seeing?</label>
+              <select id="symptomSelect" class="mt-2 w-full rounded-xl border border-white/15 bg-[#07345A] px-4 py-3 text-white outline-none focus:ring-2 focus:ring-[#8FD5C4]">
+                <option value="materials">Material cost is higher than expected</option>
+                <option value="labor">Labor or operation cost looks wrong</option>
+                <option value="output">Output quantity or scrap differs</option>
+                <option value="valuation">Inventory valuation does not match the ledger</option>
+                <option value="margin">Gross margin changed after delivery</option>
+              </select>
+              <p class="mt-5 text-sm leading-relaxed text-slate-300">Treat this as a triage guide, not a substitute for reviewing the actual Odoo records and settings.</p>
+            </div>
+            <div class="p-6 sm:p-8">
+              <div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-[#E7F4EF] text-[#17674F] font-black">→</span><div><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Investigation path</div><h3 id="symptomTitle" class="mt-1 text-xl sm:text-2xl font-black text-[#002349]">Material cost is higher than expected</h3></div></div>
+              <p id="symptomSummary" class="mt-5 leading-relaxed text-slate-600">Compare the component list and required quantities with the materials actually consumed. Check purchase price changes, vendor bills, units of measure, substitutions and scrap.</p>
+              <div class="mt-6 grid sm:grid-cols-2 gap-4">
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs font-black uppercase tracking-wider text-slate-500">Inspect first</div><p id="symptomInspect" class="mt-2 text-sm font-semibold leading-relaxed text-[#002349]">BoM component lines, stock moves, consumption quantities and component cost history.</p></div>
+                <div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs font-black uppercase tracking-wider text-slate-500">Avoid</div><p id="symptomAvoid" class="mt-2 text-sm font-semibold leading-relaxed text-[#002349]">Changing the finished-product cost before understanding the source of the difference.</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="costing-workflow" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+        <div class="max-w-3xl"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">03 / Operational workflow</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">A repeatable six-stage Odoo manufacturing costing review</h2><p class="mt-4 leading-relaxed text-slate-600">Document who owns each check, which source document supports it, and when unresolved differences must be escalated.</p></div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600"><span class="size-2 rounded-full bg-[#43A987]"></span> Control path</span>
+      </div>
+      <div class="mt-10 grid sm:grid-cols-2 xl:grid-cols-3 gap-5">
+        <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 soft-shadow"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Stage 01</span><span class="grid size-11 place-items-center rounded-2xl bg-[#EAF2F8] text-xl">▦</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Confirm product costing setup</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Review product category, cost method, inventory valuation approach, UoM, company, and relevant stock or production accounts. Confirm whether the product uses standard price, AVCO, FIFO or another supported configuration relevant to your version.</p><div class="mt-5 rounded-xl bg-[#F5F7FA] px-4 py-3 text-xs font-semibold text-slate-600">Output: documented baseline assumptions</div></article>
+        <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 soft-shadow"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Stage 02</span><span class="grid size-11 place-items-center rounded-2xl bg-[#E7F4EF] text-xl">⌘</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Validate the bill of materials</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Check component quantities, units of measure, variants, BoM versions, substitutions, scrap assumptions, and whether the production order used the expected BoM. Verify that component costs are current enough for the costing purpose.</p><div class="mt-5 rounded-xl bg-[#F5F7FA] px-4 py-3 text-xs font-semibold text-slate-600">Output: approved component model</div></article>
+        <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 soft-shadow"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Stage 03</span><span class="grid size-11 place-items-center rounded-2xl bg-[#FFF1E7] text-xl">◷</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Review routing and work centers</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Check the operation sequence, expected duration, work-center cost assumptions, recorded time, capacity and any outside-processing or subcontract costs that belong in the unit economics. Avoid treating estimated labor as actual unless the process supports that interpretation.</p><div class="mt-5 rounded-xl bg-[#F5F7FA] px-4 py-3 text-xs font-semibold text-slate-600">Output: realistic operation assumptions</div></article>
+        <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 soft-shadow"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Stage 04</span><span class="grid size-11 place-items-center rounded-2xl bg-[#F0EBFA] text-xl">▣</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Reconcile consumption and output</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Compare planned versus consumed components and planned versus completed quantity. Review partial production, scrap, returns, rework, substitutions, unrecorded consumption, and corrections made after the order was completed.</p><div class="mt-5 rounded-xl bg-[#F5F7FA] px-4 py-3 text-xs font-semibold text-slate-600">Output: validated production records</div></article>
+        <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 soft-shadow"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Stage 05</span><span class="grid size-11 place-items-center rounded-2xl bg-[#EBF1FD] text-xl">⇄</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Trace valuation and journal entries</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Open the relevant stock moves and accounting entries. Check the configured stock valuation method, journal, product category accounts and interim/clearing accounts where used. WIP accounting behavior varies by version and setup, so verify the actual transaction rather than assuming a universal posting pattern.</p><div class="mt-5 rounded-xl bg-[#F5F7FA] px-4 py-3 text-xs font-semibold text-slate-600">Output: traceable ledger impact</div></article>
+        <article class="process-card rounded-3xl border border-slate-200 bg-white p-6 soft-shadow"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Stage 06</span><span class="grid size-11 place-items-center rounded-2xl bg-[#F8EBDD] text-xl">⌁</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Explain the variance and close</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Group differences by cause—price, quantity, time, yield, valuation or timing. Assign owners and due dates. Reconcile inventory control accounts to valuation reports and verify that COGS follows the configured delivery and accounting flow.</p><div class="mt-5 rounded-xl bg-[#F5F7FA] px-4 py-3 text-xs font-semibold text-slate-600">Output: signed-off variance record</div></article>
+      </div>
+    </section>
+
+    <section id="variance-lab" class="bg-[#002349] text-white overflow-hidden relative">
+      <div class="absolute -right-24 -top-24 size-96 rounded-full border border-white/10"></div><div class="absolute -right-12 -top-12 size-72 rounded-full border border-[#8FD5C4]/20"></div>
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20 relative">
+        <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 items-start">
+          <div><p class="text-xs font-black uppercase tracking-[.2em] text-[#B8F0E2]">04 / Interactive variance lab</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight">Estimate the cost difference before you investigate.</h2><p class="mt-5 leading-relaxed text-slate-300">Enter illustrative expected cost elements and actual unit cost. The calculator estimates the per-unit and batch variance so the team can prioritize the review. It is a management aid—not an Odoo valuation engine or a substitute for checking posted records.</p><div class="mt-7 rounded-2xl border border-white/10 bg-white/[.06] p-5"><div class="text-sm font-extrabold text-[#B8F0E2]">How to interpret the result</div><p class="mt-2 text-sm leading-relaxed text-slate-300">A positive difference means actual unit cost is above the expected baseline; a negative difference means it is below. Favorable does not automatically mean correct—missing consumption or unrecorded production time can make actuals look artificially low.</p></div></div>
+          <div class="rounded-[2rem] border border-white/15 bg-white p-5 sm:p-8 text-[#132940] soft-shadow">
+            <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3"><div><div class="text-xs font-black uppercase tracking-[.18em] text-[#957C3D]">Cost calculator</div><h3 class="mt-2 text-2xl font-black text-[#002349]">Expected vs. actual</h3></div><span class="rounded-full bg-[#E7F4EF] px-3 py-1.5 text-xs font-black text-[#17674F]">Example only</span></div>
+            <div class="mt-6 grid sm:grid-cols-2 gap-4">
+              <label class="block"><span class="text-sm font-bold text-slate-600">Material cost / unit ($)</span><input id="matCost" type="number" min="0" step="0.01" value="82" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-semibold outline-none focus:ring-2 focus:ring-[#8FD5C4]"></label>
+              <label class="block"><span class="text-sm font-bold text-slate-600">Labor / operations ($)</span><input id="laborCost" type="number" min="0" step="0.01" value="24" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-semibold outline-none focus:ring-2 focus:ring-[#8FD5C4]"></label>
+              <label class="block"><span class="text-sm font-bold text-slate-600">Overhead estimate ($)</span><input id="overheadCost" type="number" min="0" step="0.01" value="19" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-semibold outline-none focus:ring-2 focus:ring-[#8FD5C4]"></label>
+              <label class="block"><span class="text-sm font-bold text-slate-600">Other planned cost ($)</span><input id="otherCost" type="number" min="0" step="0.01" value="5" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-semibold outline-none focus:ring-2 focus:ring-[#8FD5C4]"></label>
+              <label class="block"><span class="text-sm font-bold text-slate-600">Actual cost / unit ($)</span><input id="actualCost" type="number" min="0" step="0.01" value="136.75" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-semibold outline-none focus:ring-2 focus:ring-[#8FD5C4]"></label>
+              <label class="block"><span class="text-sm font-bold text-slate-600">Units produced</span><input id="unitsProduced" type="number" min="0" step="1" value="100" class="mt-2 w-full rounded-xl border border-slate-200 px-4 py-3 font-semibold outline-none focus:ring-2 focus:ring-[#8FD5C4]"></label>
+            </div>
+            <div class="mt-6 grid sm:grid-cols-3 gap-3">
+              <div class="rounded-2xl bg-[#F5F7FA] p-4"><div class="text-xs font-bold text-slate-500">Expected unit cost</div><div id="expectedOutput" class="mt-2 text-2xl font-black text-[#002349]">$130.00</div></div>
+              <div class="rounded-2xl bg-[#F5F7FA] p-4"><div class="text-xs font-bold text-slate-500">Variance / unit</div><div id="varianceOutput" class="mt-2 text-2xl font-black text-[#A85C30]">+$6.75</div></div>
+              <div class="rounded-2xl bg-[#F5F7FA] p-4"><div class="text-xs font-bold text-slate-500">Batch variance</div><div id="batchOutput" class="mt-2 text-2xl font-black text-[#A85C30]">+$675.00</div></div>
+            </div>
+            <div class="mt-5"><div class="flex items-center justify-between text-xs font-bold text-slate-500"><span>Variance as % of expected cost</span><span id="percentOutput">5.2%</span></div><div class="mt-2 h-2.5 rounded-full bg-slate-100 overflow-hidden"><div id="varianceMeter" class="meter-fill h-full w-[52%] rounded-full bg-[#D78B59]"></div></div></div>
+            <p id="calculatorNote" aria-live="polite" class="mt-5 rounded-xl border border-slate-200 p-4 text-sm leading-relaxed text-slate-600">Actual cost is above the modeled baseline. Investigate price changes, excess consumption, recorded time, yield and costing assumptions before deciding on an accounting adjustment.</p>
+            <button id="resetCalculator" type="button" class="mt-4 text-sm font-bold text-[#002349] underline underline-offset-4 hover:text-[#957C3D]">Reset example values</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[1fr_.72fr] gap-10">
+        <div>
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">05 / Costing controls</p>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Five controls that make the numbers more dependable</h2>
+          <div class="mt-8 space-y-4">
+            <div class="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5"><span class="grid size-10 shrink-0 place-items-center rounded-xl bg-[#E7F4EF] font-black text-[#17674F]">01</span><div><h3 class="font-extrabold text-[#002349]">Use controlled BoM changes</h3><p class="mt-1 text-sm leading-relaxed text-slate-600">Set a process for reviewing component substitutions, quantities, engineering revisions and effective dates. Retain enough evidence to explain which design or recipe was used for a production order.</p></div></div>
+            <div class="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5"><span class="grid size-10 shrink-0 place-items-center rounded-xl bg-[#EAF1FC] font-black text-[#315B9B]">02</span><div><h3 class="font-extrabold text-[#002349]">Review master data after price changes</h3><p class="mt-1 text-sm leading-relaxed text-slate-600">Decide when purchase-price movement should trigger a standard-cost review or a management cost update. Do not assume a vendor bill automatically revises every product cost field or every previously posted inventory value.</p></div></div>
+            <div class="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5"><span class="grid size-10 shrink-0 place-items-center rounded-xl bg-[#FFF1E7] font-black text-[#98572C]">03</span><div><h3 class="font-extrabold text-[#002349]">Record output, scrap and time promptly</h3><p class="mt-1 text-sm leading-relaxed text-slate-600">Use clear cutoffs for material consumption, finished quantity, scrap, rework and work-center time. Late records can shift a variance from one period to another and distort unit economics.</p></div></div>
+            <div class="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5"><span class="grid size-10 shrink-0 place-items-center rounded-xl bg-[#F0EBFA] font-black text-[#6A4D9A]">04</span><div><h3 class="font-extrabold text-[#002349]">Reconcile inventory valuation to accounts</h3><p class="mt-1 text-sm leading-relaxed text-slate-600">At period-end, compare the relevant stock valuation report or detailed valuation records with the GL control account. Investigate timing, manual journals, account mapping, product categories, negative stock and unvalidated or corrected transactions where relevant.</p></div></div>
+            <div class="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5"><span class="grid size-10 shrink-0 place-items-center rounded-xl bg-[#F8EBDD] font-black text-[#95652B]">05</span><div><h3 class="font-extrabold text-[#002349]">Keep a variance owner and explanation</h3><p class="mt-1 text-sm leading-relaxed text-slate-600">Log amount, root cause, affected orders, proposed action, owner and resolution date. Separate operational fixes from accounting corrections, and approve journal entries through your normal review controls.</p></div></div>
+          </div>
+        </div>
+        <aside id="month-end" class="rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8 soft-shadow h-fit lg:sticky lg:top-28">
+          <div class="flex items-start justify-between gap-4"><div><p class="text-xs font-black uppercase tracking-[.18em] text-[#957C3D]">06 / Period-end</p><h2 class="mt-2 text-2xl font-black text-[#002349]">Manufacturing close checklist</h2></div><span class="grid size-12 place-items-center rounded-2xl bg-[#E7F4EF] text-2xl">✓</span></div>
+          <p class="mt-3 text-sm leading-relaxed text-slate-600">Check off items as your team completes the review. Progress is local to this page and is not saved to an account.</p>
+          <div class="mt-5 flex items-center justify-between text-sm"><span class="font-bold text-slate-600">Readiness</span><span id="checkProgressText" class="font-black text-[#002349]">0 of 7</span></div>
+          <div class="mt-2 h-2 rounded-full bg-slate-100 overflow-hidden"><div id="checkProgressBar" class="meter-fill h-full w-0 rounded-full bg-[#43A987]"></div></div>
+          <div class="mt-5 space-y-3" id="closeChecklist">
+            <label class="flex gap-3 rounded-xl bg-[#F7F9FB] p-3 text-sm leading-relaxed"><input type="checkbox" class="mt-1 accent-[#2D9476]"><span>Confirm the period cutoff for manufacturing orders and stock moves.</span></label>
+            <label class="flex gap-3 rounded-xl bg-[#F7F9FB] p-3 text-sm leading-relaxed"><input type="checkbox" class="mt-1 accent-[#2D9476]"><span>Review open, partially completed, cancelled and late production orders.</span></label>
+            <label class="flex gap-3 rounded-xl bg-[#F7F9FB] p-3 text-sm leading-relaxed"><input type="checkbox" class="mt-1 accent-[#2D9476]"><span>Investigate unusual consumption, negative quantities, scrap or rework.</span></label>
+            <label class="flex gap-3 rounded-xl bg-[#F7F9FB] p-3 text-sm leading-relaxed"><input type="checkbox" class="mt-1 accent-[#2D9476]"><span>Review component prices and material availability changes.</span></label>
+            <label class="flex gap-3 rounded-xl bg-[#F7F9FB] p-3 text-sm leading-relaxed"><input type="checkbox" class="mt-1 accent-[#2D9476]"><span>Inspect work-center time and other operation costs where applicable.</span></label>
+            <label class="flex gap-3 rounded-xl bg-[#F7F9FB] p-3 text-sm leading-relaxed"><input type="checkbox" class="mt-1 accent-[#2D9476]"><span>Reconcile inventory valuation records to the correct general-ledger accounts.</span></label>
+            <label class="flex gap-3 rounded-xl bg-[#F7F9FB] p-3 text-sm leading-relaxed"><input type="checkbox" class="mt-1 accent-[#2D9476]"><span>Document material variances and obtain review/approval for corrections.</span></label>
+          </div>
+          <button id="resetChecklist" class="mt-5 text-sm font-bold text-[#002349] underline underline-offset-4 hover:text-[#957C3D]" type="button">Clear checklist</button>
+        </aside>
+      </div>
+    </section>
+
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-18">
+        <div class="max-w-3xl"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">07 / Common pitfalls</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Mistakes that make manufacturing cost reports harder to trust</h2></div>
+        <div class="mt-8 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <article class="rounded-2xl border border-slate-200 p-5"><h3 class="font-extrabold text-[#002349]">Treating the BoM as the actual result</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">A BoM represents expected structure or consumption rules. Actual consumption, yield, operation time, and cost measurement need their own review.</p></article>
+          <article class="rounded-2xl border border-slate-200 p-5"><h3 class="font-extrabold text-[#002349]">Assuming one WIP journal pattern</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">Posting behavior differs across Odoo versions and configurations. Review the actual entries created by your company setup and documented accounting policy.</p></article>
+          <article class="rounded-2xl border border-slate-200 p-5"><h3 class="font-extrabold text-[#002349]">Changing product cost to force a match</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">A manual change may hide the originating error or affect future transactions. Trace source documents and apply controlled correction methods.</p></article>
+          <article class="rounded-2xl border border-slate-200 p-5"><h3 class="font-extrabold text-[#002349]">Ignoring quantity and UoM conversions</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">A component may be purchased, stocked and consumed in different units. Confirm conversion factors and rounding where values appear unexpectedly large or small.</p></article>
+          <article class="rounded-2xl border border-slate-200 p-5"><h3 class="font-extrabold text-[#002349]">Closing without reconciling valuation</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">A clean production order does not by itself prove inventory and GL balances are aligned. Reconcile the reports and investigate reconciling items.</p></article>
+          <article class="rounded-2xl border border-slate-200 p-5"><h3 class="font-extrabold text-[#002349]">Reviewing only at year-end</h3><p class="mt-2 text-sm leading-relaxed text-slate-600">Monthly or order-level exception reviews can surface supplier-price drift, high scrap rates and inaccurate operation times before they accumulate.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faqs" class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">08 / Frequently asked questions</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Odoo manufacturing costing FAQs</h2><p class="mt-4 leading-relaxed text-slate-600">Use these as starting points; validate details against your Odoo edition, version, installed apps and accounting setup.</p></div>
+      <div class="mt-9 space-y-3">
+        <details class="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">How does Odoo calculate manufacturing cost?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">The costing view can involve component costs from the BoM, operational costs from work centers or recorded operations, and the selected product costing and inventory valuation approach. Exact calculations and accounting entries depend on version, configuration, costing method and how production is recorded. Review actual stock moves and journal entries to confirm how your database behaves.</p></details>
+        <details class="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">What is the difference between standard cost, AVCO and FIFO in Odoo?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">They are different cost measurement methods and can affect how cost changes are reflected. Standard cost generally uses a maintained cost; average cost uses a moving average approach; FIFO assigns costs based on the relevant incoming layers. Availability, behavior and consequences depend on product configuration, localization and Odoo version. Choose a method that fits the business and accounting policy, then test representative transactions before going live.</p></details>
+        <details class="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Does Odoo automatically post every manufacturing cost to WIP?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">Do not assume one universal WIP posting pattern. The entries produced depend on the Odoo version, accounting and inventory valuation settings, product categories, manufacturing configuration and process used. Inspect the transactions generated in your database and align them with the company's documented accounting treatment.</p></details>
+        <details class="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Why does the BoM cost differ from the finished product's inventory value?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">The BoM may express expected components or operation assumptions, while inventory valuation reflects the method and transactions actually recorded. Differences may arise from price changes, quantities, scrap, work-center time, cost method, landed costs, timing, valuation settings or the product's accounting configuration. Trace a representative production order from component consumption to finished-product receipt and its accounting impact.</p></details>
+        <details class="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">How often should we review production cost variances?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">Set frequency based on production volume, margin sensitivity, cost volatility and close requirements. Many teams review high-value or unusual exceptions during the month and complete a documented variance and inventory valuation review at month-end. Define thresholds and owners rather than treating every variance the same way.</p></details>
+        <details class="group rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Can an outsourced Odoo accountant help with costing and close controls?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">Yes. Remote accounting support can help review account mappings, reconcile inventory valuation, investigate production-related entries, prepare variance schedules and strengthen month-end documentation. The scope should distinguish accounting review from operational master-data changes and system implementation work.</p></details>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-14 lg:pb-20">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5"><div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">Keep improving the process</p><h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349]">Related Odoo accounting guides</h2></div><a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D]">View all articles →</a></div>
+      <div class="mt-7 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-inventory-valuation-not-matching.html" class="group rounded-3xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-xl"><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Inventory Accounting</div><h3 class="mt-3 text-xl font-extrabold leading-snug text-[#002349] group-hover:text-[#957C3D]">Odoo Inventory Valuation Not Matching the Balance Sheet</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Trace valuation differences and reconcile stock records to the general ledger.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read article →</span></a>
+        <a href="/blog/odoo-landed-costs-inventory-cogs.html" class="group rounded-3xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-xl"><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Inventory Costing</div><h3 class="mt-3 text-xl font-extrabold leading-snug text-[#002349] group-hover:text-[#957C3D]">Odoo Landed Costs: Inventory Value and COGS</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Review freight, duty and other eligible landed-cost allocation controls.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read article →</span></a>
+        <a href="/blog/odoo-analytic-accounting-profitability.html" class="group rounded-3xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-xl"><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Management Accounting</div><h3 class="mt-3 text-xl font-extrabold leading-snug text-[#002349] group-hover:text-[#957C3D]">Odoo Analytic Accounting for Product and Job Profitability</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Use analytic dimensions to understand margins by project, product line or department.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read article →</span></a>
+      </div>
+    </section>
+
+    <!-- Single end-of-article CTA -->
+    <section id="contact" class="bg-[#002349] text-white overflow-hidden relative">
+      <div class="absolute -left-24 -bottom-32 size-80 rounded-full border border-white/10"></div>
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center relative">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#B8F0E2]">Professional Odoo accounting support</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Get clearer manufacturing costs—without automatically adding full-time overhead.</h2>
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise provides remote Odoo accounting support for US manufacturers and growing businesses, including inventory-to-ledger reconciliation, month-end review, production-cost analysis and finance process documentation. Bring in experienced support for the work you need, with a defined scope and documented controls.</p>
+          <div class="mt-7 inline-flex items-center gap-2 rounded-full border border-[#8FD5C4]/30 bg-[#8FD5C4]/10 px-4 py-2 text-sm font-bold text-[#B8F0E2]">Odoo accounting support starting at $12/hour</div>
+          <p class="mt-3 text-sm text-slate-400">Final pricing depends on scope, transaction volume, complexity, system configuration and engagement requirements.</p>
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile navigation dropdown
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuButton.addEventListener('click', () => {
+      const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.hidden = expanded;
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileMenu.hidden = true;
+      mobileMenuButton.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Symptom-led diagnostic guide
+    const symptoms = {
+      materials: {
+        title: 'Material cost is higher than expected',
+        summary: 'Compare the component list and required quantities with the materials actually consumed. Check purchase price changes, vendor bills, units of measure, substitutions and scrap.',
+        inspect: 'BoM component lines, stock moves, consumption quantities and component cost history.',
+        avoid: 'Changing the finished-product cost before understanding the source of the difference.'
+      },
+      labor: {
+        title: 'Labor or operation cost looks wrong',
+        summary: 'Review the routing, expected cycle time, work-center cost assumptions and actual durations. Confirm whether operation time was recorded, estimated, or left blank under the process your team uses.',
+        inspect: 'BoM operations, work-center configuration, productivity records and time tracking settings.',
+        avoid: 'Assuming planned duration and recorded duration are equivalent in every report or configuration.'
+      },
+      output: {
+        title: 'Output quantity or scrap differs',
+        summary: 'Compare completed quantity to consumed materials and the production plan. Look for partial production, scrap, rework, component returns, substitutions or late quantity corrections.',
+        inspect: 'Manufacturing order quantities, component moves, scrap records, lots/serials where used and completion history.',
+        avoid: 'Dividing total consumption by the planned quantity when actual good output was different.'
+      },
+      valuation: {
+        title: 'Inventory valuation does not match the ledger',
+        summary: 'Trace a representative stock move to its related accounting impact. Review valuation method, stock accounts, product category mapping, dates, manual entries and the report filters used in the comparison.',
+        inspect: 'Inventory valuation details, general ledger, product categories, stock journals and period cutoff.',
+        avoid: 'Posting a balancing journal before identifying timing, mapping or transaction-level causes.'
+      },
+      margin: {
+        title: 'Gross margin changed after delivery',
+        summary: 'Trace the finished product from production completion through stock valuation and delivery. Confirm which cost method and accounting flow determine the reported cost of goods sold.',
+        inspect: 'Sales and delivery records, product costing settings, stock valuation moves, COGS accounts and reporting date filters.',
+        avoid: 'Assuming the sales invoice alone explains the COGS amount or its posting date.'
+      }
+    };
+    document.getElementById('symptomSelect').addEventListener('change', function () {
+      const item = symptoms[this.value];
+      document.getElementById('symptomTitle').textContent = item.title;
+      document.getElementById('symptomSummary').textContent = item.summary;
+      document.getElementById('symptomInspect').textContent = item.inspect;
+      document.getElementById('symptomAvoid').textContent = item.avoid;
+    });
+
+    // Interactive illustrative costing calculator
+    const calcIds = ['matCost', 'laborCost', 'overheadCost', 'otherCost', 'actualCost', 'unitsProduced'];
+    const initialCalc = { matCost: '82', laborCost: '24', overheadCost: '19', otherCost: '5', actualCost: '136.75', unitsProduced: '100' };
+    const money = n => (n < 0 ? '-$' : '$') + Math.abs(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    function updateCalculator() {
+      const values = Object.fromEntries(calcIds.map(id => [id, Math.max(0, Number(document.getElementById(id).value) || 0)]));
+      const expected = values.matCost + values.laborCost + values.overheadCost + values.otherCost;
+      const variance = values.actualCost - expected;
+      const batchVariance = variance * values.unitsProduced;
+      const pct = expected > 0 ? (variance / expected) * 100 : 0;
+      document.getElementById('expectedOutput').textContent = money(expected);
+      document.getElementById('varianceOutput').textContent = (variance > 0 ? '+' : '') + money(variance);
+      document.getElementById('batchOutput').textContent = (batchVariance > 0 ? '+' : '') + money(batchVariance);
+      document.getElementById('percentOutput').textContent = (pct > 0 ? '+' : '') + pct.toFixed(1) + '%';
+      const meter = document.getElementById('varianceMeter');
+      meter.style.width = Math.min(100, Math.abs(pct) * 10) + '%';
+      meter.className = 'meter-fill h-full rounded-full ' + (variance > 0 ? 'bg-[#D78B59]' : variance < 0 ? 'bg-[#43A987]' : 'bg-[#8AA0B8]');
+      const note = variance > 0
+        ? 'Actual cost is above the modeled baseline. Investigate price changes, excess consumption, recorded time, yield and costing assumptions before deciding on an accounting adjustment.'
+        : variance < 0
+          ? 'Actual cost is below the modeled baseline. Check whether the difference reflects real efficiency or incomplete material consumption, missing labor time, unrecorded scrap or a costing assumption that needs review.'
+          : 'The modeled actual and expected unit costs match. Still verify that the records are complete and that the expected baseline reflects the correct BoM, routing and costing assumptions.';
+      document.getElementById('calculatorNote').textContent = note;
+    }
+    calcIds.forEach(id => document.getElementById(id).addEventListener('input', updateCalculator));
+    document.getElementById('resetCalculator').addEventListener('click', () => {
+      Object.entries(initialCalc).forEach(([id, value]) => document.getElementById(id).value = value);
+      updateCalculator();
+    });
+
+    // Month-end checklist progress tracker
+    const checklistBoxes = Array.from(document.querySelectorAll('#closeChecklist input[type="checkbox"]'));
+    function updateChecklist() {
+      const count = checklistBoxes.filter(box => box.checked).length;
+      document.getElementById('checkProgressText').textContent = `${count} of ${checklistBoxes.length}`;
+      document.getElementById('checkProgressBar').style.width = `${(count / checklistBoxes.length) * 100}%`;
+    }
+    checklistBoxes.forEach(box => box.addEventListener('change', updateChecklist));
+    document.getElementById('resetChecklist').addEventListener('click', () => {
+      checklistBoxes.forEach(box => box.checked = false);
+      updateChecklist();
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Manufacturing Costing: BOM, Work Centers, WIP & COGS",
+    "description": "A practical guide to Odoo manufacturing costing for US businesses, covering BoM cost assumptions, work-center rates, production variances, inventory valuation, WIP and COGS reconciliation.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.accountrise.com/blog/odoo-manufacturing-costing-bom-wip-cogs.html" },
+    "url": "https://www.accountrise.com/blog/odoo-manufacturing-costing-bom-wip-cogs.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "How does Odoo calculate manufacturing cost?", "acceptedAnswer": { "@type": "Answer", "text": "The costing view can involve component costs from the BoM, operational costs from work centers or recorded operations, and the selected product costing and inventory valuation approach. Exact calculations and accounting entries depend on version, configuration, costing method and how production is recorded. Review actual stock moves and journal entries to confirm how your database behaves." } },
+      { "@type": "Question", "name": "What is the difference between standard cost, AVCO and FIFO in Odoo?", "acceptedAnswer": { "@type": "Answer", "text": "They are different cost measurement methods and can affect how cost changes are reflected. Standard cost generally uses a maintained cost; average cost uses a moving average approach; FIFO assigns costs based on the relevant incoming layers. Availability, behavior and consequences depend on product configuration, localization and Odoo version." } },
+      { "@type": "Question", "name": "Does Odoo automatically post every manufacturing cost to WIP?", "acceptedAnswer": { "@type": "Answer", "text": "Do not assume one universal WIP posting pattern. The entries produced depend on the Odoo version, accounting and inventory valuation settings, product categories, manufacturing configuration and process used. Inspect the transactions generated in your database and align them with the company's documented accounting treatment." } },
+      { "@type": "Question", "name": "Why does the BoM cost differ from the finished product's inventory value?", "acceptedAnswer": { "@type": "Answer", "text": "The BoM may express expected components or operation assumptions, while inventory valuation reflects the method and transactions actually recorded. Differences may arise from price changes, quantities, scrap, work-center time, cost method, landed costs, timing, valuation settings or the product's accounting configuration." } },
+      { "@type": "Question", "name": "How often should we review production cost variances?", "acceptedAnswer": { "@type": "Answer", "text": "Set frequency based on production volume, margin sensitivity, cost volatility and close requirements. Many teams review high-value or unusual exceptions during the month and complete a documented variance and inventory valuation review at month-end." } },
+      { "@type": "Question", "name": "Can an outsourced Odoo accountant help with costing and close controls?", "acceptedAnswer": { "@type": "Answer", "text": "Remote accounting support can help review account mappings, reconcile inventory valuation, investigate production-related entries, prepare variance schedules and strengthen month-end documentation. The scope should distinguish accounting review from operational master-data changes and system implementation work." } }
+    ]
+  }
+  </script>
+</body>
+</html>
