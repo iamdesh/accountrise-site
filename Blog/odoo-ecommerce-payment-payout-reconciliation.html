@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Ecommerce Accounting: Reconcile Shopify, Stripe & Marketplace Payouts</title>
+  <meta name="description" content="Learn how to reconcile ecommerce sales, payment processor fees, refunds, chargebacks and bank payouts in Odoo. Practical controls for US online sellers.">
+  <meta name="keywords" content="Odoo ecommerce accounting, Odoo Shopify reconciliation, Odoo Stripe reconciliation, ecommerce payout reconciliation, payment processor clearing account, marketplace fees accounting, Odoo refunds, ecommerce month end close">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-ecommerce-payment-payout-reconciliation.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Ecommerce Accounting: Reconcile Shopify, Stripe & Marketplace Payouts">
+  <meta property="og:description" content="Connect storefront sales, refunds, processor fees, reserves and bank deposits with a practical Odoo ecommerce reconciliation workflow.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-ecommerce-payment-payout-reconciliation.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Ecommerce Accounting: Reconcile Shopify, Stripe & Marketplace Payouts">
+  <meta name="twitter:description" content="A practical Odoo accounting workflow for ecommerce sales, payment fees, refunds and payout reconciliation.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: {
+      navy: '#002349', gold: '#957C3D', ink: '#15283D', mint: '#BDE7D5', coral: '#FF9B7A', paper: '#F7F5F0', bluepop: '#70B7E5', line: '#DDE4E9'
+    }}}};
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .settlement-hero { background: radial-gradient(circle at 85% 12%, rgba(112,183,229,.23), transparent 22%), radial-gradient(circle at 12% 86%, rgba(255,155,122,.15), transparent 25%), linear-gradient(132deg,#00162c 0%,#002349 52%,#103b5a 100%); isolation:isolate; position:relative; }
+    .settlement-hero:before { content:""; position:absolute; inset:0; z-index:-1; opacity:.14; background-image:linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px); background-size:31px 31px; mask-image:linear-gradient(to bottom,black,transparent 94%); }
+    .lift { animation:lift .75s cubic-bezier(.2,.75,.2,1) both; }
+    .lift-1 { animation-delay:.12s; } .lift-2 { animation-delay:.24s; } .lift-3 { animation-delay:.36s; }
+    @keyframes lift { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes floaty { 0%,100% { transform:translateY(0) rotate(-1deg); } 50% { transform:translateY(-7px) rotate(1deg); } }
+    @keyframes signal { 0%,100% { box-shadow:0 0 0 0 rgba(189,231,213,.2); } 50% { box-shadow:0 0 0 10px rgba(189,231,213,0); } }
+    @keyframes scan { from { transform:translateX(-120%); } to { transform:translateX(340%); } }
+    .floating-ticket { animation:floaty 5s ease-in-out infinite; }
+    .signal { animation:signal 3s ease-in-out infinite; }
+    .scanline { animation:scan 3.5s ease-in-out infinite; }
+    .soft-shadow { box-shadow:0 18px 55px rgba(0,35,73,.08); }
+    .work-card { transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease; }
+    .work-card:hover { transform:translateY(-4px); box-shadow:0 20px 42px rgba(0,35,73,.11); border-color:rgba(149,124,61,.5); }
+    .mobile-menu[hidden] { display:none; }
+    details summary { list-style:none; cursor:pointer; } details summary::-webkit-details-marker { display:none; }
+    details[open] .faq-plus { transform:rotate(45deg); } .faq-plus { transition:transform .2s ease; }
+    .progress-fill { transition:width .3s ease; }
+    input:focus, select:focus { outline:2px solid #70B7E5; outline-offset:2px; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body class="bg-[#F7F5F0] text-[#15283D] antialiased">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between gap-4">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]" aria-label="Accountrise home">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600" aria-label="Main navigation">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+      <button id="mobileMenuButton" class="md:hidden inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-sm font-bold text-[#002349]" aria-expanded="false" aria-controls="mobileMenu">Menu <span aria-hidden="true">☰</span></button>
+    </div>
+    <div id="mobileMenu" class="mobile-menu md:hidden border-t border-slate-200 bg-white px-5 py-4" hidden>
+      <nav class="flex flex-col gap-4 text-sm font-semibold text-slate-700" aria-label="Mobile navigation">
+        <a href="/about/" class="hover:text-[#957C3D]">About Us</a><a href="/services/" class="hover:text-[#957C3D]">Services</a><a href="/blog/" class="hover:text-[#957C3D]">Blog</a><a href="#contact" class="hover:text-[#957C3D]">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: Ecommerce Settlement Studio — a distinct visual treatment within the Accountrise site system -->
+    <section class="settlement-hero text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1.03fr_.97fr] gap-12 items-center">
+          <div class="lift">
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="rounded-full border border-[#BDE7D5]/30 bg-[#BDE7D5]/10 px-3 py-1.5 text-xs font-black uppercase tracking-[.18em] text-[#BDE7D5]">Odoo Ecommerce Accounting</span>
+              <span class="text-sm text-slate-300">Sales • Fees • Payouts</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.03] tracking-tight">Odoo Ecommerce Accounting: <span class="text-[#BDE7D5]">Reconcile Sales, Fees &amp; Payouts</span></h1>
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-2xl">Your storefront can show one sales total, a payment processor another number, and the bank a third. This practical guide shows how to trace the difference, keep gross sales separate from fees, and build a cleaner Odoo reconciliation process for an online business.</p>
+            <div class="mt-8 flex flex-wrap gap-3 text-sm font-semibold">
+              <a href="#payout-workflow" class="rounded-full bg-[#BDE7D5] px-5 py-3 text-[#002349] hover:bg-white transition">Map the workflow ↓</a>
+              <a href="#payout-lab" class="rounded-full border border-white/20 px-5 py-3 text-white hover:bg-white/10 transition">Try the payout calculator ↗</a>
+            </div>
+            <div class="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-xs sm:text-sm text-slate-400"><span>Built for US online sellers</span><span>•</span><span>Practical accounting controls</span><span>•</span><span>Connector-aware guidance</span></div>
+          </div>
+          <div class="lift lift-2 relative">
+            <div class="absolute -inset-5 rounded-[2.5rem] bg-[#70B7E5]/[.08] blur-2xl"></div>
+            <div class="relative rounded-[2rem] border border-white/15 bg-white/[.07] p-5 sm:p-7 backdrop-blur shadow-[0_30px_90px_rgba(0,10,25,.32)]">
+              <div class="flex items-start justify-between gap-4">
+                <div><div class="text-xs font-black uppercase tracking-[.18em] text-[#BDE7D5]">Settlement studio / batch 01</div><h2 class="mt-2 text-2xl font-extrabold">One payout. Several moving parts.</h2></div>
+                <div class="signal grid size-12 place-items-center rounded-2xl border border-[#BDE7D5]/30 bg-[#BDE7D5]/10 text-2xl" aria-hidden="true">↔</div>
+              </div>
+              <div class="mt-7 rounded-2xl border border-white/10 bg-[#00182F]/65 p-4 sm:p-5">
+                <div class="flex justify-between items-center gap-3 text-xs text-slate-400"><span>Illustrative processor settlement</span><span class="rounded-full bg-[#BDE7D5]/10 px-2.5 py-1 text-[#BDE7D5]">RECONCILE</span></div>
+                <div class="mt-4 space-y-3 text-sm">
+                  <div class="flex items-center justify-between gap-4"><span class="text-slate-300">Customer payments captured</span><strong class="text-white tabular-nums">$12,400.00</strong></div>
+                  <div class="flex items-center justify-between gap-4"><span class="text-slate-300">Refunds + fees + adjustments</span><strong class="text-[#FFB39A] tabular-nums">−$1,372.00</strong></div>
+                  <div class="h-px bg-white/10"></div>
+                  <div class="flex items-center justify-between gap-4"><span class="font-bold text-white">Expected deposit</span><strong class="text-2xl font-black text-[#BDE7D5] tabular-nums">$11,028.00</strong></div>
+                </div>
+                <div class="mt-5 relative h-2 overflow-hidden rounded-full bg-white/10"><div class="scanline absolute inset-y-0 left-0 w-1/3 rounded-full bg-gradient-to-r from-transparent via-[#BDE7D5] to-transparent"></div></div>
+                <p class="mt-4 text-xs leading-relaxed text-slate-400">Illustrative amounts only. Actual settlements can contain timing differences, reserves, currency conversions, disputes and platform-specific adjustments.</p>
+              </div>
+              <div class="mt-4 grid grid-cols-3 gap-3">
+                <div class="floating-ticket rounded-xl border border-white/10 bg-white/[.05] p-3"><div class="text-[10px] uppercase tracking-wider text-slate-400">Source</div><div class="mt-1 text-sm font-extrabold">Storefront</div></div>
+                <div class="floating-ticket rounded-xl border border-white/10 bg-white/[.05] p-3" style="animation-delay:.4s"><div class="text-[10px] uppercase tracking-wider text-slate-400">Bridge</div><div class="mt-1 text-sm font-extrabold">Clearing</div></div>
+                <div class="floating-ticket rounded-xl border border-white/10 bg-white/[.05] p-3" style="animation-delay:.8s"><div class="text-[10px] uppercase tracking-wider text-slate-400">Proof</div><div class="mt-1 text-sm font-extrabold">Bank</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-[#E4F4EE] text-lg">⌁</span><div><p class="font-bold text-[#002349]">The goal: reconcile the full transaction trail</p><p class="text-sm text-slate-500">Gross sales, deductions and bank deposits should tell one traceable story.</p></div></div>
+        <nav class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-slate-600" aria-label="Article contents"><a href="#why-different" class="hover:text-[#957C3D]">Why totals differ</a><a href="#payout-workflow" class="hover:text-[#957C3D]">Workflow</a><a href="#payout-lab" class="hover:text-[#957C3D]">Payout lab</a><a href="#month-end" class="hover:text-[#957C3D]">Month-end</a><a href="#faqs" class="hover:text-[#957C3D]">FAQs</a></nav>
+      </div>
+    </section>
+
+    <section id="why-different" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.72fr_1.28fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">01 / The settlement puzzle</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">A bank deposit is not the same thing as sales revenue.</h2><p class="mt-5 leading-relaxed text-slate-600">Payment platforms often send a net amount after deductions. If that net deposit is recorded as revenue without accounting for the underlying activity, sales, fees, refunds and customer balances can be misstated or harder to audit.</p><p class="mt-4 leading-relaxed text-slate-600">Use a documented flow that matches your store and processor setup. Odoo connector availability, fields and automatic posting behavior can vary by version, apps and configuration.</p></div>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow"><div class="flex items-center justify-between"><span class="rounded-full bg-[#E4F4EE] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#17694F]">01 / Source</span><span class="text-2xl">▤</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Storefront orders</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Capture order totals, discounts, shipping charged, tax, cancellations and sales dates. Confirm how order status and refunds are transferred or imported into Odoo.</p><div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: is the order population complete?</div></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow"><div class="flex items-center justify-between"><span class="rounded-full bg-[#FFF0E9] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#A64F32]">02 / Deductions</span><span class="text-2xl">−</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Processor activity</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Identify processing fees, marketplace commissions, refunds, chargebacks, reserve holds and other settlement adjustments using the processor's detailed report.</p><div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: can every deduction be explained?</div></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow"><div class="flex items-center justify-between"><span class="rounded-full bg-[#EAF2FC] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#315B94]">03 / Accounting</span><span class="text-2xl">⌘</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Odoo records</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Review invoices or sales entries, payment records, credit notes, fee expenses, clearing accounts, and any tax or inventory treatment relevant to the transaction.</p><div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: do records represent gross activity?</div></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6 sm:p-7 soft-shadow"><div class="flex items-center justify-between"><span class="rounded-full bg-[#F4EDFC] px-3 py-1.5 text-xs font-black uppercase tracking-wider text-[#7151A5]">04 / Evidence</span><span class="text-2xl">✓</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Bank settlement</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Match the net transfer to the relevant payout ID and bank line. Investigate timing, multiple deposits, currency conversion, reserves and unsettled amounts.</p><div class="mt-5 border-t border-slate-100 pt-4 text-xs font-semibold text-slate-500">Control question: is the clearing balance supportable?</div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-[#EAF0F5] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">02 / Reconciliation blueprint</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Build a six-step payout workflow your team can repeat.</h2><p class="mt-4 leading-relaxed text-slate-600">The sequence below is a control framework, not a claim that every store integration automatically performs each step. Adjust it to your commerce platform, Odoo version, payment provider and accounting policy.</p></div>
+        <div id="payout-workflow" class="mt-9 grid md:grid-cols-2 xl:grid-cols-3 gap-4">
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-wider text-[#957C3D]">STEP 01</span><span class="grid size-10 place-items-center rounded-xl bg-[#E4F4EE] text-[#17694F] font-black">01</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Set the source of truth</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Document where order, payment, refund, fee and payout data originate. Define the key ID for matching: order, transaction, batch, payout or settlement reference.</p><p class="mt-4 rounded-xl bg-slate-50 p-3 text-xs font-semibold text-slate-600">Output: source map + reconciliation key</p></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-wider text-[#957C3D]">STEP 02</span><span class="grid size-10 place-items-center rounded-xl bg-[#EAF2FC] text-[#315B94] font-black">02</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Record gross activity</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Confirm how orders, discounts, shipping, tax, cancellations and refunds enter Odoo. Avoid using only the net cash deposit as the sales figure.</p><p class="mt-4 rounded-xl bg-slate-50 p-3 text-xs font-semibold text-slate-600">Output: complete sales population</p></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-wider text-[#957C3D]">STEP 03</span><span class="grid size-10 place-items-center rounded-xl bg-[#FFF0E9] text-[#A64F32] font-black">03</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Map fees and deductions</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Separate processing fees, marketplace commissions, refunds, chargebacks and reserve movements. Agree account mappings and retain support for material or unusual charges.</p><p class="mt-4 rounded-xl bg-slate-50 p-3 text-xs font-semibold text-slate-600">Output: explainable deductions</p></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-wider text-[#957C3D]">STEP 04</span><span class="grid size-10 place-items-center rounded-xl bg-[#F4EDFC] text-[#7151A5] font-black">04</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Use a clearing approach</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Where appropriate, route processor collections through a dedicated clearing account so the transfer to the bank clears the payout amount rather than netting all activity into sales.</p><p class="mt-4 rounded-xl bg-slate-50 p-3 text-xs font-semibold text-slate-600">Output: traceable settlement balance</p></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-wider text-[#957C3D]">STEP 05</span><span class="grid size-10 place-items-center rounded-xl bg-[#E4F4EE] text-[#17694F] font-black">05</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Match payout to bank</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Match by payout ID and expected amount, then investigate differences such as reserves, timing, split transfers, currency exchange or unmatched transactions.</p><p class="mt-4 rounded-xl bg-slate-50 p-3 text-xs font-semibold text-slate-600">Output: cleared bank deposit</p></article>
+          <article class="work-card rounded-3xl border border-slate-200 bg-white p-6"><div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-wider text-[#957C3D]">STEP 06</span><span class="grid size-10 place-items-center rounded-xl bg-[#EAF2FC] text-[#315B94] font-black">06</span></div><h3 class="mt-5 text-xl font-extrabold text-[#002349]">Review the remaining balance</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Review outstanding clearing items, refunds in transit, unsettled sales, disputed payments and reserve balances. Assign an owner and target date to every material exception.</p><p class="mt-4 rounded-xl bg-slate-50 p-3 text-xs font-semibold text-slate-600">Output: documented exceptions</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="payout-lab" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">03 / Interactive payout lab</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Bridge gross activity to the expected deposit.</h2><p class="mt-5 leading-relaxed text-slate-600">Enter totals from one payout statement. The tool calculates the expected net settlement and compares it with the bank deposit you received. Use one consistent date range and payout batch.</p><div class="mt-6 rounded-2xl border border-[#D6E7E0] bg-[#EAF5F0] p-5"><p class="font-bold text-[#155A45]">Control reminder</p><p class="mt-2 text-sm leading-relaxed text-[#3B6258]">This is a simple reconciliation aid, not an automated accounting entry or tax calculation. Add any other documented adjustments to your own working paper.</p></div></div>
+        <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-white soft-shadow">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#002349] p-6 sm:p-8 text-white"><div><div class="text-xs font-black uppercase tracking-[.18em] text-[#BDE7D5]">Payout worksheet</div><h3 class="mt-2 text-2xl font-black">Settlement bridge</h3></div><span class="rounded-full border border-white/20 px-3 py-1.5 text-xs font-bold text-slate-200">USD · Illustrative</span></div>
+          <div class="grid md:grid-cols-2 gap-0">
+            <div class="p-6 sm:p-8 space-y-4">
+              <div><label for="grossSales" class="block text-sm font-bold text-[#002349]">Gross customer collections ($)</label><input id="grossSales" type="number" min="0" step="0.01" value="12400" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 tabular-nums"></div>
+              <div><label for="refunds" class="block text-sm font-bold text-[#002349]">Refunds ($)</label><input id="refunds" type="number" min="0" step="0.01" value="650" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 tabular-nums"></div>
+              <div><label for="processorFees" class="block text-sm font-bold text-[#002349]">Payment processing fees ($)</label><input id="processorFees" type="number" min="0" step="0.01" value="260" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 tabular-nums"></div>
+              <div><label for="platformFees" class="block text-sm font-bold text-[#002349]">Marketplace / platform fees ($)</label><input id="platformFees" type="number" min="0" step="0.01" value="112" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 tabular-nums"></div>
+              <div><label for="chargebacks" class="block text-sm font-bold text-[#002349]">Chargebacks / disputes deducted ($)</label><input id="chargebacks" type="number" min="0" step="0.01" value="150" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 tabular-nums"></div>
+              <div><label for="reserves" class="block text-sm font-bold text-[#002349]">Reserves / other deductions ($)</label><input id="reserves" type="number" min="0" step="0.01" value="200" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 tabular-nums"></div>
+              <div><label for="bankDeposit" class="block text-sm font-bold text-[#002349]">Actual bank deposit ($)</label><input id="bankDeposit" type="number" min="0" step="0.01" value="11028" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 tabular-nums"></div>
+              <button id="resetPayout" type="button" class="rounded-full border border-slate-300 px-4 py-2 text-sm font-bold text-slate-600 hover:bg-slate-50 transition">Reset sample figures</button>
+            </div>
+            <div class="bg-[#F7F9FA] border-t md:border-t-0 md:border-l border-slate-200 p-6 sm:p-8">
+              <div class="text-xs font-black uppercase tracking-[.18em] text-[#957C3D]">Reconciliation result</div>
+              <div class="mt-3 rounded-2xl bg-white border border-slate-200 p-5"><p class="text-sm font-semibold text-slate-500">Calculated expected payout</p><p id="expectedPayout" class="mt-2 text-3xl sm:text-4xl font-black tracking-tight text-[#002349] tabular-nums">$11,028.00</p><div class="mt-4 flex justify-between text-sm gap-3"><span class="text-slate-500">Actual bank deposit</span><strong id="actualPayoutOut" class="text-[#002349] tabular-nums">$11,028.00</strong></div><div class="mt-3 h-px bg-slate-100"></div><div class="mt-3 flex justify-between items-start gap-3"><span class="text-sm font-semibold text-slate-500">Unexplained difference</span><strong id="differenceOut" class="text-lg font-black text-[#17694F] tabular-nums">$0.00</strong></div></div>
+              <div class="mt-5"><div class="flex items-center justify-between text-xs font-bold text-slate-500"><span>Difference relative to expected payout</span><span id="differencePct">0.00%</span></div><div class="mt-2 h-2.5 rounded-full bg-slate-200 overflow-hidden"><div id="differenceMeter" class="progress-fill h-full w-0 rounded-full bg-[#E18A68]"></div></div></div>
+              <div id="payoutResultMessage" aria-live="polite" class="mt-5 rounded-2xl border border-[#D6E7E0] bg-[#EAF5F0] p-4 text-sm leading-relaxed text-[#155A45]">The sample bank deposit matches the calculated payout. Save the processor statement and bank evidence with the reconciliation.</div>
+              <p class="mt-5 text-xs leading-relaxed text-slate-500">Formula used: gross collections − refunds − processing fees − platform fees − deducted chargebacks − reserves/other deductions. Add positive adjustments or other settlement lines to your working paper if applicable.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.72fr_1.28fr] gap-10 items-start">
+          <div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">04 / Exception triage</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Select the symptom. Follow the evidence.</h2><p class="mt-4 leading-relaxed text-slate-600">Use this quick guide to decide where to look first. Avoid posting a plug entry before the processor report, Odoo records and bank line have been compared.</p></div>
+          <div class="rounded-3xl border border-slate-200 overflow-hidden soft-shadow">
+            <div class="bg-[#002349] p-6 sm:p-7 text-white"><label for="issueSelect" class="block text-xs font-black uppercase tracking-[.18em] text-[#BDE7D5]">Choose a reconciliation issue</label><select id="issueSelect" class="mt-4 w-full rounded-xl border border-white/20 bg-[#07345A] px-4 py-3 text-white"><option value="short">Bank payout is lower than expected</option><option value="fees">Fees are not visible in Odoo</option><option value="duplicate">Sales or payments appear duplicated</option><option value="refunds">Refund total does not match</option><option value="timing">Clearing account keeps a balance</option><option value="tax">Sales tax report does not match storefront</option></select></div>
+            <div class="p-6 sm:p-8"><div class="flex items-center gap-3"><span class="grid size-10 place-items-center rounded-xl bg-[#FFF0E9] text-[#A64F32] font-black">↗</span><div><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Suggested investigation</div><h3 id="issueTitle" class="mt-1 text-xl sm:text-2xl font-black text-[#002349]">Bank payout is lower than expected</h3></div></div><p id="issueSummary" class="mt-5 leading-relaxed text-slate-600">Compare the payout statement with your calculation. Check for fees, refunds, disputes, reserve holds, split payouts, currency conversion, or a transaction that fell outside the date range.</p><div class="mt-6 grid sm:grid-cols-2 gap-4"><div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs font-black uppercase tracking-wider text-slate-500">Inspect first</div><p id="issueInspect" class="mt-2 text-sm font-semibold leading-relaxed text-[#002349]">Processor payout detail, payout ID, bank line, and the settlement date range.</p></div><div class="rounded-2xl border border-slate-200 p-4"><div class="text-xs font-black uppercase tracking-wider text-slate-500">Avoid</div><p id="issueAvoid" class="mt-2 text-sm font-semibold leading-relaxed text-[#002349]">Booking the unexplained difference directly to sales or miscellaneous expense.</p></div></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="max-w-3xl"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">05 / Posting logic</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Think in transaction layers—not one net deposit.</h2><p class="mt-4 leading-relaxed text-slate-600">The exact journal entries depend on your Odoo configuration, integration and accounting policy, but the underlying questions are consistent. Each type of activity should have a clear home and an audit trail.</p></div>
+      <div class="mt-8 overflow-hidden rounded-3xl border border-slate-200 bg-white soft-shadow">
+        <div class="hidden sm:grid grid-cols-[.75fr_1.25fr] bg-[#F1F4F6] px-6 py-4 text-xs font-black uppercase tracking-wider text-slate-500"><div>Transaction layer</div><div>What the accounting review should confirm</div></div>
+        <div class="grid sm:grid-cols-[.75fr_1.25fr] border-t border-slate-100"><div class="p-5 sm:p-6 font-extrabold text-[#002349]">Orders and sales</div><div class="p-5 sm:p-6 text-sm leading-relaxed text-slate-600">Reconcile order count and total values, including discounts, cancellations, shipping charges and applicable tax. Confirm which records create invoices or sales journal entries in your workflow.</div></div>
+        <div class="grid sm:grid-cols-[.75fr_1.25fr] border-t border-slate-100"><div class="p-5 sm:p-6 font-extrabold text-[#002349]">Customer payments</div><div class="p-5 sm:p-6 text-sm leading-relaxed text-slate-600">Confirm that receipts are recorded and linked to the right invoices or customer balances where relevant. Avoid creating a second payment entry if an integration already imported the transaction.</div></div>
+        <div class="grid sm:grid-cols-[.75fr_1.25fr] border-t border-slate-100"><div class="p-5 sm:p-6 font-extrabold text-[#002349]">Processor / platform fees</div><div class="p-5 sm:p-6 text-sm leading-relaxed text-slate-600">Record supported deductions in the appropriate expense or clearing treatment under the business's accounting policy. Reconcile fee reports to the statement instead of estimating fees from a percentage.</div></div>
+        <div class="grid sm:grid-cols-[.75fr_1.25fr] border-t border-slate-100"><div class="p-5 sm:p-6 font-extrabold text-[#002349]">Refunds and disputes</div><div class="p-5 sm:p-6 text-sm leading-relaxed text-slate-600">Link approved refunds to the original sale where possible, review credit-note treatment and trace the cash movement separately. Chargebacks may require tracking while a dispute is unresolved.</div></div>
+        <div class="grid sm:grid-cols-[.75fr_1.25fr] border-t border-slate-100"><div class="p-5 sm:p-6 font-extrabold text-[#002349]">Payout and bank</div><div class="p-5 sm:p-6 text-sm leading-relaxed text-slate-600">Match the processor's net settlement to the bank line. Clear the relevant payment clearing account and document any residual amount, timing difference, reserve or currency conversion.</div></div>
+        <div class="grid sm:grid-cols-[.75fr_1.25fr] border-t border-slate-100"><div class="p-5 sm:p-6 font-extrabold text-[#002349]">Inventory and tax</div><div class="p-5 sm:p-6 text-sm leading-relaxed text-slate-600">For businesses holding inventory, reconcile stock movement and cost of goods sold with the configured valuation method. Review sales tax mapping and filing obligations separately; a payout report alone is not a tax return.</div></div>
+      </div>
+      <p class="mt-4 text-xs leading-relaxed text-slate-500">This article provides operational accounting guidance, not legal or tax advice. Confirm state and local sales tax requirements with an appropriately qualified US tax professional.</p>
+    </section>
+
+    <section class="bg-[#EAF0F5] border-y border-slate-200">
+      <div id="month-end" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-10 items-start">
+          <div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">06 / Close checklist</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">A month-end routine for ecommerce accounting.</h2><p class="mt-4 leading-relaxed text-slate-600">Reconcile by settlement batch as the month progresses, then review the full clearing balance and open exceptions before closing the period.</p><div class="mt-6 rounded-2xl bg-white border border-slate-200 p-5"><div class="flex items-center justify-between gap-3"><span class="font-bold text-[#002349]">Checklist progress</span><span id="checkProgressText" class="text-sm font-black text-[#957C3D]">0 of 8</span></div><div class="mt-3 h-2.5 rounded-full bg-slate-100 overflow-hidden"><div id="checkProgressBar" class="progress-fill h-full w-0 rounded-full bg-[#957C3D]"></div></div><button id="resetChecklist" type="button" class="mt-4 text-sm font-bold text-[#002349] underline underline-offset-4">Reset checklist</button></div></div>
+          <div id="closeChecklist" class="rounded-3xl border border-slate-200 bg-white p-6 sm:p-8 soft-shadow space-y-4">
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Confirm completeness of orders and refunds</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Reconcile the period's storefront activity to imported or recorded Odoo transactions.</span></span></label>
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Reconcile each payout to processor reports</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Use payout IDs, transaction references, settlement dates and currencies.</span></span></label>
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Review processing and marketplace fees</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Tie posted fees to processor statements and investigate unusual changes.</span></span></label>
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Review refunds, chargebacks and reserves</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Confirm the related accounting treatment and outstanding status.</span></span></label>
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Match net transfers to bank activity</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Confirm no duplicate, missing or split deposits remain unexplained.</span></span></label>
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Explain the closing clearing-account balance</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Tie open items to documented settlements in transit, reserves or disputes.</span></span></label>
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Review sales tax and inventory / COGS</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Perform separate checks appropriate to the business's reporting and tax setup.</span></span></label>
+            <label class="flex items-start gap-3 rounded-2xl border border-slate-100 p-4 cursor-pointer hover:bg-slate-50"><input type="checkbox" class="mt-1 size-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Save support and assign open exceptions</strong><span class="mt-1 block text-sm leading-relaxed text-slate-600">Keep processor reports, bank evidence, reconciliation notes, owner and due date.</span></span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faqs" class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">07 / Common questions</p><h2 class="mt-3 text-3xl sm:text-4xl font-black tracking-tight text-[#002349]">Odoo ecommerce reconciliation FAQs</h2><p class="mt-4 leading-relaxed text-slate-600">Practical answers to common accounting questions from growing online sellers.</p></div>
+      <div class="mt-8 space-y-3">
+        <details class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Why is my Shopify or marketplace sales total different from the bank deposit?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">Bank deposits may be net of processor fees, marketplace commissions, refunds, chargebacks, reserves and adjustments. There may also be timing, currency or date-range differences. Compare the order and transaction reports to the settlement report, then match the payout ID to the bank statement.</p></details>
+        <details class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Should I record only the net Stripe or PayPal payout as revenue in Odoo?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">Recording only the net payout as sales can hide fees, refunds and other activity. A documented workflow should capture gross sales and separately account for deductions and settlement. The exact entries depend on the integration, Odoo configuration and the company's accounting policy.</p></details>
+        <details class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Can Odoo automatically import Shopify, Stripe, PayPal or marketplace transactions?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">Available connectors and supported data vary by Odoo version, the installed integration, provider changes and configuration. Before relying on automation, test which order, payment, fee, refund and payout fields transfer, how duplicates are prevented, and whether the imported records support the reconciliation controls you need.</p></details>
+        <details class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">What is a payment processor clearing account used for?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">A clearing account can help separate customer payment activity from the later bank transfer. The processor collection, deductions and net payout can be traced through the account, and the remaining balance should be explainable by unsettled transactions, reserves, timing or other supported items. Design the flow around the actual integration and accounting policy.</p></details>
+        <details class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">How often should an ecommerce business reconcile payouts?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">Choose a cadence based on transaction volume, payout frequency, dispute risk and close requirements. High-volume sellers often benefit from reconciling each payout or on a frequent schedule, then reviewing clearing balances, fees, refunds, sales tax and inventory-related balances at month-end.</p></details>
+        <details class="rounded-2xl border border-slate-200 bg-white p-5 sm:p-6"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Can outsourced Odoo accounting support help with ecommerce reconciliation?<span class="faq-plus text-2xl text-[#957C3D]">+</span></summary><p class="mt-4 leading-relaxed text-slate-600">A remote accounting team can help reconcile sales and payout reports, review fee and refund treatment, investigate clearing-account balances, prepare close schedules and document exceptions. Scope should clarify who owns integration changes, operational decisions, tax advice and final review approvals.</p></details>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 pb-14 lg:pb-20">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-5"><div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">Build a stronger close</p><h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349]">Related Odoo accounting guides</h2></div><a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D]">View all articles →</a></div>
+      <div class="mt-7 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-customer-payments-not-reconciled.html" class="group rounded-3xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-xl"><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Payment Reconciliation</div><h3 class="mt-3 text-xl font-extrabold leading-snug text-[#002349] group-hover:text-[#957C3D]">Odoo Customer Payments Not Reconciled</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Investigate unmatched receipts, open customer balances and reconciliation issues.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read article →</span></a>
+        <a href="/blog/odoo-customer-credit-notes-refunds-process.html" class="group rounded-3xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-xl"><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Credit Notes &amp; Refunds</div><h3 class="mt-3 text-xl font-extrabold leading-snug text-[#002349] group-hover:text-[#957C3D]">Odoo Credit Notes &amp; Customer Refunds</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Review refund processing, credit notes and customer balance controls.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read article →</span></a>
+        <a href="/blog/odoo-sales-tax-configuration-reconciliation-us.html" class="group rounded-3xl border border-slate-200 bg-white p-6 transition hover:-translate-y-1 hover:shadow-xl"><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">US Sales Tax</div><h3 class="mt-3 text-xl font-extrabold leading-snug text-[#002349] group-hover:text-[#957C3D]">Odoo Sales Tax Configuration &amp; Reconciliation</h3><p class="mt-3 text-sm leading-relaxed text-slate-600">Review tax mapping and investigate differences between reports and ledger balances.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read article →</span></a>
+      </div>
+    </section>
+
+    <!-- Single end-of-article CTA -->
+    <section id="contact" class="bg-[#002349] text-white overflow-hidden relative">
+      <div class="absolute -right-24 -top-28 size-80 rounded-full border border-[#BDE7D5]/15"></div><div class="absolute -left-24 -bottom-32 size-80 rounded-full border border-white/10"></div>
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center relative">
+        <div class="max-w-3xl mx-auto"><div class="text-xs font-black uppercase tracking-[.22em] text-[#BDE7D5]">Affordable remote Odoo accounting support</div><h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Keep ecommerce numbers clear—without automatically adding full-time overhead.</h2><p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise supports US online sellers and growing businesses with Odoo accounting review, settlement reconciliation, fee and refund checks, clearing-account cleanup and month-end documentation. Bring in remote professional support for the workload you need, with defined responsibilities and evidence-backed controls.</p><div class="mt-7 inline-flex items-center gap-2 rounded-full border border-[#BDE7D5]/30 bg-[#BDE7D5]/10 px-4 py-2 text-sm font-bold text-[#BDE7D5]">Odoo accounting support starting at $12/hour</div><p class="mt-3 text-sm text-slate-400">Final pricing depends on scope, transaction volume, complexity, integration setup and engagement requirements.</p><div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4"><a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a><a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a></div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400"><div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm">© 2026 Accountrise. All rights reserved.</div><div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div></div></footer>
+
+  <script>
+    // Mobile navigation dropdown
+    const mobileMenuButton = document.getElementById('mobileMenuButton');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuButton.addEventListener('click', () => {
+      const expanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      mobileMenuButton.setAttribute('aria-expanded', String(!expanded));
+      mobileMenu.hidden = expanded;
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => { mobileMenu.hidden = true; mobileMenuButton.setAttribute('aria-expanded', 'false'); }));
+
+    // Payout bridge calculator
+    const payoutFields = ['grossSales','refunds','processorFees','platformFees','chargebacks','reserves','bankDeposit'];
+    const samplePayout = { grossSales:12400, refunds:650, processorFees:260, platformFees:112, chargebacks:150, reserves:200, bankDeposit:11028 };
+    const usd = value => (value < 0 ? '-$' : '$') + Math.abs(value).toLocaleString('en-US', { minimumFractionDigits:2, maximumFractionDigits:2 });
+    function updatePayout() {
+      const v = Object.fromEntries(payoutFields.map(id => [id, Math.max(0, Number(document.getElementById(id).value) || 0)]));
+      const expected = v.grossSales - v.refunds - v.processorFees - v.platformFees - v.chargebacks - v.reserves;
+      const difference = v.bankDeposit - expected;
+      const pct = Math.abs(expected) > 0 ? (difference / Math.abs(expected)) * 100 : (difference === 0 ? 0 : 100);
+      document.getElementById('expectedPayout').textContent = usd(expected);
+      document.getElementById('actualPayoutOut').textContent = usd(v.bankDeposit);
+      document.getElementById('differenceOut').textContent = (difference > 0 ? '+' : difference < 0 ? '−' : '') + usd(Math.abs(difference));
+      document.getElementById('differencePct').textContent = (pct > 0 ? '+' : '') + pct.toFixed(2) + '%';
+      const meter = document.getElementById('differenceMeter');
+      meter.style.width = Math.min(100, Math.abs(pct) * 5) + '%';
+      const message = document.getElementById('payoutResultMessage');
+      if (Math.abs(difference) < 0.01) {
+        message.className = 'mt-5 rounded-2xl border border-[#D6E7E0] bg-[#EAF5F0] p-4 text-sm leading-relaxed text-[#155A45]';
+        message.textContent = 'The bank deposit matches the calculated settlement. Save the processor statement and bank evidence with the reconciliation, and confirm that all listed deductions were accounted for.';
+      } else if (difference > 0) {
+        message.className = 'mt-5 rounded-2xl border border-[#D8E6F4] bg-[#EEF5FC] p-4 text-sm leading-relaxed text-[#214F7E]';
+        message.textContent = 'The bank deposit is higher than the calculated amount by ' + usd(difference) + '. Check whether there are positive adjustments, reserve releases, prior-period activity, an omitted payout component or an input/reporting-period mismatch.';
+      } else {
+        message.className = 'mt-5 rounded-2xl border border-[#F0D6CB] bg-[#FFF1EB] p-4 text-sm leading-relaxed text-[#87452D]';
+        message.textContent = 'The bank deposit is lower than the calculated amount by ' + usd(Math.abs(difference)) + '. Check omitted fees, refunds, chargebacks, holds, currency adjustments, split deposits and timing before posting a correction.';
+      }
+    }
+    payoutFields.forEach(id => document.getElementById(id).addEventListener('input', updatePayout));
+    document.getElementById('resetPayout').addEventListener('click', () => { Object.entries(samplePayout).forEach(([id,value]) => document.getElementById(id).value = value); updatePayout(); });
+
+    // Symptom-led troubleshooting dropdown
+    const issues = {
+      short: { title:'Bank payout is lower than expected', summary:'Compare the payout statement with your calculation. Check for fees, refunds, disputes, reserve holds, split payouts, currency conversion, or a transaction that fell outside the date range.', inspect:'Processor payout detail, payout ID, bank line, and the settlement date range.', avoid:'Booking the unexplained difference directly to sales or miscellaneous expense.' },
+      fees: { title:'Fees are not visible in Odoo', summary:'Confirm whether fees are included in the connector data, imported as separate transactions or only shown on the processor report. Define a supported process for recording and reconciling them.', inspect:'Processor fee report, integration mapping, clearing-account entries and expense accounts.', avoid:'Estimating a fee percentage and using it to force the clearing balance to zero.' },
+      duplicate: { title:'Sales or payments appear duplicated', summary:'Compare unique order and payment references across the storefront, connector logs, Odoo invoices or entries, and processor transactions. Duplicate imports may arise if more than one process records the same event.', inspect:'Order IDs, transaction IDs, import history, invoice references and payment records.', avoid:'Deleting entries until you have established which record is the duplicate and whether it has already been reconciled.' },
+      refunds: { title:'Refund total does not match', summary:'Check whether the report is based on refund initiation date, processing date or settlement date. Identify partial refunds, canceled orders, pending refunds and refunds netted against a later payout.', inspect:'Original orders, credit notes where relevant, refund records, processor status and payout detail.', avoid:'Treating every refund as a same-day cash deduction or recording the same refund twice.' },
+      timing: { title:'Clearing account keeps a balance', summary:'A balance can represent settlements in transit, reserves, pending refunds, unsettled card transactions, timing differences or mapping errors. Roll the balance forward by payout reference and support each open item.', inspect:'Opening balance, payout IDs, in-transit transactions, reserve reports and bank cutoff dates.', avoid:'Posting a manual journal entry only to make the account show zero.' },
+      tax: { title:'Sales tax report does not match storefront', summary:'Compare taxable sales, exempt sales, shipping treatment, discounts, destination data, refunds and report date ranges. Sales tax obligations and treatment differ by jurisdiction; verify the rules relevant to the business.', inspect:'Odoo tax mapping and reports, order-level tax details, exemption evidence and tax professional guidance.', avoid:'Using net payouts as the basis for taxable sales or assuming one nationwide tax configuration fits every seller.' }
+    };
+    document.getElementById('issueSelect').addEventListener('change', function () {
+      const item = issues[this.value];
+      document.getElementById('issueTitle').textContent = item.title;
+      document.getElementById('issueSummary').textContent = item.summary;
+      document.getElementById('issueInspect').textContent = item.inspect;
+      document.getElementById('issueAvoid').textContent = item.avoid;
+    });
+
+    // Month-end checklist progress
+    const checklistBoxes = Array.from(document.querySelectorAll('#closeChecklist input[type="checkbox"]'));
+    function updateChecklist() {
+      const count = checklistBoxes.filter(box => box.checked).length;
+      document.getElementById('checkProgressText').textContent = `${count} of ${checklistBoxes.length}`;
+      document.getElementById('checkProgressBar').style.width = `${(count / checklistBoxes.length) * 100}%`;
+    }
+    checklistBoxes.forEach(box => box.addEventListener('change', updateChecklist));
+    document.getElementById('resetChecklist').addEventListener('click', () => { checklistBoxes.forEach(box => box.checked = false); updateChecklist(); });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Ecommerce Accounting: Reconcile Shopify, Stripe & Marketplace Payouts",
+    "description": "Learn how to reconcile ecommerce sales, payment processor fees, refunds, chargebacks and bank payouts in Odoo with a practical workflow for US online sellers.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.accountrise.com/blog/odoo-ecommerce-payment-payout-reconciliation.html" },
+    "url": "https://www.accountrise.com/blog/odoo-ecommerce-payment-payout-reconciliation.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "Why is my Shopify or marketplace sales total different from the bank deposit?", "acceptedAnswer": { "@type": "Answer", "text": "Bank deposits may be net of processor fees, marketplace commissions, refunds, chargebacks, reserves and adjustments. There may also be timing, currency or date-range differences. Compare order and transaction reports to the settlement report, then match the payout ID to the bank statement." } },
+      { "@type": "Question", "name": "Should I record only the net Stripe or PayPal payout as revenue in Odoo?", "acceptedAnswer": { "@type": "Answer", "text": "Recording only the net payout as sales can hide fees, refunds and other activity. A documented workflow should capture gross sales and separately account for deductions and settlement. Exact entries depend on integration, Odoo configuration and accounting policy." } },
+      { "@type": "Question", "name": "Can Odoo automatically import Shopify, Stripe, PayPal or marketplace transactions?", "acceptedAnswer": { "@type": "Answer", "text": "Available connectors and supported data vary by Odoo version, installed integration, provider changes and configuration. Test which order, payment, fee, refund and payout fields transfer, how duplicates are prevented, and whether imported records support the reconciliation controls required." } },
+      { "@type": "Question", "name": "What is a payment processor clearing account used for?", "acceptedAnswer": { "@type": "Answer", "text": "A clearing account can help separate customer payment activity from the later bank transfer. Processor collections, deductions and net payouts can be traced through the account, and the remaining balance should be explainable by unsettled transactions, reserves, timing or other supported items." } },
+      { "@type": "Question", "name": "How often should an ecommerce business reconcile payouts?", "acceptedAnswer": { "@type": "Answer", "text": "Choose a cadence based on transaction volume, payout frequency, dispute risk and close requirements. High-volume sellers often benefit from frequent payout reconciliation, followed by month-end review of clearing balances, fees, refunds, sales tax and inventory-related balances." } },
+      { "@type": "Question", "name": "Can outsourced Odoo accounting support help with ecommerce reconciliation?", "acceptedAnswer": { "@type": "Answer", "text": "A remote accounting team can help reconcile sales and payout reports, review fee and refund treatment, investigate clearing-account balances, prepare close schedules and document exceptions. Scope should clarify who owns integration changes, operational decisions, tax advice and final review approvals." } }
+    ]
+  }
+  </script>
+</body>
+</html>
