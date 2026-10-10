@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Define a Sales Process in Odoo for Manufacturing Companies</title>
+  <meta name="description" content="Design a reliable Odoo sales process for manufacturing companies: estimate, quote, customer PO, sales order, manufacturing, delivery and invoicing—with traceability and month-end controls.">
+  <meta name="keywords" content="Odoo manufacturing sales process, Odoo sales order manufacturing, Odoo customer purchase order, Odoo MRP sales workflow, Odoo manufacturing order, Odoo quotation to sales order, Odoo delivery and invoicing, Odoo MTO MTS">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-manufacturing-sales-process.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How to Define a Sales Process in Odoo for Manufacturing Companies">
+  <meta property="og:description" content="A practical blueprint for connecting customer purchase orders, sales orders, manufacturing orders, deliveries and invoices in Odoo.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-manufacturing-sales-process.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Define a Sales Process in Odoo for Manufacturing Companies">
+  <meta name="twitter:description" content="Fix disconnected sales and manufacturing workflows in Odoo with a documented quote-to-cash process.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#132940',
+            steel: '#D9E3EC',
+            blueprint: '#EEF4F8',
+            orange: '#E49A62',
+            mint: '#CFE7D8'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .blueprint-hero {
+      background:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px),
+        radial-gradient(circle at 82% 14%, rgba(228,154,98,.16), transparent 24%),
+        linear-gradient(135deg, #00172E, #002349 66%, #163D5D);
+      background-size: 30px 30px, 30px 30px, auto, auto;
+    }
+    .soft-shadow { box-shadow: 0 18px 52px rgba(0,35,73,.09); }
+    .deep-shadow { box-shadow: 0 28px 90px rgba(0,35,73,.17); }
+    .stage-card { transition: transform .22s ease, box-shadow .22s ease; }
+    .stage-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(0,35,73,.11); }
+    .flow-arrow { color: #957C3D; font-weight: 900; }
+    .step-node { box-shadow: 0 0 0 7px rgba(149,124,61,.12); }
+    .lane-head { background-image: repeating-linear-gradient(135deg, rgba(0,35,73,.035), rgba(0,35,73,.035) 7px, transparent 7px, transparent 14px); }
+    details summary { list-style: none; cursor: pointer; }
+    details summary::-webkit-details-marker { display:none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .stage-card { transition:none; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#132940] antialiased">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: Manufacturing process blueprint -->
+    <section class="blueprint-hero text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1fr_.96fr] gap-12 items-center">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[.18em] text-[#F3D7BC]">Odoo Sales + Manufacturing</span>
+              <span class="text-sm text-slate-300">Quote-to-Cash • MRP • Customer PO</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight">
+              How to Define a Sales Process in Odoo for
+              <span class="text-[#F3D7BC]">Manufacturing Companies</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-2xl">
+              When manufacturing orders are created before the customer order is properly recorded, companies can lose the link between the customer's PO, the sales order, production, shipment and invoice.
+              A stronger workflow starts with the commercial commitment, then connects production and delivery to it.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#recommended-flow" class="rounded-2xl bg-[#E49A62] text-[#002349] px-6 py-3.5 font-bold hover:bg-[#efb185] transition">See the Recommended Flow</a>
+              <a href="#process-builder" class="rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">Choose Your Manufacturing Model</a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-300">
+              <span>✓ Customer PO traceability</span>
+              <span>✓ Sales-to-MRP connection</span>
+              <span>✓ Cleaner invoicing</span>
+            </div>
+          </div>
+
+          <!-- Blueprint mock visual -->
+          <div class="rounded-[2rem] border border-white/10 bg-white/[.06] p-5 sm:p-7 deep-shadow">
+            <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
+              <div>
+                <div class="text-[11px] uppercase tracking-[.22em] font-black text-[#F3D7BC]">Quote-to-Cash Blueprint</div>
+                <div class="mt-1 text-xl font-black">Commercial order leads the process</div>
+              </div>
+              <span class="rounded-full bg-[#CFE7D8]/15 text-[#CFE7D8] px-3 py-1.5 text-xs font-bold">Target design</span>
+            </div>
+
+            <div class="mt-6 space-y-3">
+              <div class="rounded-2xl bg-white text-[#002349] p-4 flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-[#EEF4F8] flex items-center justify-center text-xl">01</div>
+                <div class="flex-1"><div class="font-black">Customer RFQ / internal estimate</div><div class="text-xs text-slate-500 mt-1">Scope, cost, lead time, margin</div></div>
+                <span class="text-xs font-black text-[#957C3D]">PRE-SALES</span>
+              </div>
+              <div class="flex justify-center text-[#E49A62] text-xl font-black">↓</div>
+              <div class="rounded-2xl bg-white text-[#002349] p-4 flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-[#F8E9DC] flex items-center justify-center text-xl">02</div>
+                <div class="flex-1"><div class="font-black">Quotation + customer PO</div><div class="text-xs text-slate-500 mt-1">Terms, quantities, PO reference</div></div>
+                <span class="text-xs font-black text-[#957C3D]">SALES</span>
+              </div>
+              <div class="flex justify-center text-[#E49A62] text-xl font-black">↓</div>
+              <div class="rounded-2xl bg-[#CFE7D8] text-[#002349] p-4 flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-white/75 flex items-center justify-center text-xl">03</div>
+                <div class="flex-1"><div class="font-black">Confirmed Sales Order</div><div class="text-xs text-slate-600 mt-1">Single commercial source of truth</div></div>
+                <span class="text-xs font-black text-emerald-900">TRIGGER</span>
+              </div>
+              <div class="flex justify-center text-[#E49A62] text-xl font-black">↓</div>
+              <div class="rounded-2xl bg-white/10 border border-white/15 p-4 flex items-center gap-4">
+                <div class="w-11 h-11 rounded-xl bg-white/10 flex items-center justify-center text-xl">04</div>
+                <div class="flex-1"><div class="font-black">Manufacture → deliver → invoice</div><div class="text-xs text-slate-300 mt-1">Connected documents and status</div></div>
+                <span class="text-xs font-black text-[#F3D7BC]">FULFIL</span>
+              </div>
+            </div>
+            <p class="mt-5 text-xs text-slate-400 leading-relaxed">Illustrative workflow: exact automation depends on Odoo version, routes, product configuration, delivery policy and invoicing setup.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer first -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Executive answer</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">For most make-to-order workflows, create and confirm the Sales Order before the Manufacturing Order is executed.</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            The Sales Order represents the commercial commitment with the customer. The Manufacturing Order represents the production work.
+            Keeping the customer PO attached to the Sales Order—and linking resulting production and delivery documents wherever the configured workflow supports it—preserves traceability.
+          </p>
+          <p class="mt-4 text-sm text-slate-500 leading-relaxed">
+            This is a recommended process design, not a universal rule for every manufacturer. Make-to-stock, engineered-to-order, subcontracting and project-based models may require different triggers.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <article class="stage-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#F8E9DC] text-[#8E542B] flex items-center justify-center text-xl font-black">S</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Sales Order = commercial source</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Captures the customer, PO reference, product, price, quantity, promised dates, payment terms and invoicing expectations.</p>
+          </article>
+          <article class="stage-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#DDE8F0] text-[#365F7C] flex items-center justify-center text-xl font-black">M</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Manufacturing Order = production work</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Defines what must be produced, which components are required and how production progress is recorded.</p>
+          </article>
+          <article class="stage-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#CFE7D8] text-emerald-900 flex items-center justify-center text-xl font-black">D</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Delivery = fulfillment evidence</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Connects shipped quantities and delivery status to the correct customer order under the configured logistics process.</p>
+          </article>
+          <article class="stage-card rounded-3xl bg-[#002349] text-white border border-[#002349] p-7 shadow-soft">
+            <div class="w-12 h-12 rounded-2xl bg-[#E49A62] text-[#002349] flex items-center justify-center text-xl font-black">I</div>
+            <h3 class="mt-5 text-xl font-black">Invoice = billing record</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">Should follow the agreed billing terms and configured invoice policy, with clear links back to the commercial order.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Recommended flow -->
+    <section id="recommended-flow" class="bg-[#EEF4F8] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Recommended process map</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">A controlled quote-to-cash flow for a make-to-order manufacturer</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Each step has an owner, a document and a control question. Optional stages should be used only when your real process requires them.</p>
+        </div>
+
+        <div class="mt-12 space-y-4">
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">1</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Inquiry / RFQ received</h3><span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">Sales</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">Capture the customer's requirements, target quantities, drawings/specifications, requested delivery date and any quality or packaging needs. For repeat customers, confirm approved terms and required customer references.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Do we understand exactly what the customer wants us to quote?</div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">2</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Internal estimate / costing review</h3><span class="rounded-full bg-[#F8E9DC] px-3 py-1 text-xs font-bold text-[#8E542B]">Optional gate</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">Estimate material, labor, machine time, outside processing, packaging, freight assumptions and margin. Check bill of materials and routing when available. This can be a formal internal approval step or a lightweight check depending on the company.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Is the quote commercially approved and operationally feasible?</div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">3</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Quotation sent and revised</h3><span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">Sales</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">Maintain versions or a clear revision trail when quantity, price, lead time, specifications or terms change. State the quote reference and validity period, and keep customer communication connected to the quote.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Does the accepted quote match the final commercial agreement?</div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">4</div>
+            <div class="flex-1 rounded-3xl bg-[#FFF9EF] border border-[#EADBBC] p-6 sm:p-7 shadow-soft">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Customer PO verified and attached</h3><span class="rounded-full bg-[#F3E7C8] px-3 py-1 text-xs font-bold text-[#806629]">Critical control</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">Check the customer's PO number, legal name, ship-to details, line quantities, unit prices, requested dates, tax/freight terms and any required PO line references. Store the PO file or reference on the commercial record using your approved method.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Can a reviewer connect the customer PO to one definitive Odoo Sales Order?</div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">5</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Confirm the Sales Order</h3><span class="rounded-full bg-[#CFE7D8] px-3 py-1 text-xs font-bold text-emerald-900">Commercial commit</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">The Sales Order becomes the central operational reference for what was sold. Define a rule for whether each customer PO, PO line, release or approved order grouping requires a separate Sales Order. Avoid creating duplicate or untraceable commercial records.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Does the Sales Order retain the correct customer PO reference and agreed quantities/prices?</div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">6</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Trigger replenishment or manufacturing</h3><span class="rounded-full bg-[#DDE8F0] px-3 py-1 text-xs font-bold text-[#365F7C]">MRP</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">For make-to-order products, configure and test the appropriate routes and procurement flow so the confirmed demand can generate or link to the required production work. For make-to-stock, production may be driven by forecasts or replenishment rules instead. Do not assume every product should create an MO automatically.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Can the planner trace each MO or replenishment decision back to demand, without using the MO as a replacement for the customer order?</div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">7</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Produce, quality-check and deliver</h3><span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">Operations</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">Record production and finished quantity, quality checks where used, picking/delivery, lot or serial traceability if required, backorders and partial shipments. Delivery documentation should reference the correct Sales Order.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Do delivered quantities and remaining demand agree with the customer order?</div>
+            </div>
+          </div>
+
+          <div class="flex gap-5 items-start">
+            <div class="step-node relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">8</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <h3 class="text-xl font-black text-[#002349]">Invoice, collect and close the loop</h3><span class="rounded-full bg-[#F8E9DC] px-3 py-1 text-xs font-bold text-[#8E542B]">Finance</span>
+              </div>
+              <p class="mt-3 text-slate-600 leading-relaxed">Create invoices according to the agreed terms and configured Odoo invoice policy—for example, ordered quantities, delivered quantities or an approved milestone arrangement where applicable. Reconcile customer payments and review outstanding A/R.</p>
+              <div class="mt-4 text-sm"><b class="text-[#002349]">Control:</b> Can finance trace each invoice to the customer PO, Sales Order and relevant delivery or billing milestone?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What not to do -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-7">
+        <div class="rounded-[2rem] bg-[#FCEBE5] border border-[#ECC9BE] p-7 sm:p-9">
+          <div class="text-xs font-black uppercase tracking-[.2em] text-[#9E4F38]">Risky pattern</div>
+          <h2 class="mt-3 text-3xl font-black text-[#002349]">MO first → create Sales Order later</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">When production is created first and the commercial order is built afterward, teams can end up with missing customer PO references, duplicate Sales Orders, disconnected demand, inaccurate promised dates and unclear links between finished goods, delivery and invoice.</p>
+          <div class="mt-6 rounded-2xl bg-white/75 p-5">
+            <div class="font-black text-[#002349]">This may be valid in a specific workflow</div>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">For example, production can be planned for stock or based on a forecast before a particular customer order exists. The risk is treating an MO as the universal source for a make-to-order commercial commitment.</p>
+          </div>
+        </div>
+
+        <div class="rounded-[2rem] bg-[#002349] text-white border border-[#002349] p-7 sm:p-9 shadow-deep">
+          <div class="text-xs font-black uppercase tracking-[.2em] text-[#CFE7D8]">Stronger pattern</div>
+          <h2 class="mt-3 text-3xl font-black">PO verified → Sales Order → linked execution</h2>
+          <p class="mt-4 text-slate-300 leading-relaxed">For customer-specific orders, establish the accepted commercial terms first. Let the configured manufacturing and logistics workflow fulfill that demand while preserving references back to the Sale Order and original PO.</p>
+          <div class="mt-6 rounded-2xl bg-white/10 p-5">
+            <div class="font-black text-[#CFE7D8]">Outcome to aim for</div>
+            <p class="mt-2 text-sm text-slate-300 leading-relaxed">One traceable chain from customer commitment through production, shipment, invoice and payment—plus clear handling for revisions and partial fulfillment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process model selector -->
+    <section id="process-builder" class="bg-[#EEF4F8] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Choose the operating model</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Not every manufacturing company should use the same trigger</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Select the closest business model to see which records and controls deserve extra attention.</p>
+        </div>
+
+        <div class="mt-9 grid lg:grid-cols-[.8fr_1.2fr] gap-7">
+          <div class="rounded-[2rem] bg-white border border-slate-200 p-6 sm:p-7 shadow-soft">
+            <label class="block text-sm font-black text-[#002349]" for="modelType">Your production model</label>
+            <select id="modelType" class="mt-3 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              <option value="mto">Make-to-order (MTO)</option>
+              <option value="mts">Make-to-stock (MTS)</option>
+              <option value="eto">Engineer-to-order / custom build</option>
+              <option value="subcontract">Subcontract / outside processing</option>
+            </select>
+            <div class="mt-6 rounded-2xl bg-[#F8F6F0] p-5">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Selection tip</div>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">Choose based on how demand is fulfilled in real life, not just the label your team currently uses.</p>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#002349] text-white p-6 sm:p-8 shadow-deep">
+            <div class="text-xs uppercase tracking-widest font-black text-[#F3D7BC]">Recommended focus</div>
+            <h3 id="modelTitle" class="mt-3 text-2xl font-black">MTO: tie production to confirmed demand</h3>
+            <p id="modelDescription" class="mt-3 text-slate-300 leading-relaxed">Confirm the customer PO and Sales Order first. Then test the configured route/procurement path so a manufacturing order can be generated or linked to the correct demand.</p>
+            <div class="mt-6 border-t border-white/15 pt-5">
+              <div class="text-xs uppercase tracking-widest font-black text-[#CFE7D8]">Key control</div>
+              <p id="modelControl" class="mt-2 leading-relaxed">Every customer-specific MO should have a traceable demand source, and order changes should be assessed before production is released.</p>
+            </div>
+            <div class="mt-6 rounded-2xl bg-white/10 p-4">
+              <div class="text-xs uppercase tracking-widest font-black text-[#F3D7BC]">Verify in your database</div>
+              <p id="modelVerify" class="mt-2 text-sm text-slate-300 leading-relaxed">Routes, reordering rules, product configuration, lead times and relevant manufacturing links may need to be tested by product.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PO / SO policy -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-9 items-start">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Customer PO governance</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Define the Sales Order rule before the team starts entering orders</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">The system cannot enforce a consistent process if the team does not agree what one commercial order represents.</p>
+          <div class="mt-6 rounded-2xl bg-[#F8F6F0] border border-[#E7DDC2] p-5">
+            <div class="font-black text-[#002349]">Recommended policy statement</div>
+            <p class="mt-2 text-sm text-slate-600 leading-relaxed">“Every accepted customer purchase order or approved release must be traceable to the designated Odoo Sales Order record(s). Splits, consolidated orders and revisions follow documented rules.”</p>
+          </div>
+        </div>
+
+        <div class="overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-soft">
+          <div class="grid grid-cols-[.8fr_1.2fr] bg-[#002349] text-white">
+            <div class="p-4 sm:p-5 text-sm font-black">Decision</div>
+            <div class="p-4 sm:p-5 text-sm font-black">Rule to document</div>
+          </div>
+          <div class="grid grid-cols-[.8fr_1.2fr] border-b border-slate-200">
+            <div class="p-4 sm:p-5 font-black text-[#002349]">One PO</div>
+            <div class="p-4 sm:p-5 text-sm text-slate-600">Does one customer PO normally map to one Sales Order, or can approved line/release splits apply?</div>
+          </div>
+          <div class="grid grid-cols-[.8fr_1.2fr] border-b border-slate-200 bg-[#F7F8FA]">
+            <div class="p-4 sm:p-5 font-black text-[#002349]">PO revision</div>
+            <div class="p-4 sm:p-5 text-sm text-slate-600">How are quantity, date, price or specification changes approved and reflected in Odoo?</div>
+          </div>
+          <div class="grid grid-cols-[.8fr_1.2fr] border-b border-slate-200">
+            <div class="p-4 sm:p-5 font-black text-[#002349]">Partial shipment</div>
+            <div class="p-4 sm:p-5 text-sm text-slate-600">How are backorders, remaining quantities and partial invoices tracked against the original order?</div>
+          </div>
+          <div class="grid grid-cols-[.8fr_1.2fr] border-b border-slate-200 bg-[#F7F8FA]">
+            <div class="p-4 sm:p-5 font-black text-[#002349]">Repeat / blanket PO</div>
+            <div class="p-4 sm:p-5 text-sm text-slate-600">Does each release require its own order reference, line-level tracking or another documented structure?</div>
+          </div>
+          <div class="grid grid-cols-[.8fr_1.2fr]">
+            <div class="p-4 sm:p-5 font-black text-[#002349]">Invoice point</div>
+            <div class="p-4 sm:p-5 text-sm text-slate-600">Is billing based on ordered quantity, delivered quantity, deposits or agreed milestones—and how is that configured?</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reddit / community questions -->
+    <section class="bg-[#F7F2E9] border-y border-[#E9DFC8]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-9 items-start">
+          <div>
+            <div class="inline-flex items-center gap-2 rounded-full bg-white border border-[#E9DFC8] px-3 py-1.5 text-xs font-black uppercase tracking-widest text-[#806629]">Community-style Q&amp;A</div>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-[#002349]">Questions manufacturing teams ask when Odoo workflows feel disconnected</h2>
+            <p class="mt-5 text-slate-600 leading-relaxed">These are original, discussion-style questions suitable for FAQ/search intent. They are not quotes from specific Reddit posts, and live Reddit threads have not been verified in this session.</p>
+            <p class="mt-4 text-sm text-slate-500 leading-relaxed">If you participate in Reddit or other forums, contribute the full answer and relevant context first, disclose any affiliation when applicable, and follow each community's rules rather than dropping repetitive promotional links.</p>
+          </div>
+
+          <div class="space-y-4">
+            <article class="rounded-3xl bg-white border border-[#E9DFC8] p-6 shadow-sm">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 01</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">“Should we create the Manufacturing Order first or the Sales Order first?”</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">For a customer-specific make-to-order workflow, a confirmed Sales Order is usually the clearer commercial starting point. The configured route or procurement process can then generate or link production demand. Make-to-stock production may start from forecasts or replenishment before a customer order exists.</p>
+            </article>
+            <article class="rounded-3xl bg-white border border-[#E9DFC8] p-6 shadow-sm">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 02</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">“Our manufacturing team creates MOs, but finance cannot find matching customer POs. What should we change?”</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">Define the PO verification and Sales Order confirmation steps as formal gates. Make the customer PO reference mandatory in the business process, define the rule for one PO versus multiple Sales Orders, and test that production, delivery and invoices retain traceable links.</p>
+            </article>
+            <article class="rounded-3xl bg-white border border-[#E9DFC8] p-6 shadow-sm">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 03</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">“Can an MO automatically create a Sales Order?”</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">Do not assume that is the desired standard workflow. Odoo behavior depends on installed apps, customization and integration design. First identify the true business source: customer demand, stock replenishment, rework or internal production. Then configure traceability around that source instead of creating duplicate commercial records.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation checklist -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-8 items-start">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Go-live checklist</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Test the process before rolling it out</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Run a small test matrix with real-world edge cases, then document the outcome and owner for every step.</p>
+        </div>
+
+        <div class="rounded-[2rem] bg-white border border-slate-200 overflow-hidden divide-y divide-slate-200 shadow-soft">
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Standard order.</strong> Quote accepted, PO attached, SO confirmed, MO/fulfillment linked, delivery completed and invoice generated.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">PO change.</strong> Test revised price, quantity, specification or promised delivery date after confirmation.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Partial production or shipment.</strong> Confirm residual demand, backorders and invoice quantities remain correct.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Make-to-stock scenario.</strong> Confirm production can be planned from replenishment without inventing a customer PO.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Customer PO validation.</strong> Confirm customer identity, PO number, lines, dates, prices, delivery destination and required attachments.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Invoice policy.</strong> Test ordered, delivered or milestone billing as permitted by the configured process and commercial agreement.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer bg-[#EAF0E5]"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">End-to-end traceability.</strong> Finance should be able to trace a posted invoice back to the Sales Order, customer PO and relevant fulfillment documents.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#EEF4F8] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Odoo manufacturing sales workflow questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What is the recommended sales process in Odoo for a manufacturing company?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">A common customer-specific process is inquiry, internal costing if required, quotation, customer PO verification, Sales Order confirmation, configured procurement/manufacturing, delivery, invoicing and payment reconciliation. The exact sequence depends on the production model and Odoo setup.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Should the Sales Order be created before the Manufacturing Order?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">For make-to-order production, the Sales Order is often the clearest commercial demand source, and configured routes may create or link the Manufacturing Order from that demand. Make-to-stock manufacturing may be planned before customer orders exist.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">How should a customer PO be linked to an Odoo Sales Order?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Define a standard for recording the customer PO number and retaining the source document or required reference on the Sales Order. Decide whether each PO, PO release or approved grouping maps to a separate order, and test that invoice and delivery records remain traceable.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Can all Manufacturing Orders be tied to customer Sales Orders?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Not necessarily. Make-to-stock production, replenishment, internal use, rework or other manufacturing scenarios may exist without a specific customer order. Your process should distinguish customer-driven production from stock-driven production.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">How should invoices be created for partial shipments?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Set the invoicing policy to reflect the commercial contract and configured Odoo process. Depending on that setup, invoices may follow delivered quantities, ordered quantities, deposits or approved milestones. Test partial deliveries, backorders and remaining quantities before going live.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Odoo articles -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Related Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Connect sales operations with reliable accounting</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-accounting-setup-guide-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Odoo Setup</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Accounting Setup Guide for US Businesses</h3>
+        </a>
+        <a href="/blog/odoo-inventory-valuation-not-matching.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Inventory Accounting</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Inventory Valuation Wrong? 9 Reasons Stock Value Doesn't Match the Balance Sheet</h3>
+        </a>
+        <a href="/blog/odoo-accounts-receivable-overdue-invoices.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Accounts Receivable</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Accounts Receivable: Fix Overdue Invoices &amp; Customer Balances</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#F3D7BC]">Need a cleaner sales-to-production flow?</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Connect customer POs, sales orders, manufacturing and invoicing.</h2>
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise helps manufacturing businesses and accounting firms review Odoo workflows, improve document traceability, resolve sales-to-invoice gaps and build reliable finance processes.</p>
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a>
+          </div>
+          <p class="mt-6 text-sm text-slate-400">Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const modelGuidance = {
+      mto: {
+        title: 'MTO: tie production to confirmed demand',
+        description: 'Confirm the customer PO and Sales Order first. Then test the configured route/procurement path so a manufacturing order can be generated or linked to the correct demand.',
+        control: 'Every customer-specific MO should have a traceable demand source, and order changes should be assessed before production is released.',
+        verify: 'Routes, reordering rules, product configuration, lead times and relevant manufacturing links may need to be tested by product.'
+      },
+      mts: {
+        title: 'MTS: plan production from stock demand',
+        description: 'Production may be started from forecasts, replenishment rules or minimum/maximum stock policies before a customer order exists. Sales Orders then reserve or consume available stock according to configuration.',
+        control: 'Distinguish stock-driven MOs from customer-driven orders; do not create artificial customer references for production intended for inventory.',
+        verify: 'Check forecast logic, reordering rules, stock availability, reservation behavior, replenishment lead times and delivery flow.'
+      },
+      eto: {
+        title: 'ETO: control engineering and revision gates',
+        description: 'Custom designs may require engineering review, specification approval, costing and design revision control before the commercial promise and production scope are frozen.',
+        control: 'The approved customer specification, quote revision, Sales Order and production documents must refer to the same approved scope.',
+        verify: 'Check document/version management, BOM revision practices, approval gates, change orders and how extra engineering costs are captured.'
+      },
+      subcontract: {
+        title: 'Subcontracting: connect customer demand to outside processing',
+        description: 'A Sales Order may create demand for finished goods while configured subcontracting flows handle components, supplier processing and receipt of finished or semi-finished items.',
+        control: 'Trace customer demand, components sent out, subcontract purchase documents, receipts and final delivery without losing quantity or cost visibility.',
+        verify: 'Test subcontracting routes, BoM type/configuration, component ownership, receipt steps, vendor bills and landed or outside-processing costs as relevant.'
+      }
+    };
+
+    document.getElementById('modelType').addEventListener('change', function () {
+      const model = modelGuidance[this.value];
+      document.getElementById('modelTitle').textContent = model.title;
+      document.getElementById('modelDescription').textContent = model.description;
+      document.getElementById('modelControl').textContent = model.control;
+      document.getElementById('modelVerify').textContent = model.verify;
+    });
+  </script>
+
+  <!-- BlogPosting structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "How to Define a Sales Process in Odoo for Manufacturing Companies",
+    "description": "A practical blueprint for connecting customer purchase orders, sales orders, manufacturing orders, deliveries and invoices in Odoo manufacturing workflows.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-manufacturing-sales-process.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-manufacturing-sales-process.html"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the recommended sales process in Odoo for a manufacturing company?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A common customer-specific process is inquiry, internal costing if required, quotation, customer PO verification, Sales Order confirmation, configured procurement/manufacturing, delivery, invoicing and payment reconciliation. The exact sequence depends on the production model and Odoo setup."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should the Sales Order be created before the Manufacturing Order?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For make-to-order production, the Sales Order is often the clearest commercial demand source, and configured routes may create or link the Manufacturing Order from that demand. Make-to-stock manufacturing may be planned before customer orders exist."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How should a customer PO be linked to an Odoo Sales Order?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Define a standard for recording the customer PO number and retaining the source document or required reference on the Sales Order. Decide whether each PO, PO release or approved grouping maps to a separate order, and test that invoice and delivery records remain traceable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can all Manufacturing Orders be tied to customer Sales Orders?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not necessarily. Make-to-stock production, replenishment, internal use, rework or other manufacturing scenarios may exist without a specific customer order. The process should distinguish customer-driven production from stock-driven production."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How should invoices be created for partial shipments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Set the invoicing policy to reflect the commercial contract and configured Odoo process. Depending on that setup, invoices may follow delivered quantities, ordered quantities, deposits or approved milestones. Test partial deliveries, backorders and remaining quantities before going live."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
