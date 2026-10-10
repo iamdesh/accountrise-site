@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Deferred Revenue: How to Stop Recognizing Revenue Too Early</title>
+  <meta name="description" content="Learn how deferred revenue should flow through Odoo for prepaid services, annual subscriptions and retainers. Diagnose early revenue recognition, deferral schedules and liability reconciliation with a practical workflow.">
+  <meta name="keywords" content="Odoo deferred revenue, Odoo revenue recognition, deferred revenue accounting, Odoo prepaid services, Odoo subscription accounting, Odoo revenue deferral, Odoo month end close">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-deferred-revenue-recognition.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Deferred Revenue: How to Stop Recognizing Revenue Too Early">
+  <meta property="og:description" content="A practical guide to deferred revenue in Odoo, from invoice setup to monthly recognition and liability reconciliation.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-deferred-revenue-recognition.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Deferred Revenue: How to Stop Recognizing Revenue Too Early">
+  <meta name="twitter:description" content="Trace prepaid services from customer invoice to monthly revenue and the Balance Sheet in Odoo.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .calendar-bg { background-color:#fbf8f2; background-image:linear-gradient(rgba(0,35,73,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(0,35,73,.045) 1px,transparent 1px); background-size:30px 30px; }
+    .soft-shadow { box-shadow:0 18px 55px rgba(0,35,73,.09); }
+    .heavy-shadow { box-shadow:0 26px 80px rgba(0,35,73,.15); }
+    .month-cell { transition:background .2s ease,transform .2s ease; }
+    .month-cell.active { background:#002349;color:#fff;transform:translateY(-2px); }
+    .month-cell.recognized { background:#E6D9B6;color:#002349; }
+    .month-cell.pending { background:#E9EEF4;color:#486078; }
+    .route-step { position:relative; }
+    .route-step:not(:last-child)::after { content:"";position:absolute;left:19px;top:43px;bottom:-27px;width:2px;background:#d6dde5; }
+    details summary { list-style:none;cursor:pointer; }
+    details summary::-webkit-details-marker { display:none; }
+    .rise { animation:rise .6s ease both; }
+    @keyframes rise { from { opacity:0;transform:translateY(12px); } to { opacity:1;transform:translateY(0); } }
+    @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .rise,.month-cell { animation:none;transition:none; } }
+  </style>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { navy:'#002349', gold:'#957C3D', parchment:'#FBF8F2', ink:'#142A40', mist:'#F2F5F8' } } } }
+  </script>
+</head>
+<body class="bg-[#F7F8FA] text-[#142A40] antialiased">
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Distinct editorial / service-calendar hero -->
+    <section class="calendar-bg overflow-hidden border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1fr_.95fr] gap-12 items-center">
+          <div class="rise">
+            <div class="flex flex-wrap gap-3 items-center mb-7">
+              <span class="rounded-full bg-[#002349] text-white px-3 py-1.5 text-xs font-black uppercase tracking-[0.18em]">Odoo Accounting</span>
+              <span class="text-sm font-semibold text-slate-500">Revenue Timing • Deferrals • Month-End</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black tracking-tight leading-[1.02] text-[#002349]">Odoo Deferred Revenue: <span class="text-[#957C3D]">Stop Recognizing Revenue Too Early</span></h1>
+            <p class="mt-7 text-lg sm:text-xl text-slate-600 leading-relaxed max-w-2xl">Invoicing a customer is not always the same as earning the revenue. For annual subscriptions, prepaid support and services delivered over time, the accounting needs to follow the service period—not just the invoice date.</p>
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#timeline" class="rounded-2xl bg-[#002349] text-white px-6 py-3.5 font-bold hover:bg-[#00172f] transition">See the Revenue Timeline</a>
+              <a href="#calculator" class="rounded-2xl bg-white border border-slate-300 text-[#002349] px-6 py-3.5 font-bold hover:border-[#957C3D] transition">Calculate a Deferral</a>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-500"><span>✓ Prepaid services</span><span>✓ Annual contracts</span><span>✓ Liability reconciliation</span></div>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -top-4 -right-3 w-32 h-32 rounded-full bg-[#E6D9B6] blur-2xl opacity-60"></div>
+            <div class="relative rounded-[2rem] bg-white border border-slate-200 p-5 sm:p-7 heavy-shadow">
+              <div class="flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
+                <div><div class="text-[11px] uppercase tracking-[0.22em] font-black text-[#957C3D]">Revenue Calendar</div><div class="mt-1 text-xl font-black text-[#002349]">12-month service plan</div></div>
+                <div class="rounded-xl bg-[#F3EFE4] px-3 py-2 text-right"><div class="text-[10px] uppercase tracking-wider text-slate-500">Contract</div><div class="font-black text-[#002349]">$12,000</div></div>
+              </div>
+              <div class="grid grid-cols-4 gap-2 mt-6">
+                <div class="month-cell recognized rounded-xl p-3 text-center"><div class="text-[10px] font-bold">JAN</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell recognized rounded-xl p-3 text-center"><div class="text-[10px] font-bold">FEB</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell recognized rounded-xl p-3 text-center"><div class="text-[10px] font-bold">MAR</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell recognized rounded-xl p-3 text-center"><div class="text-[10px] font-bold">APR</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell recognized rounded-xl p-3 text-center"><div class="text-[10px] font-bold">MAY</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell active rounded-xl p-3 text-center"><div class="text-[10px] font-bold">JUN</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell pending rounded-xl p-3 text-center"><div class="text-[10px] font-bold">JUL</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell pending rounded-xl p-3 text-center"><div class="text-[10px] font-bold">AUG</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell pending rounded-xl p-3 text-center"><div class="text-[10px] font-bold">SEP</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell pending rounded-xl p-3 text-center"><div class="text-[10px] font-bold">OCT</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell pending rounded-xl p-3 text-center"><div class="text-[10px] font-bold">NOV</div><div class="mt-2 text-sm font-black">$1k</div></div>
+                <div class="month-cell pending rounded-xl p-3 text-center"><div class="text-[10px] font-bold">DEC</div><div class="mt-2 text-sm font-black">$1k</div></div>
+              </div>
+              <div class="mt-6 grid grid-cols-2 gap-3">
+                <div class="rounded-2xl bg-[#F3EFE4] p-4"><div class="text-xs uppercase tracking-wider font-bold text-slate-500">Illustrative earned</div><div class="mt-1 text-2xl font-black text-[#002349]">$6,000</div></div>
+                <div class="rounded-2xl bg-[#EEF2F6] p-4"><div class="text-xs uppercase tracking-wider font-bold text-slate-500">Still deferred</div><div class="mt-1 text-2xl font-black text-[#002349]">$6,000</div></div>
+              </div>
+              <p class="mt-4 text-xs text-slate-400">Illustrative straight-line service schedule. Actual treatment depends on contract terms and accounting policy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer-first section -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.83fr_1.17fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">The core concept</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">Cash collected, invoice issued, revenue earned: three different events.</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">When a customer pays ahead of the service or performance period, the unearned portion generally remains a liability until the related obligation is satisfied. The schedule should explain how that balance turns into revenue over time.</p>
+        </div>
+        <div class="space-y-4">
+          <div class="grid sm:grid-cols-[150px_1fr] gap-5 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+            <div class="rounded-2xl bg-[#F3EFE4] flex flex-col justify-center items-center p-4"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Event 01</span><span class="mt-2 text-lg font-black text-[#002349]">Invoice</span></div>
+            <div><h3 class="text-xl font-black text-[#002349]">The customer is billed</h3><p class="mt-2 text-slate-600 leading-relaxed">The invoice records the amount due from the customer. For advance billing, that alone does not prove the full amount has been earned.</p></div>
+          </div>
+          <div class="grid sm:grid-cols-[150px_1fr] gap-5 rounded-3xl bg-white border border-slate-200 p-6 sm:p-7 soft-shadow">
+            <div class="rounded-2xl bg-[#E8EEF4] flex flex-col justify-center items-center p-4"><span class="text-xs font-black uppercase tracking-widest text-slate-500">Event 02</span><span class="mt-2 text-lg font-black text-[#002349]">Defer</span></div>
+            <div><h3 class="text-xl font-black text-[#002349]">The unearned amount sits in a liability</h3><p class="mt-2 text-slate-600 leading-relaxed">The appropriate portion is tracked as deferred revenue or another suitable liability based on the contract and accounting policy.</p></div>
+          </div>
+          <div class="grid sm:grid-cols-[150px_1fr] gap-5 rounded-3xl bg-[#002349] text-white p-6 sm:p-7 soft-shadow">
+            <div class="rounded-2xl bg-[#957C3D] text-[#002349] flex flex-col justify-center items-center p-4"><span class="text-xs font-black uppercase tracking-widest">Event 03</span><span class="mt-2 text-lg font-black">Recognize</span></div>
+            <div><h3 class="text-xl font-black">Revenue is recognized as the obligation is satisfied</h3><p class="mt-2 text-slate-300 leading-relaxed">Periodic entries move the appropriate amount from the liability to revenue based on the service pattern or other applicable recognition approach.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contract-to-ledger journey -->
+    <section id="timeline" class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl"><div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Contract-to-ledger journey</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Where the deferral process can break</h2><p class="mt-4 text-slate-600 leading-relaxed">Treat each stage as a control point. A correct invoice does not guarantee that subsequent deferral and recognition entries are correct.</p></div>
+        <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <article class="rounded-3xl bg-white border border-slate-200 p-6"><div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">01 • Contract</div><h3 class="mt-4 text-xl font-black text-[#002349]">Confirm what was promised</h3><p class="mt-3 text-slate-600 leading-relaxed">Check service dates, billing period, deliverables, renewal terms and whether performance occurs over time or at a point in time.</p></article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6"><div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">02 • Invoice</div><h3 class="mt-4 text-xl font-black text-[#002349]">Check account mapping</h3><p class="mt-3 text-slate-600 leading-relaxed">Verify that invoice lines use the intended revenue or deferred-revenue account treatment for the configured process.</p></article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6"><div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">03 • Schedule</div><h3 class="mt-4 text-xl font-black text-[#002349]">Inspect timing and amounts</h3><p class="mt-3 text-slate-600 leading-relaxed">Confirm the schedule begins and ends in the right periods, total scheduled amounts agree to the relevant balance, and periods are allocated correctly.</p></article>
+          <article class="rounded-3xl bg-[#002349] text-white border border-[#002349] p-6"><div class="text-xs uppercase tracking-widest font-black text-[#D8C58F]">04 • Close</div><h3 class="mt-4 text-xl font-black">Reconcile the liability</h3><p class="mt-3 text-slate-300 leading-relaxed">Tie deferred revenue to unrecognized contract amounts and explain the current-period revenue released from the liability.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive calculator -->
+    <section id="calculator" class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Interactive planner</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Estimate what is earned and what remains deferred</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">Model a simple arrangement where revenue is earned evenly over the service term. Adjust the contract amount, number of months and how much of the term has elapsed.</p>
+            <div class="mt-7 rounded-2xl bg-[#F3EFE4] border border-[#E8D9B5] p-5"><div class="font-black text-[#002349]">Important</div><p class="mt-2 text-sm text-slate-600 leading-relaxed">This is an educational estimate, not an automatic determination of the correct accounting treatment. Contract terms and the applicable accounting framework govern recognition.</p></div>
+          </div>
+          <div class="rounded-[2rem] border border-slate-200 bg-[#F7F8FA] p-6 sm:p-8 soft-shadow">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <label class="block sm:col-span-2"><span class="text-sm font-bold text-[#002349]">Total contract amount ($)</span><input id="contractAmount" type="number" min="0" value="12000" step="100" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]"></label>
+              <label class="block"><span class="text-sm font-bold text-[#002349]">Service term (months)</span><input id="termMonths" type="number" min="1" max="120" value="12" step="1" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]"></label>
+              <label class="block"><span class="text-sm font-bold text-[#002349]">Months elapsed</span><input id="elapsedMonths" type="number" min="0" max="120" value="5" step="1" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]"></label>
+            </div>
+            <div class="mt-7 grid sm:grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-white border border-slate-200 p-5"><div class="text-xs uppercase tracking-widest font-black text-slate-500">Earned to date</div><div id="earnedAmount" class="mt-2 text-3xl font-black text-[#002349]">$5,000.00</div><div class="mt-2 text-sm text-slate-500">Illustrative recognized revenue</div></div>
+              <div class="rounded-2xl bg-[#002349] text-white p-5"><div class="text-xs uppercase tracking-widest font-black text-[#D8C58F]">Remaining deferred</div><div id="deferredAmount" class="mt-2 text-3xl font-black">$7,000.00</div><div class="mt-2 text-sm text-slate-300">Illustrative liability balance</div></div>
+            </div>
+            <div class="mt-5 rounded-2xl bg-white border border-slate-200 p-5">
+              <div class="flex items-center justify-between gap-4 text-sm"><span class="font-bold text-[#002349]">Recognition progress</span><span id="progressLabel" class="font-black text-[#957C3D]">41.7%</span></div>
+              <div class="mt-3 h-3 rounded-full bg-slate-100 overflow-hidden"><div id="progressBar" class="h-full rounded-full bg-[#957C3D]" style="width:41.7%"></div></div>
+              <div class="mt-4 grid grid-cols-2 gap-4 text-sm"><div><span class="text-slate-500">Monthly amount:</span> <strong id="monthlyAmount" class="text-[#002349]">$1,000.00</strong></div><div class="text-right"><span class="text-slate-500">Months remaining:</span> <strong id="remainingMonths" class="text-[#002349]">7</strong></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Scenarios -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6"><div class="max-w-3xl"><div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Real-world patterns</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">When should you investigate deferred revenue?</h2></div><p class="max-w-sm text-sm text-slate-500">Use these scenarios to identify where the schedule and service agreement may not agree.</p></div>
+      <div class="mt-10 grid lg:grid-cols-3 gap-5">
+        <article class="rounded-[2rem] bg-[#FFF9ED] border border-[#E8D9B5] p-7"><div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Scenario A</div><h3 class="mt-4 text-2xl font-black text-[#002349]">Annual SaaS or support plan</h3><p class="mt-4 text-slate-600 leading-relaxed">A customer pays for 12 months upfront. If the service is provided over the year, recognizing the full amount in the first month may overstate that month's revenue.</p><div class="mt-6 pt-5 border-t border-[#E8D9B5] text-sm font-bold text-[#002349]">Review: contract period vs. recognition schedule.</div></article>
+        <article class="rounded-[2rem] bg-white border border-slate-200 p-7 soft-shadow"><div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Scenario B</div><h3 class="mt-4 text-2xl font-black text-[#002349]">Prepaid maintenance</h3><p class="mt-4 text-slate-600 leading-relaxed">A business bills a maintenance package before all support periods have occurred. The outstanding obligation should be visible and reconciled, subject to the contract terms.</p><div class="mt-6 pt-5 border-t border-slate-200 text-sm font-bold text-[#002349]">Review: service dates, account mapping and monthly release.</div></article>
+        <article class="rounded-[2rem] bg-[#002349] text-white border border-[#002349] p-7"><div class="text-xs font-black uppercase tracking-widest text-[#D8C58F]">Scenario C</div><h3 class="mt-4 text-2xl font-black">Retainer or advance billing</h3><p class="mt-4 text-slate-300 leading-relaxed">A customer's payment or advance invoice can be mistaken for earned revenue even when work remains. The correct treatment depends on what has been delivered and the contract terms.</p><div class="mt-6 pt-5 border-t border-white/15 text-sm font-bold text-[#D8C58F]">Review: performance completed vs. services still owed.</div></article>
+      </div>
+    </section>
+
+    <!-- Error patterns -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl"><div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Common failure patterns</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Six causes of a deferred-revenue mismatch</h2><p class="mt-4 text-slate-600 leading-relaxed">Check these before making a manual adjustment to the liability or income statement.</p></div>
+        <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="rounded-2xl bg-white p-6 border border-slate-200"><div class="text-3xl font-black text-[#957C3D]">01</div><h3 class="mt-3 font-black text-[#002349]">Invoice posted directly to revenue</h3><p class="mt-2 text-sm text-slate-600 leading-relaxed">The setup may recognize the full billed amount before the related service period has elapsed.</p></div>
+          <div class="rounded-2xl bg-white p-6 border border-slate-200"><div class="text-3xl font-black text-[#957C3D]">02</div><h3 class="mt-3 font-black text-[#002349]">Schedule has wrong dates</h3><p class="mt-2 text-sm text-slate-600 leading-relaxed">A start/end date mismatch may push revenue into periods outside the contract.</p></div>
+          <div class="rounded-2xl bg-white p-6 border border-slate-200"><div class="text-3xl font-black text-[#957C3D]">03</div><h3 class="mt-3 font-black text-[#002349]">Schedule total does not tie</h3><p class="mt-2 text-sm text-slate-600 leading-relaxed">Discounts, credits, partial periods or manual edits may leave part of the amount unallocated.</p></div>
+          <div class="rounded-2xl bg-white p-6 border border-slate-200"><div class="text-3xl font-black text-[#957C3D]">04</div><h3 class="mt-3 font-black text-[#002349]">Monthly release did not post</h3><p class="mt-2 text-sm text-slate-600 leading-relaxed">The schedule may exist, but the related period entries may be missing or unposted.</p></div>
+          <div class="rounded-2xl bg-white p-6 border border-slate-200"><div class="text-3xl font-black text-[#957C3D]">05</div><h3 class="mt-3 font-black text-[#002349]">Credit note not reflected</h3><p class="mt-2 text-sm text-slate-600 leading-relaxed">A contract change can affect unearned revenue; confirm the schedule reflects the approved change.</p></div>
+          <div class="rounded-2xl bg-[#002349] text-white p-6 border border-[#002349]"><div class="text-3xl font-black text-[#D8C58F]">06</div><h3 class="mt-3 font-black">Liability account does not reconcile</h3><p class="mt-2 text-sm text-slate-300 leading-relaxed">The ledger may include manual entries or contracts not included in the supporting schedule.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reconciliation table -->
+    <section class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.7fr_1.3fr] gap-10 items-start"><div><div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Control sheet</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Three balances. One explanation.</h2><p class="mt-4 text-slate-600 leading-relaxed">At month-end, link the contract-level schedule to the liability and the revenue released for the period.</p></div>
+          <div class="overflow-x-auto rounded-3xl border border-slate-200 shadow-soft"><table class="w-full min-w-[650px] text-left"><thead class="bg-[#002349] text-white"><tr><th class="px-5 py-4 text-sm font-black">Control</th><th class="px-5 py-4 text-sm font-black">Question to answer</th><th class="px-5 py-4 text-sm font-black">Evidence</th></tr></thead><tbody class="divide-y divide-slate-200">
+            <tr><td class="px-5 py-5 font-black text-[#002349]">Contract schedule</td><td class="px-5 py-5 text-sm text-slate-600">Does it match the arrangement and remaining service?</td><td class="px-5 py-5 text-sm text-slate-600">Contract, dates, schedule</td></tr>
+            <tr class="bg-[#F7F8FA]"><td class="px-5 py-5 font-black text-[#002349]">Deferred revenue liability</td><td class="px-5 py-5 text-sm text-slate-600">Does the GL balance match the amount not yet recognized?</td><td class="px-5 py-5 text-sm text-slate-600">Liability ledger, detail report</td></tr>
+            <tr><td class="px-5 py-5 font-black text-[#002349]">Revenue recognized</td><td class="px-5 py-5 text-sm text-slate-600">Does current-period revenue match the service delivered?</td><td class="px-5 py-5 text-sm text-slate-600">Posted entries, service evidence</td></tr>
+            <tr class="bg-[#F7F8FA]"><td class="px-5 py-5 font-black text-[#002349]">Adjustments</td><td class="px-5 py-5 text-sm text-slate-600">Are credits, cancellations and manual journals explained?</td><td class="px-5 py-5 text-sm text-slate-600">Credit notes, journals, approvals</td></tr>
+          </tbody></table></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Month-end checklist -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-8"><div><div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Month-end checklist</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Make the deferral review repeatable</h2><p class="mt-4 text-slate-600 leading-relaxed">Use the checklist each close, then investigate exceptions instead of rebuilding the reconciliation from scratch.</p></div>
+        <div class="rounded-[2rem] bg-white border border-slate-200 divide-y divide-slate-200 overflow-hidden soft-shadow">
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Identify advance-billed contracts.</strong> Find invoices covering service periods beyond the current period.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Check account mapping.</strong> Confirm the initial entry follows the intended accounting treatment.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review schedule dates and amounts.</strong> Tie scheduled amounts to the relevant contract and invoice values.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Confirm period entries posted.</strong> Inspect the journals that release deferred revenue into current-period revenue.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review contract changes.</strong> Check credits, cancellations, amendments and refunds.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Reconcile the liability.</strong> Compare the schedule's unrecognized balance with the general ledger.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer bg-[#F3EFE4]"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Document exceptions.</strong> Assign an owner and note unresolved differences before close sign-off.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200"><div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20"><div class="text-center"><div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">FAQ</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Deferred revenue questions</h2></div>
+      <div class="mt-10 space-y-3">
+        <details class="group rounded-2xl bg-white border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What is deferred revenue in Odoo?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">Deferred revenue generally represents an amount billed or received before the related goods or services have been provided. The unearned portion is typically tracked as a liability and recognized as the relevant obligation is satisfied.</p></details>
+        <details class="group rounded-2xl bg-white border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Why is Odoo recognizing the full invoice as revenue?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">Check the accounts mapped to invoice lines, deferral setup and whether the appropriate schedule or recurring entries are configured and posted. Exact labels and steps can differ by Odoo version and configuration.</p></details>
+        <details class="group rounded-2xl bg-white border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">How do I reconcile deferred revenue at month-end?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">Compare the contract-level unrecognized balance with the deferred revenue liability in the general ledger. Tie current-period releases to recognized revenue and investigate credits, schedule differences and manual entries.</p></details>
+        <details class="group rounded-2xl bg-white border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Is every customer deposit deferred revenue?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">Not automatically. Treatment depends on the contract, what the payment relates to, whether a performance obligation has been satisfied and the applicable accounting policy. Review the facts before deciding how an advance should be classified.</p></details>
+        <details class="group rounded-2xl bg-white border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Can I use a straight-line schedule for every contract?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">No. Straight-line recognition is appropriate only when it reasonably reflects the pattern in which the related goods or services are transferred. Some contracts require another pattern or separate treatment for distinct obligations.</p></details>
+      </div>
+    </div></section>
+
+    <!-- Related articles -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14"><div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5"><div><div class="text-xs font-black uppercase tracking-[0.22em] text-[#957C3D]">Related Odoo guides</div><h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Build a more reliable monthly close</h2></div><a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a></div>
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-fixed-assets-depreciation.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition"><div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Fixed Assets</div><h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Fixed Assets &amp; Depreciation: Why Your Balance Sheet Looks Wrong</h3></a>
+        <a href="/blog/odoo-foreign-currency-accounting.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition"><div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Multi-Currency</div><h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Foreign Currency Accounting: Why Exchange Gain/Loss Looks Wrong</h3></a>
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition"><div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div><h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3></a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white"><div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center"><div class="max-w-3xl mx-auto"><div class="text-xs font-black uppercase tracking-[0.22em] text-[#D8C58F]">Need help with Odoo?</div><h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Make revenue timing easier to explain—and easier to reconcile.</h2><p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise helps US businesses and accounting firms clean up Odoo accounting, review revenue schedules, reconcile balance sheet accounts and build repeatable month-end processes.</p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4"><a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a><a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a></div>
+      <p class="mt-6 text-sm text-slate-400">Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.</p></div></div></section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400"><div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm">© 2026 Accountrise. All rights reserved.</div><div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div></div></footer>
+
+  <script>
+    const usd = (n) => '$' + Number(n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    function calculateDeferral() {
+      const amount = Math.max(0, Number(document.getElementById('contractAmount').value) || 0);
+      const term = Math.max(1, Math.min(120, Math.floor(Number(document.getElementById('termMonths').value) || 1)));
+      const elapsed = Math.max(0, Math.min(term, Math.floor(Number(document.getElementById('elapsedMonths').value) || 0)));
+      const monthly = amount / term;
+      const earned = monthly * elapsed;
+      const deferred = Math.max(0, amount - earned);
+      const progress = (elapsed / term) * 100;
+      document.getElementById('termMonths').value = term;
+      document.getElementById('elapsedMonths').value = elapsed;
+      document.getElementById('earnedAmount').textContent = usd(earned);
+      document.getElementById('deferredAmount').textContent = usd(deferred);
+      document.getElementById('monthlyAmount').textContent = usd(monthly);
+      document.getElementById('remainingMonths').textContent = String(term - elapsed);
+      document.getElementById('progressLabel').textContent = progress.toFixed(1) + '%';
+      document.getElementById('progressBar').style.width = progress + '%';
+    }
+    ['contractAmount','termMonths','elapsedMonths'].forEach((id) => document.getElementById(id).addEventListener('input', calculateDeferral));
+    calculateDeferral();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Odoo Deferred Revenue: How to Stop Recognizing Revenue Too Early",
+    "description":"A practical guide to deferred revenue in Odoo for prepaid services, annual contracts and retainers, with a workflow for schedule review and liability reconciliation.",
+    "author":{"@type":"Organization","name":"Accountrise"},
+    "publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-deferred-revenue-recognition.html"},
+    "url":"https://www.accountrise.com/blog/odoo-deferred-revenue-recognition.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"What is deferred revenue in Odoo?","acceptedAnswer":{"@type":"Answer","text":"Deferred revenue generally represents an amount billed or received before the related goods or services have been provided. The unearned portion is typically tracked as a liability and recognized as the relevant obligation is satisfied."}},
+      {"@type":"Question","name":"Why is Odoo recognizing the full invoice as revenue?","acceptedAnswer":{"@type":"Answer","text":"Check the accounts mapped to invoice lines, deferral setup and whether the appropriate schedule or recurring entries are configured and posted. Exact labels and steps can differ by Odoo version and configuration."}},
+      {"@type":"Question","name":"How do I reconcile deferred revenue at month-end?","acceptedAnswer":{"@type":"Answer","text":"Compare the contract-level unrecognized balance with the deferred revenue liability in the general ledger. Tie current-period releases to recognized revenue and investigate credits, schedule differences and manual entries."}},
+      {"@type":"Question","name":"Is every customer deposit deferred revenue?","acceptedAnswer":{"@type":"Answer","text":"Not automatically. Treatment depends on the contract, what the payment relates to, whether a performance obligation has been satisfied and the applicable accounting policy."}},
+      {"@type":"Question","name":"Can I use a straight-line schedule for every contract?","acceptedAnswer":{"@type":"Answer","text":"No. Straight-line recognition is appropriate only when it reasonably reflects the pattern in which the related goods or services are transferred. Some contracts require another pattern or separate treatment for distinct obligations."}}
+    ]
+  }
+  </script>
+</body>
+</html>
