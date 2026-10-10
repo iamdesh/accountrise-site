@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Analytic Accounting: Track Profit by Customer, Project &amp; Department</title>
+  <meta name="description" content="Learn how to use Odoo analytic accounting to track revenue, costs and margins by customer, project or department. Improve analytic distributions, reporting and month-end controls.">
+  <meta name="keywords" content="Odoo analytic accounting, Odoo analytic accounts, Odoo analytic distribution, Odoo project profitability, Odoo cost center accounting, Odoo department reporting, Odoo management accounting">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-analytic-accounting-profitability.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Analytic Accounting: Track Profit by Customer, Project &amp; Department">
+  <meta property="og:description" content="A practical guide to setting up analytic tracking in Odoo and using it to understand profitability beyond the general ledger.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-analytic-accounting-profitability.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Analytic Accounting: Track Profit by Customer, Project &amp; Department">
+  <meta name="twitter:description" content="Track project, customer and department profitability in Odoo with practical analytic accounting controls.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#12283D',
+            mist: '#F3F6F9',
+            mint: '#BDE6D4',
+            lilac: '#DAD8F5'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .mesh {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(149,124,61,.13), transparent 25%),
+        radial-gradient(circle at 90% 8%, rgba(189,230,212,.12), transparent 22%),
+        linear-gradient(140deg, #00182f, #002349 65%, #093454);
+    }
+    .panel-shadow { box-shadow: 0 24px 70px rgba(0,35,73,.13); }
+    .soft-shadow { box-shadow: 0 12px 36px rgba(0,35,73,.07); }
+    .track { background: linear-gradient(90deg, #957C3D, #d4c08a); }
+    .dimension-card { transition: transform .22s ease, box-shadow .22s ease; }
+    .dimension-card:hover { transform: translateY(-4px); box-shadow: 0 16px 35px rgba(0,35,73,.10); }
+    .flow-node { position: relative; }
+    .flow-node:not(:last-child)::after {
+      content: "→"; position: absolute; right: -19px; top: 50%; transform: translateY(-50%);
+      color: #957C3D; font-weight: 900; font-size: 20px;
+    }
+    details summary { list-style: none; cursor: pointer; }
+    details summary::-webkit-details-marker { display:none; }
+    @media (max-width: 767px) {
+      .flow-node:not(:last-child)::after { content:"↓"; right: auto; left: 50%; top: auto; bottom: -25px; transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .dimension-card { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#12283D] antialiased">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: Profitability Control Room -->
+    <section class="mesh text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1fr_.95fr] gap-12 items-center">
+          <div>
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-xs font-black tracking-[.18em] uppercase text-[#E7DAB7]">
+              <span class="w-2 h-2 rounded-full bg-[#BDE6D4]"></span> Odoo Accounting • Profitability
+            </div>
+            <h1 class="mt-7 text-4xl sm:text-6xl font-black leading-[1.03] tracking-tight">
+              Odoo Analytic Accounting:
+              <span class="text-[#D8C58F]">Know Which Work Actually Makes Money</span>
+            </h1>
+            <p class="mt-7 max-w-2xl text-lg sm:text-xl text-slate-300 leading-relaxed">
+              Your general ledger tells you how the business performed overall. Analytic accounting can help explain
+              which customer, project, team or business activity drove the result—when the dimensions and allocations are designed well.
+            </p>
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#profit-map" class="rounded-2xl bg-[#957C3D] text-[#002349] px-6 py-3.5 font-bold hover:bg-[#b89a4e] transition">Build Your Profit Map</a>
+              <a href="#setup" class="rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">See the Setup Logic</a>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
+              <span>Customer profitability</span><span>Project margin</span><span>Department cost</span>
+            </div>
+          </div>
+
+          <!-- Dashboard visual -->
+          <div class="rounded-[2rem] border border-white/10 bg-[#FFFFFF0D] p-5 sm:p-7 panel-shadow">
+            <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
+              <div>
+                <div class="text-[11px] uppercase tracking-[.22em] font-black text-[#D8C58F]">Profitability Snapshot</div>
+                <div class="mt-1 text-xl font-black">Illustrative analytic view</div>
+              </div>
+              <span class="rounded-full bg-[#BDE6D4]/15 text-[#BDE6D4] px-3 py-1 text-xs font-bold">Example data</span>
+            </div>
+
+            <div class="mt-6 grid grid-cols-2 gap-4">
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <div class="text-xs text-slate-400">Tracked revenue</div>
+                <div class="mt-2 text-3xl font-black">$84,000</div>
+                <div class="mt-2 text-xs text-[#BDE6D4]">Across tagged engagements</div>
+              </div>
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-5">
+                <div class="text-xs text-slate-400">Tracked direct costs</div>
+                <div class="mt-2 text-3xl font-black">$51,000</div>
+                <div class="mt-2 text-xs text-[#D8C58F]">Labor + delivery costs</div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl bg-white text-[#002349] p-5 sm:p-6">
+              <div class="flex items-center justify-between gap-3">
+                <div>
+                  <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Contribution before overhead</div>
+                  <div class="mt-1 text-3xl sm:text-4xl font-black">$33,000</div>
+                </div>
+                <div class="rounded-2xl bg-[#E7F5EE] px-4 py-3 text-right">
+                  <div class="text-xs text-slate-500">Margin</div>
+                  <div class="text-2xl font-black text-emerald-800">39.3%</div>
+                </div>
+              </div>
+              <div class="mt-5 h-3 rounded-full bg-slate-100 overflow-hidden">
+                <div class="h-full w-[39.3%] track rounded-full"></div>
+              </div>
+              <div class="mt-2 flex justify-between text-xs text-slate-500"><span>Direct costs</span><span>Contribution margin</span></div>
+            </div>
+
+            <div class="mt-5 grid grid-cols-3 gap-2">
+              <div class="rounded-xl bg-[#BDE6D4]/10 border border-[#BDE6D4]/20 p-3 text-center">
+                <div class="text-[10px] uppercase tracking-widest text-[#BDE6D4]">Dimension</div><div class="mt-1 font-black text-sm">Customer</div>
+              </div>
+              <div class="rounded-xl bg-[#DAD8F5]/10 border border-[#DAD8F5]/20 p-3 text-center">
+                <div class="text-[10px] uppercase tracking-widest text-[#DAD8F5]">Dimension</div><div class="mt-1 font-black text-sm">Project</div>
+              </div>
+              <div class="rounded-xl bg-[#D8C58F]/10 border border-[#D8C58F]/20 p-3 text-center">
+                <div class="text-[10px] uppercase tracking-widest text-[#D8C58F]">Dimension</div><div class="mt-1 font-black text-sm">Department</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer first -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Start here</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">Analytic accounting answers “where did we earn or spend it?”</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            It complements financial accounting; it does not replace it. The general ledger captures the accounting entry.
+            Analytic dimensions add management context to help you analyze that entry by project, customer, team, department or another defined business view.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <article class="dimension-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#E7F5EE] flex items-center justify-center text-xl font-black text-emerald-800">↗</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Revenue attribution</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Understand which engagement or customer generated the revenue, instead of relying on one total sales number.</p>
+          </article>
+          <article class="dimension-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#EAE9FB] flex items-center justify-center text-xl font-black text-indigo-800">↘</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Cost visibility</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Connect eligible costs—such as contractor invoices or project expenses—to the work that consumed them.</p>
+          </article>
+          <article class="dimension-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#F4EEDC] flex items-center justify-center text-xl font-black text-[#957C3D]">◎</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Management reporting</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Compare planned and actual economics across defined dimensions—if source transactions are consistently coded.</p>
+          </article>
+          <article class="dimension-card rounded-3xl bg-[#002349] text-white border border-[#002349] p-7 panel-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-xl font-black text-[#D8C58F]">✓</div>
+            <h3 class="mt-5 text-xl font-black">Reliable decisions</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">Make the report useful by setting ownership, rules for allocating shared costs and a monthly exception review.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Analytic profit map -->
+    <section id="profit-map" class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">The profit map</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">One transaction can answer different business questions</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Design the tracking dimensions around decisions leaders actually need to make. Avoid creating dimensions that nobody owns or uses.</p>
+        </div>
+
+        <div class="mt-10 grid lg:grid-cols-[.8fr_1.2fr] gap-8 items-stretch">
+          <div class="rounded-[2rem] bg-[#002349] text-white p-7 sm:p-8 panel-shadow">
+            <div class="text-xs uppercase tracking-widest font-black text-[#D8C58F]">Example transaction</div>
+            <div class="mt-4 text-3xl font-black">Contractor invoice</div>
+            <div class="mt-2 text-slate-300">Design work delivered for a US client</div>
+            <div class="mt-7 rounded-2xl bg-white/10 p-5">
+              <div class="text-xs text-slate-400">Expense amount</div>
+              <div class="mt-1 text-4xl font-black">$2,400</div>
+            </div>
+            <div class="mt-5 text-sm text-slate-300 leading-relaxed">The financial entry records the expense and payable. Analytic coding can add the management detail needed to understand which work incurred the cost.</div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="rounded-3xl bg-white border border-slate-200 p-6">
+              <div class="text-xs uppercase tracking-widest font-black text-emerald-800">Dimension 01</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">Customer</h3>
+              <p class="mt-2 text-sm text-slate-600">Which customer engagement should carry the cost?</p>
+              <div class="mt-5 rounded-xl bg-[#E7F5EE] p-3 text-sm font-bold text-emerald-900">Acme Services</div>
+            </div>
+            <div class="rounded-3xl bg-white border border-slate-200 p-6">
+              <div class="text-xs uppercase tracking-widest font-black text-indigo-800">Dimension 02</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">Project</h3>
+              <p class="mt-2 text-sm text-slate-600">Which delivery or implementation work used the resource?</p>
+              <div class="mt-5 rounded-xl bg-[#EAE9FB] p-3 text-sm font-bold text-indigo-900">Website Refresh</div>
+            </div>
+            <div class="rounded-3xl bg-white border border-slate-200 p-6">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Dimension 03</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">Department</h3>
+              <p class="mt-2 text-sm text-slate-600">Which internal team owns or uses the cost?</p>
+              <div class="mt-5 rounded-xl bg-[#F4EEDC] p-3 text-sm font-bold text-[#755C20]">Client Delivery</div>
+            </div>
+            <div class="rounded-3xl bg-white border border-slate-200 p-6">
+              <div class="text-xs uppercase tracking-widest font-black text-slate-500">Control point</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">Allocation rules</h3>
+              <p class="mt-2 text-sm text-slate-600">Decide whether these are separate analytic views or a percentage split across accounts.</p>
+              <div class="mt-5 rounded-xl bg-slate-100 p-3 text-sm font-bold text-slate-700">Document the rule</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Setup workflow -->
+    <section id="setup" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Setup logic</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Build the structure before tagging transactions</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Exact menu names and options can vary by Odoo version, installed apps and configuration. Use this as a design sequence, then validate it in your database.</p>
+      </div>
+
+      <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+        <div class="flow-node rounded-3xl bg-white border border-slate-200 p-6 soft-shadow">
+          <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Step 01</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Choose the questions</h3>
+          <p class="mt-3 text-slate-600 text-sm leading-relaxed">Decide whether you need profit by project, customer, department, channel or another management dimension.</p>
+        </div>
+        <div class="flow-node rounded-3xl bg-white border border-slate-200 p-6 soft-shadow">
+          <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Step 02</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Design accounts and plans</h3>
+          <p class="mt-3 text-slate-600 text-sm leading-relaxed">Create a small, clear analytic structure with naming standards, owners and rules for using each dimension.</p>
+        </div>
+        <div class="flow-node rounded-3xl bg-white border border-slate-200 p-6 soft-shadow">
+          <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Step 03</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Set coding rules</h3>
+          <p class="mt-3 text-slate-600 text-sm leading-relaxed">Decide where and when revenue, vendor bills, expenses and other relevant entries should receive analytic coding.</p>
+        </div>
+        <div class="rounded-3xl bg-[#002349] text-white border border-[#002349] p-6 panel-shadow">
+          <div class="text-xs font-black uppercase tracking-widest text-[#D8C58F]">Step 04</div>
+          <h3 class="mt-3 text-xl font-black">Test and reconcile</h3>
+          <p class="mt-3 text-slate-300 text-sm leading-relaxed">Test representative transactions and compare analytic reports with financial accounting totals and known business activity.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive margin calculator -->
+    <section id="calculator" class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-10 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Interactive margin planner</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">What does this project actually contribute?</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">Change revenue, direct costs and allocated overhead to estimate project contribution. The example is for management analysis, not a replacement for an Odoo report or accounting policy.</p>
+            <div class="mt-6 rounded-2xl bg-[#F4EEDC] border border-[#E8D9B5] p-5">
+              <div class="font-black text-[#002349]">Keep the definitions consistent</div>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">Direct costs and allocated overhead should use documented rules. Otherwise, two projects may appear different simply because costs were assigned differently.</p>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#F7F8FA] border border-slate-200 p-6 sm:p-8 soft-shadow">
+            <div class="grid sm:grid-cols-3 gap-4">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Project revenue ($)</span>
+                <input id="projectRevenue" type="number" min="0" value="25000" step="100" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Direct cost ($)</span>
+                <input id="directCost" type="number" min="0" value="14000" step="100" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Allocated overhead ($)</span>
+                <input id="overhead" type="number" min="0" value="2500" step="100" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-3 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+
+            <div class="mt-7 grid sm:grid-cols-3 gap-4">
+              <div class="rounded-2xl bg-white border border-slate-200 p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Gross contribution</div>
+                <div id="grossContribution" class="mt-2 text-2xl font-black text-[#002349]">$11,000</div>
+                <div class="mt-2 text-xs text-slate-500">Revenue less direct costs</div>
+              </div>
+              <div class="rounded-2xl bg-white border border-slate-200 p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">After overhead</div>
+                <div id="netContribution" class="mt-2 text-2xl font-black text-[#002349]">$8,500</div>
+                <div class="mt-2 text-xs text-slate-500">Contribution after allocation</div>
+              </div>
+              <div class="rounded-2xl bg-[#002349] text-white p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-[#D8C58F]">Margin after overhead</div>
+                <div id="marginPercent" class="mt-2 text-2xl font-black">34.0%</div>
+                <div class="mt-2 text-xs text-slate-300">After overhead / revenue</div>
+              </div>
+            </div>
+
+            <div class="mt-5">
+              <div class="flex items-center justify-between text-sm"><span class="font-bold text-[#002349]">Revenue consumed by costs</span><span id="costPercent" class="font-black text-[#957C3D]">66.0%</span></div>
+              <div class="mt-3 h-3 rounded-full bg-slate-200 overflow-hidden"><div id="costBar" class="h-full bg-[#957C3D] rounded-full" style="width:66%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Control framework -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="max-w-3xl">
+        <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Quality controls</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Five rules that keep analytic reports believable</h2>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <article class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-3xl font-black text-[#957C3D]">01</div>
+          <h3 class="mt-4 font-black text-[#002349]">Clear naming</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Use names people can apply consistently. Avoid duplicate or ambiguous analytic labels.</p>
+        </article>
+        <article class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-3xl font-black text-[#957C3D]">02</div>
+          <h3 class="mt-4 font-black text-[#002349]">Ownership</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Assign someone to maintain the structure and approve new dimensions or coding changes.</p>
+        </article>
+        <article class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-3xl font-black text-[#957C3D]">03</div>
+          <h3 class="mt-4 font-black text-[#002349]">Allocation logic</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Document why shared costs are split and how percentages are determined.</p>
+        </article>
+        <article class="rounded-3xl border border-slate-200 bg-white p-6">
+          <div class="text-3xl font-black text-[#957C3D]">04</div>
+          <h3 class="mt-4 font-black text-[#002349]">Completeness</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Review material transactions with missing or unexpected analytic coding.</p>
+        </article>
+        <article class="rounded-3xl border border-[#E8D9B5] bg-[#FBF7EC] p-6">
+          <div class="text-3xl font-black text-[#957C3D]">05</div>
+          <h3 class="mt-4 font-black text-[#002349]">Reconciliation</h3>
+          <p class="mt-2 text-sm leading-relaxed text-slate-600">Confirm analytic totals make sense alongside general-ledger results and operational records.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Pitfalls -->
+    <section class="bg-[#002349] text-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.85fr_1.15fr] gap-10">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#D8C58F]">Avoid false precision</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black">A beautiful report can still be wrong.</h2>
+            <p class="mt-5 text-slate-300 leading-relaxed">Analytic reporting is only as useful as the transactions and assumptions behind it. Be careful when using it to compare employees, customers or projects without consistent cost and allocation methods.</p>
+          </div>
+          <div class="space-y-3">
+            <div class="flex gap-4 rounded-2xl bg-white/7 border border-white/10 p-5">
+              <span class="text-[#D8C58F] font-black text-xl">×</span>
+              <div><h3 class="font-black">Do not confuse analytic tracking with the general ledger</h3><p class="mt-1 text-sm text-slate-300">A management dimension adds context; it is not a reason to ignore financial-account reconciliation.</p></div>
+            </div>
+            <div class="flex gap-4 rounded-2xl bg-white/7 border border-white/10 p-5">
+              <span class="text-[#D8C58F] font-black text-xl">×</span>
+              <div><h3 class="font-black">Do not allocate everything just to make a dashboard look complete</h3><p class="mt-1 text-sm text-slate-300">Some costs need an explicitly documented allocation basis; some may be better shown as unallocated overhead until a defensible basis exists.</p></div>
+            </div>
+            <div class="flex gap-4 rounded-2xl bg-white/7 border border-white/10 p-5">
+              <span class="text-[#D8C58F] font-black text-xl">×</span>
+              <div><h3 class="font-black">Do not create more dimensions than the business can maintain</h3><p class="mt-1 text-sm text-slate-300">Start with decision-useful views and expand after owners and transaction-coding rules are clear.</p></div>
+            </div>
+            <div class="flex gap-4 rounded-2xl bg-[#957C3D] text-[#002349] p-5">
+              <span class="font-black text-xl">✓</span>
+              <div><h3 class="font-black">Do document exceptions and shared-cost rules</h3><p class="mt-1 text-sm text-[#002349]/75">Make report definitions repeatable so period-to-period and team-to-team comparisons are meaningful.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Month-end checklist -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-8 items-start">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Month-end operating rhythm</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">The analytic accounting close checklist</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Use it monthly so profitability reports can be reviewed with confidence.</p>
+        </div>
+
+        <div class="rounded-[2rem] bg-white border border-slate-200 overflow-hidden soft-shadow divide-y divide-slate-200">
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review uncoded transactions.</strong> Check material revenue and expense lines that should carry analytic details.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Inspect new analytic accounts.</strong> Check new projects, customers or cost centers for consistent setup and naming.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review allocation percentages.</strong> Validate shared-cost distributions and document changes.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Compare margin outliers.</strong> Investigate unusual customer, department or project results.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Tie totals to financial reports.</strong> Understand any scope or timing differences between analytic and GL reports.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer bg-[#F4EEDC]"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Record assumptions.</strong> Save report definitions, allocation methods and unresolved exceptions for consistent future periods.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Odoo analytic accounting questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What is analytic accounting in Odoo?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Analytic accounting provides management views of costs and revenue by dimensions such as project, customer, department or another defined activity. It complements the general ledger rather than replacing financial accounting.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Can I track profitability by project or customer?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Yes, when relevant transactions are coded consistently and the reporting structure has been configured to support those views. The report's usefulness depends on complete source data and documented allocation rules.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What is analytic distribution?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Analytic distribution generally assigns an eligible transaction across one or more analytic accounts or dimensions using defined proportions. Validate that allocations are appropriate for the transaction and follow the rules configured in your Odoo environment.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Why are project profitability reports incomplete?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Common causes include missing analytic coding, inconsistent account naming, unallocated shared costs, transactions posted outside the intended scope or report filters that exclude relevant entries.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Does analytic accounting replace the general ledger?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">No. Financial accounting records the business's accounting balances and activity. Analytic tracking adds dimensions for internal analysis and management reporting; both need clear controls.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related articles -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Related Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Connect operational reporting with clean books</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-deferred-revenue-recognition.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Revenue Recognition</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Deferred Revenue: How to Stop Recognizing Revenue Too Early</h3>
+        </a>
+        <a href="/blog/odoo-fixed-assets-depreciation.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Fixed Assets</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Fixed Assets &amp; Depreciation: Why Your Balance Sheet Looks Wrong</h3>
+        </a>
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#D8C58F]">Need better Odoo reporting?</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Turn analytic reports into decisions you can trust.</h2>
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise supports US businesses and accounting firms with Odoo accounting cleanup, analytic tracking reviews, account reconciliation and repeatable month-end processes.</p>
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a>
+          </div>
+          <p class="mt-6 text-sm text-slate-400">Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const money = (v) => (v < 0 ? '-$' : '$') + Math.abs(Number(v || 0)).toLocaleString('en-US', {
+      maximumFractionDigits: 2,
+      minimumFractionDigits: 0
+    });
+
+    function calculateMargin() {
+      const revenue = Math.max(0, Number(document.getElementById('projectRevenue').value) || 0);
+      const direct = Math.max(0, Number(document.getElementById('directCost').value) || 0);
+      const overhead = Math.max(0, Number(document.getElementById('overhead').value) || 0);
+      const gross = revenue - direct;
+      const afterOverhead = gross - overhead;
+      const margin = revenue > 0 ? (afterOverhead / revenue) * 100 : 0;
+      const costRatio = revenue > 0 ? ((direct + overhead) / revenue) * 100 : 0;
+
+      document.getElementById('grossContribution').textContent = money(gross);
+      document.getElementById('netContribution').textContent = money(afterOverhead);
+      document.getElementById('marginPercent').textContent = margin.toFixed(1) + '%';
+      document.getElementById('costPercent').textContent = costRatio.toFixed(1) + '%';
+      document.getElementById('costBar').style.width = Math.min(100, Math.max(0, costRatio)) + '%';
+    }
+
+    ['projectRevenue', 'directCost', 'overhead'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calculateMargin);
+    });
+    calculateMargin();
+  </script>
+
+  <!-- BlogPosting schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Analytic Accounting: Track Profit by Customer, Project & Department",
+    "description": "A practical guide to using Odoo analytic accounting to track revenue, costs and margins by customer, project or department.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-analytic-accounting-profitability.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-analytic-accounting-profitability.html"
+  }
+  </script>
+
+  <!-- FAQ schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is analytic accounting in Odoo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Analytic accounting provides management views of costs and revenue by dimensions such as project, customer, department or another defined activity. It complements the general ledger rather than replacing financial accounting."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I track profitability by project or customer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, when relevant transactions are coded consistently and the reporting structure is configured to support those views. The report's usefulness depends on complete source data and documented allocation rules."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is analytic distribution?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Analytic distribution generally assigns an eligible transaction across one or more analytic accounts or dimensions using defined proportions. Validate that allocations are appropriate for the transaction and follow the rules configured in your Odoo environment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are project profitability reports incomplete?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common causes include missing analytic coding, inconsistent account naming, unallocated shared costs, transactions posted outside the intended scope or report filters that exclude relevant entries."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does analytic accounting replace the general ledger?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Financial accounting records the business's accounting balances and activity. Analytic tracking adds dimensions for internal analysis and management reporting; both need clear controls."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
