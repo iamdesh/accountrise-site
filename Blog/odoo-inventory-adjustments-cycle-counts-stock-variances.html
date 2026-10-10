@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Inventory Adjustments: Cycle Counts, Stock Differences & Accounting | Accountrise</title>
+  <meta name="description" content="Learn how to investigate Odoo inventory differences, plan cycle counts, record stock adjustments, and review inventory valuation and accounting impact with a practical checklist for US businesses.">
+  <meta name="keywords" content="Odoo inventory adjustments, Odoo cycle counts, Odoo stock differences, Odoo inventory valuation, Odoo stock adjustment accounting, outsourced Odoo accounting USA">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-inventory-adjustments-cycle-counts-stock-variances.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Inventory Adjustments: Cycle Counts, Stock Differences & Accounting">
+  <meta property="og:description" content="A practical Odoo workflow for stock counts, inventory variances, adjustment controls, and month-end accounting review.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-inventory-adjustments-cycle-counts-stock-variances.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#102A25">
+  <style>
+    :root{--ia-ink:#172923;--ia-forest:#102A25;--ia-green:#1F5948;--ia-mint:#DCEBE1;--ia-lime:#C7E37D;--ia-paper:#F7F8F4;--ia-white:#fff;--ia-muted:#5B6D65;--ia-line:#DCE4DC;--ia-amber:#D99B45;--ia-shadow:0 22px 60px rgba(16,42,37,.12);--ia-radius:24px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:95px}body{margin:0;color:var(--ia-ink);background:#fff;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.65}a{color:inherit}button,input,select{font:inherit}button,a{-webkit-tap-highlight-color:transparent}.ia-wrap{width:min(1160px,calc(100% - 40px));margin-inline:auto}.ia-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid #e7ece7}.ia-nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}.ia-brand{font-size:23px;font-weight:850;letter-spacing:-.8px;color:#002349;text-decoration:none}.ia-brand span{color:#957C3D}.ia-navlinks{display:flex;align-items:center;gap:30px}.ia-navlinks a{text-decoration:none;font-weight:650;font-size:14px;color:#41534c;transition:color .2s}.ia-navlinks a:hover{color:#957C3D}.ia-contact{padding:11px 22px;background:#957C3D;color:#002349!important;border-radius:999px}.ia-menu{display:none;border:1px solid var(--ia-line);border-radius:12px;background:white;color:var(--ia-forest);padding:9px 12px;font-weight:700}
+    .ia-hero{position:relative;isolation:isolate;overflow:hidden;background:var(--ia-forest);color:#fff;padding:78px 0 76px}.ia-hero:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(circle at 15% 5%,rgba(199,227,125,.18),transparent 31%),radial-gradient(circle at 85% 90%,rgba(44,119,89,.45),transparent 35%),linear-gradient(118deg,#102A25 0%,#17392F 58%,#102A25 100%)}.ia-gridtexture{position:absolute;z-index:-1;inset:0;opacity:.12;background-image:linear-gradient(rgba(255,255,255,.22) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.22) 1px,transparent 1px);background-size:44px 44px;mask-image:linear-gradient(90deg,black,transparent 92%)}.ia-hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:60px;align-items:center}.ia-kicker{display:inline-flex;gap:10px;align-items:center;color:var(--ia-lime);font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase}.ia-kicker:before{content:"";width:26px;height:2px;background:var(--ia-lime)}.ia-hero h1{font-size:clamp(38px,5.2vw,64px);line-height:1.04;letter-spacing:-2.7px;margin:20px 0 22px;max-width:660px;color:#fff}.ia-hero h1 em{font-style:normal;color:var(--ia-lime)}.ia-hero-copy{max-width:590px;color:#E2EBE4;font-size:18px;line-height:1.7;margin:0 0 28px}.ia-actions{display:flex;flex-wrap:wrap;gap:12px}.ia-btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;border-radius:13px;padding:14px 18px;font-weight:800;border:1px solid transparent;transition:transform .2s,background .2s,box-shadow .2s;cursor:pointer}.ia-btn:hover{transform:translateY(-2px)}.ia-btn-primary{background:var(--ia-lime);color:#173126;box-shadow:0 8px 22px rgba(0,0,0,.14)}.ia-btn-secondary{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3);color:#fff}.ia-proof{display:flex;gap:18px;flex-wrap:wrap;margin-top:23px;color:#DCE9DF;font-size:13px;font-weight:650}.ia-proof span:before{content:"✓";display:inline-grid;place-items:center;background:rgba(199,227,125,.16);color:var(--ia-lime);width:18px;height:18px;border-radius:50%;margin-right:7px;font-size:12px}
+    .ia-audit{padding:25px;border-radius:26px;background:#F8FAF6;color:var(--ia-ink);box-shadow:0 28px 75px rgba(0,0,0,.26);transform:rotate(1deg);animation:iaFloat 6s ease-in-out infinite}.ia-audit-head{display:flex;justify-content:space-between;gap:14px;align-items:center;border-bottom:1px solid var(--ia-line);padding-bottom:18px}.ia-mini-label{font-size:10px;text-transform:uppercase;letter-spacing:1.8px;font-weight:850;color:#537163}.ia-audit h2{font-size:23px;line-height:1.2;margin:5px 0 0;letter-spacing:-.5px}.ia-stamp{font-size:11px;border:1px solid #B9D6C1;border-radius:999px;padding:5px 9px;color:#2D6548;background:#E7F2E7;font-weight:800;white-space:nowrap}.ia-count-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0}.ia-count-box{padding:14px 12px;background:#EAF0E8;border:1px solid #DEE8DB;border-radius:15px}.ia-count-box small{display:block;color:#65756A;font-size:11px;font-weight:700}.ia-count-box strong{display:block;font-size:28px;letter-spacing:-1px;color:#173D2E;margin:4px 0}.ia-count-box span{font-size:11px;color:#637168}.ia-stock-row{display:grid;grid-template-columns:1.3fr .8fr .7fr;gap:12px;align-items:center;padding:12px 13px;background:#fff;border:1px solid #E1E8DF;border-radius:12px;margin-top:8px;font-size:12px}.ia-stock-row b{font-size:12px}.ia-stock-row .ia-good{color:#23694B;font-weight:800}.ia-stock-row .ia-warn{color:#A75B20;font-weight:800}.ia-audit-note{font-size:11px;color:#68796E;margin:16px 0 0;line-height:1.5}.ia-hero-price{font-size:13px;color:#DCE9DF;margin-top:20px}.ia-hero-price strong{color:var(--ia-lime)}
+    .ia-strip{background:#EDF3EB;border-bottom:1px solid #DFE9DD}.ia-strip-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:21px 0}.ia-strip-item{display:flex;align-items:center;gap:11px;color:#315344;font-size:13px;font-weight:750}.ia-strip-icon{flex:none;width:36px;height:36px;display:grid;place-items:center;background:#fff;border:1px solid #D8E5D7;border-radius:11px;color:#32654C;font-size:17px}
+    .ia-section{padding:78px 0}.ia-section-soft{background:var(--ia-paper)}.ia-section-head{max-width:750px;margin:0 0 34px}.ia-eyebrow{color:#7A683B;text-transform:uppercase;letter-spacing:1.8px;font-size:11px;font-weight:850}.ia-section h2{font-size:clamp(29px,3.7vw,43px);letter-spacing:-1.5px;line-height:1.12;color:#17352B;margin:10px 0 15px}.ia-section-head p{font-size:17px;color:var(--ia-muted);margin:0}.ia-two-col{display:grid;grid-template-columns:1fr .88fr;gap:32px;align-items:start}.ia-card{background:white;border:1px solid var(--ia-line);border-radius:var(--ia-radius);padding:25px;box-shadow:0 10px 30px rgba(16,42,37,.045)}.ia-card h3{font-size:21px;line-height:1.28;letter-spacing:-.5px;margin:0 0 12px;color:#183A2D}.ia-card p{margin:0 0 14px;color:#586B60}.ia-steps{display:grid;gap:13px}.ia-step{display:grid;grid-template-columns:45px 1fr;gap:15px;align-items:start;padding:16px 0;border-bottom:1px solid #E7ECE5}.ia-step:last-child{border-bottom:0}.ia-stepnum{display:grid;place-items:center;width:43px;height:43px;border-radius:14px;background:#E7F0E4;color:#24583D;font-size:14px;font-weight:900}.ia-step h3{font-size:17px;margin:0 0 5px}.ia-step p{margin:0;font-size:14px;color:#586B60}.ia-callout{border-left:4px solid var(--ia-amber);background:#FFF7EA;padding:17px 18px;border-radius:0 13px 13px 0;color:#5F4C31;margin-top:18px;font-size:14px}.ia-callout strong{color:#4D3C23}
+    .ia-tool-layout{display:grid;grid-template-columns:1fr 1fr;gap:22px}.ia-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.ia-field label{display:block;font-weight:750;font-size:13px;color:#344D40;margin-bottom:6px}.ia-field input,.ia-field select{width:100%;padding:12px;border:1px solid #CBD8CD;border-radius:11px;background:#fff;color:#1B3328;outline:none}.ia-field input:focus,.ia-field select:focus{border-color:#347A58;box-shadow:0 0 0 3px rgba(52,122,88,.14)}.ia-result{display:flex;flex-direction:column;justify-content:center;background:#17392F;color:#fff;border-radius:20px;padding:25px;min-height:100%}.ia-result .ia-small{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.5px;color:#C7E37D}.ia-result strong{font-size:clamp(35px,5vw,52px);line-height:1.2;letter-spacing:-2px;margin:10px 0}.ia-result p{color:#DCE9DF;margin:0}.ia-result .ia-result-detail{font-size:13px;border-top:1px solid rgba(255,255,255,.2);margin-top:18px;padding-top:15px}.ia-muted-note{font-size:12px;color:#6A7A70;margin-top:12px}
+    .ia-selector{display:grid;grid-template-columns:.85fr 1.15fr;gap:22px;align-items:start}.ia-select-list{display:grid;gap:9px}.ia-select-option{border:1px solid #D8E3D8;border-radius:13px;padding:13px 15px;background:#fff;text-align:left;color:#2A4738;font-weight:750;cursor:pointer;transition:all .18s}.ia-select-option:hover,.ia-select-option[aria-pressed="true"]{background:#EAF3E7;border-color:#82AA8D;box-shadow:inset 4px 0 #2D6A4A}.ia-diagnosis{background:#17392F;color:#fff;border-radius:20px;padding:25px;min-height:240px}.ia-diagnosis .ia-diagnosis-label{font-size:11px;text-transform:uppercase;letter-spacing:1.6px;color:#C7E37D;font-weight:850}.ia-diagnosis h3{color:#fff;margin:10px 0;font-size:25px}.ia-diagnosis p{color:#DFE9E1}.ia-diagnosis ul{padding-left:19px;color:#DFE9E1;margin-bottom:0}.ia-diagnosis li{margin:8px 0}
+    .ia-checklist{display:grid;grid-template-columns:1fr .65fr;gap:26px;align-items:start}.ia-checks{display:grid;gap:9px}.ia-check{display:flex;align-items:flex-start;gap:12px;background:#fff;border:1px solid #DEE7DC;border-radius:13px;padding:14px 15px;color:#2A4537}.ia-check input{accent-color:#276744;margin-top:4px;width:17px;height:17px;flex:none}.ia-check span{font-size:14px}.ia-check small{display:block;color:#6A7B70;margin-top:3px}.ia-progress-card{background:#17392F;color:#fff;border-radius:22px;padding:25px;position:sticky;top:100px}.ia-progress-card h3{color:#fff;font-size:22px;margin:0 0 8px}.ia-progress-card p{color:#DBE8DE;font-size:14px}.ia-progress-number{font-size:48px;font-weight:850;letter-spacing:-2px;color:#C7E37D}.ia-progress-track{height:9px;background:rgba(255,255,255,.2);border-radius:999px;overflow:hidden;margin:12px 0}.ia-progress-fill{height:100%;width:0;background:#C7E37D;border-radius:999px;transition:width .25s}.ia-progress-card .ia-btn{width:100%;margin-top:10px}
+    .ia-article{max-width:850px;margin-inline:auto}.ia-article h2{margin-top:44px}.ia-article h3{color:#1A3B2D;margin:26px 0 8px}.ia-article p,.ia-article li{color:#4D6256}.ia-article ul,.ia-article ol{padding-left:22px}.ia-article li{margin:8px 0}.ia-inline-link{color:#1B6546;font-weight:750;text-underline-offset:3px}.ia-table-wrap{overflow-x:auto;border:1px solid var(--ia-line);border-radius:15px;margin:20px 0}.ia-table{border-collapse:collapse;min-width:620px;width:100%;background:white;font-size:14px}.ia-table th{background:#EAF1E7;color:#234735;text-align:left}.ia-table th,.ia-table td{padding:13px 15px;border-bottom:1px solid #E2E9E0;vertical-align:top}.ia-table tr:last-child td{border-bottom:0}.ia-faq{border-bottom:1px solid #DAE4D9}.ia-faq summary{cursor:pointer;font-weight:800;color:#234735;padding:18px 30px 18px 0;list-style:none;position:relative}.ia-faq summary::-webkit-details-marker{display:none}.ia-faq summary:after{content:"+";position:absolute;right:2px;top:14px;font-size:24px;color:#2A6A49}.ia-faq[open] summary:after{content:"−"}.ia-faq p{margin:0;padding:0 24px 18px 0;color:#596D61}
+    .ia-cta{background:#102A25;color:#fff;position:relative;overflow:hidden;padding:75px 0}.ia-cta:after{content:"";position:absolute;width:440px;height:440px;border-radius:50%;background:rgba(199,227,125,.1);right:-130px;top:-200px}.ia-cta-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:42px}.ia-cta h2{color:#fff;font-size:clamp(32px,4.4vw,49px);letter-spacing:-1.7px;line-height:1.08;margin:12px 0 15px}.ia-cta p{color:#DCE9DF;font-size:17px}.ia-rate{display:inline-block;border:1px solid rgba(199,227,125,.55);background:rgba(199,227,125,.1);padding:13px 16px;border-radius:14px;color:#C7E37D;font-weight:850;margin-top:8px}.ia-cta-panel{background:#fff;border-radius:22px;padding:25px;color:#17352B;box-shadow:0 20px 55px rgba(0,0,0,.2)}.ia-cta-panel h3{font-size:22px;margin:0 0 8px}.ia-cta-panel p{font-size:14px;color:#5F7266;margin:0 0 17px}.ia-cta-panel .ia-btn{width:100%;margin-top:9px}.ia-cta-panel .ia-btn-primary{background:#C7E37D;color:#173126}.ia-cta-panel .ia-btn-secondary{background:#fff;border-color:#B6C7B9;color:#234735}.ia-pricing-note{font-size:12px!important;line-height:1.5;margin-top:14px!important}.ia-footer{background:#0B201B;color:#CBD8CF;padding:35px 0}.ia-footer-inner{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}.ia-footer .ia-brand{color:#fff}.ia-footer-links{display:flex;gap:20px;flex-wrap:wrap}.ia-footer-links a{font-size:13px;color:#D5E0D8;text-decoration:none}.ia-footer-links a:hover{color:#C7E37D}.ia-footer small{color:#90A398}
+    .ia-reveal{animation:iaReveal .75s both}.ia-delay-1{animation-delay:.12s}.ia-delay-2{animation-delay:.22s}@keyframes iaReveal{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}@keyframes iaFloat{0%,100%{transform:translateY(0) rotate(1deg)}50%{transform:translateY(-8px) rotate(0deg)}}
+    @media(max-width:900px){.ia-hero-grid{grid-template-columns:1fr;gap:38px}.ia-hero{padding:60px 0}.ia-audit{max-width:650px;transform:none}.ia-two-col,.ia-tool-layout,.ia-selector,.ia-checklist,.ia-cta-inner{grid-template-columns:1fr}.ia-progress-card{position:static}.ia-strip-grid{grid-template-columns:repeat(2,1fr)}.ia-cta-inner{gap:28px}}
+    @media(max-width:640px){.ia-wrap{width:min(100% - 28px,1160px)}.ia-nav{min-height:68px}.ia-menu{display:block}.ia-navlinks{display:none;position:absolute;left:14px;right:14px;top:68px;background:#fff;border:1px solid #E0E7E0;border-radius:18px;padding:15px;box-shadow:0 18px 35px rgba(16,42,37,.12);align-items:stretch;gap:0;flex-direction:column}.ia-navlinks.ia-open{display:flex}.ia-navlinks a{padding:12px 10px}.ia-navlinks .ia-contact{text-align:center;margin-top:5px}.ia-hero h1{letter-spacing:-1.6px;font-size:clamp(36px,10vw,48px)}.ia-hero-copy{font-size:16px}.ia-audit{padding:17px;border-radius:21px}.ia-audit h2{font-size:20px}.ia-count-grid{gap:6px}.ia-count-box{padding:12px 8px}.ia-count-box strong{font-size:24px}.ia-stock-row{grid-template-columns:1.2fr .7fr .7fr;gap:7px;padding:10px;font-size:11px}.ia-strip-grid{gap:12px;padding:15px 0}.ia-strip-item{font-size:12px;align-items:flex-start}.ia-strip-icon{width:31px;height:31px}.ia-section{padding:58px 0}.ia-card{padding:19px}.ia-form-grid{grid-template-columns:1fr}.ia-section h2{letter-spacing:-.8px}.ia-footer-inner{align-items:flex-start;flex-direction:column}.ia-cta{padding:58px 0}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Odoo Inventory Adjustments: Cycle Counts, Stock Differences & Accounting",
+    "description":"A practical Odoo guide to investigating stock variances, running cycle counts, applying controlled inventory adjustments, and reviewing accounting impact.",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-inventory-adjustments-cycle-counts-stock-variances.html"},
+    "author":{"@type":"Organization","name":"Accountrise"},
+    "publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},
+    "about":["Odoo","Inventory management","Inventory accounting","Cycle counting"],
+    "inLanguage":"en-US"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Why does Odoo show a different quantity than the physical count?","acceptedAnswer":{"@type":"Answer","text":"Common causes include unvalidated receipts or deliveries, transfers in progress, counting at the wrong location, units-of-measure differences, timing cutoffs, damaged goods, or a genuine stock discrepancy. Trace the product and location movements before posting an adjustment."}},
+      {"@type":"Question","name":"Should every stock difference be corrected with an inventory adjustment?","acceptedAnswer":{"@type":"Answer","text":"No. First determine whether the difference is caused by a missing business transaction, a location or unit-of-measure issue, a timing cutoff, or a genuine count variance. Correct the underlying transaction when appropriate and use a controlled adjustment for a verified physical difference."}},
+      {"@type":"Question","name":"Does an Odoo inventory adjustment always create the same journal entry?","acceptedAnswer":{"@type":"Answer","text":"No. The accounting result depends on the Odoo version, product configuration, costing method, inventory valuation settings, locations, and accounting setup. Review the resulting valuation and journal entries in your database before relying on a specific treatment."}},
+      {"@type":"Question","name":"How often should a business perform cycle counts?","acceptedAnswer":{"@type":"Answer","text":"Frequency depends on inventory value, turnover, risk, operational capacity, and company policy. Many businesses count high-value or fast-moving items more frequently and schedule broader counts periodically. Define and document a policy that fits the business."}}
+    ]
+  }
+  </script>
+</head>
+<body>
+  <header class="ia-header">
+    <div class="ia-wrap ia-nav">
+      <a class="ia-brand" href="/" aria-label="Accountrise home">Accountrise<span>.</span></a>
+      <button class="ia-menu" type="button" aria-expanded="false" aria-controls="ia-navlinks">Menu ☰</button>
+      <nav class="ia-navlinks" id="ia-navlinks" aria-label="Main navigation">
+        <a href="/about/">About Us</a><a href="/services/">Services</a><a href="/blog/">Blog</a><a href="#contact" class="ia-contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="ia-hero">
+      <div class="ia-gridtexture" aria-hidden="true"></div>
+      <div class="ia-wrap ia-hero-grid">
+        <div class="ia-reveal">
+          <div class="ia-kicker">Odoo Inventory · Stock Controls</div>
+          <h1>Make every stock adjustment <em>traceable.</em></h1>
+          <p class="ia-hero-copy">When Odoo quantity on hand does not match the warehouse count, the answer is not always “change the number.” Learn how to investigate the difference, document the count, and review the inventory and accounting impact before closing the gap.</p>
+          <div class="ia-actions"><a class="ia-btn ia-btn-primary" href="#count-workflow">Explore the count workflow <span aria-hidden="true">↘</span></a><a class="ia-btn ia-btn-secondary" href="#variance-tool">Estimate a stock variance</a></div>
+          <div class="ia-proof"><span>Clear count cutoff</span><span>Documented adjustments</span><span>Accounting review</span></div>
+          <p class="ia-hero-price">Need hands-on Odoo accounting support? <strong>Starting at $12/hour.</strong></p>
+        </div>
+        <div class="ia-audit ia-reveal ia-delay-1" aria-label="Illustrative inventory count dashboard">
+          <div class="ia-audit-head"><div><div class="ia-mini-label">Warehouse count review</div><h2>Stock variance board</h2></div><span class="ia-stamp">Illustrative</span></div>
+          <div class="ia-count-grid">
+            <div class="ia-count-box"><small>Items counted</small><strong>128</strong><span>Sample count batch</span></div>
+            <div class="ia-count-box"><small>Need review</small><strong>07</strong><span>Variance flagged</span></div>
+            <div class="ia-count-box"><small>Approved</small><strong>04</strong><span>Documented</span></div>
+          </div>
+          <div class="ia-stock-row"><b>Item / location</b><b>Difference</b><b>Status</b></div>
+          <div class="ia-stock-row"><span>Part A · WH/Stock</span><span class="ia-warn">−3 units</span><span class="ia-warn">Review</span></div>
+          <div class="ia-stock-row"><span>Part B · WH/Stock</span><span class="ia-good">0 units</span><span class="ia-good">Matched</span></div>
+          <div class="ia-stock-row"><span>Part C · WH/Stock</span><span class="ia-warn">+2 units</span><span class="ia-warn">Review</span></div>
+          <p class="ia-audit-note">Illustrative dashboard, not live Odoo data. The right workflow and accounting result depend on your database configuration and inventory policy.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="ia-strip"><div class="ia-wrap ia-strip-grid">
+      <div class="ia-strip-item"><span class="ia-strip-icon">⌕</span><span>Trace the movement history</span></div>
+      <div class="ia-strip-item"><span class="ia-strip-icon">▤</span><span>Count by product and location</span></div>
+      <div class="ia-strip-item"><span class="ia-strip-icon">✓</span><span>Approve with evidence</span></div>
+      <div class="ia-strip-item"><span class="ia-strip-icon">↗</span><span>Review valuation impact</span></div>
+    </div></div>
+
+    <section class="ia-section" id="count-workflow">
+      <div class="ia-wrap">
+        <div class="ia-section-head"><div class="ia-eyebrow">The practical workflow</div><h2>Investigate first. Adjust second.</h2><p>A controlled inventory adjustment begins with a reliable cutoff, a count that can be repeated, and a clear explanation for the difference.</p></div>
+        <div class="ia-two-col">
+          <div class="ia-card">
+            <div class="ia-steps">
+              <div class="ia-step"><div class="ia-stepnum">01</div><div><h3>Set the count boundary</h3><p>Choose the warehouse, internal location, product scope, and count date. Coordinate movements during counting or document how transactions around the cutoff will be handled.</p></div></div>
+              <div class="ia-step"><div class="ia-stepnum">02</div><div><h3>Count the physical stock</h3><p>Use the correct unit of measure and location. Where practical, have a second person recount material or high-value variances before approval.</p></div></div>
+              <div class="ia-step"><div class="ia-stepnum">03</div><div><h3>Compare Odoo with the count</h3><p>Check product, location, lot or serial tracking where relevant, packages, transfers in progress, receipts, deliveries, and unvalidated operations.</p></div></div>
+              <div class="ia-step"><div class="ia-stepnum">04</div><div><h3>Classify the root cause</h3><p>Separate transaction timing or entry errors from a genuine physical shortage or surplus. Correct the underlying business event where that is the real cause.</p></div></div>
+              <div class="ia-step"><div class="ia-stepnum">05</div><div><h3>Approve and record the adjustment</h3><p>Record the verified count using your configured Odoo inventory process. Retain count sheets, reason codes, approval, and related evidence.</p></div></div>
+              <div class="ia-step"><div class="ia-stepnum">06</div><div><h3>Review inventory and accounting</h3><p>Check the resulting on-hand quantity and, where applicable, valuation layers and journal entries. Investigate unexpected balances before month-end sign-off.</p></div></div>
+            </div>
+            <div class="ia-callout"><strong>Control to keep:</strong> do not use an inventory adjustment to hide an unrecorded vendor receipt, customer delivery, transfer, or production transaction. Fix the source transaction when appropriate.</div>
+          </div>
+          <aside class="ia-card">
+            <div class="ia-eyebrow">Count readiness</div><h3>Before anyone starts counting</h3><p>Use this quick pre-count review to reduce rework and avoid comparing quantities from different moments in time.</p>
+            <ul>
+              <li>Confirm the exact warehouse and location scope.</li>
+              <li>Identify transfers, receipts, deliveries, and production movements near the cutoff.</li>
+              <li>Verify units of measure and tracking requirements.</li>
+              <li>Decide who counts, who reviews, and who approves differences.</li>
+              <li>Agree how damaged, obsolete, quarantined, or consigned stock is treated.</li>
+              <li>Set an evidence standard for material variances.</li>
+            </ul>
+            <p class="ia-muted-note">Odoo menu names and available count features can vary by version, installed apps, and configuration.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="ia-section ia-section-soft" id="variance-tool">
+      <div class="ia-wrap">
+        <div class="ia-section-head"><div class="ia-eyebrow">Interactive stock variance estimator</div><h2>Put an estimated value on the difference.</h2><p>Enter a physical count and the Odoo quantity for one item. This simple estimator shows the quantity and approximate value variance to help prioritize review.</p></div>
+        <div class="ia-tool-layout">
+          <div class="ia-card"><h3>Enter the count details</h3><div class="ia-form-grid">
+            <div class="ia-field"><label for="ia-systemqty">Odoo quantity on hand</label><input id="ia-systemqty" type="number" step="any" value="120"></div>
+            <div class="ia-field"><label for="ia-physicalqty">Physical count</label><input id="ia-physicalqty" type="number" step="any" value="117"></div>
+            <div class="ia-field"><label for="ia-unitcost">Estimated cost per unit ($)</label><input id="ia-unitcost" type="number" min="0" step="any" value="18.50"></div>
+            <div class="ia-field"><label for="ia-countunit">Count unit</label><select id="ia-countunit"><option value="units">Units</option><option value="cases">Cases</option><option value="kg">Kilograms</option><option value="other">Other</option></select></div>
+          </div><p class="ia-muted-note">Use comparable units for the system quantity and physical count. The selected label is descriptive and does not convert units.</p></div>
+          <div class="ia-result" aria-live="polite"><span class="ia-small">Estimated variance value</span><strong id="ia-variancevalue">−$55.50</strong><p id="ia-variancecopy">The physical count is below the Odoo quantity by 3 units.</p><div class="ia-result-detail" id="ia-variancedetail">Odoo: 120 · Counted: 117 · Difference: −3 units</div></div>
+        </div>
+        <p class="ia-muted-note">This is a prioritization estimate, not an accounting entry. Actual valuation impact may differ based on product costing, valuation method, configuration, and timing.</p>
+      </div>
+    </section>
+
+    <section class="ia-section" id="diagnose">
+      <div class="ia-wrap">
+        <div class="ia-section-head"><div class="ia-eyebrow">Troubleshooting navigator</div><h2>What kind of difference are you seeing?</h2><p>Select the closest symptom to see a structured first-pass investigation. Confirm the cause in your actual Odoo records before changing quantities.</p></div>
+        <div class="ia-selector">
+          <div class="ia-select-list" role="group" aria-label="Select an inventory symptom">
+            <button class="ia-select-option" type="button" data-diagnosis="short" aria-pressed="true">Physical stock is lower</button>
+            <button class="ia-select-option" type="button" data-diagnosis="over" aria-pressed="false">Physical stock is higher</button>
+            <button class="ia-select-option" type="button" data-diagnosis="location" aria-pressed="false">Stock is in the wrong location</button>
+            <button class="ia-select-option" type="button" data-diagnosis="receipt" aria-pressed="false">A receipt or delivery may be missing</button>
+            <button class="ia-select-option" type="button" data-diagnosis="value" aria-pressed="false">Quantity matches, value does not</button>
+          </div>
+          <div class="ia-diagnosis" aria-live="polite"><div class="ia-diagnosis-label">Suggested investigation</div><h3 id="ia-diagnosis-title">Start with outbound movements</h3><p id="ia-diagnosis-desc">A shortage can reflect a real loss, an unrecorded movement, or a count-timing issue. Trace the path before recording a write-off.</p><ul id="ia-diagnosis-list"><li>Review deliveries, internal transfers, scrap, and production consumption.</li><li>Check the count cutoff and recount material items.</li><li>Document the cause and approval before adjustment.</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ia-section ia-section-soft">
+      <div class="ia-wrap ia-article">
+        <div class="ia-eyebrow">Accounting perspective</div><h2>How inventory differences can affect the books</h2>
+        <p>An inventory count changes more than a warehouse number. Depending on the product and system setup, a verified variance may affect inventory quantities, inventory valuation, and profit through the configured adjustment accounts or valuation entries. That is why a count process needs an accounting review as well as an operational sign-off.</p>
+        <h3>Keep quantity reconciliation separate from value reconciliation</h3>
+        <p>A quantity mismatch and a valuation mismatch are related but different questions. If the physical quantity agrees with Odoo but the inventory value does not agree with supporting reports or the general ledger, investigate costing and valuation records rather than repeatedly editing counted quantities.</p>
+        <h3>Review these records together</h3>
+        <div class="ia-table-wrap"><table class="ia-table"><thead><tr><th>Review area</th><th>What to validate</th><th>Why it matters</th></tr></thead><tbody>
+          <tr><td>On-hand quantity</td><td>Product, location, unit of measure, tracking, and cutoff</td><td>Confirms you are comparing like with like.</td></tr>
+          <tr><td>Movement history</td><td>Receipts, deliveries, transfers, manufacturing, scrap, and returns</td><td>Can reveal a missed or incorrectly recorded operational event.</td></tr>
+          <tr><td>Valuation details</td><td>Costing method, valuation layers, and product setup where applicable</td><td>Helps explain why the financial value differs from expectations.</td></tr>
+          <tr><td>General ledger</td><td>Inventory and related adjustment accounts, with period and company scope checked</td><td>Connects operational changes to the accounting records.</td></tr>
+          <tr><td>Approvals and evidence</td><td>Count sheet, reason, reviewer, and supporting transaction</td><td>Creates a clear audit trail and discourages unsupported adjustments.</td></tr>
+        </tbody></table></div>
+        <h3>Set a recurring cycle-count policy</h3>
+        <p>Instead of waiting for one large annual count to discover accumulated differences, design a count cadence around the business. High-value, fast-moving, regulated, serialized, or historically inaccurate items may warrant more frequent review. Lower-risk items may fit a less frequent schedule. Set the policy based on operational risk and capacity, then track whether counts and follow-ups are completed on time.</p>
+        <h3>Common mistakes to avoid</h3>
+        <ul>
+          <li>Counting while untracked movements continue and not recording the cutoff.</li>
+          <li>Combining multiple warehouse locations into one count without preserving location-level detail.</li>
+          <li>Ignoring units of measure, packaging, lots, or serial numbers.</li>
+          <li>Posting an adjustment before checking open receipts, deliveries, transfers, or production operations.</li>
+          <li>Assuming every Odoo version and costing configuration produces the same journal entry.</li>
+          <li>Making a large adjustment without documenting the cause, materiality, and approval.</li>
+        </ul>
+        <div class="ia-callout"><strong>Practical month-end rule:</strong> reconcile inventory quantity and value, explain material changes, and retain evidence for adjustments. Validate the expected accounting treatment in your own Odoo configuration before posting material entries.</div>
+        <h2>Related Odoo accounting guides</h2>
+        <p>Continue building your process library with these related guides:</p>
+        <ul>
+          <li><a class="ia-inline-link" href="/blog/odoo-inventory-valuation-not-matching.html">Odoo Inventory Valuation Not Matching the General Ledger</a></li>
+          <li><a class="ia-inline-link" href="/blog/odoo-landed-costs-inventory-cogs.html">Odoo Landed Costs, Inventory Valuation &amp; COGS</a></li>
+          <li><a class="ia-inline-link" href="/blog/odoo-month-end-close-checklist-us-businesses.html">Odoo Month-End Close Checklist for US Businesses</a></li>
+          <li><a class="ia-inline-link" href="/blog/odoo-manufacturing-costing-bom-wip-cogs.html">Odoo Manufacturing Costing: BOM, WIP &amp; COGS</a></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ia-section" id="close-checklist">
+      <div class="ia-wrap">
+        <div class="ia-section-head"><div class="ia-eyebrow">Reusable control checklist</div><h2>Inventory count review before sign-off</h2><p>Use this as a lightweight review aid. Mark each control only after the relevant evidence has been checked.</p></div>
+        <div class="ia-checklist">
+          <div class="ia-checks" id="ia-checks">
+            <label class="ia-check"><input type="checkbox"><span><strong>Count scope and cutoff documented</strong><small>Warehouse, locations, date, and relevant movement window are clear.</small></span></label>
+            <label class="ia-check"><input type="checkbox"><span><strong>Material counts independently verified</strong><small>Recounts performed where required by policy or variance size.</small></span></label>
+            <label class="ia-check"><input type="checkbox"><span><strong>Open transactions investigated</strong><small>Receipts, deliveries, transfers, scrap, returns, and production movements reviewed.</small></span></label>
+            <label class="ia-check"><input type="checkbox"><span><strong>Units and tracking checked</strong><small>Unit of measure, package, lot, serial, and location details are appropriate.</small></span></label>
+            <label class="ia-check"><input type="checkbox"><span><strong>Root cause and approval retained</strong><small>Adjustment reason, supporting evidence, and reviewer are documented.</small></span></label>
+            <label class="ia-check"><input type="checkbox"><span><strong>Valuation and ledger impact reviewed</strong><small>Resulting value and accounting records checked where applicable.</small></span></label>
+            <label class="ia-check"><input type="checkbox"><span><strong>Follow-up action assigned</strong><small>Recurring causes have an owner and prevention step.</small></span></label>
+          </div>
+          <aside class="ia-progress-card"><h3>Review progress</h3><p>Use this tracker while working through the review. It does not save or submit your selections.</p><div class="ia-progress-number"><span id="ia-done">0</span><span style="font-size:20px;color:#DAE7DD"> / 7</span></div><div class="ia-progress-track"><div class="ia-progress-fill" id="ia-progress-fill"></div></div><p id="ia-progress-copy">No controls checked yet.</p><button class="ia-btn ia-btn-primary" type="button" id="ia-reset-checklist">Reset checklist ↺</button></aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="ia-section ia-section-soft" id="faqs">
+      <div class="ia-wrap" style="max-width:900px"><div class="ia-section-head"><div class="ia-eyebrow">FAQs</div><h2>Odoo inventory adjustments: common questions</h2><p>Answers to frequent questions from teams responsible for stock accuracy and accounting close.</p></div>
+        <details class="ia-faq"><summary>Why does Odoo show a different quantity than the physical count?</summary><p>Common causes include unvalidated receipts or deliveries, transfers in progress, counting at the wrong location, units-of-measure differences, timing cutoffs, damaged goods, or a genuine stock discrepancy. Trace the product and location movements before posting an adjustment.</p></details>
+        <details class="ia-faq"><summary>Should every stock difference be corrected with an inventory adjustment?</summary><p>No. First determine whether the difference is caused by a missing business transaction, a location or unit-of-measure issue, a timing cutoff, or a genuine physical variance. Correct the underlying transaction when appropriate and use a controlled adjustment for a verified count difference.</p></details>
+        <details class="ia-faq"><summary>Does an Odoo inventory adjustment always create the same journal entry?</summary><p>No. The accounting result depends on the Odoo version, product configuration, costing method, inventory valuation settings, locations, and accounting setup. Review the resulting valuation and journal entries in your database before relying on a specific treatment.</p></details>
+        <details class="ia-faq"><summary>How often should a business perform cycle counts?</summary><p>Frequency depends on inventory value, turnover, risk, operational capacity, and company policy. Many businesses count high-value or fast-moving items more frequently and schedule broader counts periodically. Document a policy that fits the business.</p></details>
+        <details class="ia-faq"><summary>Can an outsourced Odoo accountant help with inventory reconciliation?</summary><p>An experienced Odoo accounting professional can help review inventory-related balances, trace discrepancies, reconcile valuation to the ledger, document close controls, and coordinate with operations. The exact scope depends on your Odoo setup, data quality, and engagement needs.</p></details>
+      </div>
+    </section>
+
+    <section class="ia-cta" id="contact">
+      <div class="ia-wrap ia-cta-inner">
+        <div><div class="ia-kicker">Affordable Odoo accounting support</div><h2>Keep stock records reliable without adding full-time overhead.</h2><p>Accountrise helps US businesses with remote Odoo accounting support, inventory reconciliation, month-end review, and practical bookkeeping workflows—so your team has more room to focus on operations.</p><div class="ia-rate">Odoo accounting support starts at $12/hour</div><p style="font-size:13px;margin-top:13px">Final pricing depends on scope, transaction volume, inventory complexity, and engagement requirements.</p></div>
+        <div class="ia-cta-panel"><h3>Talk through your Odoo workflow</h3><p>Share where the count, inventory valuation, or accounting reconciliation process is getting stuck.</p><a class="ia-btn ia-btn-primary" href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer">Book Free Consultation ↗</a><a class="ia-btn ia-btn-secondary" href="mailto:info@accountrise.com">Email Accountrise</a><p class="ia-pricing-note">Starting rate is an entry point, not a universal quote. We confirm the suitable scope and fee before work begins.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="ia-footer"><div class="ia-wrap ia-footer-inner"><div><a class="ia-brand" href="/">Accountrise<span>.</span></a><br><small>Remote accounting support for growing businesses.</small></div><nav class="ia-footer-links" aria-label="Footer navigation"><a href="/about/">About Us</a><a href="/services/">Services</a><a href="/blog/">Blog</a><a href="#contact">Contact</a><a href="mailto:info@accountrise.com">info@accountrise.com</a></nav><small>© <span id="ia-year"></span> Accountrise. All rights reserved.</small></div></footer>
+
+  <script>
+    (function(){
+      const menu=document.querySelector('.ia-menu');
+      const nav=document.getElementById('ia-navlinks');
+      if(menu&&nav){menu.addEventListener('click',function(){const open=nav.classList.toggle('ia-open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'Close ✕':'Menu ☰';});nav.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nav.classList.remove('ia-open');menu.setAttribute('aria-expanded','false');menu.textContent='Menu ☰';});});}
+      const sys=document.getElementById('ia-systemqty'),phy=document.getElementById('ia-physicalqty'),cost=document.getElementById('ia-unitcost'),unit=document.getElementById('ia-countunit');
+      const val=document.getElementById('ia-variancevalue'),copy=document.getElementById('ia-variancecopy'),detail=document.getElementById('ia-variancedetail');
+      const fmtQty=n=>Number.isInteger(n)?String(n):n.toLocaleString('en-US',{maximumFractionDigits:3});
+      function updateVariance(){const s=Number(sys.value||0),p=Number(phy.value||0),c=Math.max(0,Number(cost.value||0)),d=p-s,v=d*c,u=unit.value;val.textContent=(v<0?'−':v>0?'+':'')+'$'+Math.abs(v).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});if(d<0)copy.textContent='The physical count is below the Odoo quantity by '+fmtQty(Math.abs(d))+' '+u+'.';else if(d>0)copy.textContent='The physical count is above the Odoo quantity by '+fmtQty(d)+' '+u+'.';else copy.textContent='The physical count matches the Odoo quantity.';detail.textContent='Odoo: '+fmtQty(s)+' · Counted: '+fmtQty(p)+' · Difference: '+(d>0?'+':'')+fmtQty(d)+' '+u;}
+      [sys,phy,cost,unit].forEach(el=>el&&el.addEventListener('input',updateVariance));updateVariance();
+      const diagnoses={
+        short:{title:'Start with outbound movements',desc:'A shortage can reflect a real loss, an unrecorded movement, or a count-timing issue. Trace the path before recording a write-off.',items:['Review deliveries, internal transfers, scrap, and production consumption.','Check the count cutoff and recount material items.','Document the cause and approval before adjustment.']},
+        over:{title:'Check receipts and returns first',desc:'An overage may mean a receipt or return was missed, a transaction was duplicated in the wrong direction, or the count included stock owned by another party.',items:['Review vendor receipts, customer returns, and production output.','Check for duplicate locations, packages, or unit conversions.','Confirm ownership and product tracking before approval.']},
+        location:{title:'Follow the stock by location',desc:'Total company stock can look correct while one location is overstated and another understated. Preserve the location detail.',items:['Review internal transfers and their source and destination.','Check transit, scrap, quarantine, and other configured locations.','Correct the movement trail rather than hiding a location-level difference.']},
+        receipt:{title:'Verify the source document and status',desc:'Do not create a count adjustment until you know whether goods physically arrived or left and whether the related Odoo operation was completed.',items:['Compare delivery notes, receiving evidence, and purchase or sales documents.','Review open, draft, waiting, or partially processed operations.','Process the real transaction according to the approved workflow where appropriate.']},
+        value:{title:'Investigate valuation, not just quantity',desc:'When counts match but the inventory value does not, repeated quantity edits are unlikely to resolve the root cause.',items:['Review valuation method, product categories, costs, and valuation layers as relevant.','Compare inventory reports and the general ledger for the same company and period.','Check recent cost changes, landed costs, returns, and configuration before adjusting accounts.']}
+      };
+      document.querySelectorAll('[data-diagnosis]').forEach(btn=>btn.addEventListener('click',function(){const d=diagnoses[btn.dataset.diagnosis];if(!d)return;document.querySelectorAll('[data-diagnosis]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));document.getElementById('ia-diagnosis-title').textContent=d.title;document.getElementById('ia-diagnosis-desc').textContent=d.desc;const list=document.getElementById('ia-diagnosis-list');list.replaceChildren();d.items.forEach(item=>{const li=document.createElement('li');li.textContent=item;list.appendChild(li);});}));
+      const checkboxes=Array.from(document.querySelectorAll('#ia-checks input[type="checkbox"]'));
+      function updateChecks(){const done=checkboxes.filter(c=>c.checked).length,total=checkboxes.length;document.getElementById('ia-done').textContent=done;document.getElementById('ia-progress-fill').style.width=(total?done/total*100:0)+'%';document.getElementById('ia-progress-copy').textContent=done===total?'All checklist controls marked complete.':done===0?'No controls checked yet.':done+' of '+total+' controls marked complete.';}
+      checkboxes.forEach(c=>c.addEventListener('change',updateChecks));const reset=document.getElementById('ia-reset-checklist');if(reset)reset.addEventListener('click',()=>{checkboxes.forEach(c=>c.checked=false);updateChecks();});updateChecks();document.getElementById('ia-year').textContent=new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>
