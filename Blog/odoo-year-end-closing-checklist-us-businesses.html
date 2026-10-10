@@ -26,7 +26,22 @@
     :root { --navy:#002349; --gold:#957C3D; --ink:#172B40; --clay:#D98A65; }
     html { scroll-behavior:smooth; }
     body { font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
-    .close-hero { background: radial-gradient(circle at 75% 18%,rgba(217,138,101,.19),transparent 25%), radial-gradient(circle at 14% 87%,rgba(217,232,217,.12),transparent 30%), linear-gradient(130deg,#00162c 0%,#002349 58%,#16435b 100%); }
+    /* High-contrast hero: keep the navy surface even if external utility CSS changes. */
+    .close-hero,
+    main > section.close-hero {
+      background-color: #002349 !important;
+      background-image: radial-gradient(circle at 75% 18%,rgba(217,138,101,.19),transparent 25%), radial-gradient(circle at 14% 87%,rgba(217,232,217,.12),transparent 30%), linear-gradient(130deg,#00162c 0%,#002349 58%,#16435b 100%) !important;
+      color: #ffffff !important;
+    }
+    .close-hero h1 { color: #ffffff !important; }
+    .close-hero p,
+    .close-hero .text-slate-300 { color: #dbe5ef !important; }
+    .close-hero a[href="#close-sequence"] {
+      color: #ffffff !important;
+      border-color: rgba(255,255,255,.5) !important;
+      background-color: rgba(255,255,255,.08) !important;
+    }
+    .close-hero a[href="#close-sequence"]:hover { background-color: rgba(255,255,255,.16) !important; }
     .hero-grid { background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size:34px 34px; }
     .float-card { animation:floaty 6s ease-in-out infinite; }
     .float-card:nth-child(2) { animation-delay:-1.5s; }
@@ -68,7 +83,7 @@
 
   <main>
     <!-- HERO: close cockpit; shared Accountrise shell, fresh article design -->
-    <section class="close-hero hero-grid overflow-hidden text-white relative">
+    <section class="close-hero hero-grid bg-[#002349] overflow-hidden text-white relative" style="background-color:#002349 !important;background-image:radial-gradient(circle at 75% 18%,rgba(217,138,101,.19),transparent 25%),radial-gradient(circle at 14% 87%,rgba(217,232,217,.12),transparent 30%),linear-gradient(130deg,#00162c 0%,#002349 58%,#16435b 100%) !important;color:#ffffff !important;">
       <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20 relative">
         <div class="grid lg:grid-cols-[1.03fr_.97fr] gap-12 items-center">
           <div class="reveal">
