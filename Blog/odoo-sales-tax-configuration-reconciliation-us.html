@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Sales Tax Configuration & Reconciliation for US Businesses | Accountrise</title>
+  <meta name="description" content="Learn how to review sales tax setup in Odoo, map taxes to products and customers, reconcile tax reports to the general ledger, and prepare a reliable period-end process for US businesses.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-sales-tax-configuration-reconciliation-us.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Sales Tax Configuration & Reconciliation for US Businesses">
+  <meta property="og:description" content="A practical workflow for checking Odoo tax mapping, reviewing sales tax reports, and reconciling tax liabilities at period end.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-sales-tax-configuration-reconciliation-us.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Sales Tax Configuration & Reconciliation for US Businesses">
+  <meta name="twitter:description" content="A practical Odoo workflow for tax mapping, report review, and sales tax reconciliation.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://www.accountrise.com/#organization",
+        "name": "Accountrise",
+        "url": "https://www.accountrise.com/"
+      },
+      {
+        "@type": "BlogPosting",
+        "headline": "Odoo Sales Tax Configuration and Reconciliation for US Businesses",
+        "description": "A practical workflow for reviewing Odoo sales tax configuration, validating tax mapping, reconciling reports to ledger balances, and documenting period-end checks.",
+        "mainEntityOfPage": "https://www.accountrise.com/blog/odoo-sales-tax-configuration-reconciliation-us.html",
+        "author": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com/" },
+        "publisher": { "@id": "https://www.accountrise.com/#organization" },
+        "datePublished": "2026-10-10",
+        "dateModified": "2026-10-10",
+        "articleSection": "Odoo Accounting",
+        "keywords": ["Odoo sales tax", "Odoo tax configuration", "sales tax reconciliation", "US accounting", "Odoo accounting process"]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Does Odoo automatically determine sales tax for every US jurisdiction?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Do not assume that a standard Odoo configuration automatically determines every applicable US sales tax. Tax behavior depends on the Odoo version, configuration, installed localization or integrations, transaction details, and applicable jurisdiction rules. Validate the setup with a qualified tax professional." }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does the Odoo sales tax report not match the general ledger?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Differences can arise from report filters and date ranges, tax repartition settings, incorrect tax accounts, manual journal entries, credit notes, cash-basis settings where applicable, or transactions posted outside the period. Reconcile the report to posted entries and investigate each difference." }
+          },
+          {
+            "@type": "Question",
+            "name": "Should sales tax be recorded as revenue?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sales tax collected on behalf of a taxing authority is generally tracked as a liability rather than revenue, subject to the business's facts and applicable accounting requirements. Confirm the proper account mapping with your accountant." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can a credit note change the sales tax amount?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A credit note or return may affect taxable sales and tax liability depending on the original transaction, reason for the credit, and applicable rules. Ensure the correction uses the proper tax treatment and appears in the correct reporting period." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .grid-paper { background-image: linear-gradient(rgba(0,35,73,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,35,73,.045) 1px, transparent 1px); background-size: 24px 24px; }
+    .tax-line { background: linear-gradient(90deg, #957C3D, #d7c38b 52%, transparent); }
+    .focus-ring:focus-visible { outline: 3px solid #957C3D; outline-offset: 3px; }
+  </style>
+</head>
+<body class="bg-[#f5f6f8] text-slate-800 antialiased">
+  <header class="relative overflow-hidden bg-[#002349] text-white">
+    <div class="absolute inset-0 opacity-25 grid-paper"></div>
+    <div class="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <nav class="flex items-center justify-between border-b border-white/15 py-5" aria-label="Main navigation">
+        <a href="/" class="text-xl font-black tracking-tight">accountrise<span class="text-[#bda35c]">.</span></a>
+        <div class="hidden items-center gap-7 text-sm text-white/80 md:flex">
+          <a href="/" class="hover:text-white transition">Home</a>
+          <a href="/services/" class="hover:text-white transition">Services</a>
+          <a href="/blog/" class="hover:text-white transition">Blog</a>
+          <a href="/about/" class="hover:text-white transition">About Us</a>
+        </div>
+        <a href="#contact" class="focus-ring rounded-full border border-white/30 px-4 py-2 text-sm font-semibold hover:bg-white/10 transition">Talk to an accountant</a>
+      </nav>
+
+      <div class="grid gap-12 py-14 sm:py-20 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
+        <div>
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-[#bda35c]/50 bg-[#bda35c]/10 px-4 py-2 text-xs font-bold uppercase tracking-[.18em] text-[#e7d7a4]">
+            <span class="h-2 w-2 rounded-full bg-[#bda35c]"></span> Odoo accounting field guide
+          </div>
+          <p class="mb-4 text-sm font-semibold uppercase tracking-[.22em] text-white/55">US businesses · Tax control workflow</p>
+          <h1 class="max-w-3xl text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">Odoo Sales Tax: <span class="text-[#d8c27f]">Configure, Review &amp; Reconcile</span></h1>
+          <p class="mt-6 max-w-2xl text-lg leading-8 text-white/75">A practical process for connecting tax settings, product and customer rules, posted invoices, tax reports, and liability accounts—without letting a configuration issue turn into a month-end mystery.</p>
+          <div class="mt-8 flex flex-wrap gap-3 text-sm text-white/70">
+            <span class="rounded-full border border-white/20 px-3 py-1.5">Setup checks</span>
+            <span class="rounded-full border border-white/20 px-3 py-1.5">Report-to-ledger review</span>
+            <span class="rounded-full border border-white/20 px-3 py-1.5">Period-end controls</span>
+          </div>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-xl">
+          <div class="absolute -inset-5 rounded-[2rem] border border-white/10"></div>
+          <div class="relative rounded-[1.75rem] border border-white/15 bg-[#082e54]/90 p-5 shadow-2xl sm:p-7">
+            <div class="flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p class="text-xs uppercase tracking-[.2em] text-white/45">Tax control desk</p>
+                <h2 class="mt-1 text-lg font-bold">Period review map</h2>
+              </div>
+              <span class="rounded-lg bg-[#bda35c]/15 px-3 py-1 text-xs font-bold text-[#e7d7a4]">5 checkpoints</span>
+            </div>
+            <div class="mt-5 space-y-3">
+              <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4"><span class="grid h-9 w-9 place-items-center rounded-lg bg-[#bda35c] font-black text-[#002349]">01</span><div class="flex-1"><p class="font-semibold">Tax mapping</p><p class="text-sm text-white/50">Products · customers · fiscal positions</p></div><span class="text-[#d8c27f]">→</span></div>
+              <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4"><span class="grid h-9 w-9 place-items-center rounded-lg bg-white/10 font-black">02</span><div class="flex-1"><p class="font-semibold">Transaction sample</p><p class="text-sm text-white/50">Invoice · credit note · exemption</p></div><span class="text-white/40">→</span></div>
+              <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4"><span class="grid h-9 w-9 place-items-center rounded-lg bg-white/10 font-black">03</span><div class="flex-1"><p class="font-semibold">Tax report</p><p class="text-sm text-white/50">Period and filters confirmed</p></div><span class="text-white/40">→</span></div>
+              <div class="flex items-center gap-4 rounded-xl border border-white/10 bg-white/5 p-4"><span class="grid h-9 w-9 place-items-center rounded-lg bg-white/10 font-black">04</span><div class="flex-1"><p class="font-semibold">Ledger tie-out</p><p class="text-sm text-white/50">Tax lines tied to posted entries</p></div><span class="text-white/40">→</span></div>
+              <div class="flex items-center gap-4 rounded-xl border border-[#bda35c]/40 bg-[#bda35c]/10 p-4"><span class="grid h-9 w-9 place-items-center rounded-lg bg-[#bda35c] font-black text-[#002349]">05</span><div class="flex-1"><p class="font-semibold">Document &amp; approve</p><p class="text-sm text-white/60">Exceptions resolved or explained</p></div><span class="text-[#d8c27f]">✓</span></div>
+            </div>
+            <p class="mt-5 text-xs leading-5 text-white/45">Use this as an accounting control map. Exact menus, reports, and tax behavior can differ by Odoo version and installed localization.</p>
+          </div>
+        </div>
+      </div>
+      <div class="tax-line h-1 w-full"></div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
+    <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_300px]">
+      <article class="min-w-0">
+        <div class="rounded-2xl border border-amber-200 bg-amber-50 p-5 sm:p-6">
+          <p class="font-bold text-amber-950">Important US tax note</p>
+          <p class="mt-2 text-sm leading-6 text-amber-900">Sales tax obligations depend on the business, products or services, customer location, nexus, exemptions, and relevant state and local rules. Odoo records the tax treatment you configure or receive through supported integrations; it does not replace a tax professional’s determination of where you must register, collect, file, or remit tax. Validate requirements with a qualified US sales-tax adviser.</p>
+        </div>
+
+        <section class="mt-10" id="why-it-matters">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">01 / Understand the problem</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349] sm:text-4xl">Why sales tax goes wrong in Odoo</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">A tax balance can be wrong even when invoices look normal. The source may be an incorrect tax on a product, a customer exemption that was not applied, an account mapping issue, a credit note posted in the wrong period, or a report filtered differently from the general ledger.</p>
+          <div class="mt-7 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-white p-6"><p class="text-sm font-bold text-[#957C3D]">SETUP ISSUE</p><h3 class="mt-2 text-lg font-extrabold text-[#002349]">Wrong tax selected</h3><p class="mt-2 text-sm leading-6 text-slate-600">A product, customer, fiscal position, or manual override applies an unintended tax treatment.</p></div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-6"><p class="text-sm font-bold text-[#957C3D]">REPORTING ISSUE</p><h3 class="mt-2 text-lg font-extrabold text-[#002349]">Report and ledger differ</h3><p class="mt-2 text-sm leading-6 text-slate-600">Date ranges, tax accounts, journal entries, credit notes, or report filters create a difference.</p></div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-6"><p class="text-sm font-bold text-[#957C3D]">MASTER-DATA ISSUE</p><h3 class="mt-2 text-lg font-extrabold text-[#002349]">Product rules drift</h3><p class="mt-2 text-sm leading-6 text-slate-600">New items or changed product categories do not follow the reviewed tax mapping standard.</p></div>
+            <div class="rounded-2xl border border-slate-200 bg-white p-6"><p class="text-sm font-bold text-[#957C3D]">CONTROL ISSUE</p><h3 class="mt-2 text-lg font-extrabold text-[#002349]">No evidence trail</h3><p class="mt-2 text-sm leading-6 text-slate-600">The team cannot explain why an exception occurred or who approved the correction.</p></div>
+          </div>
+        </section>
+
+        <section class="mt-14" id="workflow">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">02 / Configure carefully</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349] sm:text-4xl">A practical Odoo sales tax setup sequence</h2>
+          <p class="mt-5 leading-8 text-slate-600">Before adjusting live records, write down the intended tax treatment and test a small set of representative transactions in a safe environment when available. Menu names and available options vary by Odoo release, localization, and installed modules.</p>
+          <ol class="mt-7 space-y-5">
+            <li class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#002349] font-black text-white">1</span><div><h3 class="text-lg font-extrabold text-[#002349]">Confirm the tax scope</h3><p class="mt-1 leading-7 text-slate-600">Document the entities, locations, products or services, sales channels, registrations, and customer types that require review. Ask the tax adviser to confirm where collection and filing obligations apply.</p></div></li>
+            <li class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#002349] font-black text-white">2</span><div><h3 class="text-lg font-extrabold text-[#002349]">Review tax records and accounts</h3><p class="mt-1 leading-7 text-slate-600">Check tax labels, computation method, scope, included-in-price behavior, repartition lines, and the accounts used for the relevant tax entries. Confirm liability accounts are appropriate for your chart of accounts.</p></div></li>
+            <li class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#002349] font-black text-white">3</span><div><h3 class="text-lg font-extrabold text-[#002349]">Map products and product categories</h3><p class="mt-1 leading-7 text-slate-600">Build a controlled mapping for common goods and services. Review default customer taxes, category-level defaults, and any manual tax overrides your team uses. Avoid relying on item names alone to determine tax treatment.</p></div></li>
+            <li class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#002349] font-black text-white">4</span><div><h3 class="text-lg font-extrabold text-[#002349]">Validate customer and exemption handling</h3><p class="mt-1 leading-7 text-slate-600">Set an approval process for exemption certificates and customer tax treatment. Store evidence outside or inside the system according to your document-retention policy, and establish who may change a customer’s tax settings.</p></div></li>
+            <li class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#002349] font-black text-white">5</span><div><h3 class="text-lg font-extrabold text-[#002349]">Test fiscal positions and integrations</h3><p class="mt-1 leading-7 text-slate-600">Where used, test fiscal positions, automated tax services, shipping scenarios, and supported integrations. Confirm what information flows into Odoo and which decisions still require review.</p></div></li>
+            <li class="flex gap-4"><span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#002349] font-black text-white">6</span><div><h3 class="text-lg font-extrabold text-[#002349]">Test the full transaction trail</h3><p class="mt-1 leading-7 text-slate-600">Create sample quotations or orders, invoices, credit notes, refunds, and payments as appropriate. Inspect both the tax amount and the resulting journal entries before rolling out changes.</p></div></li>
+          </ol>
+        </section>
+
+        <section class="mt-14 rounded-[1.75rem] border border-slate-200 bg-white p-6 sm:p-8" id="scenario-lab">
+          <div class="flex flex-wrap items-end justify-between gap-4"><div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">03 / Interactive review desk</p><h2 class="mt-3 text-2xl font-black text-[#002349] sm:text-3xl">Choose the symptom you are seeing</h2></div><span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-500">First-pass triage</span></div>
+          <p class="mt-4 leading-7 text-slate-600">Select a common symptom to see a practical investigation path. Treat it as a starting point, not an automatic diagnosis.</p>
+          <label for="taxSymptom" class="mt-6 block text-sm font-bold text-[#002349]">What needs attention?</label>
+          <select id="taxSymptom" class="focus-ring mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 text-slate-800">
+            <option value="report">Sales tax report does not match the GL</option>
+            <option value="invoice">An invoice calculates unexpected tax</option>
+            <option value="credit">A credit note changed the period total</option>
+            <option value="liability">The sales tax liability balance looks unusual</option>
+          </select>
+          <div id="taxAdvice" class="mt-5 rounded-2xl bg-[#eef3f8] p-5 sm:p-6" aria-live="polite">
+            <h3 class="font-extrabold text-[#002349]">Start with the reporting scope</h3>
+            <p class="mt-2 leading-7 text-slate-700">Confirm company, date range, report filters, and posting status. Then compare the report detail with relevant posted tax journal items and inspect manual entries or transactions included in one source but not the other.</p>
+          </div>
+        </section>
+
+        <section class="mt-14" id="reconciliation">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">04 / Close the books</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349] sm:text-4xl">How to reconcile Odoo sales tax at period end</h2>
+          <p class="mt-5 leading-8 text-slate-600">The goal is a documented bridge between the tax report used for filing preparation and the balances recorded in the general ledger. Do not post a plug entry simply to make the numbers agree—identify the cause first.</p>
+          <div class="mt-7 overflow-hidden rounded-2xl border border-slate-200 bg-white">
+            <div class="grid grid-cols-[52px_1fr] border-b border-slate-200 bg-slate-50 p-4"><span class="font-black text-[#957C3D]">01</span><div><h3 class="font-extrabold text-[#002349]">Lock the reporting period</h3><p class="mt-1 text-sm leading-6 text-slate-600">Use the appropriate start and end dates, company, and report filters; record the exact report version or export used for review.</p></div></div>
+            <div class="grid grid-cols-[52px_1fr] border-b border-slate-200 p-4"><span class="font-black text-[#957C3D]">02</span><div><h3 class="font-extrabold text-[#002349]">Export tax detail and ledger activity</h3><p class="mt-1 text-sm leading-6 text-slate-600">Retain line-level report detail and general-ledger activity for the relevant tax accounts, using comparable dates and posted-entry criteria.</p></div></div>
+            <div class="grid grid-cols-[52px_1fr] border-b border-slate-200 p-4"><span class="font-black text-[#957C3D]">03</span><div><h3 class="font-extrabold text-[#002349]">Trace exceptions to source documents</h3><p class="mt-1 text-sm leading-6 text-slate-600">Review invoices, credit notes, refunds, manual journal entries, tax mapping, and any cash-basis or localization-specific behavior that affects reporting.</p></div></div>
+            <div class="grid grid-cols-[52px_1fr] border-b border-slate-200 p-4"><span class="font-black text-[#957C3D]">04</span><div><h3 class="font-extrabold text-[#002349]">Explain the closing liability</h3><p class="mt-1 text-sm leading-6 text-slate-600">Reconcile the opening balance, tax movements, payments or settlements, and closing balance as applicable to your accounts and filing process.</p></div></div>
+            <div class="grid grid-cols-[52px_1fr] p-4"><span class="font-black text-[#957C3D]">05</span><div><h3 class="font-extrabold text-[#002349]">Review, approve, and retain evidence</h3><p class="mt-1 text-sm leading-6 text-slate-600">Document unresolved differences, assign an owner and due date, obtain review sign-off, and retain supporting records under your business policy and applicable requirements.</p></div></div>
+          </div>
+          <div class="mt-7 rounded-2xl border-l-4 border-[#957C3D] bg-white p-5 sm:p-6"><p class="font-extrabold text-[#002349]">Control principle</p><p class="mt-2 leading-7 text-slate-600">The tax report and GL may not be directly comparable until their scope, timing, and account mapping are aligned. Document the basis of the comparison before drawing conclusions.</p></div>
+        </section>
+
+        <section class="mt-14" id="common-errors">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">05 / Troubleshooting</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349] sm:text-4xl">Common errors and what to review</h2>
+          <div class="mt-7 space-y-3">
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5" open><summary class="cursor-pointer list-none font-extrabold text-[#002349]">The invoice tax is unexpected <span class="float-right text-[#957C3D] group-open:rotate-45 transition">＋</span></summary><p class="mt-3 leading-7 text-slate-600">Inspect the tax on the invoice line, product or category defaults, customer configuration, fiscal position, manual changes, price-included settings, and any tax engine or integration response. Compare a similar known-good transaction.</p></details>
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5"><summary class="cursor-pointer list-none font-extrabold text-[#002349]">Tax shows in revenue or the wrong account <span class="float-right text-[#957C3D] group-open:rotate-45 transition">＋</span></summary><p class="mt-3 leading-7 text-slate-600">Review tax repartition and account mapping, then inspect posted journal items. Avoid changing accounts on live tax records without assessing the effect on existing transactions and reports.</p></details>
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5"><summary class="cursor-pointer list-none font-extrabold text-[#002349]">Credit notes reduce sales but tax does not move as expected <span class="float-right text-[#957C3D] group-open:rotate-45 transition">＋</span></summary><p class="mt-3 leading-7 text-slate-600">Confirm the credit note is linked to the original business event where appropriate, carries the intended tax treatment, is posted, and appears in the correct period and report. Applicable rules can govern when a credit affects a filing.</p></details>
+            <details class="group rounded-2xl border border-slate-200 bg-white p-5"><summary class="cursor-pointer list-none font-extrabold text-[#002349]">A manual journal entry changed the liability <span class="float-right text-[#957C3D] group-open:rotate-45 transition">＋</span></summary><p class="mt-3 leading-7 text-slate-600">Identify the entry’s purpose, approval, date, and account. Determine whether it belongs in the tax reporting workflow or only in a separate adjustment process, and document the reason for any report-to-GL difference.</p></details>
+          </div>
+        </section>
+
+        <section class="mt-14" id="checklist">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">06 / Ready for close?</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349] sm:text-4xl">Sales tax review checklist</h2>
+          <p class="mt-4 leading-7 text-slate-600">Use this list as a repeatable monthly or filing-period control, adjusted to your business and adviser-approved process.</p>
+          <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-5 sm:p-7">
+            <div id="taxChecklist" class="space-y-4">
+              <label class="flex cursor-pointer items-start gap-3"><input type="checkbox" class="mt-1 h-4 w-4 accent-[#957C3D]"><span>Reporting period, company, and filters confirmed.</span></label>
+              <label class="flex cursor-pointer items-start gap-3"><input type="checkbox" class="mt-1 h-4 w-4 accent-[#957C3D]"><span>Sample invoices, products, customers, and exemptions tested.</span></label>
+              <label class="flex cursor-pointer items-start gap-3"><input type="checkbox" class="mt-1 h-4 w-4 accent-[#957C3D]"><span>Credit notes, returns, and refunds reviewed.</span></label>
+              <label class="flex cursor-pointer items-start gap-3"><input type="checkbox" class="mt-1 h-4 w-4 accent-[#957C3D]"><span>Tax report compared with relevant GL accounts and posted entries.</span></label>
+              <label class="flex cursor-pointer items-start gap-3"><input type="checkbox" class="mt-1 h-4 w-4 accent-[#957C3D]"><span>Liability roll-forward and any payments or settlements explained.</span></label>
+              <label class="flex cursor-pointer items-start gap-3"><input type="checkbox" class="mt-1 h-4 w-4 accent-[#957C3D]"><span>Exceptions documented, reviewed, and assigned for follow-up.</span></label>
+              <label class="flex cursor-pointer items-start gap-3"><input type="checkbox" class="mt-1 h-4 w-4 accent-[#957C3D]"><span>Tax professional's filing and jurisdiction requirements confirmed.</span></label>
+            </div>
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-5"><p id="checkCount" class="text-sm font-semibold text-slate-500" aria-live="polite">0 of 7 checks complete</p><button id="resetChecks" type="button" class="focus-ring rounded-full border border-slate-300 px-4 py-2 text-sm font-bold text-[#002349] hover:bg-slate-50">Reset checklist</button></div>
+          </div>
+        </section>
+
+        <section class="mt-14" id="faq">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">07 / Frequently asked questions</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349] sm:text-4xl">Odoo sales tax FAQs</h2>
+          <div class="mt-6 space-y-3">
+            <details class="rounded-2xl border border-slate-200 bg-white p-5" open><summary class="cursor-pointer font-extrabold text-[#002349]">Does Odoo automatically determine sales tax for every US jurisdiction?</summary><p class="mt-3 leading-7 text-slate-600">Do not assume a standard setup automatically determines every applicable US sales tax. Behavior depends on the Odoo version, configuration, installed localization or integrations, transaction details, and jurisdiction rules. Validate the setup with a qualified tax professional.</p></details>
+            <details class="rounded-2xl border border-slate-200 bg-white p-5"><summary class="cursor-pointer font-extrabold text-[#002349]">Why might the Odoo sales tax report not match the general ledger?</summary><p class="mt-3 leading-7 text-slate-600">Potential causes include different report filters or dates, tax-account mapping, manual journal entries, credit notes, cash-basis settings where applicable, or transactions posted outside the selected period. Compare the detailed report with posted entries and investigate differences one by one.</p></details>
+            <details class="rounded-2xl border border-slate-200 bg-white p-5"><summary class="cursor-pointer font-extrabold text-[#002349]">Should collected sales tax be recorded as revenue?</summary><p class="mt-3 leading-7 text-slate-600">Tax collected on behalf of a taxing authority is generally tracked as a liability rather than revenue, subject to your facts and applicable accounting requirements. Confirm the account mapping with your accountant.</p></details>
+            <details class="rounded-2xl border border-slate-200 bg-white p-5"><summary class="cursor-pointer font-extrabold text-[#002349]">Can a credit note affect the tax total for a period?</summary><p class="mt-3 leading-7 text-slate-600">Yes, a credit note or return may affect taxable sales and tax liability depending on the original transaction, reason for the credit, and relevant rules. Confirm its tax treatment and reporting period.</p></details>
+            <details class="rounded-2xl border border-slate-200 bg-white p-5"><summary class="cursor-pointer font-extrabold text-[#002349]">Does this checklist replace state sales tax advice?</summary><p class="mt-3 leading-7 text-slate-600">No. It is an accounting-system control guide. Registration, nexus, product taxability, exemptions, filing frequency, and remittance obligations should be confirmed with a qualified tax professional.</p></details>
+          </div>
+        </section>
+
+        <section class="mt-14" id="related">
+          <h2 class="text-2xl font-black text-[#002349]">Related Odoo accounting guides</h2>
+          <div class="mt-5 grid gap-3 sm:grid-cols-2">
+            <a href="/blog/odoo-purchase-process-rfq-purchase-orders-vendor-bills.html" class="rounded-xl border border-slate-200 bg-white p-4 font-bold text-[#002349] hover:border-[#957C3D] transition">Odoo Purchase Process: RFQs, POs &amp; Vendor Bills <span class="text-[#957C3D]">→</span></a>
+            <a href="/blog/odoo-customer-credit-notes-refunds-process.html" class="rounded-xl border border-slate-200 bg-white p-4 font-bold text-[#002349] hover:border-[#957C3D] transition">Odoo Credit Notes &amp; Customer Refunds <span class="text-[#957C3D]">→</span></a>
+            <a href="/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html" class="rounded-xl border border-slate-200 bg-white p-4 font-bold text-[#002349] hover:border-[#957C3D] transition">Odoo Bank Reconciliation Troubleshooting <span class="text-[#957C3D]">→</span></a>
+            <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-xl border border-slate-200 bg-white p-4 font-bold text-[#002349] hover:border-[#957C3D] transition">Odoo Month-End Close Checklist <span class="text-[#957C3D]">→</span></a>
+          </div>
+        </section>
+
+        <section id="contact" class="relative mt-16 overflow-hidden rounded-[2rem] bg-[#002349] p-7 text-white sm:p-10 lg:p-12">
+          <div class="absolute -right-10 -top-12 h-48 w-48 rounded-full border border-white/10"></div><div class="absolute -right-2 -top-4 h-32 w-32 rounded-full border border-[#bda35c]/30"></div>
+          <div class="relative max-w-3xl"><p class="text-xs font-black uppercase tracking-[.2em] text-[#d8c27f]">Accountrise · Odoo accounting support</p><h2 class="mt-3 text-3xl font-black leading-tight sm:text-4xl">Need a clearer Odoo accounting close?</h2><p class="mt-4 max-w-2xl leading-7 text-white/75">Accountrise helps businesses and accounting firms improve bookkeeping workflows, reconcile accounts, investigate posting differences, and build repeatable month-end controls. Support starts at <strong class="text-white">$10/hour</strong>; final pricing depends on scope, transaction volume, complexity, and engagement requirements.</p><div class="mt-7 flex flex-wrap gap-3"><a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="focus-ring rounded-2xl bg-[#957C3D] px-7 py-4 font-semibold text-[#002349] hover:bg-[#b89a4e] transition">Book Free Consultation</a><a href="mailto:info@accountrise.com" class="focus-ring rounded-2xl border border-white/30 px-7 py-4 font-semibold text-white hover:bg-white/10 transition">Email Us</a></div></div>
+        </section>
+        <p class="mt-8 text-xs leading-6 text-slate-500">This article provides general accounting-system workflow information and is not legal, tax, or jurisdiction-specific filing advice. Validate tax positions, filing obligations, retention requirements, and configuration choices with qualified professionals. Odoo features and menus may differ by version, edition, localization, and installed modules.</p>
+      </article>
+
+      <aside class="hidden lg:block">
+        <div class="sticky top-8 rounded-2xl border border-slate-200 bg-white p-6">
+          <p class="text-xs font-black uppercase tracking-[.18em] text-[#957C3D]">On this page</p>
+          <nav class="mt-4 space-y-3 text-sm text-slate-600">
+            <a class="block hover:text-[#002349]" href="#why-it-matters">Why tax goes wrong</a>
+            <a class="block hover:text-[#002349]" href="#workflow">Setup sequence</a>
+            <a class="block hover:text-[#002349]" href="#scenario-lab">Interactive review desk</a>
+            <a class="block hover:text-[#002349]" href="#reconciliation">Period-end reconciliation</a>
+            <a class="block hover:text-[#002349]" href="#common-errors">Common errors</a>
+            <a class="block hover:text-[#002349]" href="#checklist">Review checklist</a>
+            <a class="block hover:text-[#002349]" href="#faq">FAQs</a>
+          </nav>
+          <div class="mt-7 rounded-xl bg-[#eef3f8] p-4"><p class="font-extrabold text-[#002349]">Review note</p><p class="mt-2 text-sm leading-6 text-slate-600">Keep a copy of the tax report, relevant ledger detail, source documents, and a written explanation of any timing or mapping differences.</p></div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-200 bg-white"><div class="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8"><a href="/" class="font-black text-[#002349]">accountrise<span class="text-[#957C3D]">.</span></a><p>Remote accounting and bookkeeping support for growing businesses.</p><div class="flex gap-4"><a href="/about/" class="hover:text-[#002349]">About Us</a><a href="/services/" class="hover:text-[#002349]">Services</a><a href="/blog/" class="hover:text-[#002349]">Blog</a></div></div></footer>
+
+  <script>
+    const symptomSelect = document.getElementById('taxSymptom');
+    const taxAdvice = document.getElementById('taxAdvice');
+    const symptomAdvice = {
+      report: {
+        title: 'Start with the reporting scope',
+        body: 'Confirm company, date range, report filters, and posting status. Then compare report detail with relevant posted tax journal items and inspect manual entries or transactions included in one source but not the other.'
+      },
+      invoice: {
+        title: 'Trace the tax from master data to invoice line',
+        body: 'Inspect the actual tax on the invoice line, product and category defaults, customer settings, fiscal position, price-included behavior, and any manual override or tax-service response. Compare a similar known-good transaction before changing configuration.'
+      },
+      credit: {
+        title: 'Review the original sale and credit-note trail',
+        body: 'Confirm the reason for the credit, link to the original transaction where appropriate, tax applied to the credit note, posting status, and reporting period. Check applicable rules before deciding when the adjustment belongs on a filing.'
+      },
+      liability: {
+        title: 'Build a liability roll-forward',
+        body: 'Start with the opening liability, trace tax movements and any payments or settlements, and tie the closing balance to ledger activity. Review manual journal entries, account mapping, and whether the GL and tax report cover the same timing and scope.'
+      }
+    };
+    symptomSelect.addEventListener('change', function () {
+      const advice = symptomAdvice[this.value];
+      taxAdvice.innerHTML = '<h3 class="font-extrabold text-[#002349]"></h3><p class="mt-2 leading-7 text-slate-700"></p>';
+      taxAdvice.querySelector('h3').textContent = advice.title;
+      taxAdvice.querySelector('p').textContent = advice.body;
+    });
+    const checkboxes = Array.from(document.querySelectorAll('#taxChecklist input[type="checkbox"]'));
+    const checkCount = document.getElementById('checkCount');
+    function updateCheckCount() {
+      const checked = checkboxes.filter(box => box.checked).length;
+      checkCount.textContent = `${checked} of ${checkboxes.length} checks complete`;
+    }
+    checkboxes.forEach(box => box.addEventListener('change', updateCheckCount));
+    document.getElementById('resetChecks').addEventListener('click', function () {
+      checkboxes.forEach(box => { box.checked = false; });
+      updateCheckCount();
+    });
+  </script>
+</body>
+</html>
