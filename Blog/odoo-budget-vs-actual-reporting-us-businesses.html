@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Budget vs. Actual Reporting: A Practical Guide for US Businesses | Accountrise</title>
+  <meta name="description" content="Learn how to build a useful Odoo budget vs. actual process, investigate variances, improve department-level visibility, and make better decisions with affordable remote accounting support for US businesses.">
+  <meta name="keywords" content="Odoo budget vs actual, Odoo budgeting, Odoo accounting reports, budget variance analysis, Odoo analytic accounting, outsourced Odoo accounting, remote accounting support US, affordable bookkeeping services">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-budget-vs-actual-reporting-us-businesses.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Budget vs. Actual Reporting: A Practical Guide for US Businesses">
+  <meta property="og:description" content="Turn Odoo accounting data into useful budget variance reviews, spending controls, and practical management decisions.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-budget-vs-actual-reporting-us-businesses.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Budget vs. Actual Reporting for US Businesses">
+  <meta name="twitter:description" content="A practical Odoo workflow for comparing budgets with actual results and investigating financial variances.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { navy:'#002349', gold:'#957C3D', ink:'#152D43', fog:'#F4F7FA', mint:'#B9E3D1', coral:'#F1A58A', cobalt:'#8FB4FF' } } } };
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .command-hero { background: radial-gradient(circle at 85% 14%,rgba(143,180,255,.22),transparent 24%), radial-gradient(circle at 16% 90%,rgba(185,227,209,.12),transparent 27%), linear-gradient(130deg,#00172e 0%,#002349 55%,#123e63 100%); }
+    .hero-grid { background-image: linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size: 36px 36px; }
+    .rise-in { animation: riseIn .7s cubic-bezier(.2,.7,.2,1) both; }
+    .rise-delay-1 { animation-delay: .1s; }
+    .rise-delay-2 { animation-delay: .2s; }
+    .rise-delay-3 { animation-delay: .3s; }
+    @keyframes riseIn { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .orbit { animation: orbitFloat 5s ease-in-out infinite; }
+    @keyframes orbitFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-7px); } }
+    .meter-fill { transition: width .45s ease; }
+    .lift { transition: transform .22s ease, box-shadow .22s ease; }
+    .lift:hover { transform:translateY(-4px); box-shadow:0 18px 42px rgba(0,35,73,.12); }
+    details summary { cursor:pointer; list-style:none; }
+    details summary::-webkit-details-marker { display:none; }
+    .faq-plus { transition: transform .2s ease; }
+    details[open] .faq-plus { transform:rotate(45deg); }
+    .mobile-panel[hidden] { display:none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#F6F8FB] text-[#152D43] antialiased">
+  <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]" aria-label="Accountrise home">Accountrise<span class="text-[#957C3D]">.</span></a>
+      <nav class="hidden items-center gap-7 text-sm font-semibold text-slate-600 md:flex" aria-label="Main navigation">
+        <a href="/about/" class="transition hover:text-[#957C3D]">About Us</a>
+        <a href="/services/" class="transition hover:text-[#957C3D]">Services</a>
+        <a href="/blog/" class="transition hover:text-[#957C3D]">Blog</a>
+        <a href="#contact" class="rounded-full bg-[#957C3D] px-5 py-2.5 font-semibold text-[#002349] transition hover:bg-[#b89a4e]">Contact</a>
+      </nav>
+      <button id="mobileMenuButton" class="flex items-center gap-2 rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold text-[#002349] md:hidden" aria-expanded="false" aria-controls="mobileMenu">
+        <span>Menu</span><span id="menuIcon" aria-hidden="true" class="text-lg leading-none">＋</span>
+      </button>
+    </div>
+    <div id="mobileMenu" class="mobile-panel border-t border-slate-100 bg-white px-5 py-3 md:hidden" hidden>
+      <nav class="mx-auto flex max-w-7xl flex-col gap-1 text-sm font-semibold text-slate-700" aria-label="Mobile navigation">
+        <a href="/about/" class="rounded-xl px-3 py-3 hover:bg-slate-50">About Us</a>
+        <a href="/services/" class="rounded-xl px-3 py-3 hover:bg-slate-50">Services</a>
+        <a href="/blog/" class="rounded-xl px-3 py-3 hover:bg-slate-50">Blog</a>
+        <a href="#contact" class="rounded-xl bg-[#F4F0E5] px-3 py-3 font-bold text-[#002349]">Contact Accountrise</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: financial command center; a distinct visual from the manufacturing blueprint article -->
+    <section class="command-hero hero-grid overflow-hidden text-white">
+      <div class="mx-auto grid max-w-7xl items-center gap-12 px-5 py-14 sm:px-8 lg:grid-cols-[1.04fr_.96fr] lg:py-20">
+        <div class="rise-in">
+          <div class="mb-6 flex flex-wrap items-center gap-3">
+            <span class="rounded-full border border-[#B9E3D1]/30 bg-[#B9E3D1]/10 px-3 py-1.5 text-xs font-black uppercase tracking-[.16em] text-[#B9E3D1]">Odoo Finance Control</span>
+            <span class="text-sm text-slate-300">Budgeting · Variance review · Decisions</span>
+          </div>
+          <h1 class="max-w-3xl text-4xl font-black leading-[1.04] tracking-tight sm:text-6xl">Odoo Budget vs. Actual Reporting: <span class="text-[#B9E3D1]">Know Where the Money Goes</span></h1>
+          <p class="mt-7 max-w-2xl text-lg leading-relaxed text-slate-300 sm:text-xl">Revenue can be growing while cash feels tight. A useful budget-to-actual process helps owners see where spending is running ahead of plan, which teams or projects need attention, and what to investigate before month-end.</p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#workflow" class="rounded-2xl bg-[#B9E3D1] px-6 py-3.5 font-extrabold text-[#002349] transition hover:bg-[#d8f4e7]">Explore the Workflow ↓</a>
+            <a href="#variance-lab" class="rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 font-bold text-white transition hover:bg-white/10">Try the Variance Lab</a>
+          </div>
+          <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300">
+            <span>✓ Practical reporting controls</span><span>✓ Owner-friendly variance review</span><span>✓ US business context</span>
+          </div>
+        </div>
+
+        <div class="rise-in rise-delay-2 orbit rounded-[2rem] border border-white/15 bg-[#00172E]/70 p-5 shadow-2xl backdrop-blur sm:p-7">
+          <div class="flex items-start justify-between gap-4 border-b border-white/10 pb-5">
+            <div><p class="text-[11px] font-black uppercase tracking-[.2em] text-[#B9E3D1]">Monthly control room</p><h2 class="mt-1 text-xl font-black sm:text-2xl">Budget health snapshot</h2></div>
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-slate-300">Illustrative</span>
+          </div>
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <div class="rounded-2xl border border-white/10 bg-white/[.06] p-4"><p class="text-xs font-semibold text-slate-300">Planned spend</p><p class="mt-2 text-2xl font-black sm:text-3xl">$48,000</p><p class="mt-1 text-xs text-slate-400">Approved monthly plan</p></div>
+            <div class="rounded-2xl border border-[#F1A58A]/25 bg-[#F1A58A]/10 p-4"><p class="text-xs font-semibold text-slate-300">Actual spend</p><p class="mt-2 text-2xl font-black text-[#F1A58A] sm:text-3xl">$51,600</p><p class="mt-1 text-xs text-slate-400">Posted transactions</p></div>
+          </div>
+          <div class="mt-4 rounded-2xl bg-white p-5 text-[#002349]">
+            <div class="flex items-end justify-between gap-4"><div><p class="text-xs font-black uppercase tracking-wider text-slate-500">Variance to investigate</p><p class="mt-1 text-3xl font-black text-[#B45B43]">+$3,600</p></div><span class="rounded-xl bg-[#FBE9E4] px-3 py-2 text-sm font-black text-[#9F4834]">7.5% over plan</span></div>
+            <div class="mt-4 h-2.5 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[92%] rounded-full bg-[#F1A58A]"></div></div>
+            <p class="mt-3 text-sm leading-6 text-slate-600">A variance is a question to investigate—not automatically an error. Timing, volume, pricing, coding, or an outdated forecast may explain it.</p>
+          </div>
+          <p class="mt-4 text-xs leading-5 text-slate-400">Illustrative figures only. Report availability and budget configuration depend on your Odoo version, installed modules and accounting design.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ARTICLE QUICK ANSWER -->
+    <section class="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+      <div class="grid items-start gap-8 lg:grid-cols-[.73fr_1.27fr]">
+        <aside class="lg:sticky lg:top-28">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">The business question</p>
+          <h2 class="mt-3 text-3xl font-black leading-tight text-[#002349]">Are you comparing real results with a plan you can trust?</h2>
+          <p class="mt-4 leading-7 text-slate-600">The goal is not to produce one more report. It is to turn well-coded transactions and realistic budgets into clear actions owners and department leads can understand.</p>
+          <div class="mt-6 rounded-2xl border border-[#D9E4EE] bg-white p-5 shadow-sm">
+            <p class="text-sm font-extrabold text-[#002349]">A useful review answers:</p>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+              <li>• What is above or below plan?</li><li>• Is the difference timing, volume, price, or coding?</li><li>• Who owns the next action?</li><li>• Does the forecast need to change?</li>
+            </ul>
+          </div>
+        </aside>
+        <div class="space-y-5">
+          <article class="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div class="flex items-center gap-3"><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#E6F3EC] text-xl">◎</span><h2 class="text-2xl font-black text-[#002349]">What does budget vs. actual mean?</h2></div>
+            <p class="mt-4 leading-7 text-slate-600">A budget sets an expectation for a defined period, account, department, project, or other business dimension. Actuals are the recorded results for the comparable period. The variance is the difference between those two values. For expense budgets, actual spending above plan often requires explanation. For revenue, actuals below plan may signal a shortfall. The sign alone is not enough; context matters.</p>
+            <div class="mt-5 grid gap-3 sm:grid-cols-3">
+              <div class="rounded-2xl bg-[#F4F7FA] p-4"><p class="text-xs font-black uppercase tracking-wider text-slate-500">Plan</p><p class="mt-2 font-black text-[#002349]">What we expected</p><p class="mt-1 text-sm leading-5 text-slate-600">Approved assumptions and timing.</p></div>
+              <div class="rounded-2xl bg-[#F4F7FA] p-4"><p class="text-xs font-black uppercase tracking-wider text-slate-500">Actual</p><p class="mt-2 font-black text-[#002349]">What was recorded</p><p class="mt-1 text-sm leading-5 text-slate-600">Consistently coded transactions.</p></div>
+              <div class="rounded-2xl bg-[#F4F7FA] p-4"><p class="text-xs font-black uppercase tracking-wider text-slate-500">Variance</p><p class="mt-2 font-black text-[#002349]">What needs context</p><p class="mt-1 text-sm leading-5 text-slate-600">A signal to explain and act on.</p></div>
+            </div>
+          </article>
+          <article class="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
+            <div class="flex items-center gap-3"><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#E8EFFC] text-xl">⌁</span><h2 class="text-2xl font-black text-[#002349]">Why Odoo reports can be hard to use</h2></div>
+            <p class="mt-4 leading-7 text-slate-600">A budget-versus-actual report becomes unreliable when account mapping is inconsistent, analytic dimensions are missing, transactions are posted to the wrong period, or the plan no longer reflects how the business operates. Some teams also compare cash paid in a month with expenses recognized in that month; those are different views and should not be mixed without explanation.</p>
+            <div class="mt-5 grid gap-3 sm:grid-cols-2">
+              <div class="lift rounded-2xl border border-slate-200 p-4"><p class="font-extrabold text-[#002349]">Weak coding discipline</p><p class="mt-2 text-sm leading-6 text-slate-600">Department or project results become incomplete when the relevant account or analytic allocation is not applied consistently.</p></div>
+              <div class="lift rounded-2xl border border-slate-200 p-4"><p class="font-extrabold text-[#002349]">A stale plan</p><p class="mt-2 text-sm leading-6 text-slate-600">A forecast built before a hiring change, supplier increase, or sales slowdown may no longer be a fair benchmark.</p></div>
+              <div class="lift rounded-2xl border border-slate-200 p-4"><p class="font-extrabold text-[#002349]">Period mismatch</p><p class="mt-2 text-sm leading-6 text-slate-600">Accruals, prepaid costs, delayed invoices, and late entries can shift the comparison if cut-off rules are unclear.</p></div>
+              <div class="lift rounded-2xl border border-slate-200 p-4"><p class="font-extrabold text-[#002349]">No action owner</p><p class="mt-2 text-sm leading-6 text-slate-600">A report that only lists variances rarely changes behavior. Assign a reviewer, explanation, and due date.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORKFLOW: horizontal numbered path -->
+    <section id="workflow" class="border-y border-slate-200 bg-white py-14 lg:py-20">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="mx-auto max-w-3xl text-center">
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">A repeatable process</p>
+          <h2 class="mt-3 text-3xl font-black tracking-tight text-[#002349] sm:text-5xl">Build the report around decisions—not just accounts.</h2>
+          <p class="mt-5 text-lg leading-8 text-slate-600">Use the same cut-off, classification rules, period definitions, and review cadence each month so owners can compare results without second-guessing the data.</p>
+        </div>
+        <div class="mt-12 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <article class="lift relative rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#002349] text-sm font-black text-white">01</span><h3 class="mt-5 text-xl font-black text-[#002349]">Set the budget structure</h3><p class="mt-3 leading-7 text-slate-600">Define the period and the categories that support real decisions: account, department, project, location, product line, or another documented dimension.</p><p class="mt-4 rounded-xl bg-white p-3 text-sm font-semibold text-slate-700">Control: document owners and assumptions.</p></article>
+          <article class="lift relative rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#002349] text-sm font-black text-white">02</span><h3 class="mt-5 text-xl font-black text-[#002349]">Check account and analytic mapping</h3><p class="mt-3 leading-7 text-slate-600">Confirm expenses and revenue are mapped consistently. Where your Odoo configuration uses analytic accounts, plans, or distributions, define when they are required.</p><p class="mt-4 rounded-xl bg-white p-3 text-sm font-semibold text-slate-700">Control: make required coding visible to users.</p></article>
+          <article class="lift relative rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#002349] text-sm font-black text-white">03</span><h3 class="mt-5 text-xl font-black text-[#002349]">Enter and validate assumptions</h3><p class="mt-3 leading-7 text-slate-600">Build monthly expectations from known payroll, recurring bills, vendor commitments, planned purchases, sales pipeline, and seasonality. Keep the basis for material assumptions.</p><p class="mt-4 rounded-xl bg-white p-3 text-sm font-semibold text-slate-700">Control: separate approved budget from forecast changes.</p></article>
+          <article class="lift relative rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#002349] text-sm font-black text-white">04</span><h3 class="mt-5 text-xl font-black text-[#002349]">Close and confirm actuals</h3><p class="mt-3 leading-7 text-slate-600">Reconcile relevant bank, card, receivable, payable, payroll, inventory, and accrual activity as applicable before treating the figures as review-ready.</p><p class="mt-4 rounded-xl bg-white p-3 text-sm font-semibold text-slate-700">Control: label provisional reports clearly.</p></article>
+          <article class="lift relative rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#002349] text-sm font-black text-white">05</span><h3 class="mt-5 text-xl font-black text-[#002349]">Investigate material variances</h3><p class="mt-3 leading-7 text-slate-600">Sort by value, percentage, and business impact. Trace unexpected amounts to posted entries, bills, payroll, purchase commitments, customer activity, or the relevant operational driver.</p><p class="mt-4 rounded-xl bg-white p-3 text-sm font-semibold text-slate-700">Control: record a concise cause and evidence.</p></article>
+          <article class="lift relative rounded-3xl border border-[#B9E3D1] bg-[#EEF8F3] p-6"><span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#B9E3D1] text-sm font-black text-[#002349]">06</span><h3 class="mt-5 text-xl font-black text-[#002349]">Assign actions and refresh the outlook</h3><p class="mt-3 leading-7 text-slate-600">Set an owner and due date for each material exception. Decide whether to correct coding, reduce spending, change timing, or update the rolling forecast with an approval trail.</p><p class="mt-4 rounded-xl bg-white p-3 text-sm font-semibold text-slate-700">Control: preserve the original budget and track the forecast separately.</p></article>
+        </div>
+        <p class="mx-auto mt-7 max-w-4xl text-sm leading-6 text-slate-500">Odoo capabilities and menu paths vary by version, installed applications, edition, accounting localization, and customization. Validate the workflow in your own database before relying on a specific report or automated comparison.</p>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE variance lab -->
+    <section id="variance-lab" class="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+      <div class="grid items-start gap-10 lg:grid-cols-[.9fr_1.1fr]">
+        <div>
+          <p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">Interactive variance lab</p>
+          <h2 class="mt-3 text-3xl font-black leading-tight text-[#002349] sm:text-4xl">Turn a difference into a useful question.</h2>
+          <p class="mt-5 leading-7 text-slate-600">Enter a planned amount and actual result. This simple tool calculates the dollar difference and percentage variance. Use expense or revenue mode because the interpretation of a positive variance changes by context.</p>
+          <div class="mt-6 rounded-2xl border border-slate-200 bg-white p-5">
+            <h3 class="font-extrabold text-[#002349]">Before you investigate, ask:</h3>
+            <ul class="mt-3 space-y-2 text-sm leading-6 text-slate-600">
+              <li>✓ Are both amounts for the same period?</li><li>✓ Are the figures on the same basis—accrual or cash?</li><li>✓ Are all material transactions posted and correctly coded?</li><li>✓ Did the business driver change, or is the entry wrong?</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rounded-[2rem] border border-slate-200 bg-white p-5 shadow-xl sm:p-8">
+          <div class="flex items-center justify-between gap-3 border-b border-slate-100 pb-5"><div><p class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Variance calculator</p><h3 class="mt-1 text-xl font-black text-[#002349]">Test a scenario</h3></div><span class="rounded-xl bg-[#F4F7FA] px-3 py-2 text-xs font-bold text-slate-500">Illustrative</span></div>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <label class="block"><span class="text-sm font-bold text-slate-700">Budget / plan ($)</span><input id="budgetInput" type="number" min="0" step="0.01" value="12000" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-lg font-bold text-[#002349] outline-none focus:border-[#957C3D] focus:ring-2 focus:ring-[#957C3D]/20"></label>
+            <label class="block"><span class="text-sm font-bold text-slate-700">Actual result ($)</span><input id="actualInput" type="number" min="0" step="0.01" value="13600" class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-lg font-bold text-[#002349] outline-none focus:border-[#957C3D] focus:ring-2 focus:ring-[#957C3D]/20"></label>
+            <label class="block sm:col-span-2"><span class="text-sm font-bold text-slate-700">What are you measuring?</span><select id="measureType" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 font-semibold text-[#002349] outline-none focus:border-[#957C3D] focus:ring-2 focus:ring-[#957C3D]/20"><option value="expense">Expense / spending</option><option value="revenue">Revenue / sales</option></select></label>
+          </div>
+          <div class="mt-6 rounded-2xl bg-[#002349] p-5 text-white sm:p-6" aria-live="polite">
+            <p class="text-xs font-black uppercase tracking-[.18em] text-[#B9E3D1]">Calculated difference</p>
+            <div class="mt-2 flex flex-wrap items-end justify-between gap-3"><p id="varianceAmount" class="text-3xl font-black sm:text-4xl">+$1,600.00</p><span id="variancePercent" class="rounded-xl bg-white/10 px-3 py-2 text-sm font-black">+13.3%</span></div>
+            <div class="mt-5 h-2.5 overflow-hidden rounded-full bg-white/10"><div id="varianceMeter" class="meter-fill h-full w-[13.3%] rounded-full bg-[#F1A58A]"></div></div>
+            <p id="varianceInterpretation" class="mt-4 text-sm leading-6 text-slate-200">Spending is above plan. Check timing, invoice coding, purchase commitments, pricing, and whether the budget remains realistic.</p>
+          </div>
+          <p class="mt-4 text-xs leading-5 text-slate-500">Formula: actual minus budget. The percentage is measured against the budget. This calculator is an educational aid, not an Odoo report or accounting opinion.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Report design / responsive table -->
+    <section class="bg-[#EAF0F5] py-14 lg:py-20">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8">
+        <div class="max-w-3xl"><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">Design the review</p><h2 class="mt-3 text-3xl font-black text-[#002349] sm:text-4xl">The most useful budget report has an owner, a reason, and a next step.</h2><p class="mt-5 leading-7 text-slate-600">A long account listing may be suitable for investigation, but management usually needs a compact exception report first. Keep supporting transaction detail available so reviewers can drill into the cause.</p></div>
+        <div class="mt-8 overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 bg-[#002349] px-5 py-4 text-white sm:px-7"><div><p class="text-xs font-black uppercase tracking-[.16em] text-[#B9E3D1]">Suggested review layout</p><p class="mt-1 font-extrabold">Monthly variance register</p></div><span class="rounded-full border border-white/15 px-3 py-1 text-xs text-slate-300">Example only</span></div>
+          <div class="overflow-x-auto"><table class="w-full min-w-[760px] text-left text-sm"><thead class="bg-slate-50 text-xs uppercase tracking-wider text-slate-500"><tr><th class="px-5 py-4 font-black">Category</th><th class="px-5 py-4 font-black text-right">Budget</th><th class="px-5 py-4 font-black text-right">Actual</th><th class="px-5 py-4 font-black text-right">Variance</th><th class="px-5 py-4 font-black">Review question</th></tr></thead><tbody class="divide-y divide-slate-100 text-slate-700"><tr><td class="px-5 py-4 font-bold text-[#002349]">Contract labor</td><td class="px-5 py-4 text-right tabular-nums">$8,000</td><td class="px-5 py-4 text-right tabular-nums">$9,200</td><td class="px-5 py-4 text-right font-black text-[#B45B43]">+$1,200</td><td class="px-5 py-4">More hours, rate change, or timing?</td></tr><tr><td class="px-5 py-4 font-bold text-[#002349]">Software</td><td class="px-5 py-4 text-right tabular-nums">$1,500</td><td class="px-5 py-4 text-right tabular-nums">$1,480</td><td class="px-5 py-4 text-right font-black text-emerald-700">−$20</td><td class="px-5 py-4">Are all subscriptions recorded?</td></tr><tr><td class="px-5 py-4 font-bold text-[#002349]">Marketing</td><td class="px-5 py-4 text-right tabular-nums">$4,500</td><td class="px-5 py-4 text-right tabular-nums">$3,200</td><td class="px-5 py-4 text-right font-black text-emerald-700">−$1,300</td><td class="px-5 py-4">Savings, delayed campaign, or missing bill?</td></tr><tr><td class="px-5 py-4 font-bold text-[#002349]">Freight</td><td class="px-5 py-4 text-right tabular-nums">$2,100</td><td class="px-5 py-4 text-right tabular-nums">$2,850</td><td class="px-5 py-4 text-right font-black text-[#B45B43]">+$750</td><td class="px-5 py-4">Shipment mix, accessorial fees, or coding?</td></tr></tbody></table></div>
+          <div class="grid gap-3 border-t border-slate-100 bg-slate-50 p-5 sm:grid-cols-3 sm:p-7"><div><p class="text-xs font-black uppercase tracking-wider text-slate-500">Owner</p><p class="mt-1 font-extrabold text-[#002349]">Who explains it?</p></div><div><p class="text-xs font-black uppercase tracking-wider text-slate-500">Evidence</p><p class="mt-1 font-extrabold text-[#002349]">Which entries support it?</p></div><div><p class="text-xs font-black uppercase tracking-wider text-slate-500">Action date</p><p class="mt-1 font-extrabold text-[#002349]">When will it be resolved?</p></div></div>
+        </div>
+        <p class="mt-4 text-xs leading-5 text-slate-500">Sample figures are fictional. Actual variance conventions and report presentation should be documented consistently, especially where revenue, expense, cash flow, and balance-sheet accounts are shown together.</p>
+      </div>
+    </section>
+
+    <!-- COMMON failure modes -->
+    <section class="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+      <div class="grid gap-10 lg:grid-cols-[.82fr_1.18fr]">
+        <div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">Troubleshooting</p><h2 class="mt-3 text-3xl font-black leading-tight text-[#002349] sm:text-4xl">If the numbers look wrong, trace the source before changing the budget.</h2><p class="mt-5 leading-7 text-slate-600">Do not use budget edits to hide accounting errors. First find out whether the issue is in the plan, the entry, the reporting dimension, the timing, or the underlying business activity.</p></div>
+        <div class="space-y-3">
+          <details class="group rounded-2xl border border-slate-200 bg-white p-5"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">An account is missing from the comparison <span class="faq-plus text-2xl font-normal text-[#957C3D]">＋</span></summary><div class="mt-4 border-t border-slate-100 pt-4 leading-7 text-slate-600">Check the report scope, account mapping, period, posting state, and whether the report is based on the expected general-ledger or analytic dimension. Confirm how the relevant Odoo budget feature sources its actual amounts in your setup.</div></details>
+          <details class="group rounded-2xl border border-slate-200 bg-white p-5"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Department or project totals do not tie to the ledger <span class="faq-plus text-2xl font-normal text-[#957C3D]">＋</span></summary><div class="mt-4 border-t border-slate-100 pt-4 leading-7 text-slate-600">Review analytic allocations, missing dimensions, split allocations, and transactions coded to shared or overhead accounts. Document whether 100% of a cost is expected to be assigned to a project or department.</div></details>
+          <details class="group rounded-2xl border border-slate-200 bg-white p-5"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">Actual spend appears lower because vendor bills are late <span class="faq-plus text-2xl font-normal text-[#957C3D]">＋</span></summary><div class="mt-4 border-t border-slate-100 pt-4 leading-7 text-slate-600">Review the close cut-off and accrued expenses for goods or services already received. A cash-paid report, an accounts-payable view, and an accrual-basis P&amp;L can show different timing. Choose the right basis for the decision and label it clearly.</div></details>
+          <details class="group rounded-2xl border border-slate-200 bg-white p-5"><summary class="flex items-center justify-between gap-4 font-extrabold text-[#002349]">The team changes the plan every month <span class="faq-plus text-2xl font-normal text-[#957C3D]">＋</span></summary><div class="mt-4 border-t border-slate-100 pt-4 leading-7 text-slate-600">Preserve the approved budget as a baseline. Track forecast revisions separately with a date, explanation, owner, and approval where appropriate. Otherwise it becomes difficult to tell whether performance changed or the target moved.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSE CHECKLIST -->
+    <section class="mx-auto max-w-7xl px-5 pb-14 sm:px-8 lg:pb-20">
+      <div class="grid gap-8 overflow-hidden rounded-[2rem] border border-[#D9E4EE] bg-white shadow-sm lg:grid-cols-[.8fr_1.2fr]">
+        <div class="bg-[#002349] p-7 text-white sm:p-9"><p class="text-xs font-black uppercase tracking-[.2em] text-[#B9E3D1]">Monthly operating rhythm</p><h2 class="mt-3 text-3xl font-black">Budget review readiness check</h2><p class="mt-4 leading-7 text-slate-300">Use this list before the owner or leadership meeting. Check off each item as your team completes it.</p><div class="mt-7 rounded-2xl border border-white/10 bg-white/5 p-5"><div class="flex items-center justify-between gap-3"><span class="text-sm font-bold text-slate-200">Preparation progress</span><span id="checkProgressText" class="text-sm font-black text-[#B9E3D1]">0 of 8</span></div><div class="mt-3 h-2 overflow-hidden rounded-full bg-white/10"><div id="checkProgressBar" class="meter-fill h-full w-0 rounded-full bg-[#B9E3D1]"></div></div></div></div>
+        <div class="p-7 sm:p-9"><div id="closeChecklist" class="grid gap-4 sm:grid-cols-2">
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Period is consistent</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Plan and actual use the same dates.</span></span></label>
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Close entries reviewed</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Accruals, prepayments, and cut-off checked.</span></span></label>
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Accounts reconciled</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Relevant bank, card, A/R, A/P, and clearing balances reviewed.</span></span></label>
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Dimensions validated</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Department or project allocations checked.</span></span></label>
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Material variances ranked</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Thresholds and business impact considered.</span></span></label>
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Causes documented</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Evidence linked to important differences.</span></span></label>
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Owners assigned</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Actions have a person and target date.</span></span></label>
+          <label class="flex cursor-pointer items-start gap-3 rounded-2xl border border-slate-200 p-4 transition hover:border-[#957C3D]"><input type="checkbox" class="check-item mt-1 h-4 w-4 accent-[#957C3D]"><span><strong class="block text-[#002349]">Forecast reviewed</strong><span class="mt-1 block text-sm leading-5 text-slate-600">Updates are separate from the approved budget.</span></span></label>
+        </div><button id="resetChecklist" type="button" class="mt-5 text-sm font-bold text-[#957C3D] underline decoration-dotted underline-offset-4">Reset checklist</button></div>
+      </div>
+    </section>
+
+    <!-- COST POSITIONING: informative, no extra CTA buttons -->
+    <section class="mx-auto max-w-7xl px-5 pb-14 sm:px-8 lg:pb-20">
+      <div class="grid items-center gap-8 rounded-[2rem] border border-slate-200 bg-white p-7 shadow-sm sm:p-9 lg:grid-cols-[1fr_.9fr]">
+        <div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">Flexible accounting capacity</p><h2 class="mt-3 text-3xl font-black text-[#002349] sm:text-4xl">Get experienced accounting help without automatically adding full-time overhead.</h2><p class="mt-5 leading-7 text-slate-600">A growing US business may need dependable help with transaction coding, reconciliations, month-end close, management reports, budget variance reviews, or Odoo cleanup—but not necessarily another full-time hire. Accountrise provides remote professional accounting support that can be scoped around the work you need done.</p><p class="mt-4 leading-7 text-slate-600">The right engagement starts with a clear scope, agreed close calendar, review checkpoints, documented responsibilities, and quality-control expectations. Affordable should mean a sensible use of resources—not skipping review or sacrificing reliable records.</p></div>
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <div class="rounded-3xl border border-slate-200 bg-[#F7F9FB] p-6"><p class="text-xs font-black uppercase tracking-[.15em] text-slate-500">QuickBooks &amp; other accounting</p><p class="mt-3 text-4xl font-black text-[#002349]">$10<span class="text-base font-bold text-slate-500">/hour</span></p><p class="mt-3 text-sm leading-6 text-slate-600">Starting rate for remote bookkeeping, reconciliations, financial reporting, and routine accounting support.</p></div>
+          <div class="rounded-3xl border border-[#957C3D]/40 bg-[#FBF8EF] p-6"><p class="text-xs font-black uppercase tracking-[.15em] text-[#957C3D]">Odoo accounting</p><p class="mt-3 text-4xl font-black text-[#002349]">$12<span class="text-base font-bold text-slate-500">/hour</span></p><p class="mt-3 text-sm leading-6 text-slate-600">Starting rate for Odoo accounting workflows, reconciliations, reporting support, cleanup, and month-end assistance.</p></div>
+          <p class="text-xs leading-5 text-slate-500 sm:col-span-2 lg:col-span-1 xl:col-span-2">Starting rates are indicative, not a flat quote for every engagement. Final pricing depends on scope, transaction volume, complexity, software configuration, turnaround expectations, and engagement requirements.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- RELATED INTERNAL GUIDES -->
+    <section class="border-t border-slate-200 bg-white py-14 lg:py-16">
+      <div class="mx-auto max-w-7xl px-5 sm:px-8"><div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between"><div><p class="text-xs font-black uppercase tracking-[.2em] text-[#957C3D]">Continue learning</p><h2 class="mt-2 text-3xl font-black text-[#002349]">Related Odoo accounting guides</h2></div><a href="/blog/" class="font-bold text-[#002349] underline decoration-[#957C3D] underline-offset-4">Explore all articles →</a></div>
+        <div class="mt-8 grid gap-4 md:grid-cols-3">
+          <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="lift rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><p class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Month-end close</p><h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3><p class="mt-3 text-sm leading-6 text-slate-600">Create a repeatable close process before relying on financial reports.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read guide →</span></a>
+          <a href="/blog/odoo-analytic-accounting-profitability.html" class="lift rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><p class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Analytic accounting</p><h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Analytic Accounting for Profitability</h3><p class="mt-3 text-sm leading-6 text-slate-600">Review how analytic dimensions help organize project or department performance.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read guide →</span></a>
+          <a href="/blog/odoo-accruals-prepayments-monthly-expenses.html" class="lift rounded-3xl border border-slate-200 bg-[#F9FBFD] p-6"><p class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Period cut-off</p><h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Accruals &amp; Prepayments</h3><p class="mt-3 text-sm leading-6 text-slate-600">Understand how timing and cut-off can affect monthly results.</p><span class="mt-5 inline-flex font-bold text-[#002349]">Read guide →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONE FINAL CTA SECTION -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="mx-auto max-w-6xl px-5 py-16 text-center sm:px-8 lg:py-20">
+        <div class="mx-auto max-w-4xl">
+          <p class="text-xs font-black uppercase tracking-[.22em] text-[#B9E3D1]">Make your numbers easier to act on</p>
+          <h2 class="mt-4 text-3xl font-black tracking-tight sm:text-5xl">Reliable accounting support, built around your business—not a full-time headcount.</h2>
+          <p class="mt-5 text-lg leading-relaxed text-slate-300">Accountrise helps US businesses and accounting firms with remote bookkeeping, reconciliations, month-end close, financial reporting, and Odoo accounting support. Start with the workflow that is creating the most friction, agree on responsibilities, and build from there.</p>
+          <div class="mt-7 grid gap-4 text-left sm:grid-cols-2">
+            <div class="rounded-2xl border border-white/15 bg-white/[.06] p-5"><p class="text-xs font-black uppercase tracking-[.15em] text-[#B9E3D1]">QuickBooks &amp; other accounting</p><p class="mt-2 text-3xl font-black">Starting at $10<span class="text-base font-semibold text-slate-300">/hour</span></p><p class="mt-2 text-sm leading-6 text-slate-300">Remote bookkeeping, reconciliations, reporting, and routine accounting assistance.</p></div>
+            <div class="rounded-2xl border border-[#B9E3D1]/40 bg-[#B9E3D1]/10 p-5"><p class="text-xs font-black uppercase tracking-[.15em] text-[#D2F2E3]">Odoo accounting</p><p class="mt-2 text-3xl font-black">Starting at $12<span class="text-base font-semibold text-slate-300">/hour</span></p><p class="mt-2 text-sm leading-6 text-slate-300">Odoo reporting, reconciliations, cleanup, and month-end process support.</p></div>
+          </div>
+          <p class="mx-auto mt-5 max-w-3xl text-sm leading-6 text-slate-400">Rates are starting points, not a fixed quote for every business. Final pricing depends on scope, transaction volume, complexity, system configuration, turnaround expectations, and engagement requirements.</p>
+          <div class="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="rounded-2xl bg-[#957C3D] px-8 py-4 font-semibold text-[#002349] transition hover:bg-[#b89a4e]">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="rounded-2xl border border-white/25 px-8 py-4 font-semibold text-white transition hover:bg-white/10">Email Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-5 py-9 text-center sm:flex-row sm:text-left sm:px-8">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Accessible mobile dropdown
+    const menuButton = document.getElementById('mobileMenuButton');
+    const menuPanel = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    menuButton.addEventListener('click', () => {
+      const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+      menuButton.setAttribute('aria-expanded', String(!isExpanded));
+      menuPanel.hidden = isExpanded;
+      menuIcon.textContent = isExpanded ? '＋' : '−';
+    });
+    menuPanel.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      menuPanel.hidden = true;
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuIcon.textContent = '＋';
+    }));
+
+    // Budget variance calculator: difference is actual minus budget.
+    const budgetInput = document.getElementById('budgetInput');
+    const actualInput = document.getElementById('actualInput');
+    const measureType = document.getElementById('measureType');
+    const money = value => new Intl.NumberFormat('en-US', { style:'currency', currency:'USD', minimumFractionDigits:2, maximumFractionDigits:2 }).format(Math.abs(value));
+    function updateVariance() {
+      const budget = Math.max(0, Number(budgetInput.value) || 0);
+      const actual = Math.max(0, Number(actualInput.value) || 0);
+      const type = measureType.value;
+      const difference = actual - budget;
+      const pct = budget === 0 ? (actual === 0 ? 0 : 100) : (difference / budget) * 100;
+      const sign = difference > 0 ? '+' : difference < 0 ? '−' : '';
+      document.getElementById('varianceAmount').textContent = sign + money(difference);
+      document.getElementById('variancePercent').textContent = (pct > 0 ? '+' : pct < 0 ? '−' : '') + Math.abs(pct).toFixed(1) + '%';
+      document.getElementById('varianceMeter').style.width = Math.min(100, Math.abs(pct)) + '%';
+      const out = document.getElementById('varianceInterpretation');
+      let message = '';
+      if (type === 'expense') {
+        if (difference > 0) message = 'Spending is above plan. Check timing, invoice coding, purchase commitments, pricing, and whether the budget remains realistic.';
+        else if (difference < 0) message = 'Spending is below plan. Confirm the difference reflects a genuine saving or changed timing—not missing bills, incomplete coding, or delayed activity.';
+        else message = 'Spending matches the plan. Still check material categories and confirm all expected transactions have been recorded.';
+      } else {
+        if (difference > 0) message = 'Revenue is above plan. Validate cut-off, returns, credits, one-time sales, and whether the result can be sustained.';
+        else if (difference < 0) message = 'Revenue is below plan. Review sales volume, pricing, customer timing, pipeline changes, and whether invoices or receipts are missing from the report.';
+        else message = 'Revenue matches the plan. Review margin, customer mix, and collection trends too; revenue alone does not show profitability or cash availability.';
+      }
+      if (budget === 0 && actual > 0) message += ' The budget is zero, so the percentage is shown as 100% for display; focus on the dollar difference and review why no plan was assigned.';
+      out.textContent = message;
+    }
+    [budgetInput, actualInput, measureType].forEach(el => el.addEventListener('input', updateVariance));
+    updateVariance();
+
+    // Interactive close-readiness checklist
+    const checkItems = Array.from(document.querySelectorAll('.check-item'));
+    const progressText = document.getElementById('checkProgressText');
+    const progressBar = document.getElementById('checkProgressBar');
+    function updateChecklist() {
+      const completed = checkItems.filter(item => item.checked).length;
+      progressText.textContent = completed + ' of ' + checkItems.length;
+      progressBar.style.width = (completed / checkItems.length * 100) + '%';
+    }
+    checkItems.forEach(item => item.addEventListener('change', updateChecklist));
+    document.getElementById('resetChecklist').addEventListener('click', () => {
+      checkItems.forEach(item => item.checked = false);
+      updateChecklist();
+    });
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Budget vs. Actual Reporting: A Practical Guide for US Businesses",
+    "description": "A practical workflow for building useful budget versus actual reporting in Odoo, investigating variances, and improving financial controls for US businesses.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.accountrise.com/blog/odoo-budget-vs-actual-reporting-us-businesses.html" },
+    "url": "https://www.accountrise.com/blog/odoo-budget-vs-actual-reporting-us-businesses.html",
+    "datePublished": "2026-10-10",
+    "dateModified": "2026-10-10",
+    "inLanguage": "en-US"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type":"Question","name":"What is budget vs. actual reporting in Odoo?","acceptedAnswer":{"@type":"Answer","text":"Budget versus actual reporting compares planned amounts with recorded results for a defined period, account, department, project, or other dimension. The difference should be reviewed for timing, coding, operating changes, and forecast accuracy."}},
+      {"@type":"Question","name":"Can Odoo compare budgets with actual accounting results?","acceptedAnswer":{"@type":"Answer","text":"Odoo budget and analytic reporting options depend on the version, installed applications, edition, localization, and configuration. Confirm which budget features are available in your database and validate how actual amounts are sourced before relying on the output."}},
+      {"@type":"Question","name":"Why might Odoo budget actuals not match the general ledger?","acceptedAnswer":{"@type":"Answer","text":"Possible causes include different periods or reporting bases, missing analytic allocations, incorrect account mapping, unposted entries, late invoices, accruals, prepayments, or a report that sources actuals differently from the ledger. Trace the source before adjusting the budget."}},
+      {"@type":"Question","name":"How often should a small business review budget variances?","acceptedAnswer":{"@type":"Answer","text":"Many businesses review material variances monthly, with more frequent review for volatile costs or cash-sensitive operations. The cadence should match transaction volume, reporting readiness, and the speed at which management needs to act."}},
+      {"@type":"Question","name":"How much does outsourced accounting support cost?","acceptedAnswer":{"@type":"Answer","text":"Accountrise QuickBooks and other accounting support starts at $10 per hour, while Odoo accounting support starts at $12 per hour. Final pricing depends on scope, transaction volume, complexity, software configuration, turnaround expectations, and engagement requirements."}},
+      {"@type":"Question","name":"Can remote accounting support help with Odoo reporting and month-end close?","acceptedAnswer":{"@type":"Answer","text":"Remote accounting support can help review transaction coding, reconciliations, budget variance reports, month-end close tasks, and documented controls. Scope, access, review responsibilities, and deliverables should be agreed before work begins."}}
+    ]
+  }
+  </script>
+</body>
+</html>
