@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Customer Payments Not Reconciled? Find the Missing Match</title>
+  <meta name="description" content="Find why customer payments remain unreconciled in Odoo. Diagnose bank statement matching, outstanding receipts, partial payments, payment references, duplicate entries and accounts receivable differences.">
+  <meta name="keywords" content="Odoo customer payment not reconciled, Odoo bank reconciliation, Odoo payment matching, Odoo outstanding receipts, Odoo accounts receivable, Odoo unmatched payment, Odoo accounting cleanup">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-customer-payments-not-reconciled.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Customer Payments Not Reconciled? Find the Missing Match">
+  <meta property="og:description" content="A practical guide to tracing unmatched customer receipts in Odoo, from bank transactions and payment records to invoice settlement and accounts receivable.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-customer-payments-not-reconciled.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Customer Payments Not Reconciled? Find the Missing Match">
+  <meta name="twitter:description" content="Troubleshoot unmatched customer payments in Odoo using a payment-to-invoice investigation workflow.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#142A40',
+            paper: '#F7F6F1',
+            lime: '#DDE9B8',
+            bluegrey: '#DDE8F0',
+            rust: '#C96F52'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .investigation-bg {
+      background:
+        radial-gradient(circle at 10% 10%, rgba(221,233,184,.11), transparent 27%),
+        radial-gradient(circle at 95% 20%, rgba(201,111,82,.12), transparent 25%),
+        linear-gradient(135deg, #00172e, #002349 70%, #173b59);
+    }
+    .soft-shadow { box-shadow: 0 18px 50px rgba(0,35,73,.09); }
+    .deep-shadow { box-shadow: 0 28px 85px rgba(0,35,73,.18); }
+    .receipt { position: relative; }
+    .receipt:after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -7px; height: 8px;
+      background: linear-gradient(135deg, transparent 5px, #fff 0) 0 0/10px 10px repeat-x,
+                  linear-gradient(225deg, transparent 5px, #fff 0) 0 0/10px 10px repeat-x;
+    }
+    .match-line {
+      background-image: linear-gradient(to right, #957C3D 50%, transparent 50%);
+      background-size: 10px 2px;
+      background-repeat: repeat-x;
+    }
+    .investigation-card { transition: transform .2s ease, box-shadow .2s ease; }
+    .investigation-card:hover { transform: translateY(-4px); box-shadow: 0 17px 42px rgba(0,35,73,.10); }
+    details summary { list-style: none; cursor: pointer; }
+    details summary::-webkit-details-marker { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .investigation-card { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#142A40] antialiased">
+
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero: Cash application investigation board -->
+    <section class="investigation-bg text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1fr_.96fr] gap-12 items-center">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[.18em] text-[#DDE9B8]">Odoo Accounting</span>
+              <span class="text-sm text-slate-300">Customer Payments • Bank Matching • A/R</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight">
+              Odoo Customer Payments Not Reconciled?
+              <span class="text-[#DDE9B8]">Find the Missing Match</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl text-slate-300 leading-relaxed max-w-2xl">
+              A customer says they paid. The money appears in the bank. Yet the invoice still shows open—or the bank transaction is sitting unmatched in Odoo.
+              The fastest fix is to trace the cash through the bank line, payment record and invoice instead of clearing balances blindly.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#diagnose" class="rounded-2xl bg-[#DDE9B8] text-[#002349] px-6 py-3.5 font-bold hover:bg-[#eaf1d3] transition">Investigate the Payment</a>
+              <a href="#matching" class="rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">See the Matching Flow</a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-300">
+              <span>✓ Unmatched bank lines</span>
+              <span>✓ Open customer invoices</span>
+              <span>✓ Outstanding receipts</span>
+            </div>
+          </div>
+
+          <!-- Investigation board -->
+          <div class="rounded-[2rem] border border-white/10 bg-white/[.07] p-5 sm:p-7 deep-shadow">
+            <div class="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+              <div>
+                <div class="text-[11px] uppercase tracking-[.22em] font-black text-[#DDE9B8]">Cash Application Desk</div>
+                <div class="mt-1 text-xl font-black">Trace transaction #ACH-2048</div>
+              </div>
+              <span class="rounded-full bg-[#C96F52]/15 text-[#F0B3A0] px-3 py-1.5 text-xs font-bold">Needs review</span>
+            </div>
+
+            <div class="mt-6 grid grid-cols-1 sm:grid-cols-[1fr_34px_1fr] gap-3 items-center">
+              <div class="receipt rounded-t-2xl bg-white text-[#002349] p-5 shadow-lg">
+                <div class="text-[10px] font-black uppercase tracking-[.18em] text-[#957C3D]">Bank statement</div>
+                <div class="mt-3 text-2xl font-black">$4,800.00</div>
+                <div class="mt-1 text-xs text-slate-500">ACH CREDIT • ACME INC</div>
+                <div class="mt-4 border-t border-dashed border-slate-300 pt-3 flex items-center justify-between text-xs">
+                  <span class="text-slate-500">Status</span><strong class="text-[#C96F52]">Unmatched</strong>
+                </div>
+              </div>
+
+              <div class="hidden sm:flex flex-col items-center justify-center">
+                <div class="w-8 h-8 rounded-full bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">?</div>
+                <div class="h-16 w-px match-line mt-2"></div>
+              </div>
+
+              <div class="rounded-2xl border border-white/15 bg-[#002349]/70 p-5">
+                <div class="text-[10px] font-black uppercase tracking-[.18em] text-[#DDE9B8]">Customer invoice</div>
+                <div class="mt-3 text-2xl font-black">$4,800.00</div>
+                <div class="mt-1 text-xs text-slate-300">INV-10432 • ACME INC</div>
+                <div class="mt-4 border-t border-white/10 pt-3 flex items-center justify-between text-xs">
+                  <span class="text-slate-300">Status</span><strong class="text-[#F0B3A0]">Open</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 rounded-2xl bg-white text-[#002349] p-5 sm:p-6">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Investigation question</div>
+                  <div class="mt-1 text-lg font-black">Where did the payment trail break?</div>
+                </div>
+                <div class="w-12 h-12 rounded-2xl bg-[#DDE9B8] flex items-center justify-center text-2xl">⌕</div>
+              </div>
+              <div class="mt-5 grid grid-cols-3 gap-2 text-center">
+                <div class="rounded-xl bg-slate-100 p-3"><div class="text-[10px] uppercase tracking-wider text-slate-500">Check 1</div><div class="mt-1 text-xs sm:text-sm font-black">Bank Line</div></div>
+                <div class="rounded-xl bg-slate-100 p-3"><div class="text-[10px] uppercase tracking-wider text-slate-500">Check 2</div><div class="mt-1 text-xs sm:text-sm font-black">Payment</div></div>
+                <div class="rounded-xl bg-slate-100 p-3"><div class="text-[10px] uppercase tracking-wider text-slate-500">Check 3</div><div class="mt-1 text-xs sm:text-sm font-black">Invoice</div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer first -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.82fr_1.18fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Quick answer</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">A bank deposit, a customer payment and an invoice match are related—but not always the same step.</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            The correct path depends on how the receipt was recorded and how your Odoo accounting is configured. You may need to match a bank statement line to an existing payment, register a payment against an invoice, reconcile the receivable account, or investigate a payment sitting in an outstanding account.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <article class="rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#DDE8F0] text-[#002349] flex items-center justify-center font-black text-xl">1</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Bank line is unmatched</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">The imported statement has a deposit, but Odoo has not linked it to an existing payment or appropriate accounting counterpart.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#F8E8E2] text-[#002349] flex items-center justify-center font-black text-xl">2</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Invoice remains open</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">The receipt may exist, but the payment has not been applied or reconciled against the invoice's receivable line.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#E9EFD8] text-[#002349] flex items-center justify-center font-black text-xl">3</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Outstanding receipt remains</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">A payment may be posted to an outstanding receipts account pending bank matching, depending on the journal configuration.</p>
+          </article>
+          <article class="rounded-3xl bg-[#002349] text-white border border-[#002349] p-7 shadow-soft">
+            <div class="w-12 h-12 rounded-2xl bg-[#DDE9B8] text-[#002349] flex items-center justify-center font-black text-xl">4</div>
+            <h3 class="mt-5 text-xl font-black">The amount is different</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">Partial payment, bank fees, payment processor deductions, foreign exchange or a short payment may explain why an exact match is not available.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Matching flow -->
+    <section id="matching" class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Payment trail</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Follow the cash from the bank to the invoice</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Use this sequence to isolate where the receipt stops moving through your configured accounting process.</p>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Stage 01</div>
+            <div class="mt-4 w-12 h-12 rounded-2xl bg-[#DDE8F0] flex items-center justify-center text-xl">↘</div>
+            <h3 class="mt-4 text-xl font-black text-[#002349]">Bank statement</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Verify date, amount, payer text, reference and whether the bank imported the transaction once or more than once.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Stage 02</div>
+            <div class="mt-4 w-12 h-12 rounded-2xl bg-[#F8E8E2] flex items-center justify-center text-xl">⇄</div>
+            <h3 class="mt-4 text-xl font-black text-[#002349]">Payment record</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Look for a registered customer payment that matches the same bank transaction and customer.</p>
+          </article>
+          <article class="rounded-3xl bg-white border border-slate-200 p-6">
+            <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Stage 03</div>
+            <div class="mt-4 w-12 h-12 rounded-2xl bg-[#E9EFD8] flex items-center justify-center text-xl">▤</div>
+            <h3 class="mt-4 text-xl font-black text-[#002349]">Invoice / receivable</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Confirm the correct customer invoice or invoices were settled, including partial-payment or grouped-remittance scenarios.</p>
+          </article>
+          <article class="rounded-3xl bg-[#002349] text-white border border-[#002349] p-6">
+            <div class="text-xs uppercase tracking-widest font-black text-[#DDE9B8]">Stage 04</div>
+            <div class="mt-4 w-12 h-12 rounded-2xl bg-[#DDE9B8] text-[#002349] flex items-center justify-center text-xl">✓</div>
+            <h3 class="mt-4 text-xl font-black">Reconciliation review</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">Review residual open amounts, outstanding accounts, write-offs or bank fees before finalizing the match.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Diagnosis matrix -->
+    <section id="diagnose" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Diagnosis matrix</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Choose the symptom you see in Odoo</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Start with the visible status, then test the likely explanation. Menu labels and detailed behavior can vary by Odoo version and setup.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-5">
+        <article class="investigation-card rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8">
+          <div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Symptom A</span><span class="rounded-full bg-[#DDE8F0] px-3 py-1 text-xs font-bold">Bank</span></div>
+          <h3 class="mt-4 text-2xl font-black text-[#002349]">The bank deposit is still unmatched</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Check whether the payment was already recorded, whether its amount/date/reference aligns with the bank line, and whether a duplicate import exists. Avoid creating a second payment just because the bank line is unmatched.</p>
+          <div class="mt-5 rounded-xl bg-[#F3F6F9] p-4 text-sm text-slate-700"><b>First evidence:</b> bank statement line + existing payment list.</div>
+        </article>
+
+        <article class="investigation-card rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8">
+          <div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Symptom B</span><span class="rounded-full bg-[#F8E8E2] px-3 py-1 text-xs font-bold text-[#9B4E37]">Invoice</span></div>
+          <h3 class="mt-4 text-2xl font-black text-[#002349]">The invoice is still marked unpaid</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Find the payment record and confirm it uses the correct customer, receivable account and invoice. The cash can reach the bank while the invoice's receivable line remains unreconciled.</p>
+          <div class="mt-5 rounded-xl bg-[#F3F6F9] p-4 text-sm text-slate-700"><b>First evidence:</b> invoice status + payment journal entry + receivable lines.</div>
+        </article>
+
+        <article class="investigation-card rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8">
+          <div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Symptom C</span><span class="rounded-full bg-[#E9EFD8] px-3 py-1 text-xs font-bold">Outstanding</span></div>
+          <h3 class="mt-4 text-2xl font-black text-[#002349]">Outstanding receipts balance is growing</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Review how the bank journal uses outstanding receipt accounts, whether imported statement lines are being matched to payments and whether older deposits are still in transit or duplicated.</p>
+          <div class="mt-5 rounded-xl bg-[#F3F6F9] p-4 text-sm text-slate-700"><b>First evidence:</b> outstanding receipts ledger + unreconciled bank lines.</div>
+        </article>
+
+        <article class="investigation-card rounded-[2rem] bg-[#002349] text-white border border-[#002349] p-7 sm:p-8 shadow-soft">
+          <div class="flex items-center justify-between"><span class="text-xs font-black uppercase tracking-widest text-[#DDE9B8]">Symptom D</span><span class="rounded-full bg-white/10 px-3 py-1 text-xs font-bold">Difference</span></div>
+          <h3 class="mt-4 text-2xl font-black">The payment amount does not equal the invoice</h3>
+          <p class="mt-3 text-slate-300 leading-relaxed">Check for a partial remittance, multiple invoices paid together, processor fees, withholding, deductions, foreign-currency movements or a customer short-pay. Record the difference according to its actual nature.</p>
+          <div class="mt-5 rounded-xl bg-white/10 p-4 text-sm text-slate-200"><b>First evidence:</b> remittance advice + fee detail + customer ledger.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Difference calculator -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Payment difference tool</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Calculate the amount that still needs explaining</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">Enter the invoice amount and what actually arrived in the bank. Use it to quantify a short payment or extra amount, not to decide automatically how to post it.</p>
+            <div class="mt-6 rounded-2xl bg-[#F7F6F1] border border-[#E6DDC4] p-5">
+              <div class="font-black text-[#002349]">Important distinction</div>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">A residual is not automatically a write-off. It may reflect several invoices, a bank fee, a credit, a foreign-exchange difference or an amount still due from the customer.</p>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#F7F8FA] border border-slate-200 p-6 sm:p-8 soft-shadow">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Invoice amount ($)</span>
+                <input id="invoiceAmount" type="number" min="0" value="4800" step="0.01" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Net bank receipt ($)</span>
+                <input id="bankReceipt" type="number" min="0" value="4752" step="0.01" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+
+            <div class="mt-6 grid sm:grid-cols-3 gap-4">
+              <div class="rounded-2xl bg-white border border-slate-200 p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Invoice</div>
+                <div id="invoiceOut" class="mt-2 text-2xl font-black text-[#002349]">$4,800.00</div>
+              </div>
+              <div class="rounded-2xl bg-white border border-slate-200 p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Bank receipt</div>
+                <div id="receiptOut" class="mt-2 text-2xl font-black text-[#002349]">$4,752.00</div>
+              </div>
+              <div class="rounded-2xl bg-[#002349] text-white p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-[#DDE9B8]">Difference</div>
+                <div id="paymentGap" class="mt-2 text-2xl font-black">$48.00</div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl bg-white border border-slate-200 p-5">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Investigation prompt</div>
+              <p id="differenceText" class="mt-2 text-sm text-slate-700 leading-relaxed">The bank receipt is $48.00 below the invoice. Check remittance advice, fees, short payment or whether the customer paid multiple invoices together.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common traps -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="max-w-3xl">
+        <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Avoid these traps</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Five actions that can make the cleanup worse</h2>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+        <article class="rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#C96F52]">01</div>
+          <h3 class="mt-4 font-black text-[#002349]">Create a duplicate payment</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Do not register cash a second time if a valid payment is already present.</p>
+        </article>
+        <article class="rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#C96F52]">02</div>
+          <h3 class="mt-4 font-black text-[#002349]">Match by amount only</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Confirm customer, currency, date, reference and invoice—not just the number.</p>
+        </article>
+        <article class="rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#C96F52]">03</div>
+          <h3 class="mt-4 font-black text-[#002349]">Write off the residual too early</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Investigate fees, remittance details, credit notes and remaining customer balances first.</p>
+        </article>
+        <article class="rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#C96F52]">04</div>
+          <h3 class="mt-4 font-black text-[#002349]">Ignore outstanding receipts</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Old balances can hide missing bank matching, duplicate postings or in-transit items.</p>
+        </article>
+        <article class="rounded-3xl bg-[#F7F6F1] border border-[#E6DDC4] p-6">
+          <div class="text-3xl font-black text-[#957C3D]">05</div>
+          <h3 class="mt-4 font-black text-[#002349]">Change accounts to force a match</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Keep the accounting trail intact and correct the underlying transaction or mapping.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Month end checklist -->
+    <section class="bg-[#002349] text-white">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-8 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#DDE9B8]">Month-end operating rhythm</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black">Customer cash reconciliation checklist</h2>
+            <p class="mt-4 text-slate-300 leading-relaxed">Review unmatched cash and unresolved invoice balances before closing receivables.</p>
+          </div>
+
+          <div class="rounded-[2rem] bg-white text-[#142A40] overflow-hidden divide-y divide-slate-200">
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review unreconciled statement lines.</strong> Identify customer credits that remain unmatched.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review open customer invoices.</strong> Investigate invoices marked open even though the customer says they paid.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Reconcile outstanding receipt balances.</strong> Tie in-transit or clearing balances to the bank and open payment items.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Investigate partial and grouped payments.</strong> Review remittance advice, deductions, fees and payment allocations.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Check duplicate imports or postings.</strong> Compare bank references, values and payment records.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Tie A/R to the general ledger.</strong> Review receivable balances and explain unreconciled items.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer bg-[#DDE9B8]"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Document unresolved differences.</strong> Assign an owner, reason and planned resolution date.</span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Odoo customer payment questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Why is a customer payment not reconciled in Odoo?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">The bank statement line may not be matched to an existing payment, the payment may not be applied to the invoice, or the transaction may contain a partial amount, duplicate, wrong customer reference or outstanding-account entry. Trace the bank line, payment and receivable entry together.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Why does the invoice remain open after the money reached the bank?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">A bank deposit alone does not guarantee the invoice's receivable entry has been reconciled. Check whether an Odoo payment exists and whether its receivable line is linked to the intended invoice or invoices.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What is an outstanding receipts account?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Depending on journal configuration, an outstanding receipts account can act as a temporary account between recording a customer payment and matching it to the bank statement. Review the actual journal setup and ledger activity in your database.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Can one customer payment settle multiple invoices?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">A single remittance can cover multiple invoices. Use the remittance detail to allocate the receipt correctly and confirm the total applied amount agrees to the payment, accounting for any legitimate deductions or differences.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Should I write off a small unmatched balance?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Only after determining what caused it and confirming the adjustment is appropriate under your accounting policy. The difference could be a fee, an unapplied credit, a short payment, a foreign exchange item or an amount still owed.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related articles -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Related Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Keep the receivables workflow clean</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-accounts-receivable-overdue-invoices.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Accounts Receivable</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Accounts Receivable: Fix Overdue Invoices &amp; Customer Balances</h3>
+        </a>
+        <a href="/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Bank Reconciliation</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Bank Reconciliation: How to Fix Unreconciled Transactions</h3>
+        </a>
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#DDE9B8]">Need help cleaning up Odoo?</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Turn unmatched receipts into a clear accounting trail.</h2>
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise helps US businesses and accounting firms troubleshoot Odoo bank reconciliation, clean up receivables, review outstanding accounts and build repeatable month-end processes.</p>
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a>
+          </div>
+          <p class="mt-6 text-sm text-slate-400">Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const currency = (value) => '$' + Math.abs(Number(value || 0)).toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    function calculatePaymentDifference() {
+      const invoice = Math.max(0, Number(document.getElementById('invoiceAmount').value) || 0);
+      const receipt = Math.max(0, Number(document.getElementById('bankReceipt').value) || 0);
+      const difference = invoice - receipt;
+
+      document.getElementById('invoiceOut').textContent = currency(invoice);
+      document.getElementById('receiptOut').textContent = currency(receipt);
+      document.getElementById('paymentGap').textContent = currency(Math.abs(difference));
+
+      let text = 'The bank receipt matches the invoice amount. Verify the customer, currency, reference and invoice allocation before completing the reconciliation.';
+      if (difference > 0.005) {
+        text = 'The bank receipt is ' + currency(difference) + ' below the invoice. Check remittance advice, fees, short payment or whether the customer paid multiple invoices together.';
+      } else if (difference < -0.005) {
+        text = 'The bank receipt is ' + currency(Math.abs(difference)) + ' above the invoice. Check whether the payment covers multiple invoices, includes an advance, or contains an unidentified amount.';
+      }
+
+      document.getElementById('differenceText').textContent = text;
+    }
+
+    ['invoiceAmount', 'bankReceipt'].forEach(id => {
+      document.getElementById(id).addEventListener('input', calculatePaymentDifference);
+    });
+    calculatePaymentDifference();
+  </script>
+
+  <!-- BlogPosting structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Customer Payments Not Reconciled? Find the Missing Match",
+    "description": "A practical guide to tracing unmatched customer receipts in Odoo, from bank transactions and payment records to invoice settlement and accounts receivable.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-customer-payments-not-reconciled.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-customer-payments-not-reconciled.html"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is a customer payment not reconciled in Odoo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The bank statement line may not be matched to an existing payment, the payment may not be applied to the invoice, or the transaction may contain a partial amount, duplicate, wrong customer reference or outstanding-account entry. Trace the bank line, payment and receivable entry together."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the invoice remain open after the money reached the bank?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A bank deposit alone does not guarantee the invoice's receivable entry has been reconciled. Check whether an Odoo payment exists and whether its receivable line is linked to the intended invoice or invoices."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is an outstanding receipts account?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Depending on journal configuration, an outstanding receipts account can act as a temporary account between recording a customer payment and matching it to the bank statement. Review the actual journal setup and ledger activity in your database."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can one customer payment settle multiple invoices?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A single remittance can cover multiple invoices. Use remittance detail to allocate the receipt correctly and confirm the total applied amount agrees to the payment, accounting for legitimate deductions or differences."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I write off a small unmatched balance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only after determining what caused it and confirming the adjustment is appropriate under your accounting policy. The difference could be a fee, an unapplied credit, a short payment, a foreign exchange item or an amount still owed."
+        }
+      }
+    ]
+  }
+  </script>
+
+</body>
+</html>
