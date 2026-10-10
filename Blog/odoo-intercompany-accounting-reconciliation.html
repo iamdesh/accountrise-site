@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Odoo Intercompany Accounting: Fix Due-To / Due-From Differences</title>
+  <meta name="description" content="Troubleshoot Odoo intercompany accounting mismatches between related companies. Learn how to reconcile due-to and due-from balances, invoice timing, payments, currencies and consolidation adjustments.">
+  <meta name="keywords" content="Odoo intercompany accounting, Odoo due to due from, intercompany reconciliation, Odoo multi company accounting, Odoo intercompany transactions, intercompany balances not matching, Odoo consolidation">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-intercompany-accounting-reconciliation.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Intercompany Accounting: Fix Due-To / Due-From Differences">
+  <meta property="og:description" content="A practical guide to diagnosing intercompany accounting differences in Odoo, from counterpart entries to cut-off, currency and consolidation checks.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-intercompany-accounting-reconciliation.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Intercompany Accounting: Fix Due-To / Due-From Differences">
+  <meta name="twitter:description" content="Reconcile due-to and due-from balances across Odoo companies with a practical month-end workflow.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#132A40',
+            mist: '#F3F6F9',
+            coral: '#E88B73',
+            skysoft: '#DCEAF5'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .bridge-bg {
+      background:
+        radial-gradient(circle at 8% 22%, rgba(232,139,115,.14), transparent 24%),
+        radial-gradient(circle at 92% 12%, rgba(220,234,245,.12), transparent 26%),
+        linear-gradient(135deg, #00172d 0%, #002349 58%, #123b5a 100%);
+    }
+    .shadow-soft { box-shadow: 0 18px 52px rgba(0,35,73,.09); }
+    .shadow-heavy { box-shadow: 0 28px 90px rgba(0,35,73,.18); }
+    .ledger-row:nth-child(even) { background: #F4F7FA; }
+    .bridge-dash { background-image: linear-gradient(to right, rgba(149,124,61,.85) 50%, transparent 50%); background-size: 12px 2px; background-repeat: repeat-x; }
+    .ledger-card { transition: transform .22s ease, box-shadow .22s ease; }
+    .ledger-card:hover { transform: translateY(-4px); box-shadow: 0 18px 46px rgba(0,35,73,.12); }
+    .step-number { box-shadow: 0 0 0 7px rgba(149,124,61,.12); }
+    details summary { list-style: none; cursor: pointer; }
+    details summary::-webkit-details-marker { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ledger-card { transition: none; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#132A40] antialiased">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: split ledger / reconciliation bridge -->
+    <section class="bridge-bg text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.98fr_1.02fr] gap-12 items-center">
+          <div>
+            <div class="flex flex-wrap gap-3 items-center mb-7">
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[.18em] text-[#F0D4C9]">Odoo Accounting</span>
+              <span class="text-sm text-slate-300">Multi-Company • Intercompany • Reconciliation</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight">
+              Odoo Intercompany Accounting:
+              <span class="text-[#EFA28D]">Why the Balances Don't Match</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-2xl">
+              When one company records an amount due from a related entity, the other company should have a corresponding amount due to it—subject to the transaction, timing, currency and accounting treatment. The reconciliation starts by matching both sides of the same economic event.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#reconcile" class="rounded-2xl bg-[#E88B73] text-[#002349] px-6 py-3.5 font-bold hover:bg-[#f2a18b] transition">Reconcile Both Sides</a>
+              <a href="#difference-tool" class="rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">Calculate the Difference</a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-300">
+              <span>✓ Due-to / due-from</span>
+              <span>✓ Multi-company entries</span>
+              <span>✓ Month-end controls</span>
+            </div>
+          </div>
+
+          <!-- Opposing ledger cards -->
+          <div class="relative">
+            <div class="absolute left-1/2 top-10 bottom-10 hidden sm:block w-px bg-white/10"></div>
+
+            <div class="relative grid sm:grid-cols-2 gap-4 items-stretch">
+              <div class="rounded-[1.8rem] bg-[#F8E8E2] text-[#002349] p-5 sm:p-6 shadow-heavy">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="text-[10px] uppercase tracking-[.2em] font-black text-[#9D4F3B]">Company A</div>
+                  <span class="rounded-full bg-white/70 px-2 py-1 text-[10px] font-black">ENTITY A</span>
+                </div>
+                <h2 class="mt-5 text-2xl font-black">Due from B</h2>
+                <p class="mt-2 text-sm text-slate-600">Receivable / intercompany asset</p>
+                <div class="mt-7 border-t border-[#E7C9BF] pt-5">
+                  <div class="text-xs text-slate-500">Example balance</div>
+                  <div id="heroA" class="mt-1 text-3xl font-black">$18,500</div>
+                </div>
+                <div class="mt-5 rounded-xl bg-white/70 p-3 text-sm">
+                  <div class="font-black">What it says</div>
+                  <div class="mt-1 text-slate-600">B owes A</div>
+                </div>
+              </div>
+
+              <div class="rounded-[1.8rem] bg-[#DCEAF5] text-[#002349] p-5 sm:p-6 shadow-heavy sm:mt-12">
+                <div class="flex items-center justify-between gap-3">
+                  <div class="text-[10px] uppercase tracking-[.2em] font-black text-[#365F7C]">Company B</div>
+                  <span class="rounded-full bg-white/70 px-2 py-1 text-[10px] font-black">ENTITY B</span>
+                </div>
+                <h2 class="mt-5 text-2xl font-black">Due to A</h2>
+                <p class="mt-2 text-sm text-slate-600">Payable / intercompany liability</p>
+                <div class="mt-7 border-t border-[#B8D0E2] pt-5">
+                  <div class="text-xs text-slate-500">Example balance</div>
+                  <div id="heroB" class="mt-1 text-3xl font-black">$17,900</div>
+                </div>
+                <div class="mt-5 rounded-xl bg-white/70 p-3 text-sm">
+                  <div class="font-black">What it says</div>
+                  <div class="mt-1 text-slate-600">B owes A</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="hidden sm:flex items-center justify-center gap-3 mt-6">
+              <div class="h-px flex-1 bridge-dash"></div>
+              <div class="rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-black text-[#F0D4C9]">MATCH THE COUNTERPART</div>
+              <div class="h-px flex-1 bridge-dash"></div>
+            </div>
+
+            <div class="mt-5 rounded-2xl border border-white/10 bg-white/5 px-5 py-4 flex items-center justify-between gap-4">
+              <div>
+                <div class="text-xs uppercase tracking-widest text-slate-400">Illustrative gap</div>
+                <div class="mt-1 text-sm text-slate-300">A's receivable less B's payable</div>
+              </div>
+              <div class="text-2xl sm:text-3xl font-black text-[#EFA28D]">$600</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANSWER FIRST -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">First principle</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">Reconcile the transaction—not just the two account balances.</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            A difference can be caused by an invoice on only one side, a payment recorded on different dates, inconsistent currency treatment, a credit note, or an entry coded to the wrong intercompany partner. Comparing the ending balances is the starting point, not the full investigation.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div class="grid sm:grid-cols-[74px_1fr] gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="w-16 h-16 rounded-2xl bg-[#F8E8E2] flex items-center justify-center text-2xl font-black text-[#9D4F3B]">A</div>
+            <div>
+              <h3 class="text-xl font-black text-[#002349]">Start with Company A</h3>
+              <p class="mt-2 text-slate-600 leading-relaxed">List open receivables or amounts due from the related entity. Include invoice references, dates, currency and payments/credits applied.</p>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-[74px_1fr] gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+            <div class="w-16 h-16 rounded-2xl bg-[#DCEAF5] flex items-center justify-center text-2xl font-black text-[#365F7C]">B</div>
+            <div>
+              <h3 class="text-xl font-black text-[#002349]">Match to Company B</h3>
+              <p class="mt-2 text-slate-600 leading-relaxed">Locate the corresponding payable or due-to entry. Confirm both sides refer to the same legal entities and transaction.</p>
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-[74px_1fr] gap-5 rounded-3xl bg-[#002349] text-white border border-[#002349] p-6 shadow-heavy">
+            <div class="w-16 h-16 rounded-2xl bg-[#E88B73] flex items-center justify-center text-2xl font-black text-[#002349]">↔</div>
+            <div>
+              <h3 class="text-xl font-black">Explain every unmatched item</h3>
+              <p class="mt-2 text-slate-300 leading-relaxed">Classify each difference as timing, missing entry, payment application, currency/rounding, coding, or a genuine accounting correction. Assign an owner and resolution date.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCENARIOS -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Where differences start</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Four common intercompany transaction patterns</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">The exact entries depend on the legal entities, agreements, tax considerations and accounting policies. These examples show the kind of counterpart trail to look for.</p>
+        </div>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-5">
+          <article class="ledger-card rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-xs font-black uppercase tracking-widest text-[#9D4F3B]">Pattern 01</span>
+              <span class="rounded-full bg-[#F8E8E2] px-3 py-1 text-xs font-bold text-[#9D4F3B]">Invoice / Bill</span>
+            </div>
+            <h3 class="mt-4 text-2xl font-black text-[#002349]">One company invoices another</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">A services company charges a related operating company. The seller records the receivable and relevant income; the buyer records the payable and applicable expense or asset. The counterpart values and cut-off dates should be explainable.</p>
+            <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+              <div class="rounded-xl bg-[#F8E8E2] p-4"><b>Seller checks</b><div class="mt-1 text-slate-600">Invoice, receivable, income</div></div>
+              <div class="rounded-xl bg-[#DCEAF5] p-4"><b>Buyer checks</b><div class="mt-1 text-slate-600">Vendor bill, payable, account</div></div>
+            </div>
+          </article>
+
+          <article class="ledger-card rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-xs font-black uppercase tracking-widest text-[#9D4F3B]">Pattern 02</span>
+              <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold text-slate-600">Shared Expense</span>
+            </div>
+            <h3 class="mt-4 text-2xl font-black text-[#002349]">One company pays a shared bill</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">One entity pays a vendor invoice that partly belongs to another entity. The allocation should be supported, documented, and recorded consistently on both sides.</p>
+            <div class="mt-5 rounded-xl bg-slate-100 p-4 text-sm text-slate-700"><b>Watch for:</b> allocation percentages, missing recharge invoices or journals, and inconsistent expense classification.</div>
+          </article>
+
+          <article class="ledger-card rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-xs font-black uppercase tracking-widest text-[#9D4F3B]">Pattern 03</span>
+              <span class="rounded-full bg-[#DCEAF5] px-3 py-1 text-xs font-bold text-[#365F7C]">Settlement</span>
+            </div>
+            <h3 class="mt-4 text-2xl font-black text-[#002349]">Payment appears on only one side</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">The paying entity may record a transfer while the receiving entity hasn't entered or matched the receipt. Bank date, payment reference and reconciliation status help identify the gap.</p>
+            <div class="mt-5 rounded-xl bg-[#DCEAF5] p-4 text-sm text-slate-700"><b>Watch for:</b> in-transit cash, unmatched payments, duplicate receipts and application to the wrong invoice.</div>
+          </article>
+
+          <article class="ledger-card rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-8">
+            <div class="flex items-center justify-between gap-3">
+              <span class="text-xs font-black uppercase tracking-widest text-[#9D4F3B]">Pattern 04</span>
+              <span class="rounded-full bg-[#F4EEDC] px-3 py-1 text-xs font-bold text-[#806629]">Currency / Cut-off</span>
+            </div>
+            <h3 class="mt-4 text-2xl font-black text-[#002349]">The amount differs at period-end</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Different currencies, exchange rates, transaction dates, rounding or period cut-off can create apparent differences even where the source transaction is understood.</p>
+            <div class="mt-5 rounded-xl bg-[#F4EEDC] p-4 text-sm text-slate-700"><b>Watch for:</b> invoice currency, company currency, rate date, reporting-date treatment and rounding.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERACTIVE DIFFERENCE CALCULATOR -->
+    <section id="difference-tool" class="bg-white border-b border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-10 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Reconciliation calculator</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Put a number on the gap</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">Enter balances from both sides in the same comparison currency and for the same reporting scope. The result is a triage aid—not a journal-entry recommendation.</p>
+            <div class="mt-6 rounded-2xl bg-[#F8E8E2] border border-[#E8C6BB] p-5">
+              <div class="font-black text-[#002349]">Before comparing</div>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">Confirm both balances relate to the same entities, date range, transaction population and currency basis.</p>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#F7F8FA] border border-slate-200 p-6 sm:p-8 shadow-soft">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Company A: due from ($)</span>
+                <input id="balanceA" type="number" min="0" value="18500" step="0.01" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Company B: due to ($)</span>
+                <input id="balanceB" type="number" min="0" value="17900" step="0.01" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+
+            <div class="mt-6 grid sm:grid-cols-3 gap-4">
+              <div class="rounded-2xl bg-white border border-slate-200 p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Company A</div>
+                <div id="outputA" class="mt-2 text-2xl font-black text-[#002349]">$18,500.00</div>
+              </div>
+              <div class="rounded-2xl bg-white border border-slate-200 p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Company B</div>
+                <div id="outputB" class="mt-2 text-2xl font-black text-[#002349]">$17,900.00</div>
+              </div>
+              <div class="rounded-2xl bg-[#002349] text-white p-5">
+                <div class="text-xs uppercase tracking-widest font-black text-[#EFA28D]">Unmatched gap</div>
+                <div id="gap" class="mt-2 text-2xl font-black">$600.00</div>
+              </div>
+            </div>
+
+            <div class="mt-5 rounded-2xl bg-white border border-slate-200 p-5">
+              <div class="flex items-center justify-between gap-4 text-sm">
+                <span class="font-bold text-[#002349]">Difference as % of the larger balance</span>
+                <span id="gapPercent" class="font-black text-[#957C3D]">3.2%</span>
+              </div>
+              <div class="mt-3 h-3 rounded-full bg-slate-100 overflow-hidden">
+                <div id="gapBar" class="h-full bg-[#E88B73] rounded-full" style="width:3.2%"></div>
+              </div>
+              <p id="gapMessage" class="mt-4 text-sm text-slate-600">Company A's balance is higher by $600.00. Investigate unmatched transactions before making an adjustment.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECONCILIATION WORKFLOW -->
+    <section id="reconcile" class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="max-w-3xl">
+        <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Resolution workflow</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">A repeatable 6-step intercompany reconciliation</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Work from source documents toward the ledger. Avoid posting a plug entry simply to make the two closing balances equal.</p>
+      </div>
+
+      <div class="mt-10 grid lg:grid-cols-2 gap-5">
+        <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+          <div class="step-number shrink-0 w-10 h-10 rounded-full bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">1</div>
+          <div><h3 class="text-xl font-black text-[#002349]">Agree the comparison scope</h3><p class="mt-2 text-slate-600 leading-relaxed">Use the same related entities, period-end date, currency basis and balance definition on both sides.</p></div>
+        </div>
+        <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+          <div class="step-number shrink-0 w-10 h-10 rounded-full bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">2</div>
+          <div><h3 class="text-xl font-black text-[#002349]">Export open transactions</h3><p class="mt-2 text-slate-600 leading-relaxed">Capture invoice/bill number, date, partner, reference, currency, amount, due date and payment status where available.</p></div>
+        </div>
+        <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+          <div class="step-number shrink-0 w-10 h-10 rounded-full bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">3</div>
+          <div><h3 class="text-xl font-black text-[#002349]">Match counterpart documents</h3><p class="mt-2 text-slate-600 leading-relaxed">Pair each seller-side receivable or recharge with the matching buyer-side payable, expense, asset or other relevant entry.</p></div>
+        </div>
+        <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+          <div class="step-number shrink-0 w-10 h-10 rounded-full bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">4</div>
+          <div><h3 class="text-xl font-black text-[#002349]">Classify the difference</h3><p class="mt-2 text-slate-600 leading-relaxed">Separate timing, missing entry, payment matching, currency/rounding, partner coding and genuine accounting corrections.</p></div>
+        </div>
+        <div class="flex gap-5 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+          <div class="step-number shrink-0 w-10 h-10 rounded-full bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">5</div>
+          <div><h3 class="text-xl font-black text-[#002349]">Resolve and document</h3><p class="mt-2 text-slate-600 leading-relaxed">Post approved corrections in the proper company and period. Preserve support and cross-reference the counterpart entry.</p></div>
+        </div>
+        <div class="flex gap-5 rounded-3xl bg-[#002349] text-white border border-[#002349] p-6 shadow-heavy">
+          <div class="step-number shrink-0 w-10 h-10 rounded-full bg-[#E88B73] text-[#002349] flex items-center justify-center font-black">6</div>
+          <div><h3 class="text-xl font-black">Tie out and sign off</h3><p class="mt-2 text-slate-300 leading-relaxed">Confirm residual differences are zero or explicitly explained, assigned to an owner and approved for follow-up.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONSOLIDATION VS ENTITY BOOKS -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1fr_1fr] gap-8 items-stretch">
+          <div class="rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-9 shadow-soft">
+            <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Individual company books</div>
+            <h2 class="mt-4 text-2xl sm:text-3xl font-black text-[#002349]">Each legal entity still needs accurate books.</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">The receivable, payable, revenue, expense, asset, cash or loan entries must reflect the underlying transaction for each entity, based on the applicable agreements and accounting treatment.</p>
+            <div class="mt-6 rounded-2xl bg-[#F8E8E2] p-5">
+              <div class="font-black text-[#002349]">Control question</div>
+              <div class="mt-1 text-slate-700">Would each company's standalone financial statements make sense?</div>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-[#002349] text-white p-7 sm:p-9 shadow-heavy">
+            <div class="text-xs font-black uppercase tracking-widest text-[#EFA28D]">Consolidated reporting</div>
+            <h2 class="mt-4 text-2xl sm:text-3xl font-black">Elimination is a separate reporting step.</h2>
+            <p class="mt-4 text-slate-300 leading-relaxed">Where consolidated financial statements are prepared, qualifying intercompany balances and transactions may need elimination under the applicable consolidation process. Do not assume that matching company ledgers automatically means consolidations or eliminations are configured or posted.</p>
+            <div class="mt-6 rounded-2xl bg-white/10 p-5">
+              <div class="font-black text-white">Control question</div>
+              <div class="mt-1 text-slate-300">Is the consolidation process separately defined, supported and reviewed?</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ODOO CONFIGURATION NOTES -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="max-w-3xl">
+        <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Odoo implementation notes</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Configuration checks before you automate</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">Odoo menus and automation depend on version, apps and database configuration. Validate these design points in a test environment before changing a live accounting workflow.</p>
+      </div>
+
+      <div class="mt-9 grid md:grid-cols-2 gap-5">
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="text-xl font-black text-[#002349]">Company and partner mapping</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Confirm each legal entity is configured correctly, the intercompany partner is identifiable on transactions, and users post in the intended company context.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="text-xl font-black text-[#002349]">Account mapping</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Review the accounts used for intercompany receivables/payables and related income, expenses, assets or liabilities. Confirm account types and reporting treatment.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="text-xl font-black text-[#002349]">Automation and approval rules</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">If intercompany documents are generated automatically, test invoice/bill pairing, taxes, journals, references, partner selection and duplicate prevention.</p>
+        </div>
+        <div class="rounded-3xl border border-slate-200 bg-white p-6">
+          <h3 class="text-xl font-black text-[#002349]">Currency and period controls</h3>
+          <p class="mt-3 text-slate-600 leading-relaxed">Confirm transaction currency, company currency, date/rate logic and period-lock procedures are understood by both sides of the process.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- MONTH END CHECKLIST -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-8 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Month-end close</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Intercompany sign-off checklist</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">Use one shared checklist for all related entities and maintain a clear exception log.</p>
+          </div>
+
+          <div class="rounded-[2rem] border border-slate-200 bg-white shadow-soft overflow-hidden divide-y divide-slate-200">
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Confirm entity pairs.</strong> List every company relationship and its expected intercompany accounts.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Compare balances on the same date.</strong> Use consistent scope and currency basis.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Match invoices, bills, payments and credits.</strong> Trace differences to supporting documents.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review cut-off and currency.</strong> Investigate late postings, exchange differences and rounding.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review unmatched items and old balances.</strong> Assign owners and dates for resolution.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Approve corrections.</strong> Ensure both sides are corrected in the right entity and period.</span></label>
+            <label class="flex gap-4 items-start p-5 cursor-pointer bg-[#F8E8E2]"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Complete sign-off.</strong> Document residual differences and distinguish entity-level reconciliation from consolidation eliminations.</span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Odoo intercompany accounting questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Why do Odoo intercompany balances not match?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Common causes include an invoice or bill recorded on one side only, payment timing, unmatched credits, incorrect partner or account coding, currency differences, rounding, or transactions posted in different periods. Compare the source documents, not only the totals.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What is the difference between due-to and due-from?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">A due-from balance generally represents an amount one entity expects to receive from another. A due-to balance generally represents the related entity's obligation to pay. The two sides should be compared for the same transaction, date and currency basis.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Does Odoo automatically eliminate intercompany balances?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Do not assume so. Automation and consolidation capability depend on the version, installed apps and configuration. Intercompany transaction creation, entity-level reconciliation and consolidation eliminations are separate controls that should be tested and documented.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Should I post an adjustment to force the balances to match?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Not before investigating the difference. Identify the unmatched source transaction and determine the correct entity, account, period and currency treatment. Corrections should be supported and approved, and both sides should be considered.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">How often should intercompany accounts be reconciled?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">At minimum, set a documented review cadence aligned with the month-end close and reporting needs. High-volume or material intercompany activity may benefit from more frequent matching so exceptions do not accumulate until period-end.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related Odoo articles -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Related Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Keep the accounting close connected</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-analytic-accounting-profitability.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Analytic Accounting</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Analytic Accounting: Track Profit by Customer, Project &amp; Department</h3>
+        </a>
+        <a href="/blog/odoo-foreign-currency-accounting.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Multi-Currency</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Foreign Currency Accounting: Why Exchange Gain/Loss Looks Wrong</h3>
+        </a>
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#EFA28D]">Need help with multi-company Odoo?</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Close intercompany books with fewer surprises.</h2>
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise helps US businesses and accounting firms clean up Odoo accounting, reconcile intercompany balances, investigate ledger differences and build repeatable month-end procedures.</p>
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a>
+          </div>
+          <p class="mt-6 text-sm text-slate-400">Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    const usd = (n) => '$' + Math.abs(Number(n || 0)).toLocaleString('en-US', {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+
+    function reconcileGap() {
+      const a = Math.max(0, Number(document.getElementById('balanceA').value) || 0);
+      const b = Math.max(0, Number(document.getElementById('balanceB').value) || 0);
+      const gap = Math.abs(a - b);
+      const larger = Math.max(a, b);
+      const pct = larger > 0 ? (gap / larger) * 100 : 0;
+
+      document.getElementById('outputA').textContent = usd(a);
+      document.getElementById('outputB').textContent = usd(b);
+      document.getElementById('gap').textContent = usd(gap);
+      document.getElementById('gapPercent').textContent = pct.toFixed(2) + '%';
+      document.getElementById('gapBar').style.width = Math.min(100, pct) + '%';
+
+      let message = 'The balances match. Keep the supporting reconciliation with your close records.';
+      if (gap > 0 && a > b) {
+        message = 'Company A’s due-from balance is higher by ' + usd(gap) + '. Investigate unmatched transactions before making an adjustment.';
+      } else if (gap > 0 && b > a) {
+        message = 'Company B’s due-to balance is higher by ' + usd(gap) + '. Investigate unmatched transactions before making an adjustment.';
+      }
+      document.getElementById('gapMessage').textContent = message;
+      document.getElementById('heroA').textContent = usd(a).replace('.00', '');
+      document.getElementById('heroB').textContent = usd(b).replace('.00', '');
+    }
+
+    ['balanceA', 'balanceB'].forEach(id => {
+      document.getElementById(id).addEventListener('input', reconcileGap);
+    });
+    reconcileGap();
+  </script>
+
+  <!-- BlogPosting structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Intercompany Accounting: Fix Due-To / Due-From Differences",
+    "description": "A practical guide to diagnosing intercompany accounting differences in Odoo, including due-to and due-from balances, counterpart entries, currency, cut-off and consolidation checks.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-intercompany-accounting-reconciliation.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-intercompany-accounting-reconciliation.html"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why do Odoo intercompany balances not match?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Common causes include an invoice or bill recorded on one side only, payment timing, unmatched credits, incorrect partner or account coding, currency differences, rounding, or transactions posted in different periods. Compare the source documents, not only the totals."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between due-to and due-from?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A due-from balance generally represents an amount one entity expects to receive from another. A due-to balance generally represents the related entity's obligation to pay. The two sides should be compared for the same transaction, date and currency basis."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Odoo automatically eliminate intercompany balances?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Do not assume so. Automation and consolidation capability depend on the version, installed apps and configuration. Intercompany transaction creation, entity-level reconciliation and consolidation eliminations are separate controls that should be tested and documented."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I post an adjustment to force the balances to match?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not before investigating the difference. Identify the unmatched source transaction and determine the correct entity, account, period and currency treatment. Corrections should be supported and approved, and both sides should be considered."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How often should intercompany accounts be reconciled?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Set a documented review cadence aligned with month-end close and reporting needs. High-volume or material intercompany activity may benefit from more frequent matching so exceptions do not accumulate until period-end."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
