@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Purchase Process: RFQs, Purchase Orders, Receipts & Vendor Bills | Accountrise</title>
+  <meta name="description" content="Build a reliable Odoo purchase process from request for quotation to purchase order, receipt, vendor bill, and payment. Learn practical controls for US businesses and manufacturers.">
+  <meta name="keywords" content="Odoo purchase process, Odoo purchase order workflow, Odoo RFQ, Odoo vendor bill, Odoo three way matching, Odoo purchasing for manufacturers, Odoo procurement process">
+  <meta name="author" content="Accountrise">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-purchase-process-rfq-purchase-orders-vendor-bills.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Purchase Process: From RFQ to Vendor Payment">
+  <meta property="og:description" content="A practical Odoo procurement workflow with purchase approvals, receipts, invoice matching, and month-end controls.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-purchase-process-rfq-purchase-orders-vendor-bills.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Purchase Process: From RFQ to Vendor Payment">
+  <meta name="twitter:description" content="Connect purchasing, inventory, and accounting with a clean Odoo purchase process.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { ink: '#002349', gold: '#957C3D', goldlight: '#F3EBDD', mist: '#F5F7FA', slateblue: '#DCE5EF' }, boxShadow: { soft: '0 16px 50px rgba(0,35,73,.08)' } } }
+    }
+  </script>
+  <style>
+    :root { color-scheme: light; }
+    html { scroll-behavior: smooth; }
+    body { font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .grid-paper { background-image: linear-gradient(rgba(0,35,73,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(0,35,73,.045) 1px, transparent 1px); background-size: 26px 26px; }
+    .step-line:before { content: ""; position: absolute; left: 19px; top: 44px; bottom: -26px; width: 1px; background: #D6DEE8; }
+    .step-line:last-child:before { display: none; }
+    .step-btn[aria-selected="true"] { background: #002349; color: white; border-color: #002349; box-shadow: 0 8px 24px rgba(0,35,73,.13); }
+    .check-row input:checked + span { color: #0F766E; text-decoration: line-through; text-decoration-thickness: 1px; }
+    .check-row input:checked { accent-color: #0F766E; }
+    .eyebrow { letter-spacing: .16em; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Odoo Purchase Process: How to Manage RFQs, Purchase Orders, Receipts, and Vendor Bills",
+    "description":"A practical guide to designing an Odoo purchase workflow that connects procurement, inventory, and accounting for US businesses and manufacturers.",
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-purchase-process-rfq-purchase-orders-vendor-bills.html"},
+    "author":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com/"},
+    "publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com/"},
+    "datePublished":"2026-10-10",
+    "dateModified":"2026-10-10",
+    "inLanguage":"en-US",
+    "articleSection":"Odoo Accounting and Operations",
+    "keywords":["Odoo purchase process","Odoo RFQ","Odoo purchase order","Odoo vendor bill","three-way matching"]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"What is the normal purchase workflow in Odoo?","acceptedAnswer":{"@type":"Answer","text":"A common workflow is to create a request for quotation, review supplier terms, confirm the purchase order, receive the products when applicable, create and review the vendor bill, then register and reconcile payment. Exact steps depend on the business process and Odoo configuration."}},
+      {"@type":"Question","name":"Should a vendor bill be created before products are received?","acceptedAnswer":{"@type":"Answer","text":"It depends on the purchasing policy, product type, supplier terms, and bill-control configuration. For stocked products, comparing the vendor bill with the purchase order and recorded receipt helps identify quantity differences. Services and advance payments may follow a different process."}},
+      {"@type":"Question","name":"What is three-way matching in Odoo purchasing?","acceptedAnswer":{"@type":"Answer","text":"Three-way matching compares the purchase order, the receipt or recorded quantity where applicable, and the supplier invoice. It helps identify price, quantity, and billing differences before payment. The level of automation or blocking depends on the Odoo version and configuration."}},
+      {"@type":"Question","name":"Can Odoo create purchase orders automatically?","acceptedAnswer":{"@type":"Answer","text":"Odoo can support replenishment-driven procurement through configured routes and reordering rules. Whether an action creates a draft request for quotation or follows another route depends on product, vendor, route, company, and version settings. Review generated documents before confirmation."}}
+    ]
+  }
+  </script>
+</head>
+<body class="bg-white text-slate-800 antialiased">
+  <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-white/95 backdrop-blur-xl">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8" aria-label="Main navigation">
+      <a href="/" class="flex items-center gap-3" aria-label="Accountrise home">
+        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-ink text-sm font-black text-white">A<span class="text-[#D8BD78]">.</span></span>
+        <span class="text-lg font-extrabold tracking-tight text-ink">accountrise</span>
+      </a>
+      <div class="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
+        <a href="/" class="transition hover:text-gold">Home</a>
+        <a href="/about/" class="transition hover:text-gold">About Us</a>
+        <a href="/services/" class="transition hover:text-gold">Services</a>
+        <a href="/blog/" class="transition hover:text-gold">Blog</a>
+      </div>
+      <a href="#contact" class="rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-ink transition hover:bg-[#b89a4e]">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="grid-paper relative overflow-hidden border-b border-slate-200 bg-[#F7F9FC]">
+      <div class="absolute -right-24 -top-28 h-96 w-96 rounded-full bg-[#DCE5EF]/70 blur-3xl" aria-hidden="true"></div>
+      <div class="relative mx-auto grid max-w-7xl gap-12 px-5 py-16 sm:py-20 lg:grid-cols-[1.04fr_.96fr] lg:items-center lg:px-8 lg:py-24">
+        <div>
+          <div class="mb-6 flex flex-wrap items-center gap-3 text-xs font-bold uppercase text-gold eyebrow">
+            <span>Odoo Operations</span><span class="h-1 w-1 rounded-full bg-gold"></span><span>Procurement Systems</span>
+          </div>
+          <h1 class="max-w-3xl text-4xl font-black leading-[1.07] tracking-tight text-ink sm:text-5xl lg:text-6xl">How to Build a Reliable <span class="text-gold">Purchase Process</span> in Odoo</h1>
+          <p class="mt-7 max-w-2xl text-lg leading-8 text-slate-600">Connect requests for quotation, purchase orders, product receipts, vendor bills, and payments in one traceable workflow—without losing control of quantities, supplier pricing, or approvals.</p>
+          <div class="mt-8 flex flex-wrap gap-2 text-sm">
+            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-600">RFQ → PO</span>
+            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-600">Purchasing + Inventory</span>
+            <span class="rounded-full border border-slate-200 bg-white px-4 py-2 text-slate-600">Invoice controls</span>
+          </div>
+          <div class="mt-9 flex flex-wrap items-center gap-4 text-sm text-slate-500">
+            <span class="inline-flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-500"></span> Practical workflow guide</span>
+            <span>•</span><span>For US businesses and manufacturers</span>
+          </div>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-xl">
+          <div class="absolute -inset-4 rounded-[2rem] border border-slate-200" aria-hidden="true"></div>
+          <div class="relative overflow-hidden rounded-[1.7rem] border border-slate-200 bg-white shadow-soft">
+            <div class="flex items-center justify-between border-b border-slate-100 px-6 py-5">
+              <div><p class="text-xs font-bold uppercase tracking-[.16em] text-slate-400">Procurement desk</p><h2 class="mt-1 text-lg font-extrabold text-ink">Purchase lifecycle</h2></div>
+              <span class="rounded-lg bg-goldlight px-3 py-2 text-xs font-bold text-[#796128]">CONTROL MAP</span>
+            </div>
+            <div class="space-y-3 p-5 sm:p-6">
+              <div class="flex items-center gap-4 rounded-2xl border border-slate-200 p-4">
+                <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#EEF3F9] text-sm font-black text-ink">01</span><div class="min-w-0 flex-1"><p class="font-bold text-ink">Request for Quotation</p><p class="mt-1 text-sm text-slate-500">Supplier, price, lead time, terms</p></div><span class="text-xs font-semibold text-slate-400">SOURCE</span>
+              </div>
+              <div class="ml-5 h-3 w-px bg-slate-300"></div>
+              <div class="flex items-center gap-4 rounded-2xl border border-[#D9C89D] bg-[#FBF8F0] p-4">
+                <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gold text-sm font-black text-ink">02</span><div class="min-w-0 flex-1"><p class="font-bold text-ink">Purchase Order</p><p class="mt-1 text-sm text-slate-500">Approved commercial commitment</p></div><span class="text-xs font-bold text-[#8B6E2F]">APPROVE</span>
+              </div>
+              <div class="ml-5 h-3 w-px bg-slate-300"></div>
+              <div class="flex items-center gap-4 rounded-2xl border border-slate-200 p-4">
+                <span class="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#EEF3F9] text-sm font-black text-ink">03</span><div class="min-w-0 flex-1"><p class="font-bold text-ink">Receipt + Vendor Bill</p><p class="mt-1 text-sm text-slate-500">Match what was ordered, received, and billed</p></div><span class="text-xs font-semibold text-slate-400">VERIFY</span>
+              </div>
+              <div class="mt-2 grid grid-cols-3 gap-2 border-t border-slate-100 pt-4 text-center">
+                <div class="rounded-xl bg-slate-50 px-2 py-3"><p class="text-lg font-black text-ink">Qty</p><p class="mt-1 text-xs text-slate-500">Received</p></div>
+                <div class="rounded-xl bg-slate-50 px-2 py-3"><p class="text-lg font-black text-ink">Price</p><p class="mt-1 text-xs text-slate-500">Agreed</p></div>
+                <div class="rounded-xl bg-slate-50 px-2 py-3"><p class="text-lg font-black text-ink">Terms</p><p class="mt-1 text-xs text-slate-500">Payment</p></div>
+              </div>
+            </div>
+          </div>
+          <p class="mt-5 text-center text-xs leading-5 text-slate-400">Illustrative workflow. Available controls depend on Odoo version, installed apps, and company configuration.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-5 py-12 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[250px_minmax(0,1fr)]">
+        <aside class="h-fit rounded-3xl border border-slate-200 bg-white p-6 lg:sticky lg:top-28">
+          <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">In this guide</p>
+          <nav class="mt-5 space-y-3 text-sm text-slate-600" aria-label="Table of contents">
+            <a class="block hover:text-gold" href="#why-process">Why process design matters</a>
+            <a class="block hover:text-gold" href="#workflow">The 7-stage workflow</a>
+            <a class="block hover:text-gold" href="#scenario">Choose your purchase path</a>
+            <a class="block hover:text-gold" href="#controls">Controls that prevent errors</a>
+            <a class="block hover:text-gold" href="#checklist">Go-live checklist</a>
+            <a class="block hover:text-gold" href="#faq">FAQs</a>
+          </nav>
+          <div class="mt-7 border-t border-slate-100 pt-5">
+            <p class="text-sm font-bold text-ink">Related Accountrise guides</p>
+            <a href="/blog/odoo-manufacturing-sales-process.html" class="mt-3 block text-sm leading-6 text-slate-600 underline decoration-slate-300 underline-offset-4 hover:text-gold">Odoo sales process for manufacturing</a>
+            <a href="/blog/odoo-accounts-payable-vendor-bills.html" class="mt-3 block text-sm leading-6 text-slate-600 underline decoration-slate-300 underline-offset-4 hover:text-gold">Accounts payable and vendor bills</a>
+            <a href="/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html" class="mt-3 block text-sm leading-6 text-slate-600 underline decoration-slate-300 underline-offset-4 hover:text-gold">Fix unreconciled bank transactions</a>
+          </div>
+        </aside>
+
+        <article class="min-w-0">
+          <section id="why-process" class="scroll-mt-28">
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">01 / The problem</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">Why a purchase process needs more than a Purchase Order</h2>
+            <div class="prose-copy mt-5 max-w-3xl space-y-4 text-base leading-8 text-slate-600">
+              <p>In Odoo, a purchase order is not the whole purchasing process. A reliable workflow must explain why the purchase was needed, who approved the commitment, what the supplier delivered, whether the bill matches the commercial agreement, and when the payment cleared.</p>
+              <p>When teams skip steps or create documents outside the connected workflow, common symptoms include duplicate vendor bills, receipts that do not match supplier invoices, incorrect product costs, late purchase approvals, and month-end balances that are difficult to explain.</p>
+              <p>The goal is not to add unnecessary approvals. It is to create the minimum set of linked records that lets purchasing, warehouse, operations, and accounting answer the same question: <strong class="font-bold text-ink">what did we commit to, what did we receive, and what do we owe?</strong></p>
+            </div>
+            <div class="mt-7 grid gap-4 sm:grid-cols-3">
+              <div class="rounded-2xl border border-slate-200 bg-mist p-5"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Purchasing</p><p class="mt-2 font-extrabold text-ink">Right supplier</p><p class="mt-2 text-sm leading-6 text-slate-600">Price, delivery date, and approval are visible before the order is confirmed.</p></div>
+              <div class="rounded-2xl border border-slate-200 bg-mist p-5"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Inventory</p><p class="mt-2 font-extrabold text-ink">Right quantity</p><p class="mt-2 text-sm leading-6 text-slate-600">Receipts record what physically arrived, including partial deliveries and exceptions.</p></div>
+              <div class="rounded-2xl border border-slate-200 bg-mist p-5"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Accounting</p><p class="mt-2 font-extrabold text-ink">Right liability</p><p class="mt-2 text-sm leading-6 text-slate-600">Vendor bills can be reviewed against source documents before payment.</p></div>
+            </div>
+          </section>
+
+          <section id="workflow" class="mt-16 scroll-mt-28">
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">02 / The operating model</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">A practical 7-stage Odoo purchase workflow</h2>
+            <p class="mt-4 max-w-3xl leading-7 text-slate-600">Use the sequence below as a starting point. A manufacturer buying raw materials may need tighter receiving and valuation controls than a service business purchasing software subscriptions. Configure the flow around the actual purchase, not around a one-size-fits-all diagram.</p>
+
+            <div class="mt-9 space-y-7">
+              <div class="relative step-line flex gap-5">
+                <div class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-sm font-black text-ink shadow-sm">1</div>
+                <div class="pb-2"><h3 class="text-xl font-extrabold text-ink">Identify and document the need</h3><p class="mt-2 leading-7 text-slate-600">Start with a reason: stock replenishment, a confirmed customer order, an approved manufacturing requirement, a project, or an operating expense. Record the product or service, required quantity, need-by date, destination, and responsible owner. For recurring stock items, review whether replenishment rules are appropriate.</p><div class="mt-3 flex flex-wrap gap-2"><span class="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">Demand source</span><span class="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">Required date</span><span class="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-600">Budget owner</span></div></div>
+              </div>
+              <div class="relative step-line flex gap-5">
+                <div class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-sm font-black text-ink shadow-sm">2</div>
+                <div class="pb-2"><h3 class="text-xl font-extrabold text-ink">Create and review the RFQ</h3><p class="mt-2 leading-7 text-slate-600">Create a Request for Quotation (RFQ) for the intended supplier. Confirm vendor, product, description, quantity, unit of measure, currency, expected lead time, taxes, shipping charges, payment terms, and delivery address. For material purchases, compare supplier quotations when a competitive quote is required.</p><p class="mt-3 rounded-xl border-l-4 border-gold bg-goldlight/60 px-4 py-3 text-sm leading-6 text-slate-700"><strong class="text-ink">Control:</strong> Supplier names, products, and units of measure should be standardized. Similar-looking duplicate product or vendor records can undermine reporting and price comparisons.</p></div>
+              </div>
+              <div class="relative step-line flex gap-5">
+                <div class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-sm font-black text-ink shadow-sm">3</div>
+                <div class="pb-2"><h3 class="text-xl font-extrabold text-ink">Approve and confirm the Purchase Order</h3><p class="mt-2 leading-7 text-slate-600">Use a clear approval threshold based on spend, category, or risk. Once authorized, confirm the RFQ into a Purchase Order (PO) and send the order to the supplier using the agreed communication process. The PO should be the documented commercial commitment—not an informal email or a warehouse note.</p><p class="mt-3 text-sm leading-6 text-slate-500">If formal multi-level approvals are required, confirm which approval rules or customizations are actually enabled in your Odoo database. Do not assume an approval gate exists simply because a policy document says it should.</p></div>
+              </div>
+              <div class="relative step-line flex gap-5">
+                <div class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-sm font-black text-ink shadow-sm">4</div>
+                <div class="pb-2"><h3 class="text-xl font-extrabold text-ink">Receive goods or record service completion</h3><p class="mt-2 leading-7 text-slate-600">For stocked products, process the incoming receipt against the PO and validate actual quantities, packaging condition, destination location, and lot or serial details where relevant. If the supplier ships in stages, record the quantity received and manage the remaining quantity using the appropriate partial-receipt or backorder process.</p><p class="mt-3 leading-7 text-slate-600">For services, use a documented service-completion or acceptance step appropriate to the business. A physical inventory receipt is not a substitute for confirming that consulting, maintenance, or other contracted work was delivered.</p></div>
+              </div>
+              <div class="relative step-line flex gap-5">
+                <div class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-sm font-black text-ink shadow-sm">5</div>
+                <div class="pb-2"><h3 class="text-xl font-extrabold text-ink">Create the vendor bill from the right source</h3><p class="mt-2 leading-7 text-slate-600">Where the workflow supports it, create the vendor bill from the related PO so supplier, lines, prices, and references carry through. Check the supplier invoice number, invoice date, due date, currency, tax treatment, freight, discounts, and billed quantities. Avoid entering the same invoice independently in a way that creates a duplicate liability.</p><p class="mt-3 leading-7 text-slate-600">Bill-control behavior can depend on product type and Odoo configuration—for example, whether bills are controlled by ordered quantities or received quantities. Choose deliberately and test the real-life cases before rollout.</p></div>
+              </div>
+              <div class="relative step-line flex gap-5">
+                <div class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-sm font-black text-ink shadow-sm">6</div>
+                <div class="pb-2"><h3 class="text-xl font-extrabold text-ink">Resolve exceptions before posting or paying</h3><p class="mt-2 leading-7 text-slate-600">Compare the agreed PO terms, the quantities recorded as received where relevant, and the supplier invoice. Investigate price differences, short shipments, damaged goods, freight variances, tax differences, duplicate invoices, and supplier credits. Route exceptions to a named owner instead of leaving them in a shared inbox.</p><p class="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm leading-6 text-amber-900"><strong>Exception rule:</strong> Do not silently change the PO just to make an invoice match. Record the commercial reason and obtain approval for legitimate changes.</p></div>
+              </div>
+              <div class="relative step-line flex gap-5">
+                <div class="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-slate-200 bg-white text-sm font-black text-ink shadow-sm">7</div>
+                <div class="pb-2"><h3 class="text-xl font-extrabold text-ink">Register payment and reconcile the bank</h3><p class="mt-2 leading-7 text-slate-600">Pay according to approved terms, preserve remittance details, and reconcile the bank transaction to the recorded payment. Handle credits, partial payments, early-payment discounts, and foreign-currency payments according to the company’s accounting policy. At month-end, review overdue bills, receipts awaiting bills, and bills awaiting payment.</p><p class="mt-3 leading-7 text-slate-600">For US businesses, keep tax treatment and supporting documentation aligned with the company’s facts and accounting policy. Odoo workflow configuration does not replace tax or accounting review.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="scenario" class="mt-16 scroll-mt-28">
+            <div class="rounded-[2rem] border border-slate-200 bg-[#F7F9FC] p-6 sm:p-8">
+              <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">03 / Choose the path</p>
+              <h2 class="mt-3 text-3xl font-black tracking-tight text-ink">Which purchase path fits your operation?</h2>
+              <p class="mt-3 max-w-3xl leading-7 text-slate-600">Select the situation closest to your business. Use the guidance as a starting design, then validate routes, document behavior, and accounting impact in your own Odoo environment.</p>
+              <div class="mt-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4" role="tablist" aria-label="Purchase scenario">
+                <button type="button" class="scenario-btn step-btn rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-bold text-ink transition" data-scenario="stock" aria-selected="true" role="tab">Stock replenishment</button>
+                <button type="button" class="scenario-btn step-btn rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-bold text-ink transition" data-scenario="mto" aria-selected="false" role="tab">Customer / MTO demand</button>
+                <button type="button" class="scenario-btn step-btn rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-bold text-ink transition" data-scenario="service" aria-selected="false" role="tab">Services & expenses</button>
+                <button type="button" class="scenario-btn step-btn rounded-xl border border-slate-200 bg-white px-4 py-3 text-left text-sm font-bold text-ink transition" data-scenario="subcontract" aria-selected="false" role="tab">Subcontracting</button>
+              </div>
+              <div id="scenario-panel" class="mt-5 rounded-2xl border border-slate-200 bg-white p-6" role="tabpanel" aria-live="polite">
+                <p class="text-sm font-bold uppercase tracking-wider text-gold">Recommended design</p>
+                <h3 id="scenario-title" class="mt-2 text-xl font-extrabold text-ink">Stock replenishment</h3>
+                <p id="scenario-copy" class="mt-3 leading-7 text-slate-600">Use reliable on-hand and forecast quantities, vendor lead times, minimum/maximum levels, and appropriate replenishment rules. Review generated RFQs before confirming the supplier commitment.</p>
+                <div class="mt-5 grid gap-3 sm:grid-cols-2">
+                  <div class="rounded-xl bg-slate-50 p-4"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Key control</p><p id="scenario-control" class="mt-2 font-semibold leading-6 text-ink">Avoid duplicate buying by reviewing open RFQs, POs, and incoming receipts.</p></div>
+                  <div class="rounded-xl bg-slate-50 p-4"><p class="text-xs font-bold uppercase tracking-wider text-slate-400">Test before launch</p><p id="scenario-test" class="mt-2 font-semibold leading-6 text-ink">Run a demand example and verify the suggested quantity, vendor, lead time, and destination.</p></div>
+                </div>
+              </div>
+              <noscript><p class="mt-4 text-sm text-slate-500">Interactive selector requires JavaScript. The general workflow above applies to all four scenarios.</p></noscript>
+            </div>
+          </section>
+
+          <section id="controls" class="mt-16 scroll-mt-28">
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">04 / Controls &amp; exceptions</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">Controls that keep purchasing and accounting aligned</h2>
+            <p class="mt-4 max-w-3xl leading-7 text-slate-600">The right workflow should reduce manual follow-up—not just create more records. Define ownership for the following controls and decide how exceptions will be handled before the first live purchase.</p>
+            <div class="mt-7 overflow-hidden rounded-2xl border border-slate-200">
+              <div class="grid grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] bg-ink px-5 py-4 text-sm font-bold text-white"><span>Control area</span><span>Operating rule</span></div>
+              <div class="grid grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] gap-4 border-b border-slate-100 px-5 py-5"><div class="font-bold text-ink">Purchase authorization</div><div class="text-sm leading-6 text-slate-600">Set clear limits by amount, category, or risk. Keep the requester and approver roles distinct where practical.</div></div>
+              <div class="grid grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] gap-4 border-b border-slate-100 bg-slate-50/60 px-5 py-5"><div class="font-bold text-ink">Supplier master data</div><div class="text-sm leading-6 text-slate-600">Restrict sensitive vendor bank-detail changes and use a verification step before first payment or updated payment instructions.</div></div>
+              <div class="grid grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] gap-4 border-b border-slate-100 px-5 py-5"><div class="font-bold text-ink">Quantity differences</div><div class="text-sm leading-6 text-slate-600">Document short shipments, overages, damaged goods, and returns. Assign an owner to each open exception.</div></div>
+              <div class="grid grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] gap-4 border-b border-slate-100 bg-slate-50/60 px-5 py-5"><div class="font-bold text-ink">Price / freight variance</div><div class="text-sm leading-6 text-slate-600">Compare the bill to authorized terms. Record approved changes and identify when freight should affect product cost versus expense.</div></div>
+              <div class="grid grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] gap-4 border-b border-slate-100 px-5 py-5"><div class="font-bold text-ink">Duplicate invoices</div><div class="text-sm leading-6 text-slate-600">Use supplier invoice references consistently, review duplicate warnings where available, and monitor repeated invoice numbers.</div></div>
+              <div class="grid grid-cols-[minmax(0,.82fr)_minmax(0,1.18fr)] gap-4 bg-slate-50/60 px-5 py-5"><div class="font-bold text-ink">Month-end cutoff</div><div class="text-sm leading-6 text-slate-600">Review received-not-billed items, bills not yet paid, credit notes, and open purchase commitments; apply the business’s accrual policy.</div></div>
+            </div>
+            <div class="mt-6 rounded-2xl border border-slate-200 p-6 sm:p-7">
+              <h3 class="text-xl font-extrabold text-ink">The three-document match</h3>
+              <p class="mt-2 leading-7 text-slate-600">For many stocked-product purchases, a useful review compares three records. The precise automation differs by version and settings, so treat this as a control principle—not a claim that every Odoo database blocks every mismatch automatically.</p>
+              <div class="mt-5 grid gap-3 sm:grid-cols-3">
+                <div class="rounded-xl bg-[#EEF3F9] p-4"><p class="text-xs font-bold uppercase tracking-wider text-slate-500">1 · Purchase Order</p><p class="mt-2 font-bold text-ink">What was approved?</p><p class="mt-1 text-sm leading-6 text-slate-600">Supplier, agreed price, quantity, terms.</p></div>
+                <div class="rounded-xl bg-[#EEF3F9] p-4"><p class="text-xs font-bold uppercase tracking-wider text-slate-500">2 · Receipt</p><p class="mt-2 font-bold text-ink">What arrived?</p><p class="mt-1 text-sm leading-6 text-slate-600">Received quantity, date, condition, destination.</p></div>
+                <div class="rounded-xl bg-goldlight p-4"><p class="text-xs font-bold uppercase tracking-wider text-[#796128]">3 · Vendor Bill</p><p class="mt-2 font-bold text-ink">What is being charged?</p><p class="mt-1 text-sm leading-6 text-slate-600">Billed quantity, unit price, tax, freight, credits.</p></div>
+              </div>
+            </div>
+          </section>
+
+          <section id="checklist" class="mt-16 scroll-mt-28">
+            <div class="overflow-hidden rounded-[2rem] border border-slate-200">
+              <div class="bg-ink p-6 text-white sm:p-8">
+                <p class="text-xs font-bold uppercase tracking-[.16em] text-[#D8BD78]">05 / Before go-live</p>
+                <h2 class="mt-3 text-3xl font-black tracking-tight">Odoo purchase process readiness check</h2>
+                <p class="mt-3 max-w-2xl leading-7 text-slate-300">Mark the checks you have completed. Use this as a short workshop agenda with purchasing, warehouse, and accounting.</p>
+              </div>
+              <div class="p-6 sm:p-8">
+                <div class="mb-5 flex items-center justify-between gap-4">
+                  <p class="text-sm font-bold text-ink"><span id="check-count">0 of 8</span> controls reviewed</p>
+                  <button type="button" id="reset-checks" class="text-sm font-semibold text-gold underline underline-offset-4 hover:text-ink">Reset checklist</button>
+                </div>
+                <div class="h-2 overflow-hidden rounded-full bg-slate-100"><div id="check-progress" class="h-full rounded-full bg-gold transition-all" style="width:0%"></div></div>
+                <div class="mt-6 grid gap-4 sm:grid-cols-2">
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">Requesters know how to document purchase demand and the need-by date.</span></label>
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">Supplier, product, unit of measure, tax, and payment-term data are reviewed.</span></label>
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">Purchase limits and approval responsibilities are documented.</span></label>
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">Partial receipts, backorders, returns, and damaged goods have an owner.</span></label>
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">The team understands when vendor bills are controlled by ordered vs received quantity.</span></label>
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">Invoice price, quantity, freight, tax, and duplicate-reference exceptions are reviewed.</span></label>
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">Payment posting and bank reconciliation are covered by a written procedure.</span></label>
+                  <label class="check-row flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 p-4"><input type="checkbox" class="mt-1 h-4 w-4"><span class="text-sm leading-6 text-slate-600">A full test covers a normal purchase and at least one exception scenario.</span></label>
+                </div>
+                <p id="check-message" class="mt-5 text-sm text-slate-500" aria-live="polite">Start by reviewing the controls with the people who will use the process.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="mt-16">
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">Practical troubleshooting</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">Common Odoo purchasing problems—and where to investigate</h2>
+            <div class="mt-7 space-y-3">
+              <details class="group rounded-2xl border border-slate-200 p-5" open><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">The same vendor bill appears more than once <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">Review invoice references and the team’s bill-entry process. Confirm whether one bill was created from the PO while another was entered manually. Use a clear rule for who creates bills and how vendor invoice numbers are captured; available duplicate checks depend on configuration.</p></details>
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">The received quantity does not match the supplier invoice <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">Check the validated receipt, units of measure, partial shipments, and supplier packing slip. Confirm whether the bill-control policy is based on ordered or received quantities, then resolve the commercial difference instead of forcing the records to match.</p></details>
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">Purchase orders are not linked to the production or sales demand <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">Review the demand source and configured procurement routes. Make sure the business knows whether it buys to replenish stock, buy-to-order, or based on manufacturing component needs. Do not use a generic manual PO process for every case if traceability to the original demand is important. See our <a href="/blog/odoo-manufacturing-sales-process.html" class="font-semibold text-gold underline underline-offset-4">Odoo manufacturing sales process guide</a>.</p></details>
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">Inventory and accounting costs do not agree after a purchase <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">Check product costing method, inventory valuation configuration, receipt and bill timing, landed costs, valuation entries, and account mapping. The right investigation depends on the product category and inventory accounting setup. Avoid posting a manual journal entry before identifying the source of the difference.</p></details>
+            </div>
+          </section>
+
+          <section id="faq" class="mt-16 scroll-mt-28">
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">06 / Frequently asked questions</p>
+            <h2 class="mt-3 text-3xl font-black tracking-tight text-ink sm:text-4xl">Odoo purchase process FAQs</h2>
+            <div class="mt-7 space-y-3">
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">What is the normal purchase workflow in Odoo? <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">A common flow is RFQ, supplier review, PO confirmation, receipt or service acceptance, vendor bill review, payment, and bank reconciliation. The exact sequence depends on product type, procurement policy, and configuration.</p></details>
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">Should the vendor bill be created before receiving the goods? <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">It depends on supplier terms, product type, and the business’s bill-control configuration. For stocked goods, the receipt record is important for comparing what arrived with what is billed. Services, deposits, and prepayments may need different handling.</p></details>
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">What does three-way matching mean? <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">It is a review of the purchase order, receipt or recorded delivery quantity, and vendor bill. It helps identify differences in quantity, pricing, freight, or billing before payment. Automation and blocking behavior depend on Odoo version and setup.</p></details>
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">Can Odoo generate purchase orders automatically? <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">Odoo can support replenishment-driven purchasing when the relevant routes, vendors, and rules are configured. Depending on the setup, the replenishment action may generate draft procurement documents for review. Test how it behaves for each important product category before relying on it operationally.</p></details>
+              <details class="group rounded-2xl border border-slate-200 p-5"><summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-bold text-ink">How should a small US business start? <span class="text-xl text-gold transition group-open:rotate-45">+</span></summary><p class="mt-3 leading-7 text-slate-600">Start with a small set of purchase categories, standard vendor and product data, clear approval limits, and a consistent PO-to-bill process. Test the normal case plus partial receipts, price changes, credits, and duplicate invoice scenarios before expanding the workflow.</p></details>
+            </div>
+          </section>
+
+          <section class="mt-16 rounded-[2rem] border border-slate-200 bg-[#F7F9FC] p-6 sm:p-8">
+            <p class="text-xs font-bold uppercase tracking-[.16em] text-gold">A useful operating principle</p>
+            <blockquote class="mt-4 max-w-3xl text-2xl font-extrabold leading-snug tracking-tight text-ink sm:text-3xl">A purchase should be traceable from the business need to the supplier commitment, the goods or services received, and the amount ultimately paid.</blockquote>
+            <p class="mt-5 max-w-3xl leading-7 text-slate-600">Odoo can support that chain, but the outcome depends on sound master data, practical roles, tested routes, and consistent document handling. Review the full workflow with procurement, operations, inventory, and accounting together—especially when purchasing is connected to manufacturing or customer-specific demand.</p>
+          </section>
+
+          <section id="contact" class="mt-16 scroll-mt-28 overflow-hidden rounded-[2rem] bg-ink p-7 text-white sm:p-10 lg:p-12">
+            <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+              <div>
+                <p class="text-xs font-bold uppercase tracking-[.16em] text-[#D8BD78]">Accountrise · Odoo accounting support</p>
+                <h2 class="mt-4 max-w-2xl text-3xl font-black tracking-tight sm:text-4xl">Need help cleaning up your Odoo purchasing workflow?</h2>
+                <p class="mt-4 max-w-2xl leading-7 text-slate-300">Accountrise helps businesses review Odoo purchasing, inventory-to-accounting handoffs, vendor bills, reconciliations, and month-end processes. Support starts at <strong class="text-white">$10/hour</strong>; final pricing depends on scope, transaction volume, complexity, and engagement requirements.</p>
+              </div>
+              <div class="flex flex-col gap-3 sm:flex-row lg:min-w-[250px] lg:flex-col">
+                <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center rounded-2xl bg-gold px-7 py-4 text-center font-semibold text-ink transition hover:bg-[#b89a4e]">Book Free Consultation</a>
+                <a href="mailto:info@accountrise.com" class="inline-flex items-center justify-center rounded-2xl border border-white/25 px-7 py-4 text-center font-semibold text-white transition hover:bg-white/10">Email Us</a>
+              </div>
+            </div>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-16 border-t border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between lg:px-8">
+      <p>© <span id="year">2026</span> Accountrise. Practical accounting and Odoo operations support.</p>
+      <div class="flex gap-5"><a href="/services/" class="hover:text-gold">Services</a><a href="/blog/" class="hover:text-gold">More insights</a><a href="mailto:info@accountrise.com" class="hover:text-gold">Contact</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const scenarios = {
+      stock: {
+        title: 'Stock replenishment',
+        copy: 'Use reliable on-hand and forecast quantities, vendor lead times, minimum/maximum levels, and appropriate replenishment rules. Review generated RFQs before confirming the supplier commitment.',
+        control: 'Avoid duplicate buying by reviewing open RFQs, POs, and incoming receipts.',
+        test: 'Run a demand example and verify the suggested quantity, vendor, lead time, and destination.'
+      },
+      mto: {
+        title: 'Customer or make-to-order demand',
+        copy: 'When a purchase is intended to fulfil a specific customer requirement, preserve the relationship to that demand where the configured procurement route supports it. Make ownership of customer PO changes, supplier lead times, and delivery commitments explicit.',
+        control: 'Keep the customer order, procurement trigger, supplier PO, and expected delivery dates traceable.',
+        test: 'Change quantity or due date in a controlled test and review what documents or replenishment actions are affected.'
+      },
+      service: {
+        title: 'Services and operating expenses',
+        copy: 'For software, consulting, repairs, and recurring services, focus on budget approval, service period, purchase description, cost allocation, tax treatment, and evidence of completion. A warehouse receipt may not be relevant; use an appropriate acceptance step instead.',
+        control: 'Prevent duplicate subscriptions and confirm contract period, renewal terms, and cost center or analytic allocation.',
+        test: 'Test a recurring bill, a service-period cutoff, and a supplier credit or cancellation.'
+      },
+      subcontract: {
+        title: 'Subcontracting and outside processing',
+        copy: 'If a vendor performs manufacturing or processing using components supplied by your business, define how components move, how the finished or processed item is received, and how the subcontracting cost is captured. This usually needs coordinated Inventory, Manufacturing, and Purchase configuration.',
+        control: 'Track components sent to the subcontractor, quantities returned, yield or scrap, and the service charge.',
+        test: 'Run one end-to-end transaction using realistic component quantities, vendor lead time, and bill lines.'
+      }
+    };
+    const scenarioButtons = document.querySelectorAll('.scenario-btn');
+    scenarioButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const selected = scenarios[button.dataset.scenario];
+        if (!selected) return;
+        scenarioButtons.forEach((item) => item.setAttribute('aria-selected', String(item === button)));
+        document.getElementById('scenario-title').textContent = selected.title;
+        document.getElementById('scenario-copy').textContent = selected.copy;
+        document.getElementById('scenario-control').textContent = selected.control;
+        document.getElementById('scenario-test').textContent = selected.test;
+      });
+    });
+
+    const checkboxes = Array.from(document.querySelectorAll('.check-row input[type="checkbox"]'));
+    const countLabel = document.getElementById('check-count');
+    const progress = document.getElementById('check-progress');
+    const message = document.getElementById('check-message');
+    function updateChecklist() {
+      const completed = checkboxes.filter((checkbox) => checkbox.checked).length;
+      const total = checkboxes.length;
+      countLabel.textContent = `${completed} of ${total}`;
+      progress.style.width = `${total ? (completed / total) * 100 : 0}%`;
+      message.textContent = completed === total
+        ? 'All eight checks are marked complete. Keep this checklist with your process documentation and revisit it after major configuration changes.'
+        : completed === 0
+          ? 'Start by reviewing the controls with the people who will use the process.'
+          : `${total - completed} control${total - completed === 1 ? '' : 's'} remaining. Record any gaps and assign an owner before go-live.`;
+    }
+    checkboxes.forEach((checkbox) => checkbox.addEventListener('change', updateChecklist));
+    document.getElementById('reset-checks').addEventListener('click', () => {
+      checkboxes.forEach((checkbox) => { checkbox.checked = false; });
+      updateChecklist();
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
