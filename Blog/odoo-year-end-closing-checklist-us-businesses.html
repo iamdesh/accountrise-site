@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Odoo Year-End Closing Checklist for US Businesses | Accountrise</title>
+  <meta name="description" content="Use this practical Odoo year-end close checklist for US businesses to reconcile cash, AR, AP, inventory, fixed assets, accruals and equity before your tax professional reviews the books.">
+  <meta name="keywords" content="Odoo year end closing checklist, Odoo year end accounting, Odoo year end close US business, Odoo balance sheet reconciliation, Odoo accounting close, Odoo CPA year end preparation, Odoo financial statements review">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-year-end-closing-checklist-us-businesses.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Year-End Closing Checklist for US Businesses">
+  <meta property="og:description" content="A step-by-step close workflow to reconcile Odoo books, investigate exceptions and prepare cleaner records for management and tax review.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-year-end-closing-checklist-us-businesses.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Year-End Closing Checklist for US Businesses">
+  <meta name="twitter:description" content="Reconcile key Odoo accounts, document year-end adjustments and prepare more reliable books for review.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: {
+      navy: '#002349', gold: '#957C3D', ink: '#172B40', mist: '#F3F6F8', sage: '#D9E8D9', clay: '#D98A65', ice: '#DCEAF1'
+    }}}};
+  </script>
+  <style>
+    :root { --navy:#002349; --gold:#957C3D; --ink:#172B40; --clay:#D98A65; }
+    html { scroll-behavior:smooth; }
+    body { font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    .close-hero { background: radial-gradient(circle at 75% 18%,rgba(217,138,101,.19),transparent 25%), radial-gradient(circle at 14% 87%,rgba(217,232,217,.12),transparent 30%), linear-gradient(130deg,#00162c 0%,#002349 58%,#16435b 100%); }
+    .hero-grid { background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px); background-size:34px 34px; }
+    .float-card { animation:floaty 6s ease-in-out infinite; }
+    .float-card:nth-child(2) { animation-delay:-1.5s; }
+    .float-card:nth-child(3) { animation-delay:-3s; }
+    @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+    @keyframes slidein { from{opacity:0;transform:translateY(15px)} to{opacity:1;transform:translateY(0)} }
+    .reveal { animation:slidein .7s ease both; }
+    .close-step { transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease; }
+    .close-step:hover { transform:translateY(-3px); box-shadow:0 18px 44px rgba(0,35,73,.09); border-color:#c7d4df; }
+    .progress-fill { transition:width .3s ease; }
+    .audit-line { background:linear-gradient(90deg,rgba(217,232,217,.5),rgba(217,232,217,0)); }
+    details summary { list-style:none;cursor:pointer; }
+    details summary::-webkit-details-marker { display:none; }
+    details[open] summary .faq-plus { transform:rotate(45deg); }
+    .mobile-panel[hidden] { display:none; }
+    @media (prefers-reduced-motion:reduce) {
+      html{scroll-behavior:auto} *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+    }
+  </style>
+</head>
+<body class="bg-[#F7F8FA] text-[#172B40] antialiased">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between gap-5">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]" aria-label="Accountrise home">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600" aria-label="Main navigation">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+      <button id="menuToggle" class="md:hidden inline-flex items-center justify-center rounded-xl border border-slate-200 px-3 py-2 text-sm font-bold text-[#002349]" aria-expanded="false" aria-controls="mobileMenu">Menu <span class="ml-2" aria-hidden="true">☰</span></button>
+    </div>
+    <div id="mobileMenu" class="mobile-panel md:hidden border-t border-slate-200 bg-white px-5 py-4" hidden>
+      <nav class="flex flex-col gap-4 text-sm font-semibold text-slate-700" aria-label="Mobile navigation">
+        <a href="/about/" class="hover:text-[#957C3D]">About Us</a><a href="/services/" class="hover:text-[#957C3D]">Services</a><a href="/blog/" class="hover:text-[#957C3D]">Blog</a><a href="#contact" class="text-[#957C3D]">Contact Accountrise →</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: close cockpit; shared Accountrise shell, fresh article design -->
+    <section class="close-hero hero-grid overflow-hidden text-white relative">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20 relative">
+        <div class="grid lg:grid-cols-[1.03fr_.97fr] gap-12 items-center">
+          <div class="reveal">
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[.17em] text-[#D9E8D9]">Odoo Accounting · Year-End Close</span>
+              <span class="text-sm text-slate-300">US businesses · Financial controls</span>
+            </div>
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.03] tracking-tight">A cleaner Odoo <span class="text-[#D9E8D9]">year-end close</span> starts before the final journal entry.</h1>
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-2xl">Use a structured close to reconcile balance-sheet accounts, investigate unusual movements, document adjustments and give your management team and tax professional a more dependable set of books.</p>
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#close-checklist" class="rounded-2xl bg-[#D9E8D9] text-[#002349] px-6 py-3.5 font-bold hover:bg-white transition">Start the Close Checklist</a>
+              <a href="#close-sequence" class="rounded-2xl border border-white/25 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">View the Close Sequence</a>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300"><span>✓ Reconciled balances</span><span>✓ Traceable adjustments</span><span>✓ CPA-ready support</span></div>
+          </div>
+          <div class="relative">
+            <div class="absolute -inset-4 rounded-[2.5rem] bg-[#D9E8D9]/5 blur-2xl"></div>
+            <div class="relative rounded-[2rem] border border-white/15 bg-[#021a31]/80 p-5 sm:p-7 shadow-2xl backdrop-blur">
+              <div class="flex items-start justify-between gap-5 border-b border-white/10 pb-5">
+                <div><div class="text-[11px] uppercase tracking-[.22em] font-black text-[#D9E8D9]">Year-End Close Cockpit</div><div class="mt-1 text-xl sm:text-2xl font-black">Close status overview</div></div>
+                <span class="rounded-full border border-[#D9E8D9]/25 bg-[#D9E8D9]/10 px-3 py-1.5 text-xs font-bold text-[#D9E8D9]">Illustrative</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3 mt-5">
+                <div class="float-card rounded-2xl border border-white/10 bg-white/[.06] p-3 sm:p-4"><div class="text-xs text-slate-400">Cash</div><div class="mt-2 text-lg sm:text-2xl font-black text-[#D9E8D9]">01</div><div class="text-[10px] sm:text-xs text-slate-400">Reconcile</div></div>
+                <div class="float-card rounded-2xl border border-white/10 bg-white/[.06] p-3 sm:p-4"><div class="text-xs text-slate-400">Balance sheet</div><div class="mt-2 text-lg sm:text-2xl font-black text-[#F0C2A8]">02</div><div class="text-[10px] sm:text-xs text-slate-400">Substantiate</div></div>
+                <div class="float-card rounded-2xl border border-white/10 bg-white/[.06] p-3 sm:p-4"><div class="text-xs text-slate-400">Review</div><div class="mt-2 text-lg sm:text-2xl font-black text-white">03</div><div class="text-[10px] sm:text-xs text-slate-400">Approve</div></div>
+              </div>
+              <div class="mt-5 rounded-2xl bg-white text-[#002349] p-5">
+                <div class="flex justify-between items-center gap-3"><div><div class="text-xs font-black uppercase tracking-wider text-[#957C3D]">Close principle</div><div class="mt-1 font-black text-lg">Every balance needs a reason</div></div><div class="w-11 h-11 rounded-xl bg-[#E8F0E8] flex items-center justify-center text-xl" aria-hidden="true">✓</div></div>
+                <div class="mt-4 space-y-2 text-sm">
+                  <div class="flex justify-between gap-3 border-b border-slate-100 pb-2"><span>GL balance</span><span class="font-bold">What Odoo reports</span></div>
+                  <div class="flex justify-between gap-3 border-b border-slate-100 pb-2"><span>Supporting schedule</span><span class="font-bold">What proves it</span></div>
+                  <div class="flex justify-between gap-3"><span>Reviewer sign-off</span><span class="font-bold">Who accepted it</span></div>
+                </div>
+              </div>
+              <p class="mt-4 text-xs leading-relaxed text-slate-400">Conceptual dashboard, not live Odoo data. Menu names and closing controls vary by version, localization and configuration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer first -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-18">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Executive answer</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">Do not treat year-end close as a single date on the calendar.</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">A reliable close is a sequence of reconciliations, cut-off checks, estimates, reviews and approvals. Odoo can hold the general ledger and operational records, but the finance team still needs to prove that balances are complete, accurate, supported and recorded in the correct period.</p>
+          <p class="mt-4 text-sm text-slate-500 leading-relaxed">This guide is an accounting-process checklist, not tax or legal advice. Coordinate tax elections, entity-specific adjustments and filing positions with your qualified US tax professional.</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <article class="close-step rounded-3xl bg-white border border-slate-200 p-7"><div class="w-12 h-12 rounded-2xl bg-[#E8F0E8] flex items-center justify-center text-xl">01</div><h3 class="mt-5 text-xl font-black text-[#002349]">Reconcile cash and debt</h3><p class="mt-3 text-slate-600 leading-relaxed">Match bank and credit-card accounts to statements; support loan balances and explain outstanding items.</p></article>
+          <article class="close-step rounded-3xl bg-white border border-slate-200 p-7"><div class="w-12 h-12 rounded-2xl bg-[#F9E9E1] flex items-center justify-center text-xl">02</div><h3 class="mt-5 text-xl font-black text-[#002349]">Substantiate working capital</h3><p class="mt-3 text-slate-600 leading-relaxed">Tie receivables, payables, inventory and other control accounts to detailed schedules.</p></article>
+          <article class="close-step rounded-3xl bg-white border border-slate-200 p-7"><div class="w-12 h-12 rounded-2xl bg-[#E7EEF7] flex items-center justify-center text-xl">03</div><h3 class="mt-5 text-xl font-black text-[#002349]">Check period cut-off</h3><p class="mt-3 text-slate-600 leading-relaxed">Review late invoices, unbilled activity, goods received, deferred items, accruals and prepayments.</p></article>
+          <article class="close-step rounded-3xl bg-[#002349] border border-[#002349] p-7 text-white"><div class="w-12 h-12 rounded-2xl bg-[#D9E8D9] text-[#002349] flex items-center justify-center text-xl">04</div><h3 class="mt-5 text-xl font-black">Review, document and restrict</h3><p class="mt-3 text-slate-300 leading-relaxed">Investigate unusual balances, approve adjustments, save support, then apply appropriate period-lock controls.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Close sequence -->
+    <section id="close-sequence" class="bg-[#EDF2F5] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl"><div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">The close sequence</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Move through the close in a controlled order</h2><p class="mt-4 text-slate-600 leading-relaxed">Use this as a work plan. Some tasks can run in parallel, but document dependencies and avoid locking a period while material corrections are still being reviewed.</p></div>
+        <div class="mt-10 grid md:grid-cols-2 xl:grid-cols-3 gap-5">
+          <article class="rounded-3xl bg-white p-6 border border-slate-200"><div class="flex items-center justify-between"><span class="text-xs font-black tracking-widest uppercase text-[#957C3D]">Stage 01</span><span class="text-2xl">⌁</span></div><h3 class="mt-4 text-xl font-black text-[#002349]">Freeze the scope</h3><p class="mt-3 text-slate-600 leading-relaxed">Confirm the fiscal year, entities, responsible owners, materiality thresholds, deliverables and review deadlines.</p><ul class="mt-4 space-y-2 text-sm text-slate-600"><li>• Agree a close calendar</li><li>• List open periods and journals</li><li>• Assign account owners</li></ul></article>
+          <article class="rounded-3xl bg-white p-6 border border-slate-200"><div class="flex items-center justify-between"><span class="text-xs font-black tracking-widest uppercase text-[#957C3D]">Stage 02</span><span class="text-2xl">↔</span></div><h3 class="mt-4 text-xl font-black text-[#002349]">Complete reconciliations</h3><p class="mt-3 text-slate-600 leading-relaxed">Reconcile cash, cards, payment clearing, receivables, payables, loans, taxes and other significant balance-sheet accounts.</p><ul class="mt-4 space-y-2 text-sm text-slate-600"><li>• Match subledgers to the GL</li><li>• Investigate stale items</li><li>• Attach source support</li></ul></article>
+          <article class="rounded-3xl bg-white p-6 border border-slate-200"><div class="flex items-center justify-between"><span class="text-xs font-black tracking-widest uppercase text-[#957C3D]">Stage 03</span><span class="text-2xl">▤</span></div><h3 class="mt-4 text-xl font-black text-[#002349]">Validate inventory and assets</h3><p class="mt-3 text-slate-600 leading-relaxed">Review quantities and valuation, work in process where relevant, fixed-asset additions, disposals and depreciation.</p><ul class="mt-4 space-y-2 text-sm text-slate-600"><li>• Compare physical counts where used</li><li>• Investigate negative or unusual stock</li><li>• Tie asset register to the GL</li></ul></article>
+          <article class="rounded-3xl bg-white p-6 border border-slate-200"><div class="flex items-center justify-between"><span class="text-xs font-black tracking-widest uppercase text-[#957C3D]">Stage 04</span><span class="text-2xl">◷</span></div><h3 class="mt-4 text-xl font-black text-[#002349]">Review cut-off and estimates</h3><p class="mt-3 text-slate-600 leading-relaxed">Check activity around year-end and identify expenses incurred but not billed, prepaid expenses, deferred revenue and other supported estimates.</p><ul class="mt-4 space-y-2 text-sm text-slate-600"><li>• Inspect dates near year-end</li><li>• Support accrual calculations</li><li>• Confirm reversal logic</li></ul></article>
+          <article class="rounded-3xl bg-white p-6 border border-slate-200"><div class="flex items-center justify-between"><span class="text-xs font-black tracking-widest uppercase text-[#957C3D]">Stage 05</span><span class="text-2xl">⌗</span></div><h3 class="mt-4 text-xl font-black text-[#002349]">Review financial statements</h3><p class="mt-3 text-slate-600 leading-relaxed">Look for unexpected movements, stale balances, negative asset/liability balances, unusual margins and accounts with no explanation.</p><ul class="mt-4 space-y-2 text-sm text-slate-600"><li>• Compare against prior periods</li><li>• Trace material variances</li><li>• Document management questions</li></ul></article>
+          <article class="rounded-3xl bg-[#002349] p-6 border border-[#002349] text-white"><div class="flex items-center justify-between"><span class="text-xs font-black tracking-widest uppercase text-[#D9E8D9]">Stage 06</span><span class="text-2xl">✓</span></div><h3 class="mt-4 text-xl font-black">Approve and protect the period</h3><p class="mt-3 text-slate-300 leading-relaxed">Obtain review sign-off, finalize approved entries, preserve working papers and restrict backdated changes in line with policy.</p><ul class="mt-4 space-y-2 text-sm text-slate-300"><li>• Keep an adjustment log</li><li>• Confirm reporting version</li><li>• Set lock dates appropriately</li></ul></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive exception navigator -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+        <div><div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Exception navigator</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Where should you investigate first?</h2><p class="mt-4 text-slate-600 leading-relaxed">Choose the problem closest to what you see. Use the suggested checks to narrow the investigation before posting adjustments.</p>
+          <label for="issueType" class="block mt-6 text-sm font-bold text-[#002349]">Select a close exception</label>
+          <select id="issueType" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3.5 text-[#172B40] focus:outline-none focus:ring-2 focus:ring-[#957C3D]"><option value="cash">Bank balance does not match Odoo</option><option value="ar">Accounts receivable differs from customer aging</option><option value="ap">Accounts payable does not match vendor bills</option><option value="inventory">Inventory valuation looks incorrect</option><option value="cutoff">Expenses or revenue may be in the wrong period</option><option value="equity">Equity or retained earnings looks unexpected</option></select>
+        </div>
+        <div class="rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm bg-white">
+          <div class="bg-[#002349] text-white p-6 sm:p-8"><div class="text-xs uppercase tracking-[.2em] font-black text-[#D9E8D9]">Suggested investigation</div><h3 id="issueTitle" class="mt-3 text-2xl font-black">Bank balance does not match Odoo</h3><p id="issueSummary" class="mt-3 text-slate-300 leading-relaxed">Start from the bank statement and the reconciliation date. Separate timing differences from missing, duplicate or incorrectly posted entries.</p></div>
+          <div class="p-6 sm:p-8"><h4 class="font-black text-[#002349]">Check in this order</h4><ol id="issueSteps" class="mt-4 space-y-3 text-slate-600 leading-relaxed list-decimal pl-5"><li>Confirm statement ending date and balance.</li><li>Review outstanding payments and deposits in transit.</li><li>Look for duplicate imports, missing transactions and incorrect journals.</li><li>Reconcile supported items and retain the reconciliation report.</li></ol><div class="mt-6 rounded-2xl bg-[#F3F6F8] p-4 text-sm text-slate-600"><strong class="text-[#002349]">Control note:</strong> <span id="issueControl">Do not post a plug entry solely to force the difference to zero; identify the cause first.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checklist with progress -->
+    <section id="close-checklist" class="bg-white border-y border-slate-200">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-10 items-start">
+          <div class="lg:sticky lg:top-28"><div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Interactive close checklist</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Turn the year-end close into trackable work</h2><p class="mt-4 text-slate-600 leading-relaxed">Check off each item when it is completed and supported—not just because a report was opened. Progress is calculated in this page only; it is not saved to Odoo.</p>
+            <div class="mt-7 rounded-3xl bg-[#002349] text-white p-6"><div class="flex justify-between items-end gap-4"><div><div class="text-xs uppercase tracking-widest font-black text-[#D9E8D9]">Readiness progress</div><div id="progressText" class="mt-2 text-4xl font-black">0%</div></div><div class="text-right text-sm text-slate-300"><span id="progressCount">0 of 12</span><br>tasks completed</div></div><div class="mt-5 h-3 rounded-full bg-white/15 overflow-hidden"><div id="progressFill" class="progress-fill h-full rounded-full bg-[#D9E8D9]" style="width:0%"></div></div><p id="progressMessage" class="mt-4 text-sm text-slate-300">Start with the reconciliations and build a clear audit trail.</p></div>
+          </div>
+          <div class="rounded-[2rem] bg-[#F7F9FA] border border-slate-200 overflow-hidden divide-y divide-slate-200">
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">1. Bank and credit-card accounts reconciled</strong><span class="block mt-1 text-sm text-slate-600">Statement balances, uncleared items and unusual transactions are supported.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">2. Receivables aging tied to the general ledger</strong><span class="block mt-1 text-sm text-slate-600">Customer credits, unapplied cash, write-offs and old balances were investigated.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">3. Payables aging tied to the general ledger</strong><span class="block mt-1 text-sm text-slate-600">Vendor statements, missing bills, duplicate bills and unapplied payments were reviewed.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">4. Inventory quantities and valuation reviewed</strong><span class="block mt-1 text-sm text-slate-600">Investigate count differences, negative stock, valuation layers and WIP where applicable.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">5. Fixed-asset register tied to the ledger</strong><span class="block mt-1 text-sm text-slate-600">Additions, disposals, accumulated depreciation and current-period expense were checked.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">6. Accruals and prepaid expenses documented</strong><span class="block mt-1 text-sm text-slate-600">Schedules include calculation basis, period allocation, approval and reversal instructions where needed.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">7. Revenue cut-off and customer deposits reviewed</strong><span class="block mt-1 text-sm text-slate-600">Invoices, credit notes, deferred amounts and relevant delivery/performance evidence were considered.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">8. Payroll, benefits and related liabilities reviewed</strong><span class="block mt-1 text-sm text-slate-600">Reconcile payroll reports and related liabilities using the appropriate records for the business.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">9. Loans, cards and interest support reconciled</strong><span class="block mt-1 text-sm text-slate-600">Tie liability balances to lender/statement information and review interest or fee accruals.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">10. Tax-related balances and reports reviewed</strong><span class="block mt-1 text-sm text-slate-600">Reconcile relevant tax control accounts and share open questions with the tax professional.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">11. Trial balance and financial statement variances explained</strong><span class="block mt-1 text-sm text-slate-600">Compare to prior periods or budget and document material unexpected movements.</span></span></label>
+            <label class="flex gap-4 items-start p-5 sm:p-6 cursor-pointer hover:bg-white transition"><input data-close-task type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="block text-[#002349]">12. Adjustments approved and close access controlled</strong><span class="block mt-1 text-sm text-slate-600">Journal support, approval, lock-date policy and post-close change protocol are documented.</span></span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Common failures -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="max-w-3xl"><div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Frequent year-end issues</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">What can make an Odoo close take longer than expected?</h2><p class="mt-4 text-slate-600 leading-relaxed">Most delays are not solved by one large journal entry. They need a traceable source, a clear owner and a repeatable investigation.</p></div>
+      <div class="mt-9 grid md:grid-cols-2 gap-5">
+        <article class="rounded-3xl border border-slate-200 bg-white p-6"><h3 class="text-lg font-black text-[#002349]">Subledger and GL do not agree</h3><p class="mt-3 text-slate-600 leading-relaxed">Review the account mapping, journal selection, unreconciled items, manual postings to control accounts and report date. Compare like-for-like dates and company filters before making adjustments.</p></article>
+        <article class="rounded-3xl border border-slate-200 bg-white p-6"><h3 class="text-lg font-black text-[#002349]">Old or unexplained clearing balances</h3><p class="mt-3 text-slate-600 leading-relaxed">Break payment, payroll, inventory or integration clearing accounts into transaction-level items. Identify timing differences, duplicate imports, missing source transactions and ownership for resolution.</p></article>
+        <article class="rounded-3xl border border-slate-200 bg-white p-6"><h3 class="text-lg font-black text-[#002349]">Late bills and backdated entries</h3><p class="mt-3 text-slate-600 leading-relaxed">Set a documented cut-off and adjustment-review path. Determine whether activity belongs in the closing period, then record and approve any adjustment under the company's accounting policy.</p></article>
+        <article class="rounded-3xl border border-slate-200 bg-white p-6"><h3 class="text-lg font-black text-[#002349]">Year-end numbers change after review</h3><p class="mt-3 text-slate-600 leading-relaxed">Maintain a journal log with preparer, reviewer, date, purpose and supporting file. Use Odoo access and lock-date settings appropriate to your version and authorization policy, and document approved exceptions.</p></article>
+      </div>
+    </section>
+
+    <!-- Working paper standards -->
+    <section class="bg-[#EEF2F4] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+          <div><div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Evidence standards</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">A reconciled number should be easy to re-check</h2><p class="mt-4 text-slate-600 leading-relaxed">A clean close is not just a set of balances. It is a set of balances someone else can understand without redoing the entire investigation.</p></div>
+          <div class="rounded-[2rem] border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+            <div class="grid sm:grid-cols-[.9fr_1.1fr] gap-6 items-center">
+              <div class="rounded-2xl bg-[#002349] p-5 text-white"><div class="text-xs uppercase tracking-widest font-black text-[#D9E8D9]">Suggested workpaper</div><div class="mt-3 text-xl font-black">Account reconciliation</div><div class="mt-4 space-y-2 text-sm text-slate-300"><div class="flex justify-between gap-3"><span>Period</span><span class="text-white font-bold">FY end</span></div><div class="flex justify-between gap-3"><span>Owner</span><span class="text-white font-bold">Preparer</span></div><div class="flex justify-between gap-3"><span>Review</span><span class="text-white font-bold">Approver</span></div></div></div>
+              <div><div class="font-black text-[#002349]">Include these fields</div><ul class="mt-4 space-y-3 text-slate-600 text-sm leading-relaxed"><li class="audit-line pl-3 py-2 rounded-r-lg">GL account and reporting period</li><li class="audit-line pl-3 py-2 rounded-r-lg">Odoo balance and source schedule balance</li><li class="audit-line pl-3 py-2 rounded-r-lg">List of reconciling items and expected resolution dates</li><li class="audit-line pl-3 py-2 rounded-r-lg">Journal references and links to supporting files</li><li class="audit-line pl-3 py-2 rounded-r-lg">Preparer/reviewer sign-off and date</li></ul></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related guides -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-16">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5"><div><div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Related Odoo guides</div><h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Build a stronger monthly and annual close process</h2></div><a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">Explore all articles →</a></div>
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition"><div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div><h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3><p class="mt-3 text-sm text-slate-600">Create a repeatable monthly close rhythm.</p></a>
+        <a href="/blog/odoo-accounting-lock-dates-backdated-entries.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition"><div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Close Controls</div><h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Accounting Lock Dates: Control Backdated Entries</h3><p class="mt-3 text-sm text-slate-600">Protect reviewed periods with a clear change policy.</p></a>
+        <a href="/blog/odoo-fixed-assets-depreciation.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition"><div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Fixed Assets</div><h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Fixed Assets and Depreciation: A Practical Guide</h3><p class="mt-3 text-sm text-slate-600">Review asset registers, depreciation and ledger balances.</p></a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-white border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center"><div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Year-end close FAQ</div><h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Odoo year-end accounting questions</h2><p class="mt-4 text-slate-600">Answers for operators preparing records for management and professional tax review.</p></div>
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-2xl bg-[#F7F9FA] border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Does Odoo automatically complete the year-end close?<span class="faq-plus text-[#957C3D] text-xl transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">Odoo provides accounting records, reports and controls that can support close tasks, depending on the installed apps and configuration. It does not remove the need to reconcile accounts, review cut-off, support estimates, approve adjustments and determine whether the books are ready for reporting or tax review.</p></details>
+          <details class="group rounded-2xl bg-[#F7F9FA] border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What accounts should be reconciled before year-end?<span class="faq-plus text-[#957C3D] text-xl transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">Prioritize material balance-sheet accounts: bank and card accounts, receivables, payables, inventory, fixed assets, loans, payroll and tax-related liabilities, payment clearing and other significant accrual or deferral accounts. The final list depends on the business and chart of accounts.</p></details>
+          <details class="group rounded-2xl bg-[#F7F9FA] border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Should we lock the accounting period before the tax return is prepared?<span class="faq-plus text-[#957C3D] text-xl transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">Set period controls after the necessary close and review steps according to your policy. Some approved tax or audit adjustments may be needed later, so document who may authorize reopening or backdated entries and how changes will be reviewed. Available settings depend on Odoo version and access rights.</p></details>
+          <details class="group rounded-2xl bg-[#F7F9FA] border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Can an outsourced accounting team prepare the year-end close in Odoo?<span class="faq-plus text-[#957C3D] text-xl transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">A remote accounting team can assist with reconciliations, supporting schedules, transaction review, proposed adjustments and close documentation when access, scope and review responsibilities are clearly defined. Management and the company's licensed tax/accounting professionals should retain the required approval and filing responsibilities.</p></details>
+          <details class="group rounded-2xl bg-[#F7F9FA] border border-slate-200 p-6"><summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Is this checklist enough to prepare a US tax return?<span class="faq-plus text-[#957C3D] text-xl transition">+</span></summary><p class="mt-4 text-slate-600 leading-relaxed">It helps organize accounting records but is not a complete tax-return checklist. Tax adjustments, elections, entity-specific forms, state and local obligations, depreciation treatment and filing requirements should be confirmed with a qualified tax professional.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- One CTA section only; Odoo rate only -->
+    <section id="contact" class="bg-[#002349] text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-20" aria-hidden="true" style="background:radial-gradient(circle at 18% 30%,#D9E8D9 0,transparent 22%),radial-gradient(circle at 87% 70%,#D98A65 0,transparent 24%)"></div>
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center relative">
+        <div class="max-w-3xl mx-auto"><div class="text-xs font-black uppercase tracking-[.22em] text-[#D9E8D9]">Need experienced Odoo accounting support?</div><h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Get year-end books organized without automatically adding full-time overhead.</h2><p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise provides remote Odoo accounting support for US businesses and accounting firms—from reconciliations and close schedules to transaction review and clear handoffs for your internal team or tax professional.</p>
+          <div class="mt-8 inline-flex flex-wrap items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/5 px-5 py-3"><span class="text-sm text-slate-300">Odoo accounting support</span><span class="text-xl sm:text-2xl font-black text-[#D9E8D9]">Starting at $12/hour</span></div>
+          <p class="mt-3 text-sm text-slate-400">Final pricing depends on scope, transaction volume, complexity, access requirements and engagement needs.</p>
+          <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4"><a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a><a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a></div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="bg-[#00182F] text-slate-400"><div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4"><div class="text-sm">© 2026 Accountrise. All rights reserved.</div><div class="text-sm text-center sm:text-right">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div></div></footer>
+
+  <script>
+    // Mobile navigation dropdown
+    const menuToggle = document.getElementById('menuToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';
+      menuToggle.setAttribute('aria-expanded', String(!isOpen));
+      mobileMenu.hidden = isOpen;
+    });
+    mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mobileMenu.hidden = true;
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }));
+
+    // Interactive close-exception navigator
+    const issues = {
+      cash: { title:'Bank balance does not match Odoo', summary:'Start from the bank statement and reconciliation date. Separate timing differences from missing, duplicate or incorrectly posted entries.', steps:['Confirm statement ending date and balance.','Review outstanding payments and deposits in transit.','Look for duplicate imports, missing transactions and incorrect journals.','Reconcile supported items and retain the reconciliation report.'], control:'Do not post a plug entry solely to force the difference to zero; identify the cause first.' },
+      ar: { title:'Receivables aging differs from the GL', summary:'Confirm report dates, company and account filters, then trace customer-level open items to the receivable control account.', steps:['Run the customer aging and general ledger for matching dates and company scope.','Check manual journals posted directly to receivable control accounts.','Investigate unapplied receipts, credit notes, write-offs and reconciliation status.','Correct the identified source and retain a tie-out of aging to the GL.'], control:'Avoid posting directly to a control account unless your accounting policy allows it and the item is fully supported.' },
+      ap: { title:'Payables does not match vendor bills', summary:'Compare vendor open items, bills and payments with the relevant payable control account, using the same cut-off date.', steps:['Run vendor aging and the GL with consistent date and company filters.','Check vendor credits, payments awaiting reconciliation and unposted bills.','Review manual postings and duplicate or misdated vendor bills.','Document the cause of each difference and re-run the tie-out after correction.'], control:'A vendor statement or bill schedule is useful evidence, but reconcile timing differences rather than forcing balances to match.' },
+      inventory: { title:'Inventory valuation looks incorrect', summary:'Check whether quantities, valuation configuration, costing method and accounting entries agree for the period being reviewed.', steps:['Confirm the stock valuation report and GL use the same company and date basis.','Review receipts, deliveries, returns, adjustments and negative-stock situations.','Inspect valuation layers and product category accounting configuration where relevant.','Trace material variances to source stock moves and approved corrections.'], control:'Inventory and accounting integration behavior depends on product categories, costing method, configuration and Odoo version; test corrections before posting.' },
+      cutoff: { title:'Activity may be in the wrong accounting period', summary:'Review transactions around the year-end boundary and determine when the underlying goods, service or obligation belongs in the books under the company policy.', steps:['Review late vendor bills, customer credit notes, receipts and delivery records near year-end.','List services received but not invoiced, prepayments and amounts collected before earning revenue.','Prepare supported accrual, deferral or reclassification calculations as appropriate.','Document approver, accounting period, reversal date if applicable and supporting evidence.'], control:'Do not shift transactions solely to reach a target result; follow the entity’s accounting policies and obtain professional advice for judgmental matters.' },
+      equity: { title:'Equity or retained earnings looks unexpected', summary:'Trace opening balances, current-year profit, owner activity and prior-period adjustments before deciding whether a correcting entry is required.', steps:['Compare opening balances with the prior-year approved financial statements.','Review owner contributions/distributions and other equity postings.','Check prior-period adjustments, year-end closing behavior and net-income presentation.','Confirm entity-specific presentation and any required entries with the responsible accounting professional.'], control:'Do not assume an unexpected retained earnings balance is automatically an Odoo error; establish the underlying accounting reason first.' }
+    };
+    const issueSelect = document.getElementById('issueType');
+    issueSelect.addEventListener('change', () => {
+      const item = issues[issueSelect.value];
+      document.getElementById('issueTitle').textContent = item.title;
+      document.getElementById('issueSummary').textContent = item.summary;
+      document.getElementById('issueControl').textContent = item.control;
+      const list = document.getElementById('issueSteps');
+      list.replaceChildren(...item.steps.map(step => { const li = document.createElement('li'); li.textContent = step; return li; }));
+    });
+
+    // Checklist progress indicator. Progress lives in the current page only.
+    const tasks = [...document.querySelectorAll('[data-close-task]')];
+    function updateProgress() {
+      const completed = tasks.filter(task => task.checked).length;
+      const percent = Math.round((completed / tasks.length) * 100);
+      document.getElementById('progressText').textContent = percent + '%';
+      document.getElementById('progressCount').textContent = `${completed} of ${tasks.length}`;
+      document.getElementById('progressFill').style.width = percent + '%';
+      document.getElementById('progressMessage').textContent = percent === 100 ? 'All checklist items marked complete. Save the supporting workpapers and obtain the required reviewer sign-off.' : percent >= 75 ? 'Nearly there. Review open exceptions and make sure every completed task has supporting evidence.' : percent >= 35 ? 'Good progress. Keep the account reconciliations and cut-off support moving together.' : 'Start with the reconciliations and build a clear audit trail.';
+    }
+    tasks.forEach(task => task.addEventListener('change', updateProgress));
+    updateProgress();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"BlogPosting",
+    "headline":"Odoo Year-End Closing Checklist for US Businesses",
+    "description":"A practical Odoo year-end close workflow for US businesses, covering reconciliations, working capital, inventory, fixed assets, cut-off, adjustments and review controls.",
+    "author":{"@type":"Organization","name":"Accountrise"},
+    "publisher":{"@type":"Organization","name":"Accountrise","url":"https://www.accountrise.com"},
+    "mainEntityOfPage":{"@type":"WebPage","@id":"https://www.accountrise.com/blog/odoo-year-end-closing-checklist-us-businesses.html"},
+    "url":"https://www.accountrise.com/blog/odoo-year-end-closing-checklist-us-businesses.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":[
+      {"@type":"Question","name":"Does Odoo automatically complete the year-end close?","acceptedAnswer":{"@type":"Answer","text":"Odoo provides accounting records, reports and controls that can support close tasks, depending on the installed apps and configuration. It does not remove the need to reconcile accounts, review cut-off, support estimates, approve adjustments and determine whether the books are ready for reporting or tax review."}},
+      {"@type":"Question","name":"What accounts should be reconciled before year-end?","acceptedAnswer":{"@type":"Answer","text":"Prioritize material balance-sheet accounts: bank and card accounts, receivables, payables, inventory, fixed assets, loans, payroll and tax-related liabilities, payment clearing and other significant accrual or deferral accounts. The final list depends on the business and chart of accounts."}},
+      {"@type":"Question","name":"Should we lock the accounting period before the tax return is prepared?","acceptedAnswer":{"@type":"Answer","text":"Set period controls after the necessary close and review steps according to your policy. Some approved tax or audit adjustments may be needed later, so document who may authorize reopening or backdated entries and how changes will be reviewed. Available settings depend on Odoo version and access rights."}},
+      {"@type":"Question","name":"Can an outsourced accounting team prepare the year-end close in Odoo?","acceptedAnswer":{"@type":"Answer","text":"A remote accounting team can assist with reconciliations, supporting schedules, transaction review, proposed adjustments and close documentation when access, scope and review responsibilities are clearly defined. Management and the company's licensed tax/accounting professionals should retain the required approval and filing responsibilities."}},
+      {"@type":"Question","name":"Is this checklist enough to prepare a US tax return?","acceptedAnswer":{"@type":"Answer","text":"It helps organize accounting records but is not a complete tax-return checklist. Tax adjustments, elections, entity-specific forms, state and local obligations, depreciation treatment and filing requirements should be confirmed with a qualified tax professional."}}
+    ]
+  }
+  </script>
+</body>
+</html>
