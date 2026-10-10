@@ -886,11 +886,15 @@
     .site-brand-copy strong{font-size:1.2rem;letter-spacing:-.045em;font-weight:900;color:#fff}
     .site-brand-copy small{font-size:.48rem;letter-spacing:.17em;font-weight:800;color:rgba(255,255,255,.48);white-space:nowrap}
     .desktop-nav{align-items:center}
-    .desktop-nav .nav-link{font-size:.73rem;font-weight:700;letter-spacing:-.01em;color:rgba(255,255,255,.75)!important;-webkit-text-fill-color:rgba(255,255,255,.75)!important;white-space:nowrap;padding:11px 0}
+    .desktop-nav .nav-link{font-size:.84rem;font-weight:700;letter-spacing:-.01em;color:rgba(255,255,255,.75)!important;-webkit-text-fill-color:rgba(255,255,255,.75)!important;white-space:nowrap;padding:11px 0}
     .desktop-nav .nav-link:hover,.desktop-nav .nav-link.active{color:#fff!important;-webkit-text-fill-color:#fff!important}
     .desktop-nav .nav-link::after{height:2px;background:#c5a65b;bottom:3px}
-    .site-nav-cta{background:#c5a65b;color:#002349;text-decoration:none;font-size:.76rem;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.12);transition:background .25s ease,transform .25s ease,box-shadow .25s ease}
+    .site-nav-cta{background:#c5a65b;color:#002349;text-decoration:none;font-size:.86rem;white-space:nowrap;box-shadow:0 8px 22px rgba(0,0,0,.12);transition:background .25s ease,transform .25s ease,box-shadow .25s ease}
     .site-nav-cta:hover{background:#d8bf79;transform:translateY(-2px);box-shadow:0 13px 28px rgba(0,0,0,.18)}
+    @media(min-width:1280px){
+      .desktop-nav .nav-link{font-size:.98rem;padding:12px 0}
+      .site-nav-cta{font-size:.95rem;padding:.9rem 1.35rem}
+    }
     .mobile-menu-button{transition:background .2s ease,border-color .2s ease}
     .mobile-menu-button:hover{background:rgba(255,255,255,.08);border-color:rgba(197,166,91,.6)}
     #mobileMenu{border-color:rgba(255,255,255,.1)}
@@ -1088,161 +1092,171 @@
       #site-header .site-nav-row{height:68px}
     }
 
-  </style>
+
+</style>
 </head>
 <body class="bg-[#F5F7FA] text-gray-900 antialiased">
 <a class="skip-link" href="#top">Skip to content</a>
 <div aria-hidden="true" class="progress" id="progress"></div>
-<!-- STICKY NAVIGATION -->
+<!-- STICKY NAVIGATION: simplified to match the requested primary links -->
+<a class="skip-link" href="#top">Skip to content</a>
 <header class="site-header fixed top-0 left-0 w-full z-[90] transition-all duration-300" id="site-header">
-<nav aria-label="Main navigation" class="site-nav border-b border-white/10">
-<div class="max-w-7xl mx-auto px-5 sm:px-6">
-<div class="site-nav-row h-[78px] flex items-center justify-between gap-5">
-<a aria-label="Accountrise homepage" class="logo-link site-brand flex items-center gap-3 group shrink-0" href="#top">
-<img alt="Accountrise logo" class="logo-mark h-11 sm:h-12 w-auto rounded-xl" src="./accountrise.png"/>
-<span class="site-brand-copy"><strong>Accountrise</strong><small>BOOKKEEPING · ACCOUNTING</small></span>
-</a>
-<div class="desktop-nav hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm">
-<a href="/"class="nav-link active"aria-current="page"
-     style="color:#ffffff !important; -webkit-text-fill-color:#ffffff !important;">
-    Home
-  </a><a class="nav-link" data-nav="/about/" href="/about/">About Us</a>
-<a class="nav-link" data-nav="/services" href="/services/">Services</a>
-<a class="nav-link" data-nav="blog" href="/blog/">Insights</a>
-<a class="nav-link" data-nav="testimonials" href="#testimonials">Reviews</a>
-<a class="nav-link" data-nav="contact" href="#contact">Contact</a>
-<a class="site-nav-cta pump-cta inline-flex items-center gap-2 rounded-full px-5 py-3 font-extrabold" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">
-              Book a Call <i aria-hidden="true" class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-</a>
-</div>
-<button aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation" class="mobile-menu-button lg:hidden w-11 h-11 rounded-xl border border-white/15 text-white flex items-center justify-center" id="menuBtn" type="button">
-<i aria-hidden="true" class="fas fa-bars"></i>
-</button>
-</div>
-<div aria-label="Mobile navigation" class="mobile-menu lg:hidden border-t border-white/10" id="mobileMenu">
-<div class="py-4 grid gap-1">
-<a class="mobile-link" href="#/services/">Services</a>
-<a class="mobile-link" href="#why">Why Accountrise</a>
-<a class="mobile-link" href="#process">How It Works</a>
-<a class="mobile-link" href="#/blog/">Insights</a>
-<a class="mobile-link" href="#testimonials">Reviews</a>
-<a class="mobile-link" href="#faq">FAQs</a>
-<a class="mobile-link" href="#contact">Contact</a>
-<a class="mobile-menu-cta mt-2" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">Book a Free Consultation <i aria-hidden="true" class="fas fa-arrow-up-right-from-square ml-2"></i></a>
-</div>
-</div>
-</div>
-</nav>
+  <nav aria-label="Main navigation" class="site-nav border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6">
+      <div class="site-nav-row h-[78px] flex items-center justify-between gap-5">
+        <a aria-label="Accountrise homepage" class="logo-link site-brand flex items-center gap-3 group shrink-0" href="#top">
+          <img alt="Accountrise logo" class="logo-mark h-11 sm:h-12 w-auto rounded-xl" src="./accountrise.png"/>
+          <span class="site-brand-copy"><strong>Accountrise</strong></span>
+        </a>
+        <div class="desktop-nav hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm" aria-label="Primary links">
+          <a class="nav-link active" data-nav="top" href="#top" aria-current="page">Home</a>
+          <a class="nav-link" href="/about/">About Us</a>
+          <a class="nav-link" data-nav="/services/" href="/services/">Services</a>
+          <a class="nav-link" data-nav="/blog/" href="/blog/">Insights</a>
+          <a class="nav-link" data-nav="testimonials" href="#testimonials">Reviews</a>
+          <a class="nav-link" data-nav="faq" href="#faq">FAQ</a>
+          <a class="nav-link" data-nav="contact" href="#contact">Contact</a>
+          <a class="site-nav-cta pump-cta inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-extrabold" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">
+            Book a Call <i aria-hidden="true" class="fas fa-arrow-right text-[11px]"></i>
+          </a>
+        </div>
+        <button aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation" class="mobile-menu-button lg:hidden w-11 h-11 rounded-xl border border-white/15 text-white flex items-center justify-center" id="menuBtn" type="button">
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
+      </div>
+      <div aria-label="Mobile navigation" class="mobile-menu lg:hidden border-t border-white/10" id="mobileMenu">
+        <div class="py-4 grid gap-1">
+          <a class="mobile-link" href="#top">Home</a>
+          <a class="mobile-link" href="/about/">About Us</a>
+          <a class="mobile-link" href="/services/">Services</a>
+          <a class="mobile-link" href="/blog/">Insights</a>
+          <a class="mobile-link" href="#testimonials">Reviews</a>
+          <a class="mobile-link" href="#faq">FAQ</a>
+          <a class="mobile-link" href="#contact">Contact</a>
+          <a class="mobile-menu-cta mt-2" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">Book a Call <i aria-hidden="true" class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+      </div>
+    </div>
+  </nav>
 </header>
 <main aria-label="Accountrise homepage" id="top" tabindex="-1">
-<!-- HERO -->
+<!-- HERO: US-FIRST, AFFORDABLE, PEOPLE-LED ACCOUNTING SUPPORT -->
 <section class="snap-section min-h-screen pt-28 lg:pt-36 pb-14 px-5 sm:px-6 bg-gradient-to-br from-[#F5F7FA] via-white to-slate-100" data-section="top">
-<div class="parallax-grid absolute inset-0 grid-bg pointer-events-none"></div>
-<div class="parallax-orb absolute -top-28 -right-24 w-[420px] h-[420px] rounded-full bg-[#957C3D]/10 blur-3xl pointer-events-none"></div>
-<div class="parallax-orb absolute bottom-0 -left-40 w-[420px] h-[420px] rounded-full bg-[#002349]/8 blur-3xl pointer-events-none" style="--parallax:-18px"></div>
-<div class="max-w-7xl mx-auto min-h-[calc(100vh-9rem)] grid lg:grid-cols-[1.03fr_.97fr] gap-10 xl:gap-16 items-center relative z-10">
-<div data-aos="fade-up">
-<div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs sm:text-sm font-semibold text-[#002349] mb-7">
-<span class="w-2 h-2 rounded-full bg-[#957C3D] animate-pulse"></span>
-            Remote bookkeeping for US businesses &amp; CPA firms
+      <div class="parallax-grid absolute inset-0 grid-bg pointer-events-none"></div>
+      <div class="parallax-orb absolute -top-28 -right-24 w-[420px] h-[420px] rounded-full bg-[#957C3D]/10 blur-3xl pointer-events-none"></div>
+      <div class="parallax-orb absolute bottom-0 -left-40 w-[420px] h-[420px] rounded-full bg-[#002349]/8 blur-3xl pointer-events-none" style="--parallax:-18px"></div>
+      <div class="max-w-7xl mx-auto min-h-[calc(100vh-9rem)] grid lg:grid-cols-[1.03fr_.97fr] gap-10 xl:gap-16 items-center relative z-10">
+        <div data-aos="fade-up">
+          <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs sm:text-sm font-semibold text-[#002349] mb-7">
+            <span class="w-2 h-2 rounded-full bg-[#957C3D] animate-pulse"></span>
+            Remote accounting support for US businesses & CPA firms
           </div>
-<h1 class="text-[2.7rem] sm:text-6xl xl:text-[4.65rem] font-black tracking-[-.05em] leading-[.98] text-[#002349] max-w-4xl">
+          <h1 class="text-[2.7rem] sm:text-6xl xl:text-[4.65rem] font-black tracking-[-.05em] leading-[.98] text-[#002349] max-w-4xl">
             Clean books.
             <span class="text-[#957C3D]">Clear numbers.</span>
             Better decisions.
           </h1>
-<p class="mt-7 text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
-            Affordable remote bookkeeping and accounting support for US businesses and CPA firms—without the cost of another full-time hire. From QuickBooks Online and Odoo to reconciliations, cleanup, and month-end close, we work around your existing process. We also support clients in Canada.
+          <p class="mt-7 text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
+            Professional outsourced bookkeeping and accounting support without the cost of another full-time hire.
+            From day-to-day bookkeeping to reconciliations, month-end close and reporting we fit around your workflow.
           </p>
-<!-- ONE PRICE ONLY IN THE HERO -->
-<div class="hero-price-card mt-7 max-w-xl rounded-[1.5rem] bg-white border border-[#002349]/10 p-4 sm:p-5 shadow-[0_18px_55px_rgba(0,35,73,.08)]">
-<div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative z-10">
-<div>
-<div class="text-[10px] uppercase tracking-[.20em] text-[#957C3D] font-bold">Simple, flexible pricing</div>
-<div class="flex items-end gap-2 mt-1">
-<span class="text-4xl sm:text-5xl font-black tracking-tight text-[#002349]">$10</span>
-<span class="text-sm text-gray-500 pb-1">/hr starting</span>
-</div>
-</div>
-<div class="flex flex-wrap gap-2">
-<span class="price-pill">Hourly</span><span class="price-pill">Project</span><span class="price-pill">Monthly</span>
-</div>
-</div>
-</div>
-<div class="flex flex-wrap gap-4 mt-7">
-<a class="pump-cta inline-flex items-center justify-center gap-3 bg-[#002349] text-white px-7 sm:px-8 py-4 rounded-2xl font-bold hover:bg-[#00172f] transition" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener" target="_blank">
-              Book Free Consultation <i class="fas fa-arrow-up-right-from-square text-sm"></i>
-</a>
-<a class="inline-flex items-center justify-center gap-3 border border-[#002349]/20 bg-white/70 text-[#002349] px-7 sm:px-8 py-4 rounded-2xl font-bold hover:bg-[#002349] hover:text-white transition" href="#contact">
-              Get My Bookkeeping Plan <i class="fas fa-arrow-down text-sm"></i>
-</a>
-</div>
-<div class="mt-8 grid sm:grid-cols-3 gap-3 max-w-2xl">
-<div class="hero-proof"><span><i class="fas fa-check"></i></span><div><strong>100K+</strong><small>transactions</small></div></div>
-<div class="hero-proof"><span><i class="fas fa-cloud"></i></span><div><strong>Cloud-first</strong><small>workflows</small></div></div>
-<div class="hero-proof"><span><i class="fas fa-user-tie"></i></span><div><strong>CPA-ready</strong><small>support</small></div></div>
-</div>
-</div>
-<!-- INTERACTIVE ACCOUNTING COMMAND CENTER -->
-<div class="relative mt-5 lg:mt-0" data-aos="fade-left">
-<div class="hero-ring bg-white/75 rounded-[2rem] sm:rounded-[2.7rem] p-3 sm:p-5 relative">
-<div class="absolute -top-4 -right-3 sm:-right-5 glass rounded-2xl px-4 py-3 shadow-xl float z-20">
-<div class="text-[10px] uppercase tracking-[.18em] text-gray-400">Status</div>
-<div class="flex items-center gap-2 mt-1 text-sm font-bold text-[#002349]">
-<span class="w-2 h-2 rounded-full bg-emerald-500"></span> Books on track
+
+          <!-- ONE PRICE ONLY IN THE HERO -->
+          <div class="hero-price-card mt-7 max-w-xl rounded-[1.5rem] bg-white border border-[#002349]/10 p-4 sm:p-5 shadow-[0_18px_55px_rgba(0,35,73,.08)]">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 relative z-10">
+              <div>
+                <div class="text-[10px] uppercase tracking-[.20em] text-[#957C3D] font-bold">Simple, flexible pricing</div>
+                <div class="flex items-end gap-2 mt-1">
+                  <span class="text-4xl sm:text-5xl font-black tracking-tight text-[#002349]">$10</span>
+                  <span class="text-sm text-gray-500 pb-1">/hr starting</span>
+                </div>
               </div>
-</div>
-<div class="bg-[#002349] rounded-[1.7rem] sm:rounded-[2.1rem] p-5 sm:p-7 text-white overflow-hidden relative">
-<div class="absolute -right-24 -top-24 w-72 h-72 rounded-full border border-white/10"></div>
-<div class="absolute -right-10 -top-10 w-48 h-48 rounded-full border border-[#957C3D]/30"></div>
-<div class="relative z-10">
-<div class="flex items-center justify-between gap-4">
-<div>
-<div class="text-white/45 text-[10px] sm:text-xs uppercase tracking-[.2em]">Accounting command center</div>
-<h2 class="text-2xl sm:text-3xl font-black mt-2">Your books, under control.</h2>
-<p class="text-white/50 text-sm leading-relaxed mt-2">A simple view of the work that keeps your accounting ready.</p>
-</div>
-<div class="w-11 h-11 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center shrink-0"><i class="fas fa-chart-line"></i></div>
-</div>
-<div class="mt-6 rounded-2xl border border-white/10 bg-white/[.055] p-3">
-<div class="flex items-center justify-between text-[10px] uppercase tracking-[.16em] text-white/40 px-1 mb-2">
-<span>Workflow</span><span class="text-[#957C3D]" id="workflowStatus">Active</span>
-</div>
-<div class="grid grid-cols-2 gap-2" id="heroWorkflow">
-<div class="hero-workflow-step is-active" data-workflow-step="0"><span><i class="fas fa-book-open"></i></span><div><strong>Bookkeeping</strong><small>Transactions organized</small></div></div>
-<div class="hero-workflow-step" data-workflow-step="1"><span><i class="fas fa-building-columns"></i></span><div><strong>Reconciliation</strong><small>Banks &amp; cards matched</small></div></div>
-<div class="hero-workflow-step" data-workflow-step="2"><span><i class="fas fa-rotate"></i></span><div><strong>Month-end close</strong><small>Ledgers reviewed</small></div></div>
-<div class="hero-workflow-step" data-workflow-step="3"><span><i class="fas fa-chart-pie"></i></span><div><strong>Financial reports</strong><small>Numbers ready to use</small></div></div>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-3 mt-3">
-<div class="glass-dark rounded-2xl p-4">
-<div class="text-white/40 text-xs">Reconciliations</div>
-<div class="text-2xl font-extrabold mt-2">100%</div>
-<div class="mt-3 h-1.5 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-full bg-[#957C3D] rounded-full"></div></div>
-</div>
-<div class="glass-dark rounded-2xl p-4">
-<div class="text-white/40 text-xs">Close status</div>
-<div class="text-2xl font-extrabold mt-2">On track</div>
-<div class="mt-3 flex gap-1.5"><span class="w-2 h-2 rounded-full bg-[#957C3D]"></span><span class="w-2 h-2 rounded-full bg-[#957C3D]/70"></span><span class="w-2 h-2 rounded-full bg-[#957C3D]/40"></span></div>
-</div>
-</div>
-<div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
-<div class="flex flex-wrap gap-2"><span class="software-pill">QuickBooks</span><span class="software-pill">Odoo</span><span class="software-pill">Cloud</span></div>
-<a class="text-sm font-bold text-[#957C3D] hover:text-white transition whitespace-nowrap" href="#services">Explore →</a>
-</div>
-</div>
-</div>
-</div>
-<div class="absolute -bottom-5 -left-3 sm:-left-9 glass rounded-2xl p-3.5 shadow-xl float float-delay max-w-[205px]">
-<div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-[#002349] text-white flex items-center justify-center"><i class="fas fa-lock"></i></div><div><div class="text-[10px] uppercase tracking-[.14em] text-gray-400">Workflow</div><div class="font-bold text-[#002349]">Cloud-ready</div></div></div>
-</div>
-<div class="absolute -bottom-9 right-0 glass rounded-2xl px-4 py-3 shadow-xl float float-delay-2 hidden sm:block">
-<div class="text-[10px] uppercase tracking-[.18em] text-gray-400">Built for</div><div class="font-bold text-[#002349] mt-1">US businesses • CPA firms</div>
-</div>
-</div>
-</div>
-</section>
+              <div class="flex flex-wrap gap-2">
+                <span class="price-pill">Hourly</span><span class="price-pill">Project</span><span class="price-pill">Monthly</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 mt-7">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener"
+               class="pump-cta inline-flex items-center justify-center gap-3 bg-[#002349] text-white px-7 sm:px-8 py-4 rounded-2xl font-bold hover:bg-[#00172f] transition">
+              Book Free Consultation <i class="fas fa-arrow-up-right-from-square text-sm"></i>
+            </a>
+            <a href="#contact" class="inline-flex items-center justify-center gap-3 border border-[#002349]/20 bg-white/70 text-[#002349] px-7 sm:px-8 py-4 rounded-2xl font-bold hover:bg-[#002349] hover:text-white transition">
+              Get My Bookkeeping Plan <i class="fas fa-arrow-down text-sm"></i>
+            </a>
+          </div>
+
+          <div class="mt-8 grid sm:grid-cols-3 gap-3 max-w-2xl">
+            <div class="hero-proof"><span><i class="fas fa-check"></i></span><div><strong>100K+</strong><small>transactions</small></div></div>
+            <div class="hero-proof"><span><i class="fas fa-cloud"></i></span><div><strong>Cloud-first</strong><small>workflows</small></div></div>
+            <div class="hero-proof"><span><i class="fas fa-user-tie"></i></span><div><strong>CPA-ready</strong><small>support</small></div></div>
+          </div>
+        </div>
+
+        <!-- INTERACTIVE ACCOUNTING COMMAND CENTER -->
+        <div class="relative mt-5 lg:mt-0" data-aos="fade-left">
+          <div class="hero-ring bg-white/75 rounded-[2rem] sm:rounded-[2.7rem] p-3 sm:p-5 relative">
+            <div class="absolute -top-4 -right-3 sm:-right-5 glass rounded-2xl px-4 py-3 shadow-xl float z-20">
+              <div class="text-[10px] uppercase tracking-[.18em] text-gray-400">Status</div>
+              <div class="flex items-center gap-2 mt-1 text-sm font-bold text-[#002349]">
+                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Books on track
+              </div>
+            </div>
+            <div class="bg-[#002349] rounded-[1.7rem] sm:rounded-[2.1rem] p-5 sm:p-7 text-white overflow-hidden relative">
+              <div class="absolute -right-24 -top-24 w-72 h-72 rounded-full border border-white/10"></div>
+              <div class="absolute -right-10 -top-10 w-48 h-48 rounded-full border border-[#957C3D]/30"></div>
+              <div class="relative z-10">
+                <div class="flex items-center justify-between gap-4">
+                  <div>
+                    <div class="text-white/45 text-[10px] sm:text-xs uppercase tracking-[.2em]">Accounting command center</div>
+                    <h2 class="text-2xl sm:text-3xl font-black mt-2">Your books, under control.</h2>
+                    <p class="text-white/50 text-sm leading-relaxed mt-2">A simple view of the work that keeps your accounting ready.</p>
+                  </div>
+                  <div class="w-11 h-11 rounded-xl bg-[#957C3D] text-[#002349] flex items-center justify-center shrink-0"><i class="fas fa-chart-line"></i></div>
+                </div>
+
+                <div class="mt-6 rounded-2xl border border-white/10 bg-white/[.055] p-3">
+                  <div class="flex items-center justify-between text-[10px] uppercase tracking-[.16em] text-white/40 px-1 mb-2">
+                    <span>Workflow</span><span id="workflowStatus" class="text-[#957C3D]">Active</span>
+                  </div>
+                  <div id="heroWorkflow" class="grid grid-cols-2 gap-2">
+                    <div class="hero-workflow-step is-active" data-workflow-step="0"><span><i class="fas fa-book-open"></i></span><div><strong>Bookkeeping</strong><small>Transactions organized</small></div></div>
+                    <div class="hero-workflow-step" data-workflow-step="1"><span><i class="fas fa-building-columns"></i></span><div><strong>Reconciliation</strong><small>Banks & cards matched</small></div></div>
+                    <div class="hero-workflow-step" data-workflow-step="2"><span><i class="fas fa-rotate"></i></span><div><strong>Month-end close</strong><small>Ledgers reviewed</small></div></div>
+                    <div class="hero-workflow-step" data-workflow-step="3"><span><i class="fas fa-chart-pie"></i></span><div><strong>Financial reports</strong><small>Numbers ready to use</small></div></div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mt-3">
+                  <div class="glass-dark rounded-2xl p-4">
+                    <div class="text-white/40 text-xs">Reconciliations</div>
+                    <div class="text-2xl font-extrabold mt-2">100%</div>
+                    <div class="mt-3 h-1.5 rounded-full bg-white/10 overflow-hidden"><div class="h-full w-full bg-[#957C3D] rounded-full"></div></div>
+                  </div>
+                  <div class="glass-dark rounded-2xl p-4">
+                    <div class="text-white/40 text-xs">Close status</div>
+                    <div class="text-2xl font-extrabold mt-2">On track</div>
+                    <div class="mt-3 flex gap-1.5"><span class="w-2 h-2 rounded-full bg-[#957C3D]"></span><span class="w-2 h-2 rounded-full bg-[#957C3D]/70"></span><span class="w-2 h-2 rounded-full bg-[#957C3D]/40"></span></div>
+                  </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-white/10 flex items-center justify-between gap-3">
+                  <div class="flex flex-wrap gap-2"><span class="software-pill">QuickBooks</span><span class="software-pill">Odoo</span><span class="software-pill">Cloud</span></div>
+                  <a href="#services" class="text-sm font-bold text-[#957C3D] hover:text-white transition whitespace-nowrap">Explore →</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-5 -left-3 sm:-left-9 glass rounded-2xl p-3.5 shadow-xl float float-delay max-w-[205px]">
+            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-[#002349] text-white flex items-center justify-center"><i class="fas fa-lock"></i></div><div><div class="text-[10px] uppercase tracking-[.14em] text-gray-400">Workflow</div><div class="font-bold text-[#002349]">Cloud-ready</div></div></div>
+          </div>
+          <div class="absolute -bottom-9 right-0 glass rounded-2xl px-4 py-3 shadow-xl float float-delay-2 hidden sm:block">
+            <div class="text-[10px] uppercase tracking-[.18em] text-gray-400">Built for</div><div class="font-bold text-[#002349] mt-1">US businesses • CPA firms</div>
+          </div>
+        </div>
+      </div>
+    </section>
 <!-- TRUST / VALUE STRIP -->
 <section aria-label="Accountrise capabilities" class="snap-section py-7 px-5 bg-[#002349] text-white border-y border-white/10">
 <div class="overflow-hidden">
