@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Odoo Accounting Lock Dates: Stop Backdated Entries from Breaking Your Close</title>
+  <meta name="description" content="Learn how Odoo accounting lock dates help protect a closed period. Diagnose backdated entries, define a controlled unlock process, protect reconciliations and build a reliable month-end close.">
+  <meta name="keywords" content="Odoo accounting lock dates, Odoo lock date, Odoo backdated entries, Odoo accounting period close, Odoo month end close, Odoo fiscal year lock, Odoo tax lock date, accounting close controls">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://www.accountrise.com/blog/odoo-accounting-lock-dates-backdated-entries.html">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Odoo Accounting Lock Dates: Stop Backdated Entries from Breaking Your Close">
+  <meta property="og:description" content="A practical guide to period-lock controls in Odoo, including backdated entries, exception approvals, close checklists and an interactive date checker.">
+  <meta property="og:url" content="https://www.accountrise.com/blog/odoo-accounting-lock-dates-backdated-entries.html">
+  <meta property="og:site_name" content="Accountrise">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Odoo Accounting Lock Dates: Stop Backdated Entries from Breaking Your Close">
+  <meta name="twitter:description" content="Protect finalized accounting periods in Odoo with lock-date controls and a repeatable close process.">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#002349',
+            gold: '#957C3D',
+            ink: '#142A40',
+            mist: '#F3F6F9',
+            teal: '#B8E2D5',
+            redsoft: '#F1D1C8',
+            sand: '#F5EBD2'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .guardrail-bg {
+      background:
+        radial-gradient(circle at 8% 18%, rgba(245,235,210,.14), transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(184,226,213,.13), transparent 25%),
+        linear-gradient(135deg, #101e34 0%, #002349 65%, #143c56 100%);
+    }
+    .soft-shadow { box-shadow: 0 18px 52px rgba(0,35,73,.09); }
+    .deep-shadow { box-shadow: 0 28px 90px rgba(0,35,73,.18); }
+    .lock-stripe {
+      background: repeating-linear-gradient(135deg, rgba(149,124,61,.14), rgba(149,124,61,.14) 8px, transparent 8px, transparent 16px);
+    }
+    .status-dot { box-shadow: 0 0 0 6px rgba(184,226,213,.13); }
+    .rail-step { position: relative; }
+    .rail-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 22px;
+      top: 52px;
+      bottom: -22px;
+      width: 2px;
+      background: #d5dde6;
+    }
+    .guard-card { transition: transform .2s ease, box-shadow .2s ease; }
+    .guard-card:hover { transform: translateY(-4px); box-shadow: 0 18px 42px rgba(0,35,73,.10); }
+    details summary { list-style:none; cursor:pointer; }
+    details summary::-webkit-details-marker { display:none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      .guard-card { transition:none; }
+    }
+  </style>
+</head>
+
+<body class="bg-[#F7F8FA] text-[#142A40] antialiased">
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-black tracking-tight text-[#002349]">Accountrise</a>
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-600">
+        <a href="/about/" class="hover:text-[#957C3D] transition">About Us</a>
+        <a href="/services/" class="hover:text-[#957C3D] transition">Services</a>
+        <a href="/blog/" class="hover:text-[#957C3D] transition">Blog</a>
+        <a href="#contact" class="bg-[#957C3D] text-[#002349] px-5 py-2.5 rounded-full font-semibold hover:bg-[#b89a4e] transition">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO: Close guardrail style -->
+    <section class="guardrail-bg text-white overflow-hidden">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[1fr_.94fr] gap-12 items-center">
+          <div>
+            <div class="flex flex-wrap items-center gap-3 mb-7">
+              <span class="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-black uppercase tracking-[.18em] text-[#F5EBD2]">Odoo Accounting</span>
+              <span class="text-sm text-slate-300">Lock Dates • Backdated Entries • Period Close</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-6xl font-black leading-[1.02] tracking-tight">
+              Odoo Accounting Lock Dates:
+              <span class="text-[#B8E2D5]">Stop Backdated Entries from Breaking Your Close</span>
+            </h1>
+
+            <p class="mt-7 text-lg sm:text-xl leading-relaxed text-slate-300 max-w-2xl">
+              You finish the month, reconcile the bank and send the reports. Then someone posts an invoice or journal entry into the closed period—and the numbers change.
+              Lock-date controls help protect finalized periods, but they work best with a documented exception process.
+            </p>
+
+            <div class="mt-9 flex flex-wrap gap-3">
+              <a href="#checker" class="rounded-2xl bg-[#B8E2D5] text-[#002349] px-6 py-3.5 font-bold hover:bg-[#d0eee5] transition">Check a Posting Date</a>
+              <a href="#close-process" class="rounded-2xl border border-white/20 bg-white/5 px-6 py-3.5 font-bold hover:bg-white/10 transition">Build a Close Process</a>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-5 text-sm text-slate-300">
+              <span>✓ Protect finalized periods</span>
+              <span>✓ Control exceptions</span>
+              <span>✓ Keep reports explainable</span>
+            </div>
+          </div>
+
+          <!-- Period status mock dashboard -->
+          <div class="rounded-[2rem] border border-white/10 bg-white/[.07] p-5 sm:p-7 deep-shadow">
+            <div class="flex items-center justify-between gap-4 border-b border-white/10 pb-5">
+              <div>
+                <div class="text-[11px] uppercase tracking-[.22em] font-black text-[#B8E2D5]">Close Control Panel</div>
+                <div class="mt-1 text-xl font-black">Period status overview</div>
+              </div>
+              <span class="rounded-full bg-[#B8E2D5]/15 text-[#B8E2D5] px-3 py-1.5 text-xs font-bold">Illustrative</span>
+            </div>
+
+            <div class="mt-6 space-y-3">
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-4 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-[#B8E2D5]/15 text-[#B8E2D5] flex items-center justify-center text-xl">✓</div>
+                  <div><div class="font-black">Bank reconciliation</div><div class="text-xs text-slate-400 mt-1">Review completed</div></div>
+                </div>
+                <span class="text-xs font-bold text-[#B8E2D5]">REVIEWED</span>
+              </div>
+
+              <div class="rounded-2xl bg-white/5 border border-white/10 p-4 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-[#F5EBD2]/15 text-[#F5EBD2] flex items-center justify-center text-xl">▤</div>
+                  <div><div class="font-black">Accruals &amp; adjustments</div><div class="text-xs text-slate-400 mt-1">Evidence attached</div></div>
+                </div>
+                <span class="text-xs font-bold text-[#F5EBD2]">APPROVED</span>
+              </div>
+
+              <div class="rounded-2xl bg-[#B8E2D5]/10 border border-[#B8E2D5]/20 p-4 flex items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-[#B8E2D5] text-[#002349] flex items-center justify-center text-xl">🔒</div>
+                  <div><div class="font-black">Accounting period</div><div class="text-xs text-slate-300 mt-1">Posting restrictions reviewed</div></div>
+                </div>
+                <span class="text-xs font-bold text-[#B8E2D5]">PROTECTED</span>
+              </div>
+            </div>
+
+            <div class="mt-6 rounded-2xl bg-white text-[#002349] p-5">
+              <div class="text-xs font-black uppercase tracking-widest text-[#957C3D]">Control principle</div>
+              <div class="mt-2 text-xl font-black">Close the period. Govern the exceptions.</div>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">A lock date is one control in the close process—not a substitute for reconciliation, approvals or review.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Answer first -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.8fr_1.2fr] gap-10 items-start">
+        <div class="lg:sticky lg:top-28">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Quick answer</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black leading-tight text-[#002349]">An accounting lock date helps stop routine postings into a period you have already finalized.</h2>
+          <p class="mt-5 text-slate-600 leading-relaxed">
+            The right setup depends on your access roles, company structure, tax workflow and Odoo version. The objective is to limit unapproved backdating without blocking legitimate corrections that follow your review and approval process.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-5">
+          <article class="guard-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#E4F1EB] text-emerald-900 flex items-center justify-center text-xl font-black">1</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Protect finalized numbers</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Reduce the risk of ordinary users changing a reporting period after reconciliation and sign-off.</p>
+          </article>
+          <article class="guard-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#F5EBD2] text-[#806629] flex items-center justify-center text-xl font-black">2</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Make backdating visible</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">A posting restriction should direct users toward the current period or an approved exception workflow.</p>
+          </article>
+          <article class="guard-card rounded-3xl bg-white border border-slate-200 p-7 soft-shadow">
+            <div class="w-12 h-12 rounded-2xl bg-[#E5EBF3] text-[#365F7C] flex items-center justify-center text-xl font-black">3</div>
+            <h3 class="mt-5 text-xl font-black text-[#002349]">Keep tax and accounting controls clear</h3>
+            <p class="mt-3 text-slate-600 leading-relaxed">Different lock settings or restrictions may serve different purposes; confirm the behavior in your own database.</p>
+          </article>
+          <article class="guard-card rounded-3xl bg-[#002349] text-white border border-[#002349] p-7 shadow-soft">
+            <div class="w-12 h-12 rounded-2xl bg-[#B8E2D5] text-[#002349] flex items-center justify-center text-xl font-black">4</div>
+            <h3 class="mt-5 text-xl font-black">Control exceptions</h3>
+            <p class="mt-3 text-slate-300 leading-relaxed">If a period must be reopened or a lock changed, require approval, evidence, limited access and a documented re-close.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive date checker -->
+    <section id="checker" class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-10 items-start">
+          <div>
+            <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Interactive lock-date checker</div>
+            <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Would this entry fall before or after the lock date?</h2>
+            <p class="mt-4 text-slate-600 leading-relaxed">Choose a simplified lock date and proposed accounting date. The tool indicates whether the proposed entry is on or before the selected date.</p>
+            <div class="mt-6 rounded-2xl bg-[#F5EBD2] border border-[#E8D8AD] p-5">
+              <div class="font-black text-[#002349]">Scope note</div>
+              <p class="mt-2 text-sm text-slate-600 leading-relaxed">This is a generic date comparison, not an exact simulation of all Odoo lock-date rules, user permissions, tax settings or version-specific behaviors.</p>
+            </div>
+          </div>
+
+          <div class="rounded-[2rem] bg-white border border-slate-200 p-6 sm:p-8 soft-shadow">
+            <div class="grid sm:grid-cols-2 gap-5">
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Proposed accounting date</span>
+                <input id="postingDate" type="date" value="2026-09-28" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+              <label class="block">
+                <span class="text-sm font-bold text-[#002349]">Illustrative lock date</span>
+                <input id="lockDate" type="date" value="2026-09-30" class="mt-2 w-full rounded-xl border border-slate-300 bg-white px-4 py-3 outline-none focus:ring-2 focus:ring-[#957C3D]">
+              </label>
+            </div>
+
+            <div id="lockResultBox" class="mt-6 rounded-2xl bg-[#FBEAE5] border border-[#E7C3B8] p-6">
+              <div class="flex items-start gap-4">
+                <div id="lockIcon" class="w-12 h-12 rounded-2xl bg-[#C96F52] text-white flex items-center justify-center text-2xl">!</div>
+                <div class="flex-1">
+                  <div id="lockHeadline" class="text-xl font-black text-[#002349]">Proposed date is inside the locked period</div>
+                  <p id="lockExplain" class="mt-2 text-sm text-slate-600 leading-relaxed">The selected posting date is on or before the illustrative lock date. In a configured lock control, additional permissions or lock settings may affect whether posting is permitted.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 grid grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-[#F7F8FA] p-4">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Posting date</div>
+                <div id="postingLabel" class="mt-2 text-lg font-black text-[#002349]">Sep 28, 2026</div>
+              </div>
+              <div class="rounded-2xl bg-[#F7F8FA] p-4">
+                <div class="text-xs uppercase tracking-widest font-black text-slate-500">Lock date</div>
+                <div id="lockLabel" class="mt-2 text-lg font-black text-[#002349]">Sep 30, 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What can go wrong -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="max-w-3xl">
+        <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Common breakpoints</div>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Six ways backdated entries can disrupt a closed period</h2>
+        <p class="mt-4 text-slate-600 leading-relaxed">The impact depends on what changed, which reports were issued and the applicable accounting requirements. These are the places to investigate first.</p>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article class="guard-card rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#957C3D]">01</div>
+          <h3 class="mt-4 text-xl font-black text-[#002349]">Bank reconciliation changes</h3>
+          <p class="mt-2 text-slate-600 leading-relaxed">A newly dated entry can change the account activity or reconciliation population for a month already reviewed.</p>
+        </article>
+        <article class="guard-card rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#957C3D]">02</div>
+          <h3 class="mt-4 text-xl font-black text-[#002349]">A/R or A/P aging moves</h3>
+          <p class="mt-2 text-slate-600 leading-relaxed">Old-dated invoices, bills or credits may change aging, customer/vendor balances and previously reviewed schedules.</p>
+        </article>
+        <article class="guard-card rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#957C3D]">03</div>
+          <h3 class="mt-4 text-xl font-black text-[#002349]">Revenue or expenses shift</h3>
+          <p class="mt-2 text-slate-600 leading-relaxed">A backdated invoice, credit note or journal can move activity into a period used for management or external reporting.</p>
+        </article>
+        <article class="guard-card rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#957C3D]">04</div>
+          <h3 class="mt-4 text-xl font-black text-[#002349]">Tax reporting needs review</h3>
+          <p class="mt-2 text-slate-600 leading-relaxed">A posting that changes tax-relevant data may require a separate review of the return period and correction process.</p>
+        </article>
+        <article class="guard-card rounded-3xl bg-white border border-slate-200 p-6">
+          <div class="text-3xl font-black text-[#957C3D]">05</div>
+          <h3 class="mt-4 text-xl font-black text-[#002349]">Reports no longer tie</h3>
+          <p class="mt-2 text-slate-600 leading-relaxed">A Balance Sheet, trial balance or P&amp;L saved after close may no longer agree to a later rerun.</p>
+        </article>
+        <article class="guard-card rounded-3xl bg-[#002349] text-white border border-[#002349] p-6">
+          <div class="text-3xl font-black text-[#B8E2D5]">06</div>
+          <h3 class="mt-4 text-xl font-black">Audit trail becomes unclear</h3>
+          <p class="mt-2 text-slate-300 leading-relaxed">Without approval and documentation, it may be difficult to explain who changed a closed period, why it was changed and which reports were rerun.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Close process -->
+    <section id="close-process" class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="max-w-3xl">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Controlled period close</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">A practical process for locking a period</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">A lock should follow close activities and reporting sign-off. It should not be set arbitrarily without checking what remains unresolved.</p>
+        </div>
+
+        <div class="mt-11 space-y-7">
+          <div class="rail-step flex gap-5">
+            <div class="relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">1</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+              <h3 class="text-xl font-black text-[#002349]">Complete the close checklist</h3>
+              <p class="mt-2 text-slate-600 leading-relaxed">Reconcile cash, review receivables/payables, post accruals and prepayments, verify inventory or fixed assets where applicable, and review material accounts.</p>
+            </div>
+          </div>
+          <div class="rail-step flex gap-5">
+            <div class="relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">2</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+              <h3 class="text-xl font-black text-[#002349]">Review exceptions and obtain sign-off</h3>
+              <p class="mt-2 text-slate-600 leading-relaxed">List unresolved items with materiality, owner, due date and approval. Decide what must be fixed before close and what can be followed up.</p>
+            </div>
+          </div>
+          <div class="rail-step flex gap-5">
+            <div class="relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">3</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+              <h3 class="text-xl font-black text-[#002349]">Set the appropriate lock controls</h3>
+              <p class="mt-2 text-slate-600 leading-relaxed">Review which restriction applies, the date, who can change it and whether tax or other separate closing controls are relevant in your version and configuration.</p>
+            </div>
+          </div>
+          <div class="rail-step flex gap-5">
+            <div class="relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#957C3D] text-[#002349] flex items-center justify-center font-black">4</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+              <h3 class="text-xl font-black text-[#002349]">Limit and document exceptions</h3>
+              <p class="mt-2 text-slate-600 leading-relaxed">Require a reason, evidence and approval for any permitted historical correction. Limit access to the people responsible for making the change.</p>
+            </div>
+          </div>
+          <div class="rail-step flex gap-5">
+            <div class="relative z-10 shrink-0 w-11 h-11 rounded-2xl bg-[#002349] text-white flex items-center justify-center font-black">5</div>
+            <div class="flex-1 rounded-3xl bg-white border border-slate-200 p-6 shadow-soft">
+              <h3 class="text-xl font-black text-[#002349]">Re-run affected reports after an approved correction</h3>
+              <p class="mt-2 text-slate-600 leading-relaxed">If a prior period is changed, assess the impact on the trial balance, financial statements, reconciliations, tax reporting and management reports. Reconcile and sign off again where needed.</p>
+            </div>
+          </div>
+          <div class="flex gap-5">
+            <div class="shrink-0 w-11 h-11 rounded-2xl bg-[#B8E2D5] text-[#002349] flex items-center justify-center font-black">6</div>
+            <div class="flex-1 rounded-3xl bg-[#002349] text-white border border-[#002349] p-6 shadow-heavy">
+              <h3 class="text-xl font-black">Reconfirm the lock and close record</h3>
+              <p class="mt-2 text-slate-300 leading-relaxed">Save the final balances, the date the period was protected, any approved corrections, and the person responsible for close sign-off.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Exception policy -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-2 gap-7">
+        <div class="rounded-[2rem] bg-white border border-slate-200 p-7 sm:p-9 shadow-soft">
+          <div class="inline-flex rounded-full bg-[#E4F1EB] text-emerald-900 px-3 py-1.5 text-xs font-black uppercase tracking-widest">Good control</div>
+          <h2 class="mt-4 text-3xl font-black text-[#002349]">An exception has an owner and evidence.</h2>
+          <ul class="mt-6 space-y-4 text-slate-600">
+            <li class="flex gap-3"><span class="font-black text-emerald-800">✓</span><span>Identify the exact transaction and the accounting date requested.</span></li>
+            <li class="flex gap-3"><span class="font-black text-emerald-800">✓</span><span>Explain why the prior period is the appropriate period.</span></li>
+            <li class="flex gap-3"><span class="font-black text-emerald-800">✓</span><span>Obtain the required approval before changing the restriction.</span></li>
+            <li class="flex gap-3"><span class="font-black text-emerald-800">✓</span><span>Record the change and re-review affected reports.</span></li>
+          </ul>
+        </div>
+        <div class="rounded-[2rem] bg-[#002349] text-white border border-[#002349] p-7 sm:p-9 shadow-heavy">
+          <div class="inline-flex rounded-full bg-[#F1D1C8]/15 text-[#F1D1C8] px-3 py-1.5 text-xs font-black uppercase tracking-widest">Risky control</div>
+          <h2 class="mt-4 text-3xl font-black">“Unlock everything so the invoice can post.”</h2>
+          <p class="mt-5 text-slate-300 leading-relaxed">A broad, temporary removal of restrictions can allow unrelated backdated entries and makes the period harder to protect. First investigate the underlying error and use the narrowest approved correction process that your system and policy support.</p>
+          <div class="mt-6 rounded-2xl bg-white/10 p-5">
+            <div class="font-black text-[#F1D1C8]">Better question</div>
+            <p class="mt-2 text-sm text-slate-300">Can the issue be corrected in the current period, or is a prior-period correction required under the business's accounting policy?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Community / Reddit-style questions -->
+    <section class="bg-[#F5F1E7] border-y border-[#E9DFC8]">
+      <div class="max-w-7xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="grid lg:grid-cols-[.75fr_1.25fr] gap-9 items-start">
+          <div>
+            <div class="inline-flex items-center gap-2 rounded-full bg-white border border-[#E9DFC8] px-3 py-1.5 text-xs font-black uppercase tracking-widest text-[#806629]">
+              Community-style Q&amp;A
+            </div>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-[#002349]">Straight answers to common close-control questions</h2>
+            <p class="mt-5 text-slate-600 leading-relaxed">These are original, discussion-style examples based on common accounting questions—not quotations from specific Reddit threads.</p>
+            <p class="mt-4 text-sm text-slate-500 leading-relaxed">For Reddit or accounting forums, answer the question fully, provide context, and follow each community's rules. Avoid repetitive promotional posts or presenting a general explanation as personalized accounting advice.</p>
+          </div>
+
+          <div class="space-y-4">
+            <article class="rounded-3xl bg-white border border-[#E9DFC8] p-6 shadow-sm">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 01</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">“We already closed last month. Why did the P&amp;L change?”</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">First check whether a transaction was posted or edited with an accounting date in the closed period, and whether the report is being rerun with the same filters. Review the audit trail and affected accounts before deciding whether the period or reports need to be reopened or corrected.</p>
+            </article>
+            <article class="rounded-3xl bg-white border border-[#E9DFC8] p-6 shadow-sm">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 02</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">“A supplier invoice arrived late. Should I unlock the prior month?”</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">Not automatically. Determine which period the expense belongs to, assess materiality and the applicable accounting policy, and follow the documented correction process. Depending on the facts, an approved accrual or a prior-period correction may be appropriate.</p>
+            </article>
+            <article class="rounded-3xl bg-white border border-[#E9DFC8] p-6 shadow-sm">
+              <div class="text-xs uppercase tracking-widest font-black text-[#957C3D]">Question 03</div>
+              <h3 class="mt-3 text-xl font-black text-[#002349]">“Should every user be able to change the lock date?”</h3>
+              <p class="mt-3 text-slate-600 leading-relaxed">As a control design, access should be limited to appropriate roles with a defined approval process. The available roles and exact behavior depend on the Odoo version and configuration, so test permissions rather than assuming a particular default.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Month-end checklist -->
+    <section class="max-w-6xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+      <div class="grid lg:grid-cols-[.78fr_1.22fr] gap-8 items-start">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Close checklist</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Lock-date readiness checklist</h2>
+          <p class="mt-4 text-slate-600 leading-relaxed">Use the same sign-off each month so access controls follow a consistent accounting process.</p>
+        </div>
+        <div class="rounded-[2rem] bg-white border border-slate-200 overflow-hidden divide-y divide-slate-200 shadow-soft">
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Complete material account reconciliations.</strong> Resolve or document outstanding items before sign-off.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Confirm reports and balances.</strong> Save the final trial balance, P&amp;L and Balance Sheet according to close procedure.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Review lock-date scope and settings.</strong> Validate the intended date, company and relevant restrictions for your version.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Test user access.</strong> Confirm routine users and approvers have the intended permissions.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Publish the exception procedure.</strong> Define required support, approval, owner and follow-up steps.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer hover:bg-slate-50 transition"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Document tax/reporting dependencies.</strong> Assess whether a permitted change affects submitted reports or other close outputs.</span></label>
+          <label class="flex gap-4 items-start p-5 cursor-pointer bg-[#E4F1EB]"><input type="checkbox" class="mt-1 w-5 h-5 accent-[#957C3D]"><span><strong class="text-[#002349]">Sign off and record the close.</strong> Capture who reviewed the period and when the lock controls were applied.</span></label>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="bg-[#F0F3F6] border-y border-slate-200">
+      <div class="max-w-5xl mx-auto px-5 sm:px-8 py-14 lg:py-20">
+        <div class="text-center">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">FAQ</div>
+          <h2 class="mt-3 text-3xl sm:text-4xl font-black text-[#002349]">Odoo lock-date questions</h2>
+        </div>
+
+        <div class="mt-10 space-y-3">
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What does an accounting lock date do in Odoo?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">A lock date is a control used to restrict accounting activity dated on or before a specified cutoff for the relevant scope. The exact options, permission behavior and terminology depend on the Odoo version and configuration.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Why did an old period change after close?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Investigate entries created, edited or dated into the period, and compare the reports using consistent filters. Review the available audit trail and verify whether permissions or lock settings allowed the change.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Should I move the lock date forward every month?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Set and update restrictions as part of a documented close policy, after reviewing reconciliations, reports and unresolved exceptions. The right cadence and lock scope depend on your reporting needs, role structure and system configuration.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">What if a legitimate invoice needs a prior-period date?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">Review the service period, accounting policy, materiality and reporting impact. Follow an approved exception process; decide whether the item requires a current-period entry or a supported prior-period correction before changing the lock.</p>
+          </details>
+          <details class="group rounded-2xl bg-white border border-slate-200 p-6">
+            <summary class="flex items-center justify-between gap-5 font-extrabold text-[#002349]">Does a lock date replace month-end reconciliation?<span class="text-[#957C3D] text-xl group-open:rotate-45 transition">+</span></summary>
+            <p class="mt-4 text-slate-600 leading-relaxed">No. Lock dates help protect the period after review. They do not prove account balances are correct, replace reconciliations or remove the need to investigate and approve exceptions.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Related content -->
+    <section class="max-w-7xl mx-auto px-5 sm:px-8 py-14">
+      <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div>
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#957C3D]">Related Odoo guides</div>
+          <h2 class="mt-2 text-2xl sm:text-3xl font-black text-[#002349]">Make your close more dependable</h2>
+        </div>
+        <a href="/blog/" class="font-bold text-[#002349] hover:text-[#957C3D] transition">View all articles →</a>
+      </div>
+      <div class="mt-8 grid md:grid-cols-3 gap-5">
+        <a href="/blog/odoo-month-end-close-checklist-us-businesses.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Month-End Close</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">The Odoo Month-End Close Checklist for US Businesses</h3>
+        </a>
+        <a href="/blog/odoo-accounting-cleanup-messy-books.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Accounting Cleanup</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Accounting Cleanup: How to Fix Messy Books</h3>
+        </a>
+        <a href="/blog/odoo-bank-reconciliation-fix-unreconciled-transactions.html" class="rounded-3xl bg-white border border-slate-200 p-6 hover:shadow-lg transition">
+          <div class="text-xs font-bold uppercase tracking-wider text-[#957C3D]">Bank Reconciliation</div>
+          <h3 class="mt-3 text-xl font-black text-[#002349]">Odoo Bank Reconciliation: How to Fix Unreconciled Transactions</h3>
+        </a>
+      </div>
+    </section>
+
+    <!-- Single CTA -->
+    <section id="contact" class="bg-[#002349] text-white">
+      <div class="max-w-6xl mx-auto px-5 sm:px-8 py-16 lg:py-20 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="text-xs font-black uppercase tracking-[.22em] text-[#B8E2D5]">Need a more controlled Odoo close?</div>
+          <h2 class="mt-4 text-3xl sm:text-5xl font-black tracking-tight">Protect the numbers after you sign off.</h2>
+          <p class="mt-5 text-lg text-slate-300 leading-relaxed">Accountrise helps US businesses and accounting firms clean up Odoo accounting, reconcile month-end balances, review close controls and build repeatable reporting procedures.</p>
+          <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="bg-[#957C3D] text-[#002349] px-8 py-4 rounded-2xl font-semibold hover:bg-[#b89a4e] transition">Book Free Consultation</a>
+            <a href="mailto:info@accountrise.com" class="border border-white/25 text-white px-8 py-4 rounded-2xl font-semibold hover:bg-white/10 transition">Email Us</a>
+          </div>
+          <p class="mt-6 text-sm text-slate-400">Accounting support starting at $10/hour. Final pricing depends on scope, transaction volume, complexity and engagement requirements.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#00182F] text-slate-400">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 py-9 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-sm">© 2026 Accountrise. All rights reserved.</div>
+      <div class="text-sm">Remote bookkeeping &amp; accounting support for US businesses and accounting firms.</div>
+    </div>
+  </footer>
+
+  <script>
+    function formatDate(dateString) {
+      if (!dateString) return 'No date selected';
+      const d = new Date(dateString + 'T12:00:00');
+      if (Number.isNaN(d.getTime())) return 'Invalid date';
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function updateLockChecker() {
+      const posting = document.getElementById('postingDate').value;
+      const lock = document.getElementById('lockDate').value;
+      const box = document.getElementById('lockResultBox');
+      const icon = document.getElementById('lockIcon');
+      const title = document.getElementById('lockHeadline');
+      const explain = document.getElementById('lockExplain');
+
+      document.getElementById('postingLabel').textContent = formatDate(posting);
+      document.getElementById('lockLabel').textContent = formatDate(lock);
+
+      if (!posting || !lock) {
+        box.className = 'mt-6 rounded-2xl bg-slate-100 border border-slate-300 p-6';
+        icon.className = 'w-12 h-12 rounded-2xl bg-slate-400 text-white flex items-center justify-center text-2xl';
+        icon.textContent = '?';
+        title.textContent = 'Choose both dates';
+        explain.textContent = 'Select a proposed accounting date and a lock date to compare them.';
+        return;
+      }
+
+      const isLockedRange = posting <= lock;
+      if (isLockedRange) {
+        box.className = 'mt-6 rounded-2xl bg-[#FBEAE5] border border-[#E7C3B8] p-6';
+        icon.className = 'w-12 h-12 rounded-2xl bg-[#C96F52] text-white flex items-center justify-center text-2xl';
+        icon.textContent = '!';
+        title.textContent = 'Proposed date falls on or before the lock date';
+        explain.textContent = 'Treat this as a restricted-period warning in the simplified model. Verify the applicable Odoo lock setting, permissions and policy before deciding how to post or correct the entry.';
+      } else {
+        box.className = 'mt-6 rounded-2xl bg-[#E4F1EB] border border-[#BFDCCF] p-6';
+        icon.className = 'w-12 h-12 rounded-2xl bg-emerald-800 text-white flex items-center justify-center text-2xl';
+        icon.textContent = '✓';
+        title.textContent = 'Proposed date is after the lock date';
+        explain.textContent = 'The date is after the selected cutoff in this simplified comparison. Still confirm the journal, tax, access and other posting rules that apply in your Odoo configuration.';
+      }
+    }
+
+    document.getElementById('postingDate').addEventListener('input', updateLockChecker);
+    document.getElementById('lockDate').addEventListener('input', updateLockChecker);
+    updateLockChecker();
+  </script>
+
+  <!-- BlogPosting structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Odoo Accounting Lock Dates: Stop Backdated Entries from Breaking Your Close",
+    "description": "A practical guide to period-lock controls in Odoo, including backdated entries, exception approvals, close checklists and a simplified date checker.",
+    "author": { "@type": "Organization", "name": "Accountrise" },
+    "publisher": { "@type": "Organization", "name": "Accountrise", "url": "https://www.accountrise.com" },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://www.accountrise.com/blog/odoo-accounting-lock-dates-backdated-entries.html"
+    },
+    "url": "https://www.accountrise.com/blog/odoo-accounting-lock-dates-backdated-entries.html"
+  }
+  </script>
+
+  <!-- FAQ structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What does an accounting lock date do in Odoo?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A lock date is a control used to restrict accounting activity dated on or before a specified cutoff for the relevant scope. The exact options, permission behavior and terminology depend on the Odoo version and configuration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why did an old period change after close?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Investigate entries created, edited or dated into the period, and compare reports using consistent filters. Review the available audit trail and verify whether permissions or lock settings allowed the change."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I move the lock date forward every month?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Set and update restrictions as part of a documented close policy, after reviewing reconciliations, reports and unresolved exceptions. The right cadence and lock scope depend on reporting needs, roles and system configuration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if a legitimate invoice needs a prior-period date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Review the service period, accounting policy, materiality and reporting impact. Follow an approved exception process and decide whether a current-period entry or a supported prior-period correction is appropriate before changing the lock."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a lock date replace month-end reconciliation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Lock dates help protect the period after review. They do not prove account balances are correct, replace reconciliations or remove the need to investigate and approve exceptions."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
