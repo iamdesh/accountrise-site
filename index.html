@@ -1157,22 +1157,56 @@
     }
     @media(prefers-reduced-motion:reduce){.footer-contact-socials a{transition:none!important}}
 
+  
+
+    /* FINAL REQUESTED FINISH — compact header, location pill, centered copyright */
+    .hero-region-pill > i{color:#957C3D;font-size:.86rem;flex:0 0 auto}
+    #site-header .site-nav-row{height:70px!important;gap:1rem!important}
+    #site-header .site-brand .logo-mark{height:42px!important;width:auto}
+    #site-header .site-brand-copy strong{font-size:1.08rem}
+    #site-header .desktop-nav{gap:clamp(.65rem,1.15vw,1rem)!important}
+    #site-header .desktop-nav .nav-link{font-size:clamp(.76rem,.84vw,.88rem)!important;padding:8px 0!important}
+    #site-header .site-nav-cta{font-size:.82rem!important;padding:.68rem 1rem!important;gap:.45rem!important}
+    #site-header .site-nav-cta::before{inset:-5px}
+    #site-header .mobile-menu-button{width:40px;height:40px}
+    .footer-bottom{display:block!important;grid-template-columns:none!important;max-width:80rem;margin:0 auto!important;padding:20px 1.25rem 24px!important;text-align:center!important;border-top:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.48);font-size:.68rem;line-height:1.6}
+    @media(max-width:1279px) and (min-width:1024px){
+      #site-header .site-nav-row{height:68px!important}
+      #site-header .site-brand .logo-mark{height:39px!important}
+      #site-header .desktop-nav{gap:.65rem!important}
+      #site-header .desktop-nav .nav-link{font-size:.76rem!important}
+      #site-header .site-nav-cta{font-size:.76rem!important;padding:.62rem .82rem!important}
+    }
+    @media(max-width:1023px){
+      #site-header .site-nav-row{height:66px!important}
+      #site-header .site-brand .logo-mark{height:39px!important}
+      #site-header .site-brand-copy strong{font-size:1.03rem}
+      #site-header .mobile-menu-button{width:39px;height:39px}
+    }
+    @media(max-width:639px){
+      #site-header .site-nav-row{height:62px!important}
+      #site-header .site-brand .logo-mark{height:36px!important}
+      #site-header .site-brand-copy strong{font-size:1rem}
+      .hero-region-pill{font-size:.72rem!important;padding:.52rem .72rem!important;gap:.45rem!important}
+      .footer-bottom{padding:17px 1rem 20px!important;font-size:.64rem}
+    }
+    @media(prefers-reduced-motion:reduce){.hero-region-pill .animate-pulse{animation:none!important}}
+
   </style>
 </head>
 <body class="bg-[#F5F7FA] text-gray-900 antialiased">
 <a class="skip-link" href="#top">Skip to content</a>
 <div aria-hidden="true" class="progress" id="progress"></div>
 <!-- STICKY NAVIGATION: simplified to match the requested primary links -->
-<a class="skip-link" href="#top">Skip to content</a>
 <header class="site-header fixed top-0 left-0 w-full z-[90] transition-all duration-300" id="site-header">
   <nav aria-label="Main navigation" class="site-nav border-b border-white/10">
     <div class="max-w-7xl mx-auto px-5 sm:px-6">
-      <div class="site-nav-row h-[78px] flex items-center justify-between gap-5">
+      <div class="site-nav-row h-[72px] flex items-center justify-between gap-4">
         <a aria-label="Accountrise homepage" class="logo-link site-brand flex items-center gap-3 group shrink-0" href="#top">
           <img alt="Accountrise logo" class="logo-mark h-11 sm:h-12 w-auto rounded-xl" src="./accountrise.png"/>
           <span class="site-brand-copy"><strong>Accountrise</strong></span>
         </a>
-        <div class="desktop-nav hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm" aria-label="Primary links">
+        <div class="desktop-nav hidden lg:flex items-center gap-3 xl:gap-5 text-xs xl:text-sm" aria-label="Primary links">
           <a class="nav-link active" data-nav="top" href="#top" aria-current="page">Home</a>
           <a class="nav-link" href="/about/">About Us</a>
           <a class="nav-link" data-nav="services" href="/services/">Services</a>
@@ -1211,9 +1245,9 @@
       <div class="parallax-orb absolute bottom-0 -left-40 w-[420px] h-[420px] rounded-full bg-[#002349]/8 blur-3xl pointer-events-none" style="--parallax:-18px"></div>
       <div class="max-w-7xl mx-auto min-h-[calc(100vh-9rem)] grid lg:grid-cols-[1.03fr_.97fr] gap-10 xl:gap-16 items-center relative z-10">
         <div data-aos="fade-up">
-          <div class="inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs sm:text-sm font-semibold text-[#002349] mb-7">
-            <span class="w-2 h-2 rounded-full bg-[#957C3D] animate-pulse"></span>
-            Remote accounting support for US businesses & CPA firms
+          <div class="hero-region-pill inline-flex items-center gap-2 glass rounded-full px-4 py-2 text-xs sm:text-sm font-semibold text-[#002349] mb-7">
+            <i aria-hidden="true" class="fas fa-location-dot"></i>
+            <span>US-first support <span class="mx-1 text-[#957C3D]/60" aria-hidden="true">·</span> Also serving Canadian clients</span>
           </div>
           <h1 class="text-[2.7rem] sm:text-6xl xl:text-[4.65rem] font-black tracking-[-.05em] leading-[.98] text-[#002349] max-w-4xl">
             Clean books.
@@ -1772,9 +1806,9 @@
         <a class="footer-email" href="mailto:info@accountrise.com"><i aria-hidden="true" class="fas fa-envelope mr-2"></i>info@accountrise.com</a>
       </div>
     </div>
-      <div class="footer-bottom">© 2026 Accountrise. All rights reserved.</div>
-    </div>
-  </footer>
+  </div>
+  <div class="footer-bottom">© 2026 Accountrise. All rights reserved.</div>
+</footer>
 <!-- FLOATING ACTION ANCHOR -->
 <a aria-label="Chat with Accountrise on WhatsApp" class="fixed bottom-5 right-5 z-[80] group" href="https://wa.me/918104839386" rel="noopener" target="_blank">
 <div class="pump-cta bg-[#002349] text-white rounded-full shadow-2xl px-4 sm:px-5 py-3 flex items-center gap-3 border border-white/10 hover:scale-105 transition">
