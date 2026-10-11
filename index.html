@@ -1093,7 +1093,71 @@
     }
 
 
-</style>
+
+
+    /* FOOTER REFINEMENT — original navy and gold palette */
+    .site-footer{
+      background:
+        radial-gradient(ellipse at 7% 0%,rgba(23,67,105,.28),transparent 36%),
+        radial-gradient(ellipse at 92% 28%,rgba(149,124,61,.075),transparent 30%),
+        linear-gradient(180deg,#00152d 0%,#000e20 100%);
+    }
+    .site-footer::after{
+      content:"";position:absolute;left:5%;right:5%;top:0;height:1px;
+      background:linear-gradient(90deg,transparent,rgba(197,166,91,.55),rgba(255,255,255,.12),transparent);
+      pointer-events:none;
+    }
+    .footer-main{padding-top:clamp(42px,5.5vw,72px);padding-bottom:25px}
+    .footer-grid{
+      grid-template-columns:minmax(245px,1.35fr) minmax(125px,.72fr) minmax(170px,1fr) minmax(215px,1.08fr);
+      gap:clamp(22px,3vw,42px);align-items:start;padding:8px 0 42px;
+    }
+    .footer-brand>span{font-size:clamp(1.45rem,2vw,1.7rem)}
+    .footer-brand-copy{max-width:340px;font-size:.84rem;line-height:1.8;color:rgba(255,255,255,.61)}
+    .footer-platforms{gap:7px;margin-top:18px}
+    .footer-platforms span{padding:7px 9px;border-radius:8px;font-size:.59rem;background:rgba(255,255,255,.025)}
+    .footer-link-col,.footer-contact-col{gap:14px}
+    .footer-link-col h3,.footer-contact-col h3{font-size:.69rem;letter-spacing:.15em;margin:5px 0 4px}
+    .footer-link-col a,.footer-contact-col>a{font-size:.78rem;line-height:1.55}
+    .footer-contact-col>p{margin:0;color:rgba(255,255,255,.53);font-size:.78rem;line-height:1.7;max-width:275px}
+    .footer-contact-col .footer-email{color:#fff;font-weight:850;font-size:.81rem;overflow-wrap:anywhere}
+    .footer-contact-socials{margin:0 0 3px;display:flex;align-items:center;gap:10px}
+    .footer-contact-socials a{
+      width:42px;height:42px;border-radius:13px;border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.035);color:rgba(255,255,255,.78);font-size:1.02rem;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+    }
+    .footer-contact-socials a:hover,.footer-contact-socials a:focus-visible{
+      background:#c5a65b;color:#002349;border-color:#c5a65b;transform:translateY(-3px);
+      outline:none;box-shadow:0 9px 24px rgba(0,0,0,.2)
+    }
+    .footer-contact-socials a:focus-visible{outline:2px solid #e5d397;outline-offset:3px}
+    .footer-bottom{gap:18px;padding-top:23px;font-size:.67rem}
+    .footer-back-top{padding:7px 0}
+    @media(max-width:1023px){
+      .footer-grid{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:32px 44px}
+      .footer-brand-col{grid-row:span 2}
+      .footer-contact-socials{margin-top:0}
+      .footer-bottom{grid-template-columns:1fr auto}
+      .footer-bottom>span:nth-child(2){grid-row:2;grid-column:1/-1;text-align:left}
+    }
+    @media(max-width:639px){
+      .footer-main{padding-top:34px}
+      .footer-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 19px;padding-bottom:30px}
+      .footer-brand-col{grid-column:1/-1;grid-row:auto}
+      .footer-brand-copy{max-width:100%;font-size:.8rem}
+      .footer-platforms span{font-size:.55rem}
+      .footer-link-col h3,.footer-contact-col h3{font-size:.63rem}
+      .footer-link-col a,.footer-contact-col>a,.footer-contact-col>p{font-size:.72rem}
+      .footer-contact-socials{gap:8px}
+      .footer-contact-socials a{width:39px;height:39px;border-radius:12px}
+      .footer-bottom{grid-template-columns:1fr;gap:8px;padding-top:18px;font-size:.64rem}
+      .footer-bottom>span:nth-child(2){grid-row:auto;grid-column:auto;text-align:left}
+      .footer-back-top{justify-self:start}
+    }
+    @media(prefers-reduced-motion:reduce){.footer-contact-socials a{transition:none!important}}
+
+  </style>
 </head>
 <body class="bg-[#F5F7FA] text-gray-900 antialiased">
 <a class="skip-link" href="#top">Skip to content</a>
@@ -1106,12 +1170,12 @@
       <div class="site-nav-row h-[78px] flex items-center justify-between gap-5">
         <a aria-label="Accountrise homepage" class="logo-link site-brand flex items-center gap-3 group shrink-0" href="#top">
           <img alt="Accountrise logo" class="logo-mark h-11 sm:h-12 w-auto rounded-xl" src="./accountrise.png"/>
-          <span class="site-brand-copy"><strong>Accountrise</strong></span>
+          <span class="site-brand-copy"><strong>Accountrise</strong><small>BOOKKEEPING · ACCOUNTING</small></span>
         </a>
         <div class="desktop-nav hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm" aria-label="Primary links">
           <a class="nav-link active" data-nav="top" href="#top" aria-current="page">Home</a>
           <a class="nav-link" href="/about/">About Us</a>
-          <a class="nav-link" data-nav="/services/" href="/services/">Services</a>
+          <a class="nav-link" data-nav="/services/" href="#/services/">Services</a>
           <a class="nav-link" data-nav="/blog/" href="/blog/">Insights</a>
           <a class="nav-link" data-nav="testimonials" href="#testimonials">Reviews</a>
           <a class="nav-link" data-nav="faq" href="#faq">FAQ</a>
@@ -1209,7 +1273,6 @@
               <div class="relative z-10">
                 <div class="flex items-center justify-between gap-4">
                   <div>
-                    <div class="text-white/45 text-[10px] sm:text-xs uppercase tracking-[.2em]">Accounting command center</div>
                     <h2 class="text-2xl sm:text-3xl font-black mt-2">Your books, under control.</h2>
                     <p class="text-white/50 text-sm leading-relaxed mt-2">A simple view of the work that keeps your accounting ready.</p>
                   </div>
@@ -1248,12 +1311,6 @@
               </div>
             </div>
           </div>
-          <div class="absolute -bottom-5 -left-3 sm:-left-9 glass rounded-2xl p-3.5 shadow-xl float float-delay max-w-[205px]">
-            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-[#002349] text-white flex items-center justify-center"><i class="fas fa-lock"></i></div><div><div class="text-[10px] uppercase tracking-[.14em] text-gray-400">Workflow</div><div class="font-bold text-[#002349]">Cloud-ready</div></div></div>
-          </div>
-          <div class="absolute -bottom-9 right-0 glass rounded-2xl px-4 py-3 shadow-xl float float-delay-2 hidden sm:block">
-            <div class="text-[10px] uppercase tracking-[.18em] text-gray-400">Built for</div><div class="font-bold text-[#002349] mt-1">US businesses • CPA firms</div>
-          </div>
         </div>
       </div>
     </section>
@@ -1281,7 +1338,7 @@
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="services-section-head grid lg:grid-cols-[1fr_.72fr] gap-8 lg:gap-16 items-end mb-12 lg:mb-14">
 <div data-aos="fade-up">
-<p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">FOR BUSINESS OWNERS &amp; CPA FIRMS</p>
+
 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] text-[#002349] leading-[1.01]" id="services-heading">Outsourced bookkeeping.<br/><span class="text-gray-400">Work that stays on track.</span></h2>
 </div>
 <div data-aos="fade-up" data-aos-delay="90">
@@ -1292,7 +1349,7 @@
 <div class="services-grid grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-5">
 <a aria-label="Explore outsourced bookkeeping services" class="service-card service-featured bento-card md:col-span-7 rounded-[2rem] p-7 sm:p-9 group overflow-hidden" href="/services/bookkeeping-services/">
 <span class="shine"></span><span aria-hidden="true" class="service-card-glow"></span>
-<div class="service-card-top relative z-10"><span class="service-icon"><i class="fas fa-book-open"></i></span><span class="service-index">01 / CORE SERVICE</span></div>
+<div class="service-card-top relative z-10"><span class="service-icon"><i class="fas fa-book-open"></i></span></div>
 <div class="relative z-10 max-w-2xl">
 <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black tracking-[-.035em] mt-7">Outsourced bookkeeping</h3>
 <p class="service-description mt-4 max-w-xl">Keep transactions categorized, accounts reconciled, and month-end records ready for review.</p>
@@ -1301,27 +1358,27 @@
 <div class="service-card-footer relative z-10 mt-8"><span>Explore bookkeeping services</span><span class="service-arrow"><i class="fas fa-arrow-up-right-from-square"></i></span></div>
 </a>
 <a aria-label="Explore QuickBooks bookkeeping services" class="service-card service-quickbooks bento-card md:col-span-5 rounded-[2rem] p-7 sm:p-9 group overflow-hidden" href="/services/quickbooks-bookkeeping/">
-<span class="shine"></span><div class="service-card-top"><span class="service-icon"><i class="fas fa-calculator"></i></span><span class="service-index">02 / QUICKBOOKS</span></div>
+<span class="shine"></span><div class="service-card-top"><span class="service-icon"><i class="fas fa-calculator"></i></span></div>
 <h3 class="text-2xl sm:text-3xl font-black tracking-[-.035em] mt-7">QuickBooks Online support</h3>
 <p class="service-description mt-4">Get QuickBooks Online bookkeeping support for setup, cleanup, bank and credit-card reconciliations, and monthly reports.</p>
 <div class="service-rate mt-6">Starting at <strong>$10/hr</strong></div>
 <div class="service-card-footer mt-7"><span>Explore QuickBooks support</span><span class="service-arrow"><i class="fas fa-arrow-right"></i></span></div>
 </a>
 <a aria-label="Explore Odoo accounting services" class="service-card bento-card md:col-span-4 rounded-[1.7rem] p-6 sm:p-7 group" href="/services/odoo-accounting/">
-<div class="service-card-top"><span class="service-icon"><i class="fas fa-diagram-project"></i></span><span class="service-index">03</span></div>
+<div class="service-card-top"><span class="service-icon"><i class="fas fa-diagram-project"></i></span></div>
 <h3 class="text-xl sm:text-2xl font-black text-[#002349] mt-6">Odoo accounting</h3>
 <p class="service-description mt-3">Get practical Odoo accounting support for reconciliations, month-end reporting, and finance workflows connected to your ERP.</p>
 <div class="service-card-footer mt-6"><span>Starting at $12/hr</span><span class="service-arrow"><i class="fas fa-arrow-right"></i></span></div>
 </a>
 <a aria-label="Explore ecommerce bookkeeping services" class="service-card bento-card md:col-span-4 rounded-[1.7rem] p-6 sm:p-7 group" href="/services/ecommerce-bookkeeping/">
-<div class="service-card-top"><span class="service-icon"><i class="fas fa-store"></i></span><span class="service-index">04</span></div>
+<div class="service-card-top"><span class="service-icon"><i class="fas fa-store"></i></span></div>
 <h3 class="text-xl sm:text-2xl font-black text-[#002349] mt-6">Ecommerce bookkeeping</h3>
 <p class="service-description mt-3">Bring Shopify, Amazon, Stripe, and PayPal activity into a clearer picture, with inventory considered where needed.</p>
 <div class="service-tags mt-5"><span>Shopify</span><span>Amazon</span><span>Stripe &amp; PayPal</span></div>
 <div class="service-card-footer mt-6"><span>Explore ecommerce support</span><span class="service-arrow"><i class="fas fa-arrow-right"></i></span></div>
 </a>
 <a aria-label="Explore payroll support services" class="service-card bento-card md:col-span-4 rounded-[1.7rem] p-6 sm:p-7 group" href="/services/payroll-services/">
-<div class="service-card-top"><span class="service-icon"><i class="fas fa-file-invoice-dollar"></i></span><span class="service-index">05</span></div>
+<div class="service-card-top"><span class="service-icon"><i class="fas fa-file-invoice-dollar"></i></span></div>
 <h3 class="text-xl sm:text-2xl font-black text-[#002349] mt-6">Payroll support</h3>
 <p class="service-description mt-3">Keep payroll entries, contractor payments, and payroll reports organized alongside the rest of your books.</p>
 <div class="service-card-footer mt-6"><span>Explore payroll support</span><span class="service-arrow"><i class="fas fa-arrow-right"></i></span></div>
@@ -1329,7 +1386,7 @@
 <a aria-label="Explore white-label accounting support for CPA firms" class="service-card service-partner bento-card md:col-span-12 rounded-[1.8rem] p-6 sm:p-8 group" href="/services/cpa-outsourcing/">
 <span class="shine"></span><div class="service-partner-layout grid md:grid-cols-[auto_1fr_auto] gap-5 sm:gap-7 items-center">
 <span class="service-icon service-partner-icon"><i class="fas fa-people-arrows-left-right"></i></span>
-<div><div class="service-index mb-2">06 / FOR ACCOUNTING FIRMS</div><h3 class="text-xl sm:text-2xl font-black text-[#002349]">White-label support for CPA firms</h3><p class="service-description mt-2 max-w-3xl">Add behind-the-scenes bookkeeping help when client work picks up—without hiring before you’re ready.</p></div>
+<div><h3 class="text-xl sm:text-2xl font-black text-[#002349]">White-label support for CPA firms</h3><p class="service-description mt-2 max-w-3xl">Add behind-the-scenes bookkeeping help when client work picks up—without hiring before you’re ready.</p></div>
 <span class="service-partner-cta">Explore CPA firm support <i class="fas fa-arrow-right ml-2"></i></span>
 </div>
 </a>
@@ -1348,7 +1405,7 @@
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="why-intro-grid grid lg:grid-cols-[.92fr_1.08fr] gap-10 lg:gap-16 items-end mb-12 lg:mb-16">
 <div data-aos="fade-right">
-<p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">WHY ACCOUNTRISE</p>
+
 <h2 class="why-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.05em] text-[#002349] leading-[.99]">Good books.<br/><span>Fewer loose ends.</span></h2>
 </div>
 <div class="why-intro-copy" data-aos="fade-left">
@@ -1435,7 +1492,7 @@
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="process-intro grid lg:grid-cols-[1fr_.75fr] gap-8 lg:gap-16 items-end mb-12 lg:mb-16">
 <div>
-<p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">HOW IT WORKS</p>
+
 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] text-[#002349] leading-[1.02]" id="process-heading">A straightforward way to get bookkeeping help.</h2>
 </div>
 <div class="process-intro-note">
@@ -1446,21 +1503,21 @@
 <div aria-label="Three steps to get started" class="process-roadmap">
 <article class="process-card bento-card">
 <div class="process-card-head"><span class="process-number">01</span><span class="process-icon"><i aria-hidden="true" class="fas fa-comments"></i></span></div>
-<p class="process-card-kicker">FIRST · A CONVERSATION</p>
+
 <h3>Walk us through your books.</h3>
 <p class="process-card-copy">Tell us which software you use, what’s falling behind, and what your team needs help with.</p>
 <div class="process-detail"><span>We’ll cover</span><p>Transaction volume · Current process · Deadlines</p></div>
 </article>
 <article class="process-card bento-card">
 <div class="process-card-head"><span class="process-number">02</span><span class="process-icon"><i aria-hidden="true" class="fas fa-clipboard-list"></i></span></div>
-<p class="process-card-kicker">NEXT · A CLEAR PLAN</p>
+
 <h3>Agree on the scope.</h3>
 <p class="process-card-copy">Before work starts, we’ll confirm tasks, timing, access, communication, and pricing.</p>
 <div class="process-detail"><span>So you know</span><p>What’s included · Who handles what · What comes next</p></div>
 </article>
 <article class="process-card process-card-final bento-card">
 <div class="process-card-head"><span class="process-number">03</span><span class="process-icon"><i aria-hidden="true" class="fas fa-check-double"></i></span></div>
-<p class="process-card-kicker">THEN · THE WORK GETS MOVING</p>
+
 <h3>Keep the books on track.</h3>
 <p class="process-card-copy">We handle the agreed tasks, raise questions early, and keep reconciliations and reporting moving.</p>
 <div class="process-detail"><span>Ongoing support</span><p>Routine bookkeeping · Month-end close · Useful reports</p></div>
@@ -1478,7 +1535,7 @@
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="insights-header grid lg:grid-cols-[1fr_.7fr] gap-8 lg:gap-14 items-end mb-12 lg:mb-14">
 <div>
-<p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">THE ACCOUNTS DESK</p>
+
 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] text-[#002349] leading-[1.02]" id="insights-heading">Straight answers to everyday accounting questions.</h2>
 </div>
 <div class="insights-header-note"><p>Practical reading for business owners and CPA firms—on bookkeeping, accounting software, and the monthly work behind clearer numbers.</p><a class="insights-all-link" href="/blog/">Read all articles <i aria-hidden="true" class="fas fa-arrow-up-right-from-square ml-2"></i></a></div>
@@ -1505,14 +1562,14 @@
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="testimonials-heading-row grid lg:grid-cols-[1fr_.65fr] gap-8 lg:gap-14 items-end mb-10 lg:mb-12">
 <div>
-<p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">CLIENT FEEDBACK</p>
+
 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] leading-[1.02] text-[#002349]" id="reviews-heading">Good support shows up in the details.</h2>
 </div>
 <div class="testimonials-intro-copy"><p>Clients care about the basics: clear answers, clean reconciliations, and knowing what’s been taken care of. That’s what we work toward on every engagement.</p><span class="testimonials-identity-note"><i aria-hidden="true" class="fas fa-quote-left mr-2"></i>Client comments shown without identifying details.</span></div>
 </div>
 <div class="testimonials-layout grid lg:grid-cols-[.72fr_1.28fr] gap-6 lg:gap-8 items-stretch">
 <aside class="testimonials-side-panel">
-<div class="testimonials-side-eyebrow">THE DAY-TO-DAY MATTERS</div>
+
 <div aria-hidden="true" class="testimonials-side-quote">“</div>
 <h3>Good accounting support should make work easier—not add another thing to manage.</h3>
 <div class="testimonials-side-rule"></div>
@@ -1523,7 +1580,7 @@
 </div>
 </aside>
 <div class="review-stage min-w-0">
-<div class="review-stage-top"><div><span class="review-stage-kicker">A FEW CLIENT NOTES</span><strong>What clients have shared</strong></div><span class="review-count-pill"><span id="testimonialStageCount">01 / 03</span></span></div>
+<div class="review-stage-top"><div><strong>What clients have shared</strong></div><span class="review-count-pill"><span id="testimonialStageCount">01 / 03</span></span></div>
 <div aria-label="Client feedback carousel" aria-live="off" aria-roledescription="carousel" class="testimonial-viewport review-viewport relative overflow-hidden min-w-0 outline-none" id="testimonialViewport" tabindex="0">
 <div class="testimonial-track flex items-stretch will-change-transform" id="testimonialTrack">
 <article aria-label="Client feedback from an e-commerce business owner" aria-roledescription="slide" class="testimonial-slide review-card flex-[0_0_100%] w-full min-w-0">
@@ -1551,7 +1608,7 @@
 </div>
 <div aria-hidden="true" class="review-progress-track mt-4"><span id="testimonialProgress"></span></div>
 <div class="testimonial-controls review-controls mt-4 rounded-2xl px-3 sm:px-4 py-3 flex items-center justify-between gap-4">
-<div class="review-controls-copy"><span class="review-controls-kicker">CLIENT FEEDBACK</span><span class="review-controls-hint">Choose a note or use the arrows</span></div>
+<div class="review-controls-copy"><span class="review-controls-hint">Choose a note or use the arrows</span></div>
 <div class="review-control-actions"><div aria-label="Choose a client feedback slide" class="flex items-center gap-2 shrink-0" id="testimonialDots" role="group"></div><div class="flex items-center gap-2"><button aria-label="Previous client feedback" class="testimonial-nav" id="testimonialPrev" type="button"><i aria-hidden="true" class="fas fa-arrow-left"></i></button><button aria-label="Next client feedback" class="testimonial-nav" id="testimonialNext" type="button"><i aria-hidden="true" class="fas fa-arrow-right"></i></button></div></div>
 </div>
 </div>
@@ -1570,7 +1627,7 @@
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="grid lg:grid-cols-[.9fr_1.1fr] gap-10 lg:gap-16 items-center">
 <div data-aos="fade-right">
-<p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">AI-ready accounting</p>
+
 <h2 class="ai-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.05em] text-[#002349] leading-[.99]">Clean books come before <span>automation.</span></h2>
 <p class="text-lg text-gray-600 leading-relaxed mt-6 max-w-2xl">Automation works best when the books are in good shape. We focus on categorized transactions, reconciled accounts, and clear review steps so software can help with routine work while a person checks the details.</p>
 <div class="ai-principles mt-8 space-y-3">
@@ -1583,7 +1640,7 @@
 <div class="ai-workbench relative" data-aos="fade-left">
 <div class="ai-workbench-glow"></div>
 <div class="ai-workbench-shell rounded-[2rem] sm:rounded-[2.5rem] p-5 sm:p-7 lg:p-8 relative overflow-hidden">
-<div class="ai-workbench-top flex items-center justify-between gap-3"><div><div class="ai-eyebrow">Accounting workflow / 01</div><h3 class="text-2xl sm:text-3xl font-black mt-2">From raw data to useful insight.</h3></div><div class="ai-signal"><span></span> Workflow map</div></div>
+<div class="ai-workbench-top flex items-center justify-between gap-3"><div><h3 class="text-2xl sm:text-3xl font-black mt-2">From raw data to useful insight.</h3></div><div class="ai-signal"><span></span> Workflow map</div></div>
 <div class="ai-flow mt-7">
 <div aria-hidden="true" class="ai-flow-line"><span></span></div>
 <div class="ai-flow-step is-current" data-ai-step="0"><span class="ai-flow-icon"><i class="fas fa-file-invoice-dollar"></i></span><div class="ai-flow-copy"><strong>01 / Capture &amp; organize</strong><small>Transactions, invoices, supporting records</small></div><span class="ai-flow-status"><i class="fas fa-check"></i></span></div>
@@ -1604,7 +1661,7 @@
 <div class="max-w-7xl mx-auto relative z-10">
 <div class="faq-layout grid lg:grid-cols-[.72fr_1.28fr] gap-10 lg:gap-16 items-start">
 <div class="faq-intro lg:sticky lg:top-28" data-aos="fade-right">
-<p class="section-kicker uppercase text-[#957C3D] text-xs font-bold mb-4">Frequently asked questions</p>
+
 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] text-[#002349] leading-[1.02]" id="faq-heading">Common questions.<br/><span class="text-gray-400">Straight answers.</span></h2>
 <p class="text-lg text-gray-600 leading-relaxed mt-6">Here are answers to the questions we hear most about services, software, pricing, and working together.</p>
 <div class="faq-help-card mt-7 rounded-[1.4rem] p-5"><span class="faq-help-icon"><i class="fas fa-message"></i></span><div><strong>Still have a question?</strong><p>Tell us about your setup and we’ll help you define the right next step.</p><a href="#contact">Ask about your workflow <i class="fas fa-arrow-right ml-1"></i></a></div></div>
@@ -1630,7 +1687,7 @@
 <div class="contact-story rounded-[2rem] sm:rounded-[2.5rem] p-7 sm:p-10 lg:p-12 relative overflow-hidden flex flex-col justify-between" data-aos="fade-right">
 <div aria-hidden="true" class="contact-story-rings"></div>
 <div class="relative z-10">
-<p class="section-kicker uppercase text-[#b89a4e] text-xs font-bold mb-5">LET’S TALK ABOUT YOUR BOOKS</p>
+
 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-[-.045em] leading-[1.01]" id="contact-heading">Need help keeping <span>your books current?</span></h2>
 <p class="text-white/65 text-lg leading-relaxed mt-6 max-w-xl">Tell us what’s taking too much time or falling behind. We’ll talk through your software, the work you need covered, and a scope that makes sense.</p>
 </div>
@@ -1665,19 +1722,56 @@
 </section>
 </main>
 <!-- FOOTER -->
-<footer class="site-footer bg-[#00152d] text-white" id="site-footer">
-<div class="footer-main max-w-7xl mx-auto px-5 sm:px-6">
-<div class="footer-grid">
-<div class="footer-brand-col footer-motion motion-reveal" style="--motion-delay:40ms">
-<a aria-label="Accountrise homepage" class="logo-link footer-brand inline-flex items-center gap-3" href="#top"><img alt="Accountrise logo" class="logo-mark h-11 w-auto rounded-xl" src="./accountrise.png"/><span>Accountrise</span></a>
-<p class="footer-brand-copy">Remote bookkeeping and accounting support for US businesses and CPA firms. We also serve Canadian clients</p>
-<div class="footer-socials"><a aria-label="Accountrise on LinkedIn" href="https://www.linkedin.com/company/accountrise" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-linkedin-in"></i></a><a aria-label="Accountrise on Upwork" href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf?mp_source=share" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fas fa-briefcase"></i></a><a aria-label="Contact Accountrise on WhatsApp" href="https://wa.me/918104839386" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-whatsapp"></i></a></div>
-</div>
-<div class="footer-link-col footer-motion motion-reveal" style="--motion-delay:100ms"><h3>Explore</h3><a href="/about/">About Accountrise</a><a href="/services/">All services</a><a href="/blog/">Accounting insights</a><a href="#testimonials">Reviews</a><a href="#faq">FAQs</a></div>
-<div class="footer-contact-col footer-motion motion-reveal" style="--motion-delay:220ms"><h3>Get in touch</h3><p>Have a question about scope, software, or pricing?</p><a class="footer-email" href="mailto:info@accountrise.com"><i aria-hidden="true" class="fas fa-envelope mr-2"></i>info@accountrise.com</a><a class="footer-whatsapp" href="https://wa.me/918104839386" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-whatsapp mr-2"></i>Message us on WhatsApp</a><a class="footer-contact-cta" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">Book a consultation <i aria-hidden="true" class="fas fa-arrow-right ml-2"></i></a></div>
-</div>
-<div class="footer-bottom"><span>© 2026 Accountrise. All rights reserved.</span></span></div>
-</div>
+<footer class="site-footer bg-[#00152d] text-white" id="site-footer" aria-label="Accountrise footer">
+  <div class="footer-main max-w-7xl mx-auto px-5 sm:px-6">
+    <div class="footer-grid">
+      <div class="footer-brand-col footer-motion motion-reveal" style="--motion-delay:40ms">
+        <a aria-label="Accountrise homepage" class="logo-link footer-brand inline-flex items-center gap-3" href="#top">
+          <img alt="Accountrise logo" class="logo-mark h-11 w-auto rounded-xl" src="./accountrise.png" />
+          <span>Accountrise</span>
+        </a>
+        <p class="footer-brand-copy">Remote bookkeeping and accounting support for US businesses and CPA firms. We also serve Canadian clients.</p>
+        <div class="footer-platforms" aria-label="Accounting platforms and services">
+          <span>QuickBooks Online</span><span>Odoo</span><span>Month-end close</span>
+        </div>
+      </div>
+
+      <nav class="footer-link-col footer-motion motion-reveal" style="--motion-delay:100ms" aria-label="Explore Accountrise">
+        <h3>Explore</h3>
+        <a href="/about/">About Accountrise</a>
+        <a href="/services/">All services</a>
+        <a href="/blog/">Accounting insights</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#faq">FAQs</a>
+      </nav>
+
+      <nav class="footer-link-col footer-motion motion-reveal" style="--motion-delay:160ms" aria-label="Accounting services">
+        <h3>Services</h3>
+        <a href="/services/bookkeeping-services/">Outsourced bookkeeping</a>
+        <a href="/services/quickbooks-bookkeeping/">QuickBooks Online</a>
+        <a href="/services/odoo-accounting/">Odoo accounting</a>
+        <a href="/services/ecommerce-bookkeeping/">E-commerce bookkeeping</a>
+        <a href="/services/cpa-outsourcing/">CPA firm support</a>
+      </nav>
+
+      <div class="footer-contact-col footer-motion motion-reveal" style="--motion-delay:220ms">
+        <h3>Get in touch</h3>
+        <div class="footer-socials footer-contact-socials" aria-label="Connect with Accountrise">
+          <a aria-label="Accountrise on LinkedIn" title="LinkedIn" href="https://www.linkedin.com/company/accountrise" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-linkedin-in"></i></a>
+          <a aria-label="Accountrise on Upwork" title="Upwork" href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf?mp_source=share" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-upwork"></i></a>
+          <a aria-label="Message Accountrise on WhatsApp" title="WhatsApp" href="https://wa.me/918104839386" rel="noopener noreferrer" target="_blank"><i aria-hidden="true" class="fab fa-whatsapp"></i></a>
+        </div>
+        <p>Questions about bookkeeping, software, or pricing? Get in touch.</p>
+        <a class="footer-email" href="mailto:info@accountrise.com"><i aria-hidden="true" class="fas fa-envelope mr-2"></i>info@accountrise.com</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 Accountrise. All rights reserved.</span>
+      <span>Remote bookkeeping for US businesses and CPA firms. Also serving Canadian clients.</span>
+      <a class="footer-back-top" href="#top">Back to top <i aria-hidden="true" class="fas fa-arrow-up ml-1"></i></a>
+    </div>
+  </div>
 </footer>
 <!-- FLOATING ACTION ANCHOR -->
 <a aria-label="Chat with Accountrise on WhatsApp" class="fixed bottom-5 right-5 z-[80] group" href="https://wa.me/918104839386" rel="noopener" target="_blank">
