@@ -1157,52 +1157,42 @@
     }
     @media(prefers-reduced-motion:reduce){.footer-contact-socials a{transition:none!important}}
 
-  </style>
 </head>
-<body class="bg-[#F5F7FA] text-gray-900 antialiased">
-<a class="skip-link" href="#top">Skip to content</a>
-<div aria-hidden="true" class="progress" id="progress"></div>
-<!-- STICKY NAVIGATION: simplified to match the requested primary links -->
-<a class="skip-link" href="#top">Skip to content</a>
-<header class="site-header fixed top-0 left-0 w-full z-[90] transition-all duration-300" id="site-header">
-  <nav aria-label="Main navigation" class="site-nav border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-5 sm:px-6">
-      <div class="site-nav-row h-[78px] flex items-center justify-between gap-5">
-        <a aria-label="Accountrise homepage" class="logo-link site-brand flex items-center gap-3 group shrink-0" href="#top">
-          <img alt="Accountrise logo" class="logo-mark h-11 sm:h-12 w-auto rounded-xl" src="./accountrise.png"/>
-          <span class="site-brand-copy"><strong>Accountrise</strong></span>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container">
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="brand" href="/" aria-label="Accountrise home">
+          <img src="/accountrise.png" alt="" width="42" height="42" fetchpriority="high">
+          <span><span class="brand-name">Accountrise</span></span>
         </a>
-        <div class="desktop-nav hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm" aria-label="Primary links">
-          <a class="nav-link active" data-nav="top" href="#top" aria-current="page">Home</a>
-          <a class="nav-link" href="/about/">About Us</a>
-          <a class="nav-link" data-nav="/services/" href="/services/">Services</a>
-          <a class="nav-link" data-nav="/blog/" href="/blog/">Insights</a>
-          <a class="nav-link" data-nav="testimonials" href="#testimonials">Reviews</a>
-          <a class="nav-link" data-nav="faq" href="#faq">FAQ</a>
-          <a class="nav-link" data-nav="contact" href="#contact">Contact</a>
-          <a class="site-nav-cta pump-cta inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-extrabold" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">
-            Book a Call <i aria-hidden="true" class="fas fa-arrow-right text-[11px]"></i>
-          </a>
+        <div class="desktop-nav" aria-label="Primary links">
+          <a href="/">Home</a>
+          <a href="/about/">About Us</a>
+          <a class="active" href="/services/" aria-current="page">Services</a>
+          <a href="/blog/">Insights</a>
+          <a href="/#testimonials">Reviews</a>
+          <a href="/#faq">FAQ</a>
+          <a href="/#contact">Contact</a>
+          <a class="nav-cta" href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer">Book a Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
         </div>
-        <button aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation" class="mobile-menu-button lg:hidden w-11 h-11 rounded-xl border border-white/15 text-white flex items-center justify-center" id="menuBtn" type="button">
-          <i aria-hidden="true" class="fas fa-bars"></i>
-        </button>
-      </div>
-      <div aria-label="Mobile navigation" class="mobile-menu lg:hidden border-t border-white/10" id="mobileMenu">
-        <div class="py-4 grid gap-1">
-          <a class="mobile-link" href="#top">Home</a>
-          <a class="mobile-link" href="/about/">About Us</a>
-          <a class="mobile-link" href="/services/">Services</a>
-          <a class="mobile-link" href="/blog/">Insights</a>
-          <a class="mobile-link" href="#testimonials">Reviews</a>
-          <a class="mobile-link" href="#faq">FAQ</a>
-          <a class="mobile-link" href="#contact">Contact</a>
-          <a class="mobile-menu-cta mt-2" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">Book a Call <i aria-hidden="true" class="fas fa-arrow-right ml-2"></i></a>
-        </div>
+        <button class="menu-button" type="button" id="menuButton" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+      </nav>
+      <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
+        <a href="/">Home</a>
+        <a href="/about/">About Us</a>
+        <a href="/services/" aria-current="page">Services</a>
+        <a href="/blog/">Insights</a>
+        <a href="/#testimonials">Reviews</a>
+        <a href="/#faq">FAQ</a>
+        <a href="/#contact">Contact</a>
+        <a class="nav-cta" href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer">Book a Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
       </div>
     </div>
-  </nav>
-</header>
+  </header>
+
 <main aria-label="Accountrise homepage" id="top" tabindex="-1">
 <!-- HERO: US-FIRST, AFFORDABLE, PEOPLE-LED ACCOUNTING SUPPORT -->
 <section class="snap-section min-h-screen pt-28 lg:pt-36 pb-14 px-5 sm:px-6 bg-gradient-to-br from-[#F5F7FA] via-white to-slate-100" data-section="top">
