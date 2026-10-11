@@ -1156,46 +1156,54 @@
       .footer-back-top{justify-self:start}
     }
     @media(prefers-reduced-motion:reduce){.footer-contact-socials a{transition:none!important}}
-  }
-</style>
+
+  </style>
 </head>
 <body class="bg-[#F5F7FA] text-gray-900 antialiased">
 <a class="skip-link" href="#top">Skip to content</a>
-<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+<div aria-hidden="true" class="progress" id="progress"></div>
 <!-- STICKY NAVIGATION: simplified to match the requested primary links -->
 <a class="skip-link" href="#top">Skip to content</a>
-<header class="site-header" id="siteHeader">
-  <div class="container">
-    <nav class="site-nav" aria-label="Main navigation">
-      <a class="brand" href="/" aria-label="Accountrise home">
-        <img src="/accountrise.png" alt="" width="42" height="42" fetchpriority="high">
-        <span><span class="brand-name">Accountrise</span></span>
-      </a>
-      <div class="desktop-nav" aria-label="Primary links">
-        <a class="active" href="/" aria-current="page">Home</a>
-        <a href="/about/">About Us</a>
-        <a href="/services/">Services</a>
-        <a href="/blog/">Insights</a>
-        <a href="/#testimonials">Reviews</a>
-        <a href="/#faq">FAQ</a>
-        <a href="/#contact">Contact</a>
-        <a class="nav-cta" href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer">Book a Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+<header class="site-header fixed top-0 left-0 w-full z-[90] transition-all duration-300" id="site-header">
+  <nav aria-label="Main navigation" class="site-nav border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-6">
+      <div class="site-nav-row h-[78px] flex items-center justify-between gap-5">
+        <a aria-label="Accountrise homepage" class="logo-link site-brand flex items-center gap-3 group shrink-0" href="#top">
+          <img alt="Accountrise logo" class="logo-mark h-11 sm:h-12 w-auto rounded-xl" src="./accountrise.png"/>
+          <span class="site-brand-copy"><strong>Accountrise</strong></span>
+        </a>
+        <div class="desktop-nav hidden lg:flex items-center gap-4 xl:gap-6 text-xs xl:text-sm" aria-label="Primary links">
+          <a class="nav-link active" data-nav="top" href="#top" aria-current="page">Home</a>
+          <a class="nav-link" href="/about/">About Us</a>
+          <a class="nav-link" data-nav="services" href="/services/">Services</a>
+          <a class="nav-link" data-nav="insights" href="/blog/">Insights</a>
+          <a class="nav-link" data-nav="testimonials" href="#testimonials">Reviews</a>
+          <a class="nav-link" data-nav="faq" href="#faq">FAQ</a>
+          <a class="nav-link" data-nav="contact" href="#contact">Contact</a>
+          <a class="site-nav-cta pump-cta inline-flex items-center justify-center gap-2 rounded-full px-5 py-3 font-extrabold" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">
+            Book a Call <i aria-hidden="true" class="fas fa-arrow-right text-[11px]"></i>
+          </a>
+        </div>
+        <button aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation" class="mobile-menu-button lg:hidden w-11 h-11 rounded-xl border border-white/15 text-white flex items-center justify-center" id="menuBtn" type="button">
+          <i aria-hidden="true" class="fas fa-bars"></i>
+        </button>
       </div>
-      <button class="menu-button" type="button" id="menuButton" aria-controls="mobileMenu" aria-expanded="false" aria-label="Open navigation"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
-    </nav>
-    <div class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation">
-      <a href="/" aria-current="page">Home</a>
-      <a href="/about/">About Us</a>
-      <a href="/services/">Services</a>
-      <a href="/blog/">Insights</a>
-      <a href="/#testimonials">Reviews</a>
-      <a href="/#faq">FAQ</a>
-      <a href="/#contact">Contact</a>
-      <a class="nav-cta" href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer">Book a Call <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+      <div aria-label="Mobile navigation" class="mobile-menu lg:hidden border-t border-white/10" id="mobileMenu">
+        <div class="py-4 grid gap-1">
+          <a class="mobile-link" href="#top">Home</a>
+          <a class="mobile-link" href="/about/">About Us</a>
+          <a class="mobile-link" href="/services/">Services</a>
+          <a class="mobile-link" href="/blog/">Insights</a>
+          <a class="mobile-link" href="#testimonials">Reviews</a>
+          <a class="mobile-link" href="#faq">FAQ</a>
+          <a class="mobile-link" href="#contact">Contact</a>
+          <a class="mobile-menu-cta mt-2" href="https://calendly.com/deshrajgocher2012/30min" rel="noopener noreferrer" target="_blank">Book a Call <i aria-hidden="true" class="fas fa-arrow-right ml-2"></i></a>
+        </div>
+      </div>
     </div>
-  </div>
+  </nav>
 </header>
-  <main aria-label="Accountrise homepage" id="top" tabindex="-1">
+<main aria-label="Accountrise homepage" id="top" tabindex="-1">
 <!-- HERO: US-FIRST, AFFORDABLE, PEOPLE-LED ACCOUNTING SUPPORT -->
 <section class="snap-section min-h-screen pt-28 lg:pt-36 pb-14 px-5 sm:px-6 bg-gradient-to-br from-[#F5F7FA] via-white to-slate-100" data-section="top">
       <div class="parallax-grid absolute inset-0 grid-bg pointer-events-none"></div>
@@ -1207,6 +1215,12 @@
             <span class="w-2 h-2 rounded-full bg-[#957C3D] animate-pulse"></span>
             Remote accounting support for US businesses & CPA firms
           </div>
+          </div>
+      <div class="hero-market-note flex flex-wrap items-center gap-x-3 gap-y-2 mb-5">
+        <span><i class="fas fa-location-dot" aria-hidden="true"></i> US-first support</span>
+        <span class="hero-market-divider" aria-hidden="true"></span>
+        <span>Also serving Canadian clients</span>
+      </div>
           <h1 class="text-[2.7rem] sm:text-6xl xl:text-[4.65rem] font-black tracking-[-.05em] leading-[.98] text-[#002349] max-w-4xl">
             Clean books.
             <span class="text-[#957C3D]">Clear numbers.</span>
@@ -1265,6 +1279,7 @@
               <div class="relative z-10">
                 <div class="flex items-center justify-between gap-4">
                   <div>
+                    <div class="text-white/45 text-[10px] sm:text-xs uppercase tracking-[.2em]">Accounting command center</div>
                     <h2 class="text-2xl sm:text-3xl font-black mt-2">Your books, under control.</h2>
                     <p class="text-white/50 text-sm leading-relaxed mt-2">A simple view of the work that keeps your accounting ready.</p>
                   </div>
@@ -1302,6 +1317,12 @@
                 </div>
               </div>
             </div>
+          </div>
+          <div class="absolute -bottom-5 -left-3 sm:-left-9 glass rounded-2xl p-3.5 shadow-xl float float-delay max-w-[205px]">
+            <div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-[#002349] text-white flex items-center justify-center"><i class="fas fa-lock"></i></div><div><div class="text-[10px] uppercase tracking-[.14em] text-gray-400">Workflow</div><div class="font-bold text-[#002349]">Cloud-ready</div></div></div>
+          </div>
+          <div class="absolute -bottom-9 right-0 glass rounded-2xl px-4 py-3 shadow-xl float float-delay-2 hidden sm:block">
+            <div class="text-[10px] uppercase tracking-[.18em] text-gray-400">Built for</div><div class="font-bold text-[#002349] mt-1">US businesses • CPA firms</div>
           </div>
         </div>
       </div>
