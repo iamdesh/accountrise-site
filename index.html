@@ -155,7 +155,7 @@
       top: 0;
       inset-inline: 0;
       z-index: 90;
-      background: rgba(7, 25, 47, 0.93);
+      background: rgba(7, 25, 47, 0.94);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -168,7 +168,7 @@
       position: relative;
       font-size: 0.875rem;
       font-weight: 600;
-      color: rgba(255, 255, 255, 0.78);
+      color: rgba(255, 255, 255, 0.8);
       padding-block: 6px;
       transition: color 0.2s ease;
     }
@@ -200,7 +200,7 @@
       background-size: 56px 56px;
     }
 
-    /* Section Badge Pill */
+    /* Section Kicker */
     .section-kicker {
       display: inline-flex;
       align-items: center;
@@ -264,6 +264,19 @@
     /* Process Progress Rail */
     .process-progress-fill {
       transition: width 0.18s linear;
+    }
+
+    /* Insight Card Accent */
+    .insight-card {
+      background: #ffffff;
+      border: 1px solid var(--hairline);
+      border-radius: 1.25rem;
+      transition: transform 0.3s var(--ease-fluid), box-shadow 0.3s var(--ease-fluid), border-color 0.25s ease;
+    }
+    .insight-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(164, 132, 58, 0.45);
+      box-shadow: 0 18px 40px rgba(7, 25, 47, 0.08);
     }
 
     /* Reviews */
@@ -344,21 +357,19 @@
         </div>
       </a>
 
-      <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
-        <a href="/about/" class="top-link is-active" data-section-link="about">About US</a>
+      <nav aria-label="Primary" class="hidden lg:flex items-center gap-6">
+        <a href="/about/" class="top-link">About Us</a>
         <a href="/services/" class="top-link" data-section-link="services">Services</a>
-        <a href="/blog/" class="top-link" data-section-link="model">Blogs</a>
+        <a href="#model" class="top-link" data-section-link="model">US Model</a>
         <a href="#process" class="top-link" data-section-link="process">Process</a>
-        <a href="#proof-guides" class="top-link" data-section-link="proof-guides">Proof &amp; Guides</a>
+        <a href="/blog/" class="top-link" data-section-link="insights">Insights</a>
         <a href="#faq" class="top-link" data-section-link="faq">FAQ</a>
       </nav>
 
-      <div class="hidden lg:flex items-center gap-3">
-        <a href="#quote-form" class="px-4 py-2.5 rounded-xl text-sm font-bold text-white/90 hover:text-white border border-white/15 hover:border-[#d3b56c]/60 transition">
-          Get Quote
-        </a>
-        <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl text-sm font-extrabold bg-[#d3b56c] text-[#07192f] hover:bg-[#e1c683] transition shadow-sm">
-          Book Intro Call
+      <div class="hidden lg:flex items-center">
+        <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-xl text-sm font-extrabold bg-[#d3b56c] text-[#07192f] hover:bg-[#e1c683] transition shadow-sm inline-flex items-center gap-2">
+          <i class="far fa-calendar text-xs"></i>
+          <span>Book Call</span>
         </a>
       </div>
 
@@ -368,14 +379,16 @@
     </div>
 
     <div id="mobileDrawer" class="hidden lg:hidden bg-[#061527] border-t border-white/10 px-5 py-4 space-y-2 text-sm font-semibold text-white/85">
-      <a href="#services" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Services</a>
+      <a href="/about/" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">About Us</a>
+      <a href="/services/" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">All Services</a>
       <a href="#model" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">US Model</a>
       <a href="#process" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Process</a>
-      <a href="#proof-guides" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Proof &amp; Guides</a>
+      <a href="/blog/" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Insights &amp; All Blogs</a>
       <a href="#faq" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">FAQ</a>
-      <div class="pt-2 flex gap-2">
-        <a href="#quote-form" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 text-white font-bold mobile-nav-item">Get Quote</a>
-        <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2.5 rounded-xl bg-[#d3b56c] text-[#07192f] font-extrabold">Book Call</a>
+      <div class="pt-2">
+        <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-2.5 rounded-xl bg-[#d3b56c] text-[#07192f] font-extrabold">
+          Book Intro Call
+        </a>
       </div>
     </div>
   </header>
@@ -395,7 +408,7 @@
           </h1>
 
           <p class="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-            Accountrise gives US founders and CPA firms dependable monthly bookkeeping, multi-month catch-up cleanups, 1099 vendor record prep, and reconciled financial reporting—with daily US time-zone overlap from EST to PST.
+            Accountrise gives US founders and CPA firms dependable monthly bookkeeping, multi-month catch-up cleanups, 1099 vendor record prep, and reconciled financial reporting with daily US time-zone overlap from EST to PST.
           </p>
 
           <div class="mt-8 grid grid-cols-3 gap-4 border-y border-[#07192f]/12 py-6 max-w-xl">
@@ -414,33 +427,33 @@
           </div>
 
           <div class="mt-7 flex flex-wrap items-center gap-3.5">
-            <a href="#quote-form" class="px-6 py-3.5 rounded-xl bg-[#07192f] text-white text-sm font-extrabold hover:bg-[#0e2d52] transition inline-flex items-center gap-2">
-              <span>Request a Scope &amp; Quote</span>
-              <i class="fas fa-arrow-right text-xs text-[#d3b56c]"></i>
+            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-[#07192f] text-white text-sm font-extrabold hover:bg-[#0e2d52] transition inline-flex items-center gap-2">
+              <i class="far fa-calendar text-xs text-[#d3b56c]"></i>
+              <span>Book Intro Call</span>
             </a>
-            <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-white border border-[#07192f]/15 text-[#07192f] text-sm font-bold hover:border-[#a4843a] transition inline-flex items-center gap-2">
-              <i class="far fa-calendar text-xs text-[#a4843a]"></i>
-              <span>15-Min Discovery Call</span>
+            <a href="/services/" class="px-6 py-3.5 rounded-xl bg-white border border-[#07192f]/15 text-[#07192f] text-sm font-bold hover:border-[#a4843a] transition inline-flex items-center gap-2">
+              <span>Explore All Services</span>
+              <i class="fas fa-arrow-right text-xs text-[#a4843a]"></i>
             </a>
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: QUOTE FORM -->
-        <div id="quote-form" data-reveal="right" class="is-shown">
+        <!-- RIGHT COLUMN: DIRECT CALL & SCOPE BRIEF -->
+        <div id="call-brief" data-reveal="right" class="is-shown">
           <div class="rounded-3xl bg-white border border-[#07192f]/12 shadow-[0_24px_70px_rgba(7,25,47,0.1)] p-6 sm:p-8 relative overflow-hidden">
             <div class="h-1 w-full bg-gradient-to-r from-[#07192f] via-[#a4843a] to-[#d3b56c] absolute top-0 left-0"></div>
             <div class="flex items-center justify-between gap-2">
-              <span class="text-[11px] font-black uppercase tracking-[0.18em] text-[#a4843a]">US Scope &amp; Pricing Estimate</span>
+              <span class="text-[11px] font-black uppercase tracking-[0.18em] text-[#a4843a]">US Discovery &amp; Scope Brief</span>
               <span class="text-[11px] font-bold text-slate-500">Reply in &lt; 1 business day</span>
             </div>
             <h2 class="text-xl sm:text-2xl font-black text-[#07192f] mt-2">
-              Tell us about your books.
+              Send notes before your call.
             </h2>
             <p class="text-xs sm:text-sm text-slate-500 mt-1">
-              Share your software and monthly volume so we can recommend the right plan.
+              Share your software and monthly volume so we come prepared to your call.
             </p>
 
-            <form action="https://formspree.io/f/xeajjydz" method="POST" class="mt-5 space-y-3.5" id="usQuoteForm">
+            <form action="https://formspree.io/f/xeajjydz" method="POST" class="mt-5 space-y-3.5" id="usCallBriefForm">
               <div class="grid sm:grid-cols-2 gap-3.5">
                 <div>
                   <label for="qName" class="field-label">Full name</label>
@@ -468,15 +481,13 @@
               </div>
 
               <div>
-                <label for="qService" class="field-label">Primary need</label>
+                <label for="qService" class="field-label">Primary service focus</label>
                 <select id="qService" name="service_needed" required class="field-input">
                   <option value="" disabled selected>Select a service area</option>
-                  <option>Monthly Bookkeeping &amp; Reconciliations</option>
-                  <option>Historical Catch-Up / Cleanup</option>
-                  <option>QuickBooks Online Setup &amp; Maintenance</option>
+                  <option>Monthly Bookkeeping &amp; Catch-Up Cleanup</option>
+                  <option>QuickBooks Online Cleanup &amp; Care</option>
                   <option>Odoo Accounting &amp; Ledger Support</option>
                   <option>Shopify / Amazon / Stripe Reconciliation</option>
-                  <option>Payroll Journal &amp; 1099 Vendor Prep</option>
                   <option>White-Label Bookkeeping for CPA Firm</option>
                 </select>
               </div>
@@ -486,11 +497,11 @@
                 <textarea id="qNotes" name="notes" rows="2" placeholder="Accounts count, months behind, target close day..." class="field-input"></textarea>
               </div>
 
-              <input type="hidden" name="_subject" value="Accountrise US Homepage Quote Request" />
+              <input type="hidden" name="_subject" value="Accountrise US Call Brief" />
               <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
 
               <button type="submit" class="w-full py-3.5 px-5 rounded-xl bg-[#07192f] hover:bg-[#0e2d52] text-white font-extrabold text-sm transition flex items-center justify-center gap-2 cursor-pointer">
-                <span>Send Scope Request</span>
+                <span>Send Call Notes</span>
                 <i class="fas fa-arrow-right text-xs text-[#d3b56c]"></i>
               </button>
 
@@ -503,82 +514,97 @@
       </div>
     </section>
 
-    <!-- SECTION 2: SERVICES — NUMBERED LEDGER SCHEDULE + STICKY NAVY INSPECTOR -->
+    <!-- SECTION 2: SERVICES — NUMBERED LEDGER SCHEDULE + STICKY INSPECTOR WITH INDIVIDUAL PAGE LINKS -->
     <section id="services" data-section="services" class="py-20 lg:py-28 px-5 sm:px-6 bg-white border-y border-[#07192f]/10">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12" data-reveal>
           <div>
-            <span class="section-kicker">02 · Service Schedule</span>
+            <span class="section-kicker">02 · Individual Service Pages</span>
             <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
               Focused US accounting capabilities.
             </h2>
           </div>
-          <p class="text-sm sm:text-base text-slate-600 max-w-md">
-            Click any service row to inspect exact US deliverables and starting USD rates.
-          </p>
+          <div class="flex items-center gap-4">
+            <p class="text-sm text-slate-600 max-w-xs">
+              Select a row to preview scope, or open its full service page.
+            </p>
+            <a href="/services/" class="px-4 py-2.5 rounded-xl border border-[#07192f]/20 text-xs font-extrabold text-[#07192f] hover:border-[#a4843a] transition shrink-0">
+              All Services →
+            </a>
+          </div>
         </div>
 
         <div class="grid lg:grid-cols-[1.25fr_0.75fr] gap-8 items-start" data-reveal>
           <div class="border-b border-[#07192f]/12" id="serviceScheduleList">
-            <button type="button" class="ledger-row is-selected w-full text-left py-5 px-5 flex items-center justify-between gap-4" data-service-idx="0">
+            <div class="ledger-row is-selected py-5 px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer" data-service-idx="0">
               <div>
                 <span class="text-xs font-bold text-[#a4843a]">01 · CORE MONTHLY</span>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#07192f] mt-0.5">Monthly Bookkeeping &amp; Catch-Up Cleanup</h3>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1">Bank &amp; credit card reconciliations, historical cleanups, and monthly P&amp;L &amp; Balance Sheet packages.</p>
               </div>
-              <div class="text-right shrink-0">
-                <span class="block text-sm font-black text-[#07192f]">From $10/hr</span>
-                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
+              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+                <span class="text-sm font-black text-[#07192f]">From $10/hr</span>
+                <a href="/services/bookkeeping-services/" class="text-xs font-extrabold text-[#a4843a] hover:underline">
+                  Full Page <i class="fas fa-arrow-up-right-from-square ml-1"></i>
+                </a>
               </div>
-            </button>
+            </div>
 
-            <button type="button" class="ledger-row w-full text-left py-5 px-5 flex items-center justify-between gap-4" data-service-idx="1">
+            <div class="ledger-row py-5 px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer" data-service-idx="1">
               <div>
                 <span class="text-xs font-bold text-[#a4843a]">02 · QUICKBOOKS ONLINE</span>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#07192f] mt-0.5">QuickBooks Online Cleanup &amp; Care</h3>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1">Chart-of-accounts tidy-up, bank rule fixes, undeposited funds resolution, and monthly close.</p>
               </div>
-              <div class="text-right shrink-0">
-                <span class="block text-sm font-black text-[#07192f]">From $10/hr</span>
-                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
+              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+                <span class="text-sm font-black text-[#07192f]">From $10/hr</span>
+                <a href="/services/quickbooks-bookkeeping/" class="text-xs font-extrabold text-[#a4843a] hover:underline">
+                  Full Page <i class="fas fa-arrow-up-right-from-square ml-1"></i>
+                </a>
               </div>
-            </button>
+            </div>
 
-            <button type="button" class="ledger-row w-full text-left py-5 px-5 flex items-center justify-between gap-4" data-service-idx="2">
+            <div class="ledger-row py-5 px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer" data-service-idx="2">
               <div>
                 <span class="text-xs font-bold text-[#a4843a]">03 · ERP &amp; INVENTORY</span>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#07192f] mt-0.5">Odoo Accounting &amp; Ledger Support</h3>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1">Reconcile journals, bills, invoices, and inventory/COGS workflows inside Odoo.</p>
               </div>
-              <div class="text-right shrink-0">
-                <span class="block text-sm font-black text-[#07192f]">From $12/hr</span>
-                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
+              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+                <span class="text-sm font-black text-[#07192f]">From $12/hr</span>
+                <a href="/services/odoo-accounting/" class="text-xs font-extrabold text-[#a4843a] hover:underline">
+                  Full Page <i class="fas fa-arrow-up-right-from-square ml-1"></i>
+                </a>
               </div>
-            </button>
+            </div>
 
-            <button type="button" class="ledger-row w-full text-left py-5 px-5 flex items-center justify-between gap-4" data-service-idx="3">
+            <div class="ledger-row py-5 px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer" data-service-idx="3">
               <div>
                 <span class="text-xs font-bold text-[#a4843a]">04 · E-COMMERCE</span>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#07192f] mt-0.5">Shopify, Amazon &amp; Stripe Reconciliation</h3>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1">Break out gross sales, refunds, platform fees, and net deposits into clean ledger entries.</p>
               </div>
-              <div class="text-right shrink-0">
-                <span class="block text-sm font-black text-[#07192f]">Custom Scope</span>
-                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
+              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+                <span class="text-sm font-black text-[#07192f]">Custom Scope</span>
+                <a href="/services/ecommerce-bookkeeping/" class="text-xs font-extrabold text-[#a4843a] hover:underline">
+                  Full Page <i class="fas fa-arrow-up-right-from-square ml-1"></i>
+                </a>
               </div>
-            </button>
+            </div>
 
-            <button type="button" class="ledger-row w-full text-left py-5 px-5 flex items-center justify-between gap-4" data-service-idx="4">
+            <div class="ledger-row py-5 px-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer" data-service-idx="4">
               <div>
                 <span class="text-xs font-bold text-[#a4843a]">05 · CPA PARTNERS</span>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#07192f] mt-0.5">White-Label Bookkeeping for US CPA Firms</h3>
                 <p class="text-xs sm:text-sm text-slate-500 mt-1">Dedicated monthly CAS execution and tax-season backlog support under your firm's SOPs.</p>
               </div>
-              <div class="text-right shrink-0">
-                <span class="block text-sm font-black text-[#07192f]">Partner Tiers</span>
-                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
+              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-2 shrink-0">
+                <span class="text-sm font-black text-[#07192f]">Partner Tiers</span>
+                <a href="/services/cpa-outsourcing/" class="text-xs font-extrabold text-[#a4843a] hover:underline">
+                  Full Page <i class="fas fa-arrow-up-right-from-square ml-1"></i>
+                </a>
               </div>
-            </button>
+            </div>
           </div>
 
           <aside class="rounded-3xl bg-[#07192f] text-white p-6 sm:p-8 shadow-xl lg:sticky lg:top-24" id="serviceInspector">
@@ -592,44 +618,47 @@
               <li><i class="fas fa-check text-[#d3b56c] mr-2"></i>Catch-up cleanup for prior months or tax years</li>
               <li><i class="fas fa-check text-[#d3b56c] mr-2"></i>Monthly P&amp;L, Balance Sheet &amp; exception summary</li>
             </ul>
-            <div class="mt-7 pt-5 border-t border-white/15 flex items-center justify-between gap-3">
+            <div class="mt-7 pt-5 border-t border-white/15 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <span class="block text-[11px] uppercase tracking-wider text-white/55">Starting Rate</span>
                 <strong class="text-lg font-black text-[#d3b56c]" id="inspRate">$10 / hour USD</strong>
               </div>
-              <a href="#quote-form" class="px-4 py-2.5 rounded-xl bg-[#d3b56c] text-[#07192f] text-xs font-black hover:bg-[#e1c683] transition">
-                Request Scope →
-              </a>
+              <div class="flex items-center gap-2">
+                <a href="/services/bookkeeping-services/" id="inspPageLink" class="px-3.5 py-2.5 rounded-xl border border-white/25 text-white text-xs font-bold hover:bg-white/10 transition">
+                  Service Page
+                </a>
+                <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-[#d3b56c] text-[#07192f] text-xs font-extrabold hover:bg-[#e1c683] transition">
+                  Book Call
+                </a>
+              </div>
             </div>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 3: MID-PAGE ACTION CTA BANNER -->
-    <section id="mid-cta" aria-label="Quick consultation CTA" class="py-10 px-5 sm:px-6 bg-[#efeae0] border-b border-[#07192f]/10">
+    <!-- SECTION 3: MID-PAGE ACTION CTA BANNER (BOOK CALL ONLY) -->
+    <section id="mid-cta" aria-label="Book an introductory call" class="py-10 px-5 sm:px-6 bg-[#efeae0] border-b border-[#07192f]/10">
       <div class="max-w-7xl mx-auto rounded-3xl bg-[#07192f] text-white px-6 sm:px-10 py-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-md" data-reveal>
         <div>
-          <span class="text-[11px] font-black uppercase tracking-[0.2em] text-[#d3b56c]">Fast Clarity</span>
+          <span class="text-[11px] font-black uppercase tracking-[0.2em] text-[#d3b56c]">Direct Alignment</span>
           <h2 class="text-2xl sm:text-3xl font-black tracking-tight mt-1">
             Behind on reconciliations or scaling a CPA practice?
           </h2>
           <p class="text-sm text-white/75 mt-1">
-            Get a clear scope in writing or book a 15-minute call during US business hours.
+            Walk through your current books and timeline on a focused 15-minute call during US business hours.
           </p>
         </div>
-        <div class="flex flex-wrap items-center gap-3 shrink-0">
-          <a href="#quote-form" class="px-5 py-3 rounded-xl bg-[#d3b56c] text-[#07192f] text-sm font-black hover:bg-[#e1c683] transition">
-            Get Written Quote
-          </a>
-          <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl border border-white/25 text-white text-sm font-bold hover:bg-white/10 transition">
-            Book 15-Min Call
+        <div class="shrink-0">
+          <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-[#d3b56c] text-[#07192f] text-sm font-extrabold hover:bg-[#e1c683] transition inline-flex items-center gap-2">
+            <i class="far fa-calendar text-xs"></i>
+            <span>Book Intro Call</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- SECTION 4: US OPERATING MODEL — ROLE SWITCHER + FEATURE MATRIX CARDS -->
+    <!-- SECTION 4: US OPERATING MODEL — ROLE SWITCHER + 3-COLUMN MATRIX -->
     <section id="model" data-section="model" class="py-20 lg:py-28 px-5 sm:px-6">
       <div class="max-w-7xl mx-auto">
         <div class="max-w-3xl mb-10" data-reveal>
@@ -709,7 +738,7 @@
       </div>
     </section>
 
-    <!-- SECTION 5: ONBOARDING PROCESS — HORIZONTAL PROGRESS TRACK -->
+    <!-- SECTION 5: ONBOARDING PROCESS — SCROLL-TRACKED RIBBON -->
     <section id="process" data-section="process" class="py-20 lg:py-28 px-5 sm:px-6 bg-white border-y border-[#07192f]/10">
       <div class="max-w-7xl mx-auto">
         <div class="max-w-2xl mb-14" data-reveal>
@@ -753,16 +782,75 @@
       </div>
     </section>
 
-    <!-- SECTION 6: CLIENT PROOF & US GUIDES -->
-    <section id="proof-guides" data-section="proof-guides" class="py-20 lg:py-28 px-5 sm:px-6">
-      <div class="max-w-7xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
-        <div data-reveal>
-          <div class="flex items-center justify-between gap-4 mb-6">
+    <!-- SECTION 6: DEDICATED INSIGHTS (WITH VIEW ALL BLOGS) + CLIENT PROOF -->
+    <section id="insights" data-section="insights" class="py-20 lg:py-28 px-5 sm:px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10" data-reveal>
+          <div>
+            <span class="section-kicker">05 · Insights &amp; Guides</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
+              Practical US accounting insights.
+            </h2>
+          </div>
+          <a href="/blog/" class="px-5 py-3 rounded-xl bg-[#07192f] text-white text-sm font-extrabold hover:bg-[#0e2d52] transition inline-flex items-center gap-2 shrink-0">
+            <span>View All Blogs</span>
+            <i class="fas fa-arrow-right text-xs text-[#d3b56c]"></i>
+          </a>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 mb-14" data-reveal>
+          <a href="/blog/remote-accounting-guide.html" class="insight-card p-6 flex flex-col justify-between group">
             <div>
-              <span class="section-kicker">05 · Client Proof</span>
-              <h2 class="text-3xl sm:text-4xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
-                Trusted across US &amp; international teams.
-              </h2>
+              <span class="text-[11px] font-black uppercase tracking-[0.16em] text-[#a4843a]">Checklist · US Operations</span>
+              <h3 class="text-xl font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition mt-2">
+                Outsourcing US Bookkeeping Checklist
+              </h3>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                How to structure role permissions, close calendars, and partner handoffs without losing control.
+              </p>
+            </div>
+            <span class="mt-6 text-xs font-extrabold text-[#07192f] inline-flex items-center gap-1.5">
+              Read article <i class="fas fa-arrow-right text-[10px] text-[#a4843a]"></i>
+            </span>
+          </a>
+
+          <a href="/blog/odoo-vs-quickbooks.html" class="insight-card p-6 flex flex-col justify-between group">
+            <div>
+              <span class="text-[11px] font-black uppercase tracking-[0.16em] text-[#a4843a]">Comparison · Ledger &amp; ERP</span>
+              <h3 class="text-xl font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition mt-2">
+                Odoo vs. QuickBooks Online
+              </h3>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                Compare workflows, inventory/COGS tracking, and reporting fit as your US operations scale.
+              </p>
+            </div>
+            <span class="mt-6 text-xs font-extrabold text-[#07192f] inline-flex items-center gap-1.5">
+              Read article <i class="fas fa-arrow-right text-[10px] text-[#a4843a]"></i>
+            </span>
+          </a>
+
+          <a href="/blog/bookkeeper-vs-accountant-vs-cpa.html" class="insight-card p-6 flex flex-col justify-between group">
+            <div>
+              <span class="text-[11px] font-black uppercase tracking-[0.16em] text-[#a4843a]">Roles · CPA &amp; Advisory</span>
+              <h3 class="text-xl font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition mt-2">
+                Bookkeeper vs. Accountant vs. CPA
+              </h3>
+              <p class="text-sm text-slate-600 mt-2 leading-relaxed">
+                Separate daily reconciliations and cleanups from tax filing and advisory so budgets stay lean.
+              </p>
+            </div>
+            <span class="mt-6 text-xs font-extrabold text-[#07192f] inline-flex items-center gap-1.5">
+              Read article <i class="fas fa-arrow-right text-[10px] text-[#a4843a]"></i>
+            </span>
+          </a>
+        </div>
+
+        <!-- CLIENT PROOF BAR -->
+        <div class="rounded-3xl bg-white border border-[#07192f]/12 p-7 sm:p-9 shadow-2xs" data-reveal>
+          <div class="flex flex-wrap items-center justify-between gap-4 pb-5 border-b border-[#07192f]/10">
+            <div>
+              <span class="text-[11px] font-black uppercase tracking-[0.18em] text-[#a4843a]">Client Proof</span>
+              <h3 class="text-xl sm:text-2xl font-black text-[#07192f] mt-1">Trusted across US &amp; international teams.</h3>
             </div>
             <div class="flex items-center gap-2">
               <button type="button" id="prevRev" aria-label="Previous review" class="w-10 h-10 rounded-full border border-[#07192f]/20 bg-white text-[#07192f] hover:bg-[#07192f] hover:text-white transition cursor-pointer">
@@ -774,59 +862,40 @@
             </div>
           </div>
 
-          <div class="rounded-3xl bg-white border border-[#07192f]/12 p-7 sm:p-9 shadow-2xs">
+          <div class="pt-6">
             <div class="review-panel active" data-rev>
               <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Upwork US Startup Client · ★★★★★ 5.0</p>
-              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-2 leading-relaxed">
                 “I have been working with Deshraj for well over a year now and not only does he really know my business, but he really knows his bookkeeping. He has gained my trust and I have referred him to a few business associates.”
               </blockquote>
-              <p class="text-xs text-slate-500 font-semibold mt-5">QuickBooks Cleanup &amp; Ongoing Bookkeeping</p>
+              <p class="text-xs text-slate-500 font-semibold mt-4">QuickBooks Cleanup &amp; Ongoing Bookkeeping</p>
             </div>
 
             <div class="review-panel" data-rev>
               <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Upwork US Startup Client · ★★★★★ 5.0</p>
-              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-2 leading-relaxed">
                 “Deshraj has great communication and does great work. I'm going to have Deshraj manage our books from here on out. Excellent, reliable and efficient!”
               </blockquote>
-              <p class="text-xs text-slate-500 font-semibold mt-5">1099 Filings &amp; Profit and Loss Statement</p>
+              <p class="text-xs text-slate-500 font-semibold mt-4">1099 Filings &amp; Profit and Loss Statement</p>
             </div>
 
             <div class="review-panel" data-rev>
               <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">John Hammon · LinkedIn Recommendation</p>
-              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-2 leading-relaxed">
                 “His turnaround times have been exceptionally prompt, and speed has never come at the expense of quality. His analysis is thorough, commercially sound, and always presented in a way that makes the numbers easier to understand and act on.”
               </blockquote>
-              <p class="text-xs text-slate-500 font-semibold mt-5">Business Broker · Financial Analysis &amp; Reporting</p>
+              <p class="text-xs text-slate-500 font-semibold mt-4">Business Broker · Financial Analysis &amp; Reporting</p>
             </div>
 
             <div class="review-panel" data-rev>
               <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Jim Roddy · LinkedIn Recommendation</p>
-              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-2 leading-relaxed">
                 “My business has utilised the services of Desh for the last 2+ years. I can say without hesitation that he has grown to be an invaluable member of our extended team.”
               </blockquote>
-              <p class="text-xs text-slate-500 font-semibold mt-5">Director · Long-Term Accounting Support</p>
+              <p class="text-xs text-slate-500 font-semibold mt-4">Director · Long-Term Accounting Support</p>
             </div>
           </div>
         </div>
-
-        <aside data-reveal class="rounded-3xl bg-white border border-[#07192f]/12 p-6 sm:p-8 shadow-2xs">
-          <span class="section-kicker">Practical Guides</span>
-          <h3 class="text-xl font-black text-[#07192f] mt-2">Read before you outsource.</h3>
-          <div class="mt-5 divide-y divide-[#07192f]/10 text-sm">
-            <a href="/blog/remote-accounting-guide.html" class="block py-3.5 group">
-              <span class="font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition block">Outsourcing US Bookkeeping Checklist</span>
-              <span class="text-xs text-slate-500">Permissions, close dates, and partner vetting.</span>
-            </a>
-            <a href="/blog/odoo-vs-quickbooks.html" class="block py-3.5 group">
-              <span class="font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition block">Odoo vs. QuickBooks Online</span>
-              <span class="text-xs text-slate-500">Choosing the right ledger for growth and inventory.</span>
-            </a>
-            <a href="/blog/bookkeeper-vs-accountant-vs-cpa.html" class="block py-3.5 group">
-              <span class="font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition block">Bookkeeper vs. Accountant vs. CPA</span>
-              <span class="text-xs text-slate-500">Matching tasks to the right cost tier.</span>
-            </a>
-          </div>
-        </aside>
       </div>
     </section>
 
@@ -884,7 +953,7 @@
       </div>
     </section>
 
-    <!-- SECTION 8: BOTTOM CONVERSION CTA BAND -->
+    <!-- SECTION 8: BOTTOM CONVERSION CTA BAND (BOOK CALL ONLY) -->
     <section aria-label="Final call to action" class="py-16 px-5 sm:px-6 bg-[#0b2340] text-white border-t border-white/10">
       <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8" data-reveal>
         <div class="max-w-2xl">
@@ -893,15 +962,13 @@
             Ready to put your US books on a clean monthly rhythm?
           </h2>
           <p class="text-sm sm:text-base text-white/75 mt-2">
-            Send a quick note for a tailored USD scope or pick a time on Calendly during US business hours.
+            Pick a slot on Calendly during US business hours to map out your bookkeeping or CPA support scope.
           </p>
         </div>
-        <div class="flex flex-wrap items-center gap-3.5 shrink-0">
-          <a href="#quote-form" class="px-6 py-3.5 rounded-xl bg-[#d3b56c] text-[#07192f] text-sm font-black hover:bg-[#e1c683] transition">
-            Request Custom Quote
-          </a>
-          <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-bold hover:bg-white/15 transition">
-            Schedule Discovery Call
+        <div class="shrink-0">
+          <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-[#d3b56c] text-[#07192f] text-sm font-extrabold hover:bg-[#e1c683] transition inline-flex items-center gap-2">
+            <i class="far fa-calendar text-xs"></i>
+            <span>Book Intro Call</span>
           </a>
         </div>
       </div>
@@ -933,8 +1000,9 @@
       </div>
 
       <div class="lg:col-span-3">
-        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">US Services</h3>
+        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">Services</h3>
         <ul class="space-y-2.5 text-sm text-white/70">
+          <li><a href="/services/" class="hover:text-white transition">All US Services</a></li>
           <li><a href="/services/bookkeeping-services/" class="hover:text-white transition">Monthly Bookkeeping &amp; Cleanup</a></li>
           <li><a href="/services/quickbooks-bookkeeping/" class="hover:text-white transition">QuickBooks Online Support</a></li>
           <li><a href="/services/odoo-accounting/" class="hover:text-white transition">Odoo Accounting &amp; ERP</a></li>
@@ -944,18 +1012,18 @@
       </div>
 
       <div class="lg:col-span-2">
-        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">Company</h3>
+        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">Company &amp; Insights</h3>
         <ul class="space-y-2.5 text-sm text-white/70">
-          <li><a href="/about/" class="hover:text-white transition">About Accountrise</a></li>
-          <li><a href="/services/" class="hover:text-white transition">All Services</a></li>
-          <li><a href="/blog/" class="hover:text-white transition">Accounting Guides</a></li>
-          <li><a href="#proof-guides" class="hover:text-white transition">Client Reviews</a></li>
+          <li><a href="/about/" class="hover:text-white transition">About Us</a></li>
+          <li><a href="/blog/" class="hover:text-white transition">All Blogs &amp; Insights</a></li>
+          <li><a href="/blog/remote-accounting-guide.html" class="hover:text-white transition">Outsourcing Checklist</a></li>
+          <li><a href="/blog/odoo-vs-quickbooks.html" class="hover:text-white transition">Odoo vs. QuickBooks</a></li>
           <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
         </ul>
       </div>
 
       <div class="lg:col-span-3">
-        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">Direct Contact</h3>
+        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">Book a Call</h3>
         <p class="text-sm text-white/75">
           <a href="mailto:info@accountrise.com" class="font-bold text-white hover:text-[#d3b56c] transition">info@accountrise.com</a>
         </p>
@@ -963,7 +1031,7 @@
           Dedicated overlap across EST, CST, MST &amp; PST hours. Mutual NDA available on request.
         </p>
         <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-extrabold text-[#d3b56c] hover:underline">
-          <span>Book a 15-Min Call</span>
+          <span>Book Intro Call</span>
           <i class="fas fa-arrow-up-right-from-square"></i>
         </a>
       </div>
@@ -1067,7 +1135,8 @@
             'Catch-up cleanup for prior months or tax years',
             'Monthly P&L, Balance Sheet & exception summary'
           ],
-          rate: '$10 / hour USD'
+          rate: '$10 / hour USD',
+          url: '/services/bookkeeping-services/'
         },
         {
           tag: '02 · QUICKBOOKS ONLINE',
@@ -1078,7 +1147,8 @@
             'Monthly reconciliations & AR/AP aging check',
             'Clean reporting structure for your CPA'
           ],
-          rate: '$10 / hour USD'
+          rate: '$10 / hour USD',
+          url: '/services/quickbooks-bookkeeping/'
         },
         {
           tag: '03 · ERP & INVENTORY',
@@ -1089,7 +1159,8 @@
             'Vendor bill & customer invoice accuracy checks',
             'Month-end ledger tie-out & reporting'
           ],
-          rate: '$12 / hour USD'
+          rate: '$12 / hour USD',
+          url: '/services/odoo-accounting/'
         },
         {
           tag: '04 · E-COMMERCE',
@@ -1100,7 +1171,8 @@
             'Track marketplace sales tax collections cleanly',
             'Zero out payout clearing accounts monthly'
           ],
-          rate: 'Custom USD Scope'
+          rate: 'Custom USD Scope',
+          url: '/services/ecommerce-bookkeeping/'
         },
         {
           tag: '05 · CPA PARTNERS',
@@ -1111,7 +1183,8 @@
             'Handles monthly write-up & backlog cleanups',
             'Scales capacity without full-time hiring overhead'
           ],
-          rate: 'Partner Retainer / Hourly'
+          rate: 'Partner Retainer / Hourly',
+          url: '/services/cpa-outsourcing/'
         }
       ];
 
@@ -1121,9 +1194,11 @@
       const inspDesc = document.getElementById('inspDesc');
       const inspBullets = document.getElementById('inspBullets');
       const inspRate = document.getElementById('inspRate');
+      const inspPageLink = document.getElementById('inspPageLink');
 
       rows.forEach(row => {
-        row.addEventListener('click', () => {
+        row.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
           const idx = parseInt(row.dataset.serviceIdx, 10);
           const item = serviceDetails[idx];
           if (!item) return;
@@ -1133,6 +1208,7 @@
           if (inspTitle) inspTitle.textContent = item.title;
           if (inspDesc) inspDesc.textContent = item.desc;
           if (inspRate) inspRate.textContent = item.rate;
+          if (inspPageLink) inspPageLink.href = item.url;
           if (inspBullets) {
             inspBullets.innerHTML = item.bullets
               .map(b => `<li><i class="fas fa-check text-[#d3b56c] mr-2"></i>${b}</li>`)
