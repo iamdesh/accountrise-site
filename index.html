@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Accountrise | US Remote Bookkeeping &amp; CPA Back-Office Partner</title>
-  <meta name="description" content="Specialist remote bookkeeping for US small businesses and white-label accounting capacity for US CPA firms. QuickBooks Online, Odoo, catch-up cleanups, reconciliations, 1099 prep, and month-end close from $10/hr." />
+  <title>Accountrise | US Remote Bookkeeping &amp; White-Label CPA Partner</title>
+  <meta name="description" content="Specialist remote bookkeeping for US small businesses and white-label accounting capacity for US CPA firms. QuickBooks Online, Odoo, catch-up cleanups, reconciliations, 1099 prep, and month-end close starting at $10/hr." />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <meta name="author" content="Accountrise" />
@@ -18,12 +18,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="Accountrise" />
-  <meta property="og:title" content="Accountrise | US Remote Bookkeeping &amp; CPA Back-Office Partner" />
+  <meta property="og:title" content="Accountrise | US Remote Bookkeeping &amp; White-Label CPA Partner" />
   <meta property="og:description" content="Dedicated remote bookkeeping for US small businesses and white-label support for US CPA firms starting at $10/hr USD." />
   <meta property="og:url" content="https://www.accountrise.com/" />
   <meta property="og:image" content="https://www.accountrise.com/accountrise-preview.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Accountrise | US Remote Bookkeeping &amp; CPA Back-Office Partner" />
+  <meta name="twitter:title" content="Accountrise | US Remote Bookkeeping &amp; White-Label CPA Partner" />
   <meta name="twitter:description" content="Dedicated remote bookkeeping for US small businesses and white-label support for US CPA firms starting at $10/hr USD." />
   <meta name="twitter:image" content="https://www.accountrise.com/accountrise-preview.jpg" />
 
@@ -70,26 +70,34 @@
         "mainEntity": [
           {
             "@type": "Question",
-            "name": "What does Accountrise handle for US businesses?",
+            "name": "How much do US remote bookkeeping plans cost?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We handle monthly transaction categorization, US bank and credit-card reconciliations, multi-month catch-up cleanups, month-end financial reporting, e-commerce payout reconciliation, payroll journal entries, and 1099 vendor record organization."
+              "text": "Bookkeeping starts at $10/hr USD (and $12/hr USD for Odoo ERP accounting). Pricing depends on transaction count, number of accounts, catch-up needs, and reporting frequency, with hourly, project, and monthly retainer options."
             }
           },
           {
             "@type": "Question",
-            "name": "How does white-label support work for US CPA firms?",
+            "name": "How does white-label work for US CPA and EA firms?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "We operate behind the scenes under NDA using your firm's chart of accounts, workpaper structure, and review checklists so your partners and tax staff receive clean trial balances and reconciled books."
+              "text": "We work under NDA following your firm's chart of accounts, naming rules, and review checklists so your team receives clean trial balances and reconciliations ready for tax review or advisory."
             }
           },
           {
             "@type": "Question",
-            "name": "What are your rates for US clients?",
+            "name": "Do you file US tax returns or run payroll directly?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Bookkeeping starts at $10/hr USD (and $12/hr USD for Odoo ERP accounting), with options for hourly billing, fixed catch-up scopes, or monthly retainers."
+              "text": "We focus on bookkeeping and accounting back-office work—preparing tax-ready statements, 1099 vendor summaries, and payroll journal entries—while licensed tax filing and payroll disbursement remain with your CPA or payroll provider."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do we share access safely?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You invite Accountrise with Accountant-level permissions inside QuickBooks Online or Odoo using your own admin credentials—no bank logins or fund-transfer authority shared."
             }
           }
         ]
@@ -103,8 +111,8 @@
       --obsidian: #07192f;
       --slate-ink: #0f2744;
       --ivory: #f8f7f4;
-      --ledger-bg: #ffffff;
-      --hairline: rgba(7, 25, 47, 0.11);
+      --warm-stone: #efeae0;
+      --hairline: rgba(7, 25, 47, 0.12);
       --brass: #a4843a;
       --brass-light: #d3b56c;
       --ease-fluid: cubic-bezier(0.22, 1, 0.36, 1);
@@ -120,6 +128,8 @@
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--ivory);
       color: var(--obsidian);
+      font-size: 16px;
+      line-height: 1.65;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
@@ -128,7 +138,7 @@
       font-family: 'Newsreader', Georgia, serif;
     }
 
-    /* Top Reading Progress Bar */
+    /* Scroll Progress Bar */
     #readProgress {
       position: fixed;
       top: 0;
@@ -137,16 +147,15 @@
       width: 0%;
       z-index: 120;
       background: linear-gradient(90deg, var(--brass), var(--brass-light));
-      transition: width 0.08s linear;
     }
 
-    /* Navigation */
+    /* Sticky Topbar */
     .topbar {
       position: fixed;
       top: 0;
       inset-inline: 0;
       z-index: 90;
-      background: rgba(7, 25, 47, 0.92);
+      background: rgba(7, 25, 47, 0.93);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       transition: background 0.3s ease, box-shadow 0.3s ease;
@@ -183,7 +192,7 @@
       transform-origin: left;
     }
 
-    /* Ledger Grid Texture */
+    /* Subtle Ledger Paper */
     .ledger-paper {
       background-image:
         linear-gradient(to right, rgba(7, 25, 47, 0.035) 1px, transparent 1px),
@@ -191,38 +200,37 @@
       background-size: 56px 56px;
     }
 
-    /* Scroll Choreography Reveals */
+    /* Section Badge Pill */
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    /* Reveal Choreography */
     [data-reveal] {
       opacity: 0;
       transform: translateY(24px);
-      transition: opacity 0.75s var(--ease-fluid), transform 0.8s var(--ease-fluid);
+      transition: opacity 0.72s var(--ease-fluid), transform 0.78s var(--ease-fluid);
       transition-delay: var(--d, 0ms);
     }
-    [data-reveal="left"] {
-      transform: translateX(-26px);
-    }
-    [data-reveal="right"] {
-      transform: translateX(26px);
-    }
+    [data-reveal="left"] { transform: translateX(-26px); }
+    [data-reveal="right"] { transform: translateX(26px); }
     [data-reveal].is-shown {
       opacity: 1;
       transform: translate(0, 0);
     }
 
-    /* Subtle Ambient Float & Shimmer */
-    @keyframes gentleDrift {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-6px); }
-    }
-    .float-subtle {
-      animation: gentleDrift 5.5s ease-in-out infinite;
-    }
-
-    /* Interactive Service Rows with Sliding Accent Bar */
+    /* Service Schedule Rows */
     .ledger-row {
       position: relative;
       border-top: 1px solid var(--hairline);
-      transition: background-color 0.28s ease, padding-left 0.3s var(--ease-fluid);
+      transition: background-color 0.25s ease, padding-left 0.28s var(--ease-fluid);
     }
     .ledger-row::before {
       content: "";
@@ -233,16 +241,17 @@
       width: 3px;
       background: linear-gradient(180deg, var(--brass-light), var(--brass));
       transform: scaleY(0);
-      transition: transform 0.32s var(--ease-fluid);
+      transition: transform 0.3s var(--ease-fluid);
     }
-    .ledger-row:hover {
-      background-color: rgba(164, 132, 58, 0.055);
+    .ledger-row:hover, .ledger-row.is-selected {
+      background-color: rgba(164, 132, 58, 0.065);
+      padding-left: 1.5rem;
     }
-    .ledger-row:hover::before {
+    .ledger-row:hover::before, .ledger-row.is-selected::before {
       transform: scaleY(1);
     }
 
-    /* Pillar Tab Buttons */
+    /* Audience Pillar Tabs */
     .pillar-btn {
       transition: all 0.25s var(--ease-fluid);
     }
@@ -252,28 +261,23 @@
       box-shadow: 0 10px 24px rgba(7, 25, 47, 0.16);
     }
 
-    /* Process Timeline Rail */
-    .process-rail {
-      position: relative;
-    }
+    /* Process Progress Rail */
     .process-progress-fill {
-      transition: width 0.2s linear, height 0.2s linear;
+      transition: width 0.18s linear;
     }
 
-    /* Review Cards */
-    .review-panel {
-      display: none;
-    }
+    /* Reviews */
+    .review-panel { display: none; }
     .review-panel.active {
       display: block;
-      animation: fadeSlideUp 0.42s var(--ease-fluid);
+      animation: fadeSlideUp 0.4s var(--ease-fluid);
     }
     @keyframes fadeSlideUp {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* FAQ Smooth Accordion */
+    /* FAQ Accordion */
     .q-box {
       border: 1px solid var(--hairline);
       border-radius: 1rem;
@@ -310,7 +314,7 @@
       border-radius: 0.75rem;
       border: 1px solid #d5dde6;
       background: #ffffff;
-      padding: 0.7rem 0.9rem;
+      padding: 0.72rem 0.9rem;
       font-size: 0.875rem;
       color: var(--obsidian);
       transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -324,7 +328,6 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; }
-      .float-subtle { animation: none !important; }
     }
   </style>
 </head>
@@ -338,16 +341,15 @@
         <img src="./accountrise.png" alt="Accountrise" class="h-10 w-auto rounded-lg transition-transform duration-300 group-hover:scale-105" />
         <div class="leading-tight">
           <span class="block text-white font-black text-lg tracking-tight">Accountrise</span>
-          <span class="block text-[10px] uppercase tracking-[0.2em] text-[#d3b56c] font-bold">US Bookkeeping &amp; CPA Support</span>
         </div>
       </a>
 
       <nav aria-label="Primary" class="hidden lg:flex items-center gap-7">
-        <a href="#top" class="top-link is-active" data-section-link="top">Overview</a>
-        <a href="#services" class="top-link" data-section-link="services">Services</a>
-        <a href="#model" class="top-link" data-section-link="model">US Model</a>
+        <a href="/about/" class="top-link is-active" data-section-link="about">About US</a>
+        <a href="/services/" class="top-link" data-section-link="services">Services</a>
+        <a href="/blog/" class="top-link" data-section-link="model">Blogs</a>
         <a href="#process" class="top-link" data-section-link="process">Process</a>
-        <a href="#reviews" class="top-link" data-section-link="reviews">Reviews</a>
+        <a href="#proof-guides" class="top-link" data-section-link="proof-guides">Proof &amp; Guides</a>
         <a href="#faq" class="top-link" data-section-link="faq">FAQ</a>
       </nav>
 
@@ -369,7 +371,7 @@
       <a href="#services" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Services</a>
       <a href="#model" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">US Model</a>
       <a href="#process" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Process</a>
-      <a href="#reviews" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Reviews</a>
+      <a href="#proof-guides" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">Proof &amp; Guides</a>
       <a href="#faq" class="block py-2 px-3 rounded-lg hover:bg-white/5 mobile-nav-item">FAQ</a>
       <div class="pt-2 flex gap-2">
         <a href="#quote-form" class="flex-1 text-center py-2.5 rounded-xl border border-white/20 text-white font-bold mobile-nav-item">Get Quote</a>
@@ -379,24 +381,23 @@
   </header>
 
   <main id="top">
-    <!-- HERO: EDITORIAL SPLIT WITH LIVE SCOPE FORM & ANIMATED METRICS -->
+    <!-- SECTION 1: HERO — ASYMMETRIC LEDGER SPLIT -->
     <section class="pt-28 lg:pt-36 pb-20 px-5 sm:px-6" data-section="top">
       <div class="max-w-7xl mx-auto grid lg:grid-cols-[1.12fr_0.88fr] gap-12 xl:gap-16 items-start">
         <div data-reveal="left" class="is-shown">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#07192f]/12 text-xs font-bold text-[#07192f] shadow-2xs mb-6">
             <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
-            <span>Built for US Small Businesses &amp; CPA Firms</span>
+            <span>US Small Businesses &amp; White-Label CPA Practices</span>
           </div>
 
-          <h1 class="text-4xl sm:text-5xl xl:text-[3.75rem] font-black tracking-[-0.035em] text-[#07192f] leading-[1.06]">
+          <h1 class="text-4xl sm:text-5xl xl:text-[3.85rem] font-black tracking-[-0.035em] text-[#07192f] leading-[1.06]">
             Remote bookkeeping <span class="font-serif-editorial italic font-medium text-[#a4843a]">engineered</span> for US precision.
           </h1>
 
           <p class="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl">
-            Accountrise pairs US small businesses and CPA practices with structured monthly bookkeeping, multi-month catch-up cleanups, 1099 vendor record prep, and reconciled financial reporting—working seamlessly across EST to PST hours.
+            Accountrise gives US founders and CPA firms dependable monthly bookkeeping, multi-month catch-up cleanups, 1099 vendor record prep, and reconciled financial reporting—with daily US time-zone overlap from EST to PST.
           </p>
 
-          <!-- Key Numbers Strip with Animated Counters -->
           <div class="mt-8 grid grid-cols-3 gap-4 border-y border-[#07192f]/12 py-6 max-w-xl">
             <div>
               <div class="text-2xl sm:text-3xl font-black text-[#07192f]">$<span data-count="10">10</span><span class="text-sm font-bold text-[#a4843a]">/hr</span></div>
@@ -404,11 +405,11 @@
             </div>
             <div class="border-x border-[#07192f]/12 px-4">
               <div class="text-2xl sm:text-3xl font-black text-[#07192f]"><span data-count="5.0" data-decimals="1">5.0</span><span class="text-sm font-bold text-[#a4843a]">/5</span></div>
-              <p class="text-xs text-slate-500 font-medium mt-1">Client review rating</p>
+              <p class="text-xs text-slate-500 font-medium mt-1">Verified review score</p>
             </div>
             <div>
               <div class="text-2xl sm:text-3xl font-black text-[#07192f]">EST–PST</div>
-              <p class="text-xs text-slate-500 font-medium mt-1">US time-zone overlap</p>
+              <p class="text-xs text-slate-500 font-medium mt-1">US business overlap</p>
             </div>
           </div>
 
@@ -424,8 +425,8 @@
           </div>
         </div>
 
-        <!-- RIGHT COLUMN: STRUCTURED SCOPE INQUIRY CARD -->
-        <div id="quote-form" data-reveal="right" class="is-shown float-subtle">
+        <!-- RIGHT COLUMN: QUOTE FORM -->
+        <div id="quote-form" data-reveal="right" class="is-shown">
           <div class="rounded-3xl bg-white border border-[#07192f]/12 shadow-[0_24px_70px_rgba(7,25,47,0.1)] p-6 sm:p-8 relative overflow-hidden">
             <div class="h-1 w-full bg-gradient-to-r from-[#07192f] via-[#a4843a] to-[#d3b56c] absolute top-0 left-0"></div>
             <div class="flex items-center justify-between gap-2">
@@ -436,7 +437,7 @@
               Tell us about your books.
             </h2>
             <p class="text-xs sm:text-sm text-slate-500 mt-1">
-              Share your current software and monthly volume so we can recommend the right plan.
+              Share your software and monthly volume so we can recommend the right plan.
             </p>
 
             <form action="https://formspree.io/f/xeajjydz" method="POST" class="mt-5 space-y-3.5" id="usQuoteForm">
@@ -502,24 +503,24 @@
       </div>
     </section>
 
-    <!-- SERVICES: CLEAN LEDGER SCHEDULE WITH INTERACTIVE SCOPE DRAWER -->
+    <!-- SECTION 2: SERVICES — NUMBERED LEDGER SCHEDULE + STICKY NAVY INSPECTOR -->
     <section id="services" data-section="services" class="py-20 lg:py-28 px-5 sm:px-6 bg-white border-y border-[#07192f]/10">
       <div class="max-w-7xl mx-auto">
         <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12" data-reveal>
           <div>
-            <span class="text-xs font-black uppercase tracking-[0.2em] text-[#a4843a]">Service Schedule</span>
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2">
-              Focused accounting capabilities.
+            <span class="section-kicker">02 · Service Schedule</span>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
+              Focused US accounting capabilities.
             </h2>
           </div>
           <p class="text-sm sm:text-base text-slate-600 max-w-md">
-            Select any service row to inspect exact US deliverables and pricing structure.
+            Click any service row to inspect exact US deliverables and starting USD rates.
           </p>
         </div>
 
         <div class="grid lg:grid-cols-[1.25fr_0.75fr] gap-8 items-start" data-reveal>
           <div class="border-b border-[#07192f]/12" id="serviceScheduleList">
-            <button type="button" class="ledger-row w-full text-left py-5 px-5 flex items-center justify-between gap-4 is-selected" data-service-idx="0">
+            <button type="button" class="ledger-row is-selected w-full text-left py-5 px-5 flex items-center justify-between gap-4" data-service-idx="0">
               <div>
                 <span class="text-xs font-bold text-[#a4843a]">01 · CORE MONTHLY</span>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#07192f] mt-0.5">Monthly Bookkeeping &amp; Catch-Up Cleanup</h3>
@@ -527,7 +528,7 @@
               </div>
               <div class="text-right shrink-0">
                 <span class="block text-sm font-black text-[#07192f]">From $10/hr</span>
-                <span class="text-xs font-bold text-[#a4843a]">Details <i class="fas fa-chevron-right ml-1"></i></span>
+                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
               </div>
             </button>
 
@@ -539,7 +540,7 @@
               </div>
               <div class="text-right shrink-0">
                 <span class="block text-sm font-black text-[#07192f]">From $10/hr</span>
-                <span class="text-xs font-bold text-[#a4843a]">Details <i class="fas fa-chevron-right ml-1"></i></span>
+                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
               </div>
             </button>
 
@@ -551,7 +552,7 @@
               </div>
               <div class="text-right shrink-0">
                 <span class="block text-sm font-black text-[#07192f]">From $12/hr</span>
-                <span class="text-xs font-bold text-[#a4843a]">Details <i class="fas fa-chevron-right ml-1"></i></span>
+                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
               </div>
             </button>
 
@@ -559,11 +560,11 @@
               <div>
                 <span class="text-xs font-bold text-[#a4843a]">04 · E-COMMERCE</span>
                 <h3 class="text-lg sm:text-xl font-extrabold text-[#07192f] mt-0.5">Shopify, Amazon &amp; Stripe Reconciliation</h3>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Break out gross sales, refunds, processor fees, and net deposits into clean ledger entries.</p>
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">Break out gross sales, refunds, platform fees, and net deposits into clean ledger entries.</p>
               </div>
               <div class="text-right shrink-0">
                 <span class="block text-sm font-black text-[#07192f]">Custom Scope</span>
-                <span class="text-xs font-bold text-[#a4843a]">Details <i class="fas fa-chevron-right ml-1"></i></span>
+                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
               </div>
             </button>
 
@@ -575,12 +576,11 @@
               </div>
               <div class="text-right shrink-0">
                 <span class="block text-sm font-black text-[#07192f]">Partner Tiers</span>
-                <span class="text-xs font-bold text-[#a4843a]">Details <i class="fas fa-chevron-right ml-1"></i></span>
+                <span class="text-xs font-bold text-[#a4843a]">Inspect <i class="fas fa-chevron-right ml-1"></i></span>
               </div>
             </button>
           </div>
 
-          <!-- DYNAMIC SERVICE INSPECTOR PANEL -->
           <aside class="rounded-3xl bg-[#07192f] text-white p-6 sm:p-8 shadow-xl lg:sticky lg:top-24" id="serviceInspector">
             <span class="text-[11px] font-black uppercase tracking-[0.2em] text-[#d3b56c]" id="inspTag">01 · CORE MONTHLY</span>
             <h3 class="text-2xl font-black mt-2" id="inspTitle">Monthly Bookkeeping &amp; Catch-Up Cleanup</h3>
@@ -606,13 +606,36 @@
       </div>
     </section>
 
-    <!-- US MODEL: INTERACTIVE AUDIENCE PILLARS + KEY ADVANTAGES -->
+    <!-- SECTION 3: MID-PAGE ACTION CTA BANNER -->
+    <section id="mid-cta" aria-label="Quick consultation CTA" class="py-10 px-5 sm:px-6 bg-[#efeae0] border-b border-[#07192f]/10">
+      <div class="max-w-7xl mx-auto rounded-3xl bg-[#07192f] text-white px-6 sm:px-10 py-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6 shadow-md" data-reveal>
+        <div>
+          <span class="text-[11px] font-black uppercase tracking-[0.2em] text-[#d3b56c]">Fast Clarity</span>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight mt-1">
+            Behind on reconciliations or scaling a CPA practice?
+          </h2>
+          <p class="text-sm text-white/75 mt-1">
+            Get a clear scope in writing or book a 15-minute call during US business hours.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3 shrink-0">
+          <a href="#quote-form" class="px-5 py-3 rounded-xl bg-[#d3b56c] text-[#07192f] text-sm font-black hover:bg-[#e1c683] transition">
+            Get Written Quote
+          </a>
+          <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-xl border border-white/25 text-white text-sm font-bold hover:bg-white/10 transition">
+            Book 15-Min Call
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4: US OPERATING MODEL — ROLE SWITCHER + FEATURE MATRIX CARDS -->
     <section id="model" data-section="model" class="py-20 lg:py-28 px-5 sm:px-6">
       <div class="max-w-7xl mx-auto">
-        <div class="max-w-3xl mb-12" data-reveal>
-          <span class="text-xs font-black uppercase tracking-[0.2em] text-[#a4843a]">Why Accountrise</span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2">
-            Built for how US businesses and CPA firms actually work.
+        <div class="max-w-3xl mb-10" data-reveal>
+          <span class="section-kicker">03 · Operating Model</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
+            Built for how US businesses and CPA firms work.
           </h2>
         </div>
 
@@ -628,19 +651,19 @@
           </button>
         </div>
 
-        <div id="pillarContent" class="rounded-3xl bg-white border border-[#07192f]/12 p-6 sm:p-10 shadow-xs" data-reveal>
+        <div id="pillarContent" class="rounded-3xl bg-white border border-[#07192f]/12 p-6 sm:p-10 shadow-2xs" data-reveal>
           <div data-pillar-panel="smb" class="grid md:grid-cols-3 gap-6">
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">01 · TAX READINESS</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">Clean Books Year-Round</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">No year-end scramble. Monthly reconciliations keep your P&amp;L, Balance Sheet, and 1099 vendor records organized.</p>
             </div>
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">02 · COST EFFICIENCY</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">Fraction of Local Hiring</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">Start at $10/hr USD without employer payroll taxes, benefits, or full-time salary commitments.</p>
             </div>
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">03 · CLEAR VISIBILITY</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">Plain-English Close Notes</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">Open questions are grouped clearly so you spend minutes—not hours—approving your monthly close.</p>
@@ -648,17 +671,17 @@
           </div>
 
           <div data-pillar-panel="cpa" class="grid md:grid-cols-3 gap-6 hidden">
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">01 · WHITE-LABEL</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">Your SOPs &amp; Checklists</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">We follow your chart of accounts, workpaper conventions, and review standards quietly behind your brand.</p>
             </div>
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">02 · PEAK CAPACITY</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">Tax &amp; Extension Relief</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">Clear client cleanup backlogs and recurring write-up work so senior staff focus on tax and advisory.</p>
             </div>
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">03 · SCALABLE CAS</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">Predictable Margin</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">Grow monthly client accounting services without recruiting delays or fixed overhead spikes.</p>
@@ -666,17 +689,17 @@
           </div>
 
           <div data-pillar-panel="security" class="grid md:grid-cols-3 gap-6 hidden">
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">01 · ROLE ACCESS</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">Accountant-Level Access</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">We never ask for bank passwords or payment-release authority; you keep full owner control.</p>
             </div>
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">02 · CONFIDENTIALITY</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">NDA &amp; 2FA Discipline</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">Strict confidentiality across client financials, workpapers, and vendor records.</p>
             </div>
-            <div class="p-5 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
+            <div class="p-6 rounded-2xl bg-[#f8f7f4] border border-[#07192f]/8">
               <span class="text-xs font-black text-[#a4843a]">03 · TIME ZONES</span>
               <h3 class="text-lg font-extrabold text-[#07192f] mt-2">EST to PST Overlap</h3>
               <p class="text-sm text-slate-600 mt-2 leading-relaxed">Scheduled overlap for live calls plus overnight progress so updates await your morning.</p>
@@ -686,18 +709,18 @@
       </div>
     </section>
 
-    <!-- PROCESS: SCROLL-DRIVEN PROGRESS RAIL -->
+    <!-- SECTION 5: ONBOARDING PROCESS — HORIZONTAL PROGRESS TRACK -->
     <section id="process" data-section="process" class="py-20 lg:py-28 px-5 sm:px-6 bg-white border-y border-[#07192f]/10">
       <div class="max-w-7xl mx-auto">
         <div class="max-w-2xl mb-14" data-reveal>
-          <span class="text-xs font-black uppercase tracking-[0.2em] text-[#a4843a]">Onboarding</span>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2">
+          <span class="section-kicker">04 · How We Start</span>
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
             Three steps to clean monthly books.
           </h2>
         </div>
 
-        <div class="process-rail" id="processRail" data-reveal>
-          <div class="hidden md:block h-0.5 bg-[#07192f]/12 rounded-full mb-8 relative overflow-hidden">
+        <div id="processRail" data-reveal>
+          <div class="hidden md:block h-1 bg-[#07192f]/10 rounded-full mb-8 overflow-hidden">
             <div class="process-progress-fill h-full bg-[#a4843a] w-1/3" id="processFill"></div>
           </div>
 
@@ -730,68 +753,89 @@
       </div>
     </section>
 
-    <!-- CLIENT REVIEWS -->
-    <section id="reviews" data-section="reviews" class="py-20 lg:py-28 px-5 sm:px-6">
-      <div class="max-w-5xl mx-auto" data-reveal>
-        <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
-          <div>
-            <span class="text-xs font-black uppercase tracking-[0.2em] text-[#a4843a]">Client Feedback</span>
-            <h2 class="text-3xl sm:text-4xl font-black tracking-[-0.03em] text-[#07192f] mt-2">
-              Trusted across US &amp; international teams.
-            </h2>
+    <!-- SECTION 6: CLIENT PROOF & US GUIDES -->
+    <section id="proof-guides" data-section="proof-guides" class="py-20 lg:py-28 px-5 sm:px-6">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-[1.15fr_0.85fr] gap-10 items-start">
+        <div data-reveal>
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div>
+              <span class="section-kicker">05 · Client Proof</span>
+              <h2 class="text-3xl sm:text-4xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
+                Trusted across US &amp; international teams.
+              </h2>
+            </div>
+            <div class="flex items-center gap-2">
+              <button type="button" id="prevRev" aria-label="Previous review" class="w-10 h-10 rounded-full border border-[#07192f]/20 bg-white text-[#07192f] hover:bg-[#07192f] hover:text-white transition cursor-pointer">
+                <i class="fas fa-arrow-left text-xs"></i>
+              </button>
+              <button type="button" id="nextRev" aria-label="Next review" class="w-10 h-10 rounded-full border border-[#07192f]/20 bg-white text-[#07192f] hover:bg-[#07192f] hover:text-white transition cursor-pointer">
+                <i class="fas fa-arrow-right text-xs"></i>
+              </button>
+            </div>
           </div>
-          <div class="flex items-center gap-2">
-            <button type="button" id="prevRev" aria-label="Previous review" class="w-10 h-10 rounded-full border border-[#07192f]/20 bg-white text-[#07192f] hover:bg-[#07192f] hover:text-white transition cursor-pointer">
-              <i class="fas fa-arrow-left text-xs"></i>
-            </button>
-            <button type="button" id="nextRev" aria-label="Next review" class="w-10 h-10 rounded-full border border-[#07192f]/20 bg-white text-[#07192f] hover:bg-[#07192f] hover:text-white transition cursor-pointer">
-              <i class="fas fa-arrow-right text-xs"></i>
-            </button>
+
+          <div class="rounded-3xl bg-white border border-[#07192f]/12 p-7 sm:p-9 shadow-2xs">
+            <div class="review-panel active" data-rev>
+              <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Upwork US Startup Client · ★★★★★ 5.0</p>
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+                “I have been working with Deshraj for well over a year now and not only does he really know my business, but he really knows his bookkeeping. He has gained my trust and I have referred him to a few business associates.”
+              </blockquote>
+              <p class="text-xs text-slate-500 font-semibold mt-5">QuickBooks Cleanup &amp; Ongoing Bookkeeping</p>
+            </div>
+
+            <div class="review-panel" data-rev>
+              <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Upwork US Startup Client · ★★★★★ 5.0</p>
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+                “Deshraj has great communication and does great work. I'm going to have Deshraj manage our books from here on out. Excellent, reliable and efficient!”
+              </blockquote>
+              <p class="text-xs text-slate-500 font-semibold mt-5">1099 Filings &amp; Profit and Loss Statement</p>
+            </div>
+
+            <div class="review-panel" data-rev>
+              <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">John Hammon · LinkedIn Recommendation</p>
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+                “His turnaround times have been exceptionally prompt, and speed has never come at the expense of quality. His analysis is thorough, commercially sound, and always presented in a way that makes the numbers easier to understand and act on.”
+              </blockquote>
+              <p class="text-xs text-slate-500 font-semibold mt-5">Business Broker · Financial Analysis &amp; Reporting</p>
+            </div>
+
+            <div class="review-panel" data-rev>
+              <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Jim Roddy · LinkedIn Recommendation</p>
+              <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
+                “My business has utilised the services of Desh for the last 2+ years. I can say without hesitation that he has grown to be an invaluable member of our extended team.”
+              </blockquote>
+              <p class="text-xs text-slate-500 font-semibold mt-5">Director · Long-Term Accounting Support</p>
+            </div>
           </div>
         </div>
 
-        <div class="rounded-3xl bg-white border border-[#07192f]/12 p-7 sm:p-10 shadow-xs">
-          <div class="review-panel active" data-rev>
-            <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Upwork US Startup Client · ★★★★★ 5.0</p>
-            <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
-              “I have been working with Deshraj for well over a year now and not only does he really know my business, but he really knows his bookkeeping. He has gained my trust and I have referred him to a few business associates.”
-            </blockquote>
-            <p class="text-xs text-slate-500 font-semibold mt-5">QuickBooks Cleanup &amp; Ongoing Bookkeeping</p>
+        <aside data-reveal class="rounded-3xl bg-white border border-[#07192f]/12 p-6 sm:p-8 shadow-2xs">
+          <span class="section-kicker">Practical Guides</span>
+          <h3 class="text-xl font-black text-[#07192f] mt-2">Read before you outsource.</h3>
+          <div class="mt-5 divide-y divide-[#07192f]/10 text-sm">
+            <a href="/blog/remote-accounting-guide.html" class="block py-3.5 group">
+              <span class="font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition block">Outsourcing US Bookkeeping Checklist</span>
+              <span class="text-xs text-slate-500">Permissions, close dates, and partner vetting.</span>
+            </a>
+            <a href="/blog/odoo-vs-quickbooks.html" class="block py-3.5 group">
+              <span class="font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition block">Odoo vs. QuickBooks Online</span>
+              <span class="text-xs text-slate-500">Choosing the right ledger for growth and inventory.</span>
+            </a>
+            <a href="/blog/bookkeeper-vs-accountant-vs-cpa.html" class="block py-3.5 group">
+              <span class="font-extrabold text-[#07192f] group-hover:text-[#a4843a] transition block">Bookkeeper vs. Accountant vs. CPA</span>
+              <span class="text-xs text-slate-500">Matching tasks to the right cost tier.</span>
+            </a>
           </div>
-
-          <div class="review-panel" data-rev>
-            <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Upwork US Startup Client · ★★★★★ 5.0</p>
-            <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
-              “Deshraj has great communication and does great work. I'm going to have Deshraj manage our books from here on out. Excellent, reliable and efficient!”
-            </blockquote>
-            <p class="text-xs text-slate-500 font-semibold mt-5">1099 Filings &amp; Profit and Loss Statement</p>
-          </div>
-
-          <div class="review-panel" data-rev>
-            <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">John Hammon · LinkedIn Recommendation</p>
-            <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
-              “His turnaround times have been exceptionally prompt, and speed has never come at the expense of quality. His analysis is thorough, commercially sound, and always presented in a way that makes the numbers easier to understand and act on.”
-            </blockquote>
-            <p class="text-xs text-slate-500 font-semibold mt-5">Business Broker · Financial Analysis &amp; Reporting</p>
-          </div>
-
-          <div class="review-panel" data-rev>
-            <p class="text-xs font-bold uppercase tracking-wider text-[#a4843a]">Jim Roddy · LinkedIn Recommendation</p>
-            <blockquote class="font-serif-editorial text-xl sm:text-2xl text-[#07192f] mt-3 leading-relaxed">
-              “My business has utilised the services of Desh for the last 2+ years. I can say without hesitation that he has grown to be an invaluable member of our extended team.”
-            </blockquote>
-            <p class="text-xs text-slate-500 font-semibold mt-5">Director · Long-Term Accounting Support</p>
-          </div>
-        </div>
+        </aside>
       </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- SECTION 7: FAQ -->
     <section id="faq" data-section="faq" class="py-20 lg:py-28 px-5 sm:px-6 bg-white border-t border-[#07192f]/10">
       <div class="max-w-4xl mx-auto">
         <div class="mb-10" data-reveal>
-          <span class="text-xs font-black uppercase tracking-[0.2em] text-[#a4843a]">FAQ</span>
-          <h2 class="text-3xl sm:text-4xl font-black tracking-[-0.03em] text-[#07192f] mt-2">
+          <span class="section-kicker">06 · FAQ</span>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-[-0.03em] text-[#07192f] mt-2 leading-[1.1]">
             Straight answers for US buyers.
           </h2>
         </div>
@@ -839,25 +883,95 @@
         </div>
       </div>
     </section>
+
+    <!-- SECTION 8: BOTTOM CONVERSION CTA BAND -->
+    <section aria-label="Final call to action" class="py-16 px-5 sm:px-6 bg-[#0b2340] text-white border-t border-white/10">
+      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row lg:items-center justify-between gap-8" data-reveal>
+        <div class="max-w-2xl">
+          <span class="text-xs font-black uppercase tracking-[0.2em] text-[#d3b56c]">Start With Clarity</span>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-[-0.03em] mt-2 leading-[1.12]">
+            Ready to put your US books on a clean monthly rhythm?
+          </h2>
+          <p class="text-sm sm:text-base text-white/75 mt-2">
+            Send a quick note for a tailored USD scope or pick a time on Calendly during US business hours.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3.5 shrink-0">
+          <a href="#quote-form" class="px-6 py-3.5 rounded-xl bg-[#d3b56c] text-[#07192f] text-sm font-black hover:bg-[#e1c683] transition">
+            Request Custom Quote
+          </a>
+          <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="px-6 py-3.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-bold hover:bg-white/15 transition">
+            Schedule Discovery Call
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#07192f] text-white py-12 px-5 sm:px-6 border-t border-white/10">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-      <div class="flex items-center gap-3">
-        <img src="./accountrise.png" alt="Accountrise" class="h-9 w-auto rounded-lg" />
-        <div>
-          <span class="font-black text-base tracking-tight block">Accountrise</span>
-          <span class="text-xs text-white/60">US Remote Bookkeeping &amp; White-Label CPA Support</span>
+  <!-- MULTI-COLUMN US FOOTER -->
+  <footer id="footer" class="bg-[#07192f] text-white pt-16 pb-10 px-5 sm:px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto grid sm:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+      <div class="lg:col-span-4">
+        <a href="#top" class="inline-flex items-center gap-3">
+          <img src="./accountrise.png" alt="Accountrise" class="h-10 w-auto rounded-lg" />
+          <span class="font-black text-xl tracking-tight">Accountrise</span>
+        </a>
+        <p class="text-sm text-white/65 mt-4 leading-relaxed max-w-sm">
+          Dedicated remote bookkeeping and white-label accounting back-office support tailored for US small businesses and CPA firms.
+        </p>
+        <div class="mt-5 flex items-center gap-3">
+          <a href="https://www.linkedin.com/company/accountrise" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-9 h-9 rounded-lg border border-white/15 grid place-items-center text-white/80 hover:text-[#d3b56c] hover:border-[#d3b56c] transition">
+            <i class="fab fa-linkedin-in text-sm"></i>
+          </a>
+          <a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf?mp_source=share" target="_blank" rel="noopener noreferrer" aria-label="Upwork" class="w-9 h-9 rounded-lg border border-white/15 grid place-items-center text-white/80 hover:text-[#d3b56c] hover:border-[#d3b56c] transition">
+            <i class="fab fa-upwork text-sm"></i>
+          </a>
+          <a href="https://wa.me/918104839386" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-9 h-9 rounded-lg border border-white/15 grid place-items-center text-white/80 hover:text-[#d3b56c] hover:border-[#d3b56c] transition">
+            <i class="fab fa-whatsapp text-sm"></i>
+          </a>
         </div>
       </div>
 
-      <div class="flex flex-wrap items-center gap-5 text-xs sm:text-sm text-white/75 font-medium">
-        <a href="mailto:info@accountrise.com" class="hover:text-[#d3b56c] transition">info@accountrise.com</a>
-        <a href="https://www.linkedin.com/company/accountrise" target="_blank" rel="noopener noreferrer" class="hover:text-[#d3b56c] transition">LinkedIn</a>
-        <a href="https://www.upwork.com/freelancers/~014affb0a8b9b7b8cf?mp_source=share" target="_blank" rel="noopener noreferrer" class="hover:text-[#d3b56c] transition">Upwork</a>
-        <span>© <span id="yr">2026</span> Accountrise</span>
+      <div class="lg:col-span-3">
+        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">US Services</h3>
+        <ul class="space-y-2.5 text-sm text-white/70">
+          <li><a href="/services/bookkeeping-services/" class="hover:text-white transition">Monthly Bookkeeping &amp; Cleanup</a></li>
+          <li><a href="/services/quickbooks-bookkeeping/" class="hover:text-white transition">QuickBooks Online Support</a></li>
+          <li><a href="/services/odoo-accounting/" class="hover:text-white transition">Odoo Accounting &amp; ERP</a></li>
+          <li><a href="/services/ecommerce-bookkeeping/" class="hover:text-white transition">US E-Commerce Reconciliation</a></li>
+          <li><a href="/services/cpa-outsourcing/" class="hover:text-white transition">White-Label CPA Outsourcing</a></li>
+        </ul>
       </div>
+
+      <div class="lg:col-span-2">
+        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">Company</h3>
+        <ul class="space-y-2.5 text-sm text-white/70">
+          <li><a href="/about/" class="hover:text-white transition">About Accountrise</a></li>
+          <li><a href="/services/" class="hover:text-white transition">All Services</a></li>
+          <li><a href="/blog/" class="hover:text-white transition">Accounting Guides</a></li>
+          <li><a href="#proof-guides" class="hover:text-white transition">Client Reviews</a></li>
+          <li><a href="#faq" class="hover:text-white transition">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="lg:col-span-3">
+        <h3 class="text-xs font-black uppercase tracking-[0.18em] text-[#d3b56c] mb-4">Direct Contact</h3>
+        <p class="text-sm text-white/75">
+          <a href="mailto:info@accountrise.com" class="font-bold text-white hover:text-[#d3b56c] transition">info@accountrise.com</a>
+        </p>
+        <p class="text-xs text-white/60 mt-2 leading-relaxed">
+          Dedicated overlap across EST, CST, MST &amp; PST hours. Mutual NDA available on request.
+        </p>
+        <a href="https://calendly.com/deshrajgocher2012/30min" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-extrabold text-[#d3b56c] hover:underline">
+          <span>Book a 15-Min Call</span>
+          <i class="fas fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto pt-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50">
+      <span>© <span id="yr">2026</span> Accountrise. Serving US Small Businesses &amp; CPA Firms.</span>
+      <span>Bookkeeping &amp; Back-Office Support · All Rights Reserved</span>
     </div>
   </footer>
 
@@ -865,7 +979,6 @@
     (function () {
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      // Mobile drawer
       const toggle = document.getElementById('mobileToggle');
       const drawer = document.getElementById('mobileDrawer');
       toggle?.addEventListener('click', () => {
@@ -879,7 +992,6 @@
         });
       });
 
-      // Scroll progress, header state, active section links & process rail
       const bar = document.getElementById('readProgress');
       const topbar = document.getElementById('topbar');
       const sections = [...document.querySelectorAll('[data-section]')];
@@ -912,7 +1024,6 @@
       window.addEventListener('scroll', () => requestAnimationFrame(updateScroll), { passive: true });
       updateScroll();
 
-      // Reveal on scroll
       const reveals = [...document.querySelectorAll('[data-reveal]')];
       if (!reduced && 'IntersectionObserver' in window) {
         const io = new IntersectionObserver(entries => {
@@ -928,7 +1039,6 @@
         reveals.forEach(el => el.classList.add('is-shown'));
       }
 
-      // Animated counters
       document.querySelectorAll('[data-count]').forEach(el => {
         const target = parseFloat(el.dataset.count);
         const decimals = parseInt(el.dataset.decimals || '0', 10);
@@ -937,7 +1047,7 @@
           return;
         }
         const start = performance.now();
-        const dur = 900;
+        const dur = 850;
         function step(now) {
           const p = Math.min(1, (now - start) / dur);
           const eased = 1 - Math.pow(1 - p, 3);
@@ -947,7 +1057,6 @@
         requestAnimationFrame(step);
       });
 
-      // Service inspector
       const serviceDetails = [
         {
           tag: '01 · CORE MONTHLY',
@@ -1018,8 +1127,8 @@
           const idx = parseInt(row.dataset.serviceIdx, 10);
           const item = serviceDetails[idx];
           if (!item) return;
-          rows.forEach(r => r.classList.remove('bg-[#f8f7f4]'));
-          row.classList.add('bg-[#f8f7f4]');
+          rows.forEach(r => r.classList.remove('is-selected'));
+          row.classList.add('is-selected');
           if (inspTag) inspTag.textContent = item.tag;
           if (inspTitle) inspTitle.textContent = item.title;
           if (inspDesc) inspDesc.textContent = item.desc;
@@ -1032,7 +1141,6 @@
         });
       });
 
-      // Audience pillar tabs
       const pBtns = [...document.querySelectorAll('[data-pillar]')];
       const pPanels = [...document.querySelectorAll('[data-pillar-panel]')];
       pBtns.forEach(btn => {
@@ -1049,7 +1157,6 @@
         });
       });
 
-      // Reviews switcher
       const revPanels = [...document.querySelectorAll('[data-rev]')];
       let revIdx = 0;
       function showRev(i) {
@@ -1059,7 +1166,6 @@
       document.getElementById('prevRev')?.addEventListener('click', () => showRev(revIdx - 1));
       document.getElementById('nextRev')?.addEventListener('click', () => showRev(revIdx + 1));
 
-      // Single-open FAQ
       document.querySelectorAll('.q-box').forEach(box => {
         box.addEventListener('toggle', () => {
           if (box.open) {
@@ -1070,7 +1176,6 @@
         });
       });
 
-      // Year
       const yr = document.getElementById('yr');
       if (yr) yr.textContent = String(new Date().getFullYear());
     })();
